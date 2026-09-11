@@ -1,0 +1,284 @@
+Options +FollowSymLinks
+RewriteEngine On 
+RewriteCond %{SCRIPT_FILENAME} !-d 
+RewriteCond %{SCRIPT_FILENAME} !-f
+
+RewriteCond %{HTTP:Authorization} ^(.*)
+RewriteRule .* - [e=HTTP_AUTHORIZATION:%1]
+
+Rewriterule ^info/$ apiv1.4/info.php
+
+#version 1.0
+Rewriterule ^v1.0/p/(.*)/(.*)$ person/$1.php?$2
+#Rewriterule ^v1.0/p/(.*)/(.*),(.*)/(.*)=(.*)$ person/$1.php?$2&$3
+
+#Rewriterule ^v1.0/suscriptor/(.*)/(.*),(.*)/(.*),(.*)$ /suscriptor/$1.php?$2=$3&$4=$5
+Rewriterule ^v1.0/sus/(.*)/(.*)$ /suscriptor/$1.php?$2
+
+#PARA ESTABLECIMIENTOS
+Rewriterule ^v1.0/est/(.*)/(.*)$ /hoteles/$1.php?$2
+
+#PARA INFORMACION
+Rewriterule ^v1.0/inf/(.*)/(.*)$ /informacion/$1.php?$2
+
+
+#version 1.1
+Rewriterule ^v1.1/p/(.*)/(.*)$ apiv1.1/person/$1.php?$2
+#Rewriterule ^v1.1/p/(.*)/(.*),(.*)/(.*)=(.*)$ apiv1.1/person/$1.php?$2&$3
+
+#Rewriterule ^v1.1/suscriptor/(.*)/(.*),(.*)/(.*),(.*)$ /apiv1.1/suscriptor/$1.php?$2=$3&$4=$5
+Rewriterule ^v1.1/sus/(.*)/(.*)$ /apiv1.1/suscriptor/$1.php?$2
+
+#PARA ESTABLECIMIENTOS
+Rewriterule ^v1.1/est/(.*)/(.*)$ /apiv1.1/hoteles/$1.php?$2
+
+#PARA INFORMACION
+Rewriterule ^v1.1/inf/(.*)/(.*)$ /apiv1.1/informacion/$1.php?$2
+
+
+
+#version 1.2
+Rewriterule ^v1.2/p/(.*)/(.*)$ apiv1.2/person/$1.php?$2
+#Rewriterule ^v1.2/p/(.*)/(.*),(.*)/(.*)=(.*)$ apiv1.2/person/$1.php?$2&$3
+
+#Rewriterule ^v1.2/suscriptor/(.*)/(.*),(.*)/(.*),(.*)$ /apiv1.2/suscriptor/$1.php?$2=$3&$4=$5
+Rewriterule ^v1.2/sus/(.*)/(.*)$ /apiv1.2/suscriptor/$1.php?$2
+
+#PARA ESTABLECIMIENTOS
+Rewriterule ^v1.2/est/(.*)/(.*)$ /apiv1.2/hoteles/$1.php?$2
+
+#PARA INFORMACION
+Rewriterule ^v1.2/inf/(.*)/(.*)$ /apiv1.2/informacion/$1.php?$2
+
+#PARA PRODUCTOS
+Rewriterule ^v1.2/prd/(.*)/(.*)$ /apiv1.2/app/$1.php?$2
+
+#PARA CITAS
+Rewriterule ^v1.2/cita/(.*)/(.*)$ /apiv1.2/citas/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.2/app/(.*)/(.*)$ /apiv1.2/app/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.2/lug/(.*)/(.*)$ /apiv1.2/lugares/$1.php?$2
+
+
+
+
+#version 1.3
+Rewriterule ^v1.3/p/(.*)/(.*)$ apiv1.3/person/$1.php?$2
+#Rewriterule ^v1.3/p/(.*)/(.*),(.*)/(.*)=(.*)$ apiv1.3/person/$1.php?$2&$3
+
+#Rewriterule ^v1.3/suscriptor/(.*)/(.*),(.*)/(.*),(.*)$ /apiv1.3/suscriptor/$1.php?$2=$3&$4=$5
+Rewriterule ^v1.3/sus/(.*)/(.*)$ /apiv1.3/suscriptor/$1.php?$2
+
+#PARA ESTABLECIMIENTOS
+Rewriterule ^v1.3/est/(.*)/(.*)$ /apiv1.3/hoteles/$1.php?$2
+
+#PARA INFORMACION
+Rewriterule ^v1.3/inf/(.*)/(.*)$ /apiv1.3/informacion/$1.php?$2
+
+#PARA PRODUCTOS
+Rewriterule ^v1.3/prd/(.*)/(.*)$ /apiv1.3/app/$1.php?$2
+
+#PARA CITAS
+Rewriterule ^v1.3/cita/(.*)/(.*)$ /apiv1.3/citas/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.3/app/(.*)/(.*)$ /apiv1.3/app/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.3/lug/(.*)/(.*)$ /apiv1.3/lugares/$1.php?$2
+
+
+
+#version 1.4
+Rewriterule ^v1.4/p/(.*)/(.*)$ apiv1.4/person/$1.php?$2
+#Rewriterule ^v1.4/p/(.*)/(.*),(.*)/(.*)=(.*)$ apiv1.4/person/$1.php?$2&$3
+
+#Rewriterule ^v1.4/suscriptor/(.*)/(.*),(.*)/(.*),(.*)$ /apiv1.4/suscriptor/$1.php?$2=$3&$4=$5
+#Rewriterule ^v1.4/sus/(.*)/(.*)$ /apiv1.4/suscriptor/$1.php?$2
+Rewriterule ^v1.4/sus/(.*)/(.*)$ /apiv1.4/suscriptor/$1.php?$2
+
+#PARA ESTABLECIMIENTOS
+Rewriterule ^v1.4/est/(.*)/(.*)$ /apiv1.4/hoteles/$1.php?$2
+
+#PARA INFORMACION
+Rewriterule ^v1.4/inf/(.*)/(.*)$ /apiv1.4/informacion/$1.php?$2
+
+#PARA PRODUCTOS
+Rewriterule ^v1.4/prd/(.*)/(.*)$ /apiv1.4/app/$1.php?$2
+
+#PARA CITAS
+Rewriterule ^v1.4/cita/(.*)/(.*)$ /apiv1.4/citas/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.4/app/(.*)/(.*)$ /apiv1.4/app/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.4/lug/(.*)/(.*)$ /apiv1.4/lugares/$1.php?$2
+
+
+
+#version 1.5
+Rewriterule ^v1.5/p/(.*)/(.*)$ apiv1.5/person/$1.php?$2
+#Rewriterule ^v1.5/p/(.*)/(.*),(.*)/(.*)=(.*)$ apiv1.5/person/$1.php?$2&$3
+
+#Rewriterule ^v1.5/suscriptor/(.*)/(.*),(.*)/(.*),(.*)$ /apiv1.5/suscriptor/$1.php?$2=$3&$4=$5
+#Rewriterule ^v1.5/sus/(.*)/(.*)$ /apiv1.5/suscriptor/$1.php?$2
+Rewriterule ^v1.5/sus/(.*)/(.*)$ /apiv1.5/suscriptor/$1.php?$2
+
+#PARA ESTABLECIMIENTOS
+Rewriterule ^v1.5/est/(.*)/(.*)$ /apiv1.5/hoteles/$1.php?$2
+
+#PARA PAGOS
+Rewriterule ^v1.5/pay/(.*)/(.*)$ /apiv1.5/pago/$1.php?$2
+
+#PARA INFORMACION
+Rewriterule ^v1.5/inf/(.*)/(.*)$ /apiv1.5/informacion/$1.php?$2
+
+#PARA PRODUCTOS
+Rewriterule ^v1.5/prd/(.*)/(.*)$ /apiv1.5/app/$1.php?$2
+
+#PARA CITAS
+Rewriterule ^v1.5/cita/(.*)/(.*)$ /apiv1.5/citas/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.5/app/(.*)/(.*)$ /apiv1.5/app/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.5/lug/(.*)/(.*)$ /apiv1.5/lugares/$1.php?$2
+
+
+
+
+#version 1.6
+Rewriterule ^v1.6/p/(.*)/(.*)$ apiv1.6/person/$1.php?$2
+#Rewriterule ^v1.6/p/(.*)/(.*),(.*)/(.*)=(.*)$ apiv1.6/person/$1.php?$2&$3
+
+#Rewriterule ^v1.6/suscriptor/(.*)/(.*),(.*)/(.*),(.*)$ /apiv1.6/suscriptor/$1.php?$2=$3&$4=$5
+#Rewriterule ^v1.6/sus/(.*)/(.*)$ /apiv1.6/suscriptor/$1.php?$2
+Rewriterule ^v1.6/sus/(.*)/(.*)$ /apiv1.6/suscriptor/$1.php?$2
+
+#PARA ESTABLECIMIENTOS
+Rewriterule ^v1.6/est/(.*)/(.*)$ /apiv1.6/hoteles/$1.php?$2
+
+
+#PARA PAGOS
+Rewriterule ^v1.6/pay/(.*)/(.*)$ /apiv1.6/pago/$1.php?$2
+
+#PARA INFORMACION
+Rewriterule ^v1.6/inf/(.*)/(.*)$ /apiv1.6/informacion/$1.php?$2
+
+#PARA PRODUCTOS
+Rewriterule ^v1.6/prd/(.*)/(.*)$ /apiv1.6/app/$1.php?$2
+
+#PARA CITAS
+Rewriterule ^v1.6/cita/(.*)/(.*)$ /apiv1.6/citas/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.6/app/(.*)/(.*)$ /apiv1.6/app/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.6/lug/(.*)/(.*)$ /apiv1.6/lugares/$1.php?$2
+
+
+
+
+
+#version 1.7
+Rewriterule ^v1.7/p/(.*)/(.*)$ apiv1.7/person/$1.php?$2
+#Rewriterule ^v1.6/p/(.*)/(.*),(.*)/(.*)=(.*)$ apiv1.6/person/$1.php?$2&$3
+
+#Rewriterule ^v1.6/suscriptor/(.*)/(.*),(.*)/(.*),(.*)$ /apiv1.6/suscriptor/$1.php?$2=$3&$4=$5
+#Rewriterule ^v1.6/sus/(.*)/(.*)$ /apiv1.6/suscriptor/$1.php?$2
+Rewriterule ^v1.7/sus/(.*)/(.*)$ /apiv1.7/suscriptor/$1.php?$2
+
+#PARA ESTABLECIMIENTOS
+Rewriterule ^v1.7/est/(.*)/(.*)$ /apiv1.7/hoteles/$1.php?$2
+
+#PARA CERTIFICADOS
+Rewriterule ^v1.7/ticket/(.*)/(.*)$ /apiv1.7/tickets/$1.php?$2
+
+#PARA PAGOS
+Rewriterule ^v1.7/pay/(.*)/(.*)$ /apiv1.7/pago/$1.php?$2
+
+#PARA INFORMACION
+Rewriterule ^v1.7/inf/(.*)/(.*)$ /apiv1.7/informacion/$1.php?$2
+
+#PARA PRODUCTOS
+Rewriterule ^v1.7/prd/(.*)/(.*)$ /apiv1.7/app/$1.php?$2
+
+#PARA CITAS
+Rewriterule ^v1.7/cita/(.*)/(.*)$ /apiv1.7/citas/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.7/app/(.*)/(.*)$ /apiv1.7/app/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.7/lug/(.*)/(.*)$ /apiv1.7/lugares/$1.php?$2
+
+#PARA REPORTES
+Rewriterule ^v1.7/rep/(.*)/(.*)$ /apiv1.7/reportes/$1.php?$2
+
+#PARA Metricas Hoteles
+Rewriterule ^v1.7/met/(.*)/(.*)$ /apiv1.7/metricasHoteles/$1.php?$2
+
+#PARA Reservas hoteles
+Rewriterule ^v1.7/adm/res/(.*)/(.*)$ /apiv1.7/administrador/reservas/$1.php?$2
+
+#PARA Administrador hoteles
+Rewriterule ^v1.7/adm/sus/(.*)/(.*)$ /apiv1.7/administrador/suscripciones/$1.php?$2
+
+#PARA Administrador usuariosPrueba
+Rewriterule ^v1.7/adm/call/(.*)/(.*)$ /apiv1.7/administrador/callCenter/$1.php?$2
+
+
+
+#########################################################################
+
+
+#version 1.8 Desarrollo
+Rewriterule ^v1.8/p/(.*)/(.*)$ apiv1.8/person/$1.php?$2
+#Rewriterule ^v1.6/p/(.*)/(.*),(.*)/(.*)=(.*)$ apiv1.6/person/$1.php?$2&$3
+
+#Rewriterule ^v1.6/suscriptor/(.*)/(.*),(.*)/(.*),(.*)$ /apiv1.6/suscriptor/$1.php?$2=$3&$4=$5
+#Rewriterule ^v1.6/sus/(.*)/(.*)$ /apiv1.6/suscriptor/$1.php?$2
+Rewriterule ^v1.8/sus/(.*)/(.*)$ /apiv1.8/suscriptor/$1.php?$2
+
+#PARA ESTABLECIMIENTOS
+Rewriterule ^v1.8/est/(.*)/(.*)$ /apiv1.8/hoteles/$1.php?$2
+
+
+#PARA PAGOS
+Rewriterule ^v1.8/pay/(.*)/(.*)$ /apiv1.8/pago/$1.php?$2
+
+#PARA INFORMACION
+Rewriterule ^v1.8/inf/(.*)/(.*)$ /apiv1.8/informacion/$1.php?$2
+
+#PARA PRODUCTOS
+Rewriterule ^v1.8/prd/(.*)/(.*)$ /apiv1.8/app/$1.php?$2
+
+#PARA CITAS
+Rewriterule ^v1.8/cita/(.*)/(.*)$ /apiv1.8/citas/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.8/app/(.*)/(.*)$ /apiv1.8/app/$1.php?$2
+
+#PARA APP
+Rewriterule ^v1.8/lug/(.*)/(.*)$ /apiv1.8/lugares/$1.php?$2
+
+#PARA REPORTES
+Rewriterule ^v1.8/rep/(.*)/(.*)$ /apiv1.8/reportes/$1.php?$2
+
+#PARA Metricas Hoteles
+Rewriterule ^v1.8/met/(.*)/(.*)$ /apiv1.8/metricasHoteles/$1.php?$2
+
+#PARA Reservas hoteles
+Rewriterule ^v1.8/adm/res/(.*)/(.*)$ /apiv1.8/administrador/reservas/$1.php?$2
+
+#PARA Administrador hoteles
+Rewriterule ^v1.8/adm/sus/(.*)/(.*)$ /apiv1.8/administrador/suscripciones/$1.php?$2
+
+#PARA Administrador callCenter
+Rewriterule ^v1.8/adm/call/(.*)/(.*)$ /apiv1.8/administrador/callCenter/$1.php?$2

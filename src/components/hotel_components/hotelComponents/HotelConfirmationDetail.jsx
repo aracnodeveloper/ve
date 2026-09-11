@@ -86,16 +86,20 @@ const HotelConfirmationDetail = ({ Ofertas, isOpen, Establecimiento, Fechas, Val
         }
     };
 
+    const Section = ({ icon, title, children }) => (
+        <div className="rounded-xl border border-gray-100 overflow-hidden mb-3 shadow-sm">
+            <div className="bg-gray-50 border-b border-gray-100 px-4 py-2.5 flex items-center gap-2">
+                <span className={`${icon} h-4 w-4 text-greenVE-600`}></span>
+                <h3 className="text-sm font-semibold text-gray-700">{title}</h3>
+            </div>
+            <div className="p-4">{children}</div>
+        </div>
+    );
+
     return (
-        <div className="flex flex-col  mb-4">
+        <div className="space-y-1 mb-4">
             {/* Detalles del hotel */}
-            <div className="border-x border-t border-greenVE-400 rounded-t-lg overflow-hidden ">
-                <div className="bg-greenVE-600 p-2 h-14">
-                    <h3 className="text-white font-semibold text-sm text-center flex items-center justify-center gap-2">
-                        <span className="icon-[mdi--hotel] h-4 w-4"></span>
-                        Detalles del hotel
-                    </h3>
-                </div>
+            <Section icon="icon-[mdi--hotel]" title="Detalles del hotel">
                 <div className="p-3 space-y-2">
                     <p className="text-sm font-bold text-center">{Establecimiento.Titulo}</p>
                     <div className="flex flex-wrap justify-center gap-5">
@@ -115,17 +119,10 @@ const HotelConfirmationDetail = ({ Ofertas, isOpen, Establecimiento, Fechas, Val
                         </div>
                     <p className="text-xs text-center text-gray-600">{Establecimiento.Direccion}</p>
                 </div>
-            </div>
+            </Section>
 
             {/* Detalles de la reserva */}
-            <div className="border-x border-t border-greenVE-400  overflow-hidden">
-                <div className="bg-greenVE-600 p-2">
-                    <h3 className="text-white font-semibold text-sm text-center flex items-center justify-center gap-2">
-                        <span className="icon-[mdi--calendar-check] h-4 w-4"></span>
-                        Detalles de la reserva
-                    </h3>
-                </div>
-                <div className="p-3 space-y-2">
+            <Section icon="icon-[mdi--calendar-check]" title="Detalles de la reserva">
                     <div className="flex justify-start gap-10">
                         <div className="flex flex-wrap gap-3">
                             <p className="text-xs font-medium text-gray-600">Entrada:</p>
@@ -160,18 +157,11 @@ const HotelConfirmationDetail = ({ Ofertas, isOpen, Establecimiento, Fechas, Val
                             )}
                         </div>
                     )}
-                </div>
-            </div>
+            </Section>
 
             {/* Desglose de precios */}
-            <div className="border-x border-b border-greenVE-400 rounded-b-lg overflow-hidden">
-                <div className="bg-greenVE-600 p-2">
-                    <h3 className="text-white font-semibold text-sm text-center flex items-center justify-center gap-2">
-                        <span className="icon-[mdi--cash-multiple] h-4 w-4"></span>
-                        Desglose de precios
-                    </h3>
-                </div>
-                <div className="p-3 space-y-2">
+            <Section icon="icon-[mdi--cash-multiple]" title="Desglose de precios">
+                <div className="space-y-2">
                     <div className="flex justify-between text-sm">
                         <span className="text-gray-600">Subtotal hospedaje/{wineOfferInfo && getWineOfferPrice() > 0 && (     <span> Vino</span>    )}:</span>
                         <span className="font-semibold">${Valores.SinImpuestos}</span>
@@ -189,7 +179,7 @@ const HotelConfirmationDetail = ({ Ofertas, isOpen, Establecimiento, Fechas, Val
                         <span className="font-bold text-greenVE-700">${Valores.SinImpuestos + Valores.Impuestos}</span>
                     </div>
                 </div>
-            </div>
+            </Section>
         </div>
     );
 };

@@ -1,14 +1,15 @@
 import CallcenterService from "../../services/callcenter/CallcenterService";
 
 const callcenterService = new CallcenterService();
-const session = JSON.parse(localStorage.getItem("datos"));
 
 export const getCuentaGratis = async function (filtros) {
-  console.log("filtros", session);
   try {
+    const session = JSON.parse(localStorage.getItem("datos"));
+    if (!session) return false;
+
     var params = {
       token: session.token,
-      id_vendedor: session.data.id_usuario,
+      id_vendedor: session.data?.id_usuario,
     };
 
     if (filtros.pagina > 0) {
@@ -49,6 +50,9 @@ export const gestionarCuentaGratis = async function ({
   comentario,
 }) {
   try {
+    const session = JSON.parse(localStorage.getItem("datos"));
+    if (!session) return false;
+
     var params = {
       token: session.token,
       tipo: tipo,

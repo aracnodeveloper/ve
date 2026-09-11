@@ -1,4 +1,6 @@
 import { useNavigate } from "react-router-dom";
+import { crearCertificado, TYPE_TICKET } from "../../controllers/certificado/certificadoController";
+import { useBeneficios, puedeGenerarTicket } from "../../global/oneShot";
 
 const DAY_NAMES_0 = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 const DAY_NAMES_1 = ["", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"];
@@ -58,6 +60,13 @@ const RestaurantsConfirmation = ({ Ofertas, isOpen, Establecimiento, Fechas, Val
 
     const { dateDisplay, timeDisplay } = getScheduleParts(scheduleDateTime);
 
+    // Politica OneShot: un ticket por subType. La peticion ya la disparo
+    // Restaurant.jsx al entrar; aqui solo se lee el cache. El hook va antes del
+    // early return de abajo para no romper las reglas de hooks.
+    const { beneficios, cargando: cargandoBeneficios } = useBeneficios();
+    const subTypeOferta = Ofertas?.[0]?.subType || '';
+    const beneficioAgotado = !puedeGenerarTicket(beneficios, subTypeOferta);
+
     if (!isOpen) return null;
 
     const buildMensaje = () => {
@@ -101,7 +110,28 @@ const RestaurantsConfirmation = ({ Ofertas, isOpen, Establecimiento, Fechas, Val
 
     const handleWhatsApp = () => {
         const msg = buildMensaje().replace(/ /g, '%20').replace(/\n/g, '%0A');
+        // Se abre primero para que el navegador no bloquee el popup.
         window.open(`https://wa.me/${wsNum}?text=${msg}`);
+
+        // Se registra el ticket en tbl_certificado. No bloquea el envio por WhatsApp.
+        // Los ids son los UUID de vino_api, que es donde viven estas ofertas.
+        const personas = Ofertas.reduce(
+            (total, el) => total + (parseInt(el.NumPersonas || el.NumOfertas || el.cantidad) || 1),
+            0
+        );
+        const ofertaVino = Ofertas?.[0];
+        crearCertificado({
+            tipo: TYPE_TICKET,
+            idEstablecimiento: ofertaVino?.wineEstablishment?.id,
+            idOferta: ofertaVino?.IdOferta,
+            adultos: personas,
+            latitud: Establecimiento.Latitud,
+            longitud: Establecimiento.Longitud,
+            ubicacion: [ciudad, direccion].filter(Boolean).join(' - '),
+            // Se guardan para poder contar beneficios por subType sin consultar vino_api.
+            wineType: ofertaVino?.type,
+            wineSubtype: ofertaVino?.subType,
+        });
     };
 
     const ciudad = Establecimiento.city || Establecimiento.Ciudad || '';
@@ -200,13 +230,26 @@ const RestaurantsConfirmation = ({ Ofertas, isOpen, Establecimiento, Fechas, Val
 
                 {/* Footer */}
                 <div className="bg-white border-t border-gray-100 px-3 py-3 flex-shrink-0">
-                    <button
-                        onClick={handleWhatsApp}
-                        className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] text-white font-semibold text-sm transition-all active:scale-95"
-                    >
-                        <span className="icon-[mdi--whatsapp] h-4 w-4"></span>
-                        Confirmar por WhatsApp
-                    </button>
+                    {beneficioAgotado ? (
+                        <div className="flex items-start gap-2 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2.5">
+                            <span className="icon-[mdi--information-outline] h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5"></span>
+                            <div>
+                                <p className="text-xs font-semibold text-amber-800">Beneficio ya utilizado</p>
+                                <p className="text-[11px] text-amber-700 leading-relaxed">
+                                    Tu suscripción OneShot incluye un solo ticket de este beneficio y ya lo usaste.
+                                </p>
+                            </div>
+                        </div>
+                    ) : (
+                        <button
+                            onClick={handleWhatsApp}
+                            disabled={cargandoBeneficios}
+                            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-[#25D366] hover:bg-[#1ebe5d] disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold text-sm transition-all active:scale-95"
+                        >
+                            <span className="icon-[mdi--whatsapp] h-4 w-4"></span>
+                            {cargandoBeneficios ? "Verificando tu suscripción..." : "Confirmar por WhatsApp"}
+                        </button>
+                    )}
                 </div>
             </div>
         </div>

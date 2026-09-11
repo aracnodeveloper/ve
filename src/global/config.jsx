@@ -10,6 +10,30 @@ class Config {
     return "https://api.visitaecuador.com/v1.7";
   }
 
+  // RIS (RISE_Front / VE.Api). El detalle de cliente se consulta por cedula:
+  // GET {RISE_API}api/Customer/by-cedula?cedula=..&isStatus=true
+  // Es un host aparte, sin el token de apidev, y responde envuelto en
+  // { code, message, data }.
+  static get RISE_API() {
+    return "https://ris.redinservsa.com/ris/";
+  }
+
+  // Base de los archivos PHP sueltos: se sirven desde su ruta fisica
+  // (apiv1.7/) porque el .htaccess solo reescribe v1.7/<seccion>/<archivo>/.
+  // Llamarlos por v1.7/ devuelve 404, y en ese caso ni siquiera se ejecuta el
+  // PHP, por lo que tampoco salen sus cabeceras CORS.
+  static get URL_PHP_DIRECTO() {
+    return "https://apidev.visitaecuador.com/apiv1.7";
+  }
+
+  static get URL_COMPROBANTE() {
+    return `${Config.URL_PHP_DIRECTO}/subirComprobante.php`;
+  }
+
+  static get URL_PAYPHONE_LINKS() {
+    return `${Config.URL_SERVICIOS}/payphoneLinks/`;
+  }
+
   static get URL_BIOSITE() {
     return "https://visitaecuador.com/bio-api";
   }
@@ -160,6 +184,12 @@ class Config {
 
   static get CERT() {
     return "/cert/"
+  }
+
+  // Certificados/tickets de tbl_certificado.
+  // .htaccess: ^v1.7/ticket/(.*)/(.*)$ -> /apiv1.7/tickets/$1.php?$2
+  static get TICKET() {
+    return "/ticket/";
   }
 
   static get VERINFO() {

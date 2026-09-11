@@ -36,6 +36,15 @@ export const ENDPOINTS = {
 };
 
 // ============ HELPERS ============
+
+/** Construye una URL absoluta a una imagen de vino_api si viene como path relativo. */
+export const wineImageUrl = (img) => {
+  if (!img) return null;
+  if (img.startsWith('http')) return img;
+  if (img.startsWith('/')) return `${IMAGE_BASE}${img}`;
+  return `${IMAGE_BASE}/img/${img}`;
+};
+
 const extractUrlFromUploadResponse = (res) => {
   const body = res?.data || res;
   if (!body) return null;

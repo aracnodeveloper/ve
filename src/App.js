@@ -28,6 +28,7 @@ const Disney = lazy(() => import("./pages/Disney/Disney"));
 const YaGanaste = lazy(() => import("./pages/yaganaste/yaganaste"));
 const Bienvenida = lazy(() => import("./pages/Bienvenida/Bienvenida"));
 const PayPhone = lazy(() => import("./pages/PayPhone/PayPhone"));
+const PayphoneLinkTest = lazy(() => import("./pages/PayPhone/PayphoneLinkTest"));
 const Contacto = lazy(() => import("./pages/Contacto/Contacto"));
 const Emprende = lazy(() => import("./pages/Emprende/Emprende"));
 const Remate = lazy(() => import("./pages/Remate/Remate"));
@@ -38,6 +39,7 @@ const contactos = ["593986263432", "593981850436"];
 const Promo = lazy(() => import("./pages/Promo/Promo"));
 const Tips = lazy(() => import("./pages/Tips/Tips"));
 const Suscribete = lazy(() => import("./pages/Suscribete/Suscribete"));
+const PuntosCarga = lazy(() => import("./pages/PuntosCarga/PuntosCarga"));
 const SearchBar = lazy(
   () => import("./components/global_components/searchBar/searchBar")
 );
@@ -205,7 +207,7 @@ function App() {
               <Suspense> <Hotel /></Suspense>
             }
           />
-           <Route
+          <Route
             path="/restaurante/:nombre"
             element={
               <Suspense> <Restaurant /></Suspense>
@@ -235,7 +237,7 @@ function App() {
               </Suspense>
             }
           />
-           <Route
+          <Route
             path="/res_certificado/"
             element={
               <Suspense>
@@ -300,10 +302,26 @@ function App() {
             }
           />
           <Route
+            path="/test-payphone-link"
+            element={
+              <Suspense>
+                <PayphoneLinkTest />
+              </Suspense>
+            }
+          />
+          <Route
             path="/contacto"
             element={
               <Suspense>
                 <Contacto />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/puntos-carga"
+            element={
+              <Suspense>
+                <PuntosCarga />
               </Suspense>
             }
           />
@@ -429,6 +447,9 @@ const HomeIndexContent = ({ isMobile }) => {
       <Suspense fallback={<ContentSkeleton />}>
         <VideosBanner />
       </Suspense>
+      <div className="fixed -z-10 bottom-0 right-0">
+        <img className="w-full" src="https://visitaecuador.com/img/web/404-background.webp" alt="" />
+      </div>
     </>
   );
 };
@@ -451,8 +472,8 @@ const WineRouteContent = ({ isMobile, offerType }) => {
       {isMobile ? (
         <div className="">
           <Suspense fallback={<WineSearchBarSkeleton />}>
-            <WineSearchBar 
-              type={3} 
+            <WineSearchBar
+              type={3}
               onFilterChange={handleFilterChange}
               initialFilters={wineFilters}
               navigateTo="/busqueda-beneficios"
@@ -462,8 +483,8 @@ const WineRouteContent = ({ isMobile, offerType }) => {
         </div>
       ) : (
         <Suspense fallback={<WineSearchBarSkeleton />}>
-          <WineSearchBar 
-            type={0} 
+          <WineSearchBar
+            type={0}
             onFilterChange={handleFilterChange}
             initialFilters={wineFilters}
             navigateTo="/busqueda-beneficios"

@@ -30,7 +30,7 @@ const Footer = () => {
               </div>
               <div>
                 <a
-                  href="/emprende"
+                  href="/contacto?tab=emprende"
                   className="text-greenVE-700 font-normal hover:text-greenVE-500 text-xs"
                 >
                   Emprende con nosotros

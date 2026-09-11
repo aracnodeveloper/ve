@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { calcularNoches, formatearFecha } from '../../../global/formatearFecha';
+import { esOfertaAgotada, textoAgotada } from '../../../global/ofertasPricing';
 
 
 const HotelRoomItem = ({date, oferta, index, selectedRooms, setSelectedRooms}) => {
     const [selectedOption, setSelectedOption] = useState(null);
+    // Agotada si su día de reactivación es posterior al día de check-in elegido.
+    const agotada = esOfertaAgotada(oferta, date && date[0] && date[0].startDate);
     const handleChange = (event) => {
         const selectedValue = event.target.value;
         setSelectedOption(selectedValue);
@@ -15,6 +18,16 @@ const HotelRoomItem = ({date, oferta, index, selectedRooms, setSelectedRooms}) =
         <div>
             <div className='w-full bg-white border border-gray-300 p-3 flex flex-col gap-2'>
                 <label className='font-semibold'>{oferta.TituloOferta}</label>
+                {
+                    agotada
+                    ?<div className='flex gap-1.5 items-center bg-red-100 border border-red-200 rounded-md px-2 py-0.5 w-fit'>
+                        <span className="icon-[ri--prohibited-2-line] text-red-500 h-4 w-4"></span>
+                        <label className='text-red-500 text-xs font-medium'>
+                            {textoAgotada(oferta)}
+                        </label>
+                    </div>
+                    :<></>
+                }
                 {
                     oferta.AplicaEn!=null&&oferta.AplicaEn!=null
                     ?<div className='flex gap-2 items-center'>
@@ -48,7 +61,11 @@ const HotelRoomItem = ({date, oferta, index, selectedRooms, setSelectedRooms}) =
                     <label className='text-sm'>+ US ${oferta.Impuestos} de impuestos y cargos</label>
                 </div>
                 <div>
-                    <select className='w-full p-3 text-center bg-white border border-greenVE-500 rounded-md' value={selectedOption} onChange={handleChange}>
+                    <select
+                        className={`w-full p-3 text-center rounded-md border ${agotada ? 'bg-gray-100 text-gray-400 border-gray-300 cursor-not-allowed' : 'bg-white border-greenVE-500'}`}
+                        value={agotada ? "0" : selectedOption}
+                        disabled={agotada}
+                        onChange={handleChange}>
                         <option className='w-10' value="">Seleccione una opción</option>
                         <option value="0">0 Unidades</option>
                         <option value="1">1 Unidad</option>

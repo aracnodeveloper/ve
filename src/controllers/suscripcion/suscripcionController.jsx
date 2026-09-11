@@ -72,6 +72,49 @@ export const loginRemote = async function (params) {
   }
 };
 
+/**
+ * Avisa a contabilidad del cobro con tarjeta recien procesado por PayPhone.
+ *
+ * No corta el flujo si falla: la suscripcion ya se creo y el dinero ya se
+ * cobro, asi que un correo caido no puede romperle la bienvenida al cliente.
+ */
+export const notificarPagoPayphone = async function ({ state, dataSuscripcion }) {
+  try {
+    const producto = state?.producto || {};
+    const precio = parseFloat(producto.PrecioProducto || 0);
+    const subtotal = precio.toFixed(2);
+    const total = (precio * 1.12).toFixed(2);
+    const iva = (precio * 1.12 - precio).toFixed(2);
+
+    const suscripcionService = new SuscripcionService();
+    const res = await suscripcionService.notificarPagoPayphone({
+      personal: {
+        nombres: state?.persona?.nombres || "",
+        ci: state?.persona?.cedula || "",
+        email: state?.persona?.correo || "",
+        celular: state?.persona?.telefono || "",
+      },
+      producto: {
+        titulo: producto.Titulo || producto.nombreProducto || "",
+        subtotal: subtotal,
+        iva: iva,
+        total: total,
+      },
+      pago: {
+        boton: state?.pago?.NombreBotonPago || state?.pago?.IdTipoBotonPago || "",
+        diferido: state?.pago?.Meses || "",
+        intereses: state?.pago?.Intereses || "",
+        codigo_suscripcion: dataSuscripcion?.codigo || "",
+      },
+      transaccion: state?.pago?.transaccion || {},
+    });
+    return !!(res && res.estado);
+  } catch (e) {
+    console.error("No se pudo notificar el pago de PayPhone:", e);
+    return false;
+  }
+};
+
 export const getPermissions = async function (idUsuario) {
   try {
     const suscripcionService = new SuscripcionService();

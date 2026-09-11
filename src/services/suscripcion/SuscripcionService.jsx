@@ -89,6 +89,18 @@ class SuscripcionService extends GenericService {
     const url = `${Config.URL_SERVICIOS}${Config.VERSUS}gestionarSuscripcion/`;
     return await this.post(url, params);
   }
+  // Crea la suscripcion pagada por transferencia / deposito. Nace en estado de
+  // pago 9 ("Pago por Confirmar"): el cliente ya tiene acceso y contabilidad
+  // concilia el comprobante despues desde el administrador.
+  async crearSuscripcionTransferencia(params) {
+    const url = `${Config.URL_SERVICIOS}${Config.VERSUS}crearSuscripcionTransferencia/`;
+    return await this.post(url, params);
+  }
+  // Aviso a contabilidad de un cobro con tarjeta por el formulario de PayPhone.
+  async notificarPagoPayphone(params) {
+    const url = `${Config.URL_SERVICIOS}${Config.VERSUS}notificarPagoPayphone/`;
+    return await this.post(url, params);
+  }
   async sendNotificationSubscription(params) {
     const url = `${Config.URL_SERVICIOS}${Config.VERSUS}sendNotificacionSuscripcion/`;
     return await this.post(url, params);

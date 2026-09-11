@@ -2,6 +2,13 @@
   "version": "0.0.1",
   "configurations": [
     {
+      "name": "ve",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/aracnocia.ltda./Documents/Proyectos React/ve", "start"],
+      "port": 3006,
+      "env": { "PORT": "3006", "BROWSER": "none" }
+    },
+    {
       "name": "santa-galleta",
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "/Users/aracnocia.ltda./Documents/Proyectos React/santa-galleta", "start"],
@@ -12,6 +19,24 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["--prefix", "/Users/aracnocia.ltda./Documents/Proyectos React/ve-next", "run", "dev"],
       "port": 5174
+    },
+    {
+      "name": "rise-front",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/aracnocia.ltda./Documents/Proyectos Propios/RISE_Front", "run", "start", "--", "--port", "4201"],
+      "port": 4201
+    },
+    {
+      "name": "ve-front",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/aracnocia.ltda./Documents/Proyectos Propios/VE_Front", "run", "start", "--", "--port", "4202", "--host", "127.0.0.1"],
+      "port": 4202
+    },
+    {
+      "name": "landing",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["--prefix", "/Users/aracnocia.ltda./Documents/visitaecuador-landing", "run", "dev", "--", "--port", "5175"],
+      "port": 5175
     }
   ]
 }

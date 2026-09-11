@@ -68,17 +68,17 @@ const Home = () => {
       window.removeEventListener("resize", handleResize);
     };
   }, [codigo]);
-  
+
   const isVinos = location.pathname === "/vinos";
-  
+
 
   return (
     <main>
-     
-        <Suspense fallback={<NavbarSkeleton />}>
-                {isVinos ? (<Navbar activo={4} />)
-          :(<Navbar activo={1} />)}
-        </Suspense>
+
+      <Suspense fallback={<NavbarSkeleton />}>
+        {isVinos ? (<Navbar activo={4} />)
+          : (<Navbar activo={1} />)}
+      </Suspense>
 
       <Suspense fallback={<BannerSkeleton />}>
         <MainBanner />

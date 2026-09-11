@@ -223,18 +223,50 @@ const HotelExpress = ({ Ofertas, isOpen, Establecimiento, Fechas, Valores, OnClo
 
     return (
         <>
-            <div className="fixed inset-0 flex items-center justify-center z-40">
-                <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
-                <div className="w-full md:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-1/2 m-6 z-50">
-                    <div className="bg-white px-3 rounded-md flex justify-center">
-                        <div className="flex-col w-full justify-center">
-                            <div className="flex flex-col w-full justify-center my-2 items-center">
-                                <div className="flex justify-between w-full">
-                                    <button className="text-gray-400 text-2xl rounded-full h-8 w-8" onClick={() => OnBack()} disabled={isLoading}><span className="icon-[ep--back]"></span></button>
-                                    <button className="text-gray-400 text-2xl rounded-full h-8 w-8" onClick={() => OnClose()} disabled={isLoading}>x</button>
+            <div className="fixed inset-0 flex items-end sm:items-center justify-center z-50">
+                {/* Backdrop */}
+                <div
+                    className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+                    onClick={() => !isLoading && OnClose()}
+                />
+
+                {/* Modal */}
+                <div className="relative w-full sm:w-3/4 lg:w-2/3 xl:w-1/2 2xl:w-5/12 mx-auto z-50
+                                max-h-[95vh] sm:max-h-[90vh] flex flex-col
+                                rounded-t-2xl sm:rounded-2xl overflow-hidden shadow-2xl bg-white">
+                    
+                    {/* ── Header ── */}
+                    <div className="bg-greenVE-600 px-5 pt-4 pb-4 flex-shrink-0">
+                        <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                {OnBack && (
+                                    <button
+                                        onClick={() => !isLoading && OnBack()}
+                                        disabled={isLoading}
+                                        className="bg-white/20 hover:bg-white/30 text-white rounded-full h-8 w-8 flex items-center justify-center transition-colors flex-shrink-0"
+                                    >
+                                        <span className="icon-[ep--back] w-4 h-4"></span>
+                                    </button>
+                                )}
+                                <div>
+                                    <h2 className="text-white text-lg font-bold leading-tight">Confirmar Reserva</h2>
+                                    <p className="text-white/80 text-xs mt-0.5">Completa los datos para tu reserva</p>
                                 </div>
-                                <label className="font-semibold text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">Reserva</label>
                             </div>
+                            <button
+                                onClick={() => !isLoading && OnClose()}
+                                disabled={isLoading}
+                                className="bg-white/20 hover:bg-white/30 text-white rounded-full h-8 w-8 flex items-center justify-center transition-colors flex-shrink-0"
+                            >
+                                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* ── Contenido scrollable ── */}
+                    <div className="flex-1 overflow-y-auto px-4 py-4">
 
                             <HotelConfirmationDetail
                                 Ofertas={Ofertas}
@@ -287,32 +319,36 @@ const HotelExpress = ({ Ofertas, isOpen, Establecimiento, Fechas, Valores, OnClo
                                 </div>
                             )}
 
-                            <div className="flex flex-col items-center">
-                                <label className="font-semibold text-base md:text-lg lg:text-xl xl:text-2xl 2xl:text-3xl">Datos Personales</label>
-                                <div className="flex w-full mt-2">
-                                    <div className="flex flex-col gap-4 w-1/2">
-                                        <input disabled={nivel == "express"} value={cedula} onChange={(e) => setCedula(e.target.value)} className={`${nivel == "express" ? "bg-gray-200" : "bg-white"} border-2 ${errorCedula ? "border-red-500" : "border-greenVE-500"} px-2 mx-3 py-1 rounded-md outline-none`} type="text" placeholder="Cédula" />
-                                        <input disabled={nivel == "express"} value={telefono} onChange={(e) => setTelefono(e.target.value)} className={`${nivel == "express" ? "bg-gray-200" : "bg-white"} border-2 ${errorTelefono ? "border-red-500" : "border-greenVE-500"} px-2 mx-3 py-1 rounded-md outline-none`} type="text" placeholder="Teléfono o celular" />
+                            <div className="rounded-xl border border-gray-100 overflow-hidden mb-3 shadow-sm mt-2">
+                                <div className="bg-gray-50 border-b border-gray-100 px-4 py-2.5 flex items-center gap-2">
+                                    <span className="icon-[mdi--account] h-4 w-4 text-greenVE-600"></span>
+                                    <h3 className="text-sm font-semibold text-gray-700">Datos del titular</h3>
+                                </div>
+                                <div className="p-4 space-y-3">
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <input disabled={nivel == "express"} value={cedula} onChange={(e) => setCedula(e.target.value)} className={`${nivel == "express" ? "bg-gray-100 text-gray-500" : "bg-white"} border ${errorCedula ? "border-red-500" : "border-gray-200 focus:border-greenVE-500"} px-3 py-2 rounded-lg outline-none w-full text-sm`} type="text" placeholder="Cédula" />
+                                        <input disabled={nivel == "express"} value={telefono} onChange={(e) => setTelefono(e.target.value)} className={`${nivel == "express" ? "bg-gray-100 text-gray-500" : "bg-white"} border ${errorTelefono ? "border-red-500" : "border-gray-200 focus:border-greenVE-500"} px-3 py-2 rounded-lg outline-none w-full text-sm`} type="text" placeholder="Teléfono o celular" />
                                     </div>
-                                    <div className="flex flex-col gap-4 w-1/2">
-                                        <input disabled={nivel == "express"} value={nombres} onChange={(e) => setNombres(e.target.value)} className={`${nivel == "express" ? "bg-gray-200" : "bg-white"} border-2 ${errorNombres ? "border-red-500" : "border-greenVE-500"} px-2 mx-3 py-1 rounded-md outline-none`} type="text" placeholder="Nombres y apellidos" />
-                                        <input disabled={nivel == "express"} value={correo} onChange={(e) => setCorreo(e.target.value)} className={`${nivel == "express" ? "bg-gray-200" : "bg-white"} border-2 ${errorCorreo ? "border-red-500" : "border-greenVE-500"} px-2 mx-3 py-1 rounded-md outline-none`} type="text" placeholder="Correo electrónico" />
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                        <input disabled={nivel == "express"} value={nombres} onChange={(e) => setNombres(e.target.value)} className={`${nivel == "express" ? "bg-gray-100 text-gray-500" : "bg-white"} border ${errorNombres ? "border-red-500" : "border-gray-200 focus:border-greenVE-500"} px-3 py-2 rounded-lg outline-none w-full text-sm`} type="text" placeholder="Nombres y apellidos" />
+                                        <input disabled={nivel == "express"} value={correo} onChange={(e) => setCorreo(e.target.value)} className={`${nivel == "express" ? "bg-gray-100 text-gray-500" : "bg-white"} border ${errorCorreo ? "border-red-500" : "border-gray-200 focus:border-greenVE-500"} px-3 py-2 rounded-lg outline-none w-full text-sm`} type="text" placeholder="Correo electrónico" />
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="flex w-full justify-center mt-6 mb-2 gap-2">
-                                <button
-                                    className="bg-greenVE-500 px-2 py-1 text-white font-semibold rounded-lg w-40"
-                                    onClick={isLoading ? () => {} : handleClickReservar}
-                                >
-                                    {isLoading
-                                        ? <span className="icon-[line-md--loading-twotone-loop] h-6 w-6 -mb-2"></span>
-                                        : "Generar reserva"
-                                    }
-                                </button>
-                            </div>
-                        </div>
+                    </div>
+                    {/* ── Footer navegación ── */}
+                    <div className="bg-white border-t border-gray-100 px-4 py-3 flex gap-3 flex-shrink-0 justify-end">
+                        <button
+                            className="bg-greenVE-500 hover:bg-greenVE-600 transition-colors px-6 py-2.5 text-white font-semibold rounded-xl w-full sm:w-auto shadow-md"
+                            onClick={isLoading ? () => {} : handleClickReservar}
+                        >
+                            {isLoading ? (
+                                <span className="icon-[line-md--loading-twotone-loop] h-5 w-5"></span>
+                            ) : (
+                                "Generar reserva"
+                            )}
+                        </button>
                     </div>
                 </div>
             </div>

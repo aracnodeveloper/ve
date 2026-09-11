@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getRemoteTarjetas } from '../../../controllers/pago/pagoController';
 import { Select, SelectItem } from '@tremor/react';
+import { CUENTAS, textoCuenta } from '../../../global/cuentasTransferencia';
 import { useParams } from 'react-router-dom';
 
 const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
@@ -35,6 +36,9 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
     const [showBotonesPago, setShowBotonesPago] = useState(true);
     const [showOtrosPago, setShowOtrosPago] = useState(true);
     const [showTransferencia, setShowTransferencia] = useState(true);
+    // Cuenta a la que el cliente va a depositar (indice en CUENTAS).
+    const [cuentaTransferencia, setCuentaTransferencia] = useState();
+    const [errorCuentaTransferencia, setErrorCuentaTransferencia] = useState(false);
     const [showMarcaTarjeta, setShowMarcaTarjeta] = useState(true);
 
 
@@ -67,17 +71,17 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
         setBotonPago(0);
         setTarjetaCredito(0)
         setDiferido(0);
-        switch(codigo){
+        switch (codigo) {
             case "bda":
-                (event == 1)&&setBanco(8);
+                (event == 1) && setBanco(8);
                 break;
             case "bp":
-                (event == 1)&&setBanco(2);
+                (event == 1) && setBanco(2);
                 break;
             case "cpn":
-                (event == 1)&&setBanco(14);
-                (event == 1)&&setTarjetaCredito(2);
-                (event == 2)&&setTarjetaDebito(2);
+                (event == 1) && setBanco(14);
+                (event == 1) && setTarjetaCredito(2);
+                (event == 2) && setTarjetaDebito(2);
                 break;
         }
     };
@@ -197,12 +201,17 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
         } else {
             setErrorBotonPago(false)
         }
+        if ((cuentaTransferencia === undefined || cuentaTransferencia === null || cuentaTransferencia === "") && typePayment == 4) {
+            setErrorCuentaTransferencia(true); error = true;
+        } else {
+            setErrorCuentaTransferencia(false)
+        }
         /*if(!isChecked){
             setErrorCheck(true);error=true;
         }else{
             setErrorCheck(false)
         }*/
-       
+
 
         if (!error) {
             const datos = {
@@ -218,7 +227,7 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
                 const bancoLogo = listaBancos[banco - 1].Logo;
                 var pago = listaBancos[banco - 1].ListaTarjetas[tarjetaCredito - 1].ListaDiferidos[diferido - 1];
                 pago.Tarjeta = tarjeta == "Visa" ? "VISA" : tarjeta == "MasterCard" ? "MASTER" : tarjeta == "Alia" ? "ALIA" : tarjeta == "AmericanExpress" ? "AMEX" : "";
-                if(codigo!="cpn"){  
+                if (codigo != "cpn") {
                     pago.LogoBanco = bancoLogo;
                 }
                 pago.LogoTarjeta = tarjetaLogo;
@@ -233,7 +242,7 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
                 const bancoLogo = "";
                 var pago = listaBancos[0].ListaTarjetas[tarjetaDebito - 1].ListaDiferidos[0];
                 pago.Tarjeta = tarjeta == "Visa" ? "VISA" : tarjeta == "MasterCard" ? "MASTER" : tarjeta == "Alia" ? "ALIA" : tarjeta == "AmericanExpress" ? "AMEX" : "";
-                if(codigo!="cpn"){  
+                if (codigo != "cpn") {
                     pago.LogoBanco = bancoLogo;
                 }
                 pago.LogoTarjeta = tarjetaLogo;
@@ -245,9 +254,9 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
             if (typePayment == 3) {
                 var pago = {
                     IdTipoBotonPago: botonPago == 1 ? "7" : botonPago == 2 ? "8" : "9",
-                    botonLogo: botonPago == 1 ? "https://visitaecuador.com/img/web/pp_logo.jpg" 
-                                :botonPago == 2 ? "https://visitaecuador.com/img/web/ja_logo.png"
-                                :"https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png",
+                    botonLogo: botonPago == 1 ? "https://visitaecuador.com/img/web/pp_logo.jpg"
+                        : botonPago == 2 ? "https://visitaecuador.com/img/web/ja_logo.png"
+                            : "https://upload.wikimedia.org/wikipedia/commons/a/a4/Paypal_2014_logo.png",
                     Meses: "1",
                     tipo_pago_boton: botonPago == 1 ? "7" : botonPago == 2 ? "8" : "9",
                 };
@@ -256,7 +265,21 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
                 setPago(pago);
                 setOpcion(4);
             }
-            setOpcion(4);
+            if (typePayment == 4) {
+                const cuenta = CUENTAS[parseInt(cuentaTransferencia)];
+                var pago = {
+                    IdTipoBotonPago: "10",
+                    tipo_pago_boton: "10",
+                    // Cuenta elegida: en el paso 4 se muestran solo sus datos.
+                    cuentaTransferencia: cuenta,
+                    bancoDestino: textoCuenta(cuenta),
+                    bancos: listaBancosTransferencia,
+                };
+
+                setPersona(datos);
+                setPago(pago);
+                setOpcion(4);
+            }
             //selMap.set("tarjeta",)
 
         } else {
@@ -355,7 +378,7 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
                         </div>
                     }
                     {
-                        (typePayment == 2&&showMarcaTarjeta) && <div className={`md:w-2/5   bg-white flex  items-center   gap-2 border ${errorTD ? "border-red-500" : ""}`}>
+                        (typePayment == 2 && showMarcaTarjeta) && <div className={`md:w-2/5   bg-white flex  items-center   gap-2 border ${errorTD ? "border-red-500" : ""}`}>
 
                             <Select
                                 value={tarjetaDebito}
@@ -374,7 +397,7 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
                                                 <label>{item.Nombre}</label>
                                             </div>
                                         </SelectItem>
-                                        )
+                                    )
                                     )
                                 }
                             </Select>
@@ -415,7 +438,39 @@ const Informacion = ({ setOpcion, persona, setPersona, setPago }) => {
                         </div>
                     }
                     {
-                        (banco != null && banco != 0&&showMarcaTarjeta) && <div className={`md:w-2/5   bg-white flex  items-center   gap-2 border ${errorTC ? "border-red-500" : ""}`}>
+                        typePayment == 4 && <div className={`md:w-2/5 bg-white flex items-center gap-2 border ${errorCuentaTransferencia ? "border-red-500" : ""}`}>
+                            <Select
+                                className='cursor-pointer'
+                                value={cuentaTransferencia}
+                                placeholder={
+                                    <div className='flex items-center gap-2'>
+                                        <span className={`icon-[basil--bank-outline] h-5 w-5 ${errorCuentaTransferencia ? "text-red-500" : "text-gray-600"}`}></span>
+                                        <label className={`${errorCuentaTransferencia ? "text-red-500" : ""}`}>Seleccione la cuenta a depositar</label>
+                                    </div>
+                                }
+                                onValueChange={(valor) => { setCuentaTransferencia(valor); setErrorCuentaTransferencia(false); }}>
+                                {
+                                    CUENTAS.map((c, index) => (
+                                        <SelectItem key={index} value={String(index)}>
+                                            <div className='flex items-center gap-2 cursor-pointer'>
+                                                <img
+                                                    src={c.logo}
+                                                    alt={c.banco}
+                                                    className='h-7 w-7 object-contain rounded flex-shrink-0'
+                                                    onError={(e) => { e.target.style.display = 'none'; }}
+                                                />
+                                                <div className='flex flex-col min-w-0'>
+                                                    <label className='text-xs text-gray-600 cursor-pointer'>{c.banco} · {c.tipo}</label>
+                                                </div>
+                                            </div>
+                                        </SelectItem>
+                                    ))
+                                }
+                            </Select>
+                        </div>
+                    }
+                    {
+                        (banco != null && banco != 0 && showMarcaTarjeta) && <div className={`md:w-2/5   bg-white flex  items-center   gap-2 border ${errorTC ? "border-red-500" : ""}`}>
 
                             <Select
                                 value={tarjetaCredito}

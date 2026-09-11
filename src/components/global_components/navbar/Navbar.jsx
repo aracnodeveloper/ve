@@ -11,6 +11,7 @@ import Config from "../../../global/config";
 import MarcaPais from "./MarcaPais";
 import MobileMenu from "./MobileMenu";
 import MobileBottomNav from "./MobileBottomNav";
+import ModalCodigoPromocional from "../../login_components/ModalCodigoPromocional";
 
 const icons = new Icons();
 
@@ -33,12 +34,16 @@ const Navbar = ({ activo, isExposed = false }) => {
   const [isLoagingLogOut, setIsLoadingLogOut] = useState(false);
   const [isLoadingGoogle, setisLoadingGoogle] = useState(false);
   const [isLoadingFB, setIsLoadingFB] = useState(false);
+  // Proveedor elegido esperando el codigo: "google" | "facebook" | null.
+  // Mismo orden que la app: primero el codigo, despues la ventana del proveedor.
+  const [proveedorPendiente, setProveedorPendiente] = useState(null);
   const gProvider = new GoogleAuthProvider();
   const fProvider = new FacebookAuthProvider();
   const isExposedRoute = location.pathname === "/disney" || isExposed;
   const [openMenu, setOpenMenu] = useState(false);
   const [openMobileProfile, setOpenMobileProfile] = useState(false);
   const [beneficiosOpen, setBeneficiosOpen] = useState(false);
+  const [rutasOpen, setRutasOpen] = useState(false);
   const beneficiosRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
 
@@ -53,6 +58,7 @@ const Navbar = ({ activo, isExposed = false }) => {
     const handleClickOutside = (e) => {
       if (beneficiosRef.current && !beneficiosRef.current.contains(e.target)) {
         setBeneficiosOpen(false);
+        setRutasOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -112,59 +118,57 @@ const Navbar = ({ activo, isExposed = false }) => {
   const handleClickInicio = () => { navigate("/"); setOpenMenu(false); };
   const handleClickInfotour = () => { window.open("https://www.infotour.app/"); setOpenMenu(false); };
   const handleClickContactanos = () => { navigate("/contacto"); setOpenMenu(false); };
+  const handleClickPuntosCarga = () => { navigate("/puntos-carga"); setOpenMenu(false); };
   const handleClickMenu = () => { setOpenConvenios(false); setOpenMenu(!openMenu); };
 
-  const handleClickGoogle = () => {
-    signInWithPopup(auth, gProvider).then(async (result) => {
-      setisLoadingGoogle(true);
-      const user = result.user;
-      try {
-        const random = () => Math.floor(Math.random() * 100);
-        const randomStr = Array.from({ length: 7 }, () => random()).join("");
-        const username = user.displayName ?? "usuario" + randomStr.substring(0, 6);
-        const email = user.email ?? "";
-        var id = user.uid ?? randomStr;
-        var pass = encodePass(email);
-        if (email.trim() === "") { setisLoadingGoogle(false); alert("Correo inválido, intente con otra cuenta"); return; }
-        const params = { id, pass, servicio: Config.SERVICIO, metodo: Config.METODO_EX_GO, username, nombre: username, email, id_servicio: Config.IDSERVICIO, id_metodo: Config.IDMETODO_EX_GO };
-        try {
-          await loginRemote(params).then((result) => {
-            setisLoadingGoogle(false);
-            if (result) { window.location.reload(); }
-            else { setisLoadingGoogle(false); alert("Ha ocurrido un error, intente nuevamente"); }
-          }).catch(() => { });
-        } catch (error) { setisLoadingGoogle(false); console.error("Error:", error); }
-      } catch (e) { }
-    }).catch(() => { });
+  /** Arma el params de loginpost desde el usuario de Firebase. */
+  const construirParams = (user, metodo, idMetodo) => {
+    const random = () => Math.floor(Math.random() * 100);
+    const randomStr = Array.from({ length: 7 }, () => random()).join("");
+    const username = user.displayName ?? "usuario" + randomStr.substring(0, 6);
+    const email = user.email ?? "";
+    if (email.trim() === "") return null;
+    return { id: user.uid ?? randomStr, pass: encodePass(email), servicio: Config.SERVICIO, metodo, username, nombre: username, email, id_servicio: Config.IDSERVICIO, id_metodo: idMetodo };
   };
 
-  const handleClickFacebook = () => {
-    if (!isLoadingFB) {
-      signInWithPopup(auth, fProvider).then(async (result) => {
-        setIsLoadingFB(true);
-        const user = result.user;
-        try {
-          const random = () => Math.floor(Math.random() * 100);
-          const randomStr = Array.from({ length: 7 }, () => random()).join("");
-          const username = user.displayName ?? "usuario" + randomStr.substring(0, 6);
-          const email = user.email ?? "";
-          var id = user.uid ?? randomStr;
-          var pass = encodePass(email);
-          if (email.trim() === "") { setIsLoadingFB(false); alert("Correo inválido, intente con otra cuenta"); return; }
-          const params = { id, pass, servicio: Config.SERVICIO, metodo: Config.METODO_EX_FB, username, nombre: username, email, id_servicio: Config.IDSERVICIO, id_metodo: Config.IDMETODO_EX_FB };
-          try {
-            await loginRemote(params).then((result) => {
-              setIsLoadingFB(false);
-              if (result) { navigate(-1); }
-              else { setIsLoadingFB(false); alert("Ha ocurrido un error, intente nuevamente"); }
-            }).catch(() => { });
-          } catch (error) { setIsLoadingFB(false); console.error("Error:", error); }
-        } catch (e) { }
-      }).catch((error) => {
-        const credential = FacebookAuthProvider.credentialFromError(error);
-      });
+  /**
+   * Continua el login con el codigo que devolvio el modal ("" si se omitio).
+   * signInWithPopup se llama dentro del click del boton del modal para no
+   * perder el gesto del usuario.
+   */
+  const continuarConProveedor = async (codigo) => {
+    const esGoogle = proveedorPendiente === "google";
+    const provider = esGoogle ? gProvider : fProvider;
+    const metodo = esGoogle ? Config.METODO_EX_GO : Config.METODO_EX_FB;
+    const idMetodo = esGoogle ? Config.IDMETODO_EX_GO : Config.IDMETODO_EX_FB;
+    const apagarSpinner = esGoogle ? setisLoadingGoogle : setIsLoadingFB;
+
+    setProveedorPendiente(null);
+    apagarSpinner(true);
+
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const params = construirParams(result.user, metodo, idMetodo);
+      if (!params) { apagarSpinner(false); alert("Correo inválido, intente con otra cuenta"); return; }
+      if (codigo) params.cp = codigo;
+
+      const res = await loginRemote(params);
+      if (res === true) { window.location.reload(); return; }
+      apagarSpinner(false);
+      alert(typeof res === "string" ? res : "Ha ocurrido un error, intente nuevamente");
+    } catch (error) {
+      apagarSpinner(false);
+      const code = error?.code || "";
+      if (code === "auth/popup-closed-by-user" || code === "auth/cancelled-popup-request") return;
+      console.error("Fallo el inicio de sesion social:", code, error?.message);
+      alert(code === "auth/popup-blocked"
+        ? "Tu navegador bloqueó la ventana de inicio de sesión. Habilita las ventanas emergentes para este sitio."
+        : "No se pudo abrir el inicio de sesión. Intenta nuevamente.");
     }
   };
+
+  const handleClickGoogle = () => setProveedorPendiente("google");
+  const handleClickFacebook = () => { if (!isLoadingFB) setProveedorPendiente("facebook"); };
 
   const isSmall = window.innerWidth < 470;
   const router = location.pathname === "/vinos" || location.pathname === "/Tours" || location.pathname === "/Promociones";
@@ -172,6 +176,12 @@ const Navbar = ({ activo, isExposed = false }) => {
 
   return (
     <header className="sticky top-0 z-50 bg-[#8AB600]">
+      <ModalCodigoPromocional
+        abierto={proveedorPendiente !== null}
+        proveedor={proveedorPendiente}
+        onConfirmar={continuarConProveedor}
+        onCancelar={() => setProveedorPendiente(null)}
+      />
 
       <div className="bg-[#8AB600] flex justify-center lg:justify-between xl:justify-between md:justify-center xs:justify-center sm:justify-center xl:px-28 lg:px-5 flex-wrap sm:flex-row">
         <a className="p-2" href="/"><img src="https://visitaecuador.com/img/web/ve_logo.svg" title="nosotros" style={{ width: "70px", height: "auto" }} /></a>
@@ -262,7 +272,7 @@ const Navbar = ({ activo, isExposed = false }) => {
       </div>
 
 
-      <div className={`flex mx-auto max-w-7xl py-2 px-4 sm:px-6 lg:px-8 ${router && !scrolled ? "hidden" : ""} ${route && !scrolled ? "hidden" : ""} ${isExposedRoute ? "-mt-14" : ""}`}>
+      <div className={`flex mx-auto max-w-7xl py-2 px-3 sm:px-6 lg:px-8 ${router && !scrolled ? "hidden" : ""} ${route && !scrolled ? "hidden" : ""} ${isExposedRoute ? "-mt-14" : ""}`}>
         <div className={`flex flex-col align-center align-middle items-center ${codigo ? "w-full" : "w-10/12"} justify-between`}>
           <div className="relative z-40 w-full flex justify-center">
             <div className="flex w-full max-w-7xl items-center justify-between px-4">
@@ -319,13 +329,28 @@ const Navbar = ({ activo, isExposed = false }) => {
                       </svg>
                     </button>
                     {beneficiosOpen && (
-                      <div className="absolute left-0 top-full mt-1 z-[100] bg-white rounded-lg shadow-lg border border-gray-100 min-w-[160px] overflow-hidden">
-                        <button
-                          onClick={() => { handleClickVinos(); setBeneficiosOpen(false); }}
-                          className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-[#ACCD7B] hover:text-white transition-colors font-medium"
-                        >
-                          Rutas
-                        </button>
+                      <div className="absolute left-0 top-full mt-1 z-[100] bg-white rounded-lg shadow-lg border border-gray-100 min-w-[160px]">
+                        <div className="relative w-full">
+                          <button
+                            onClick={(e) => { e.stopPropagation(); setRutasOpen(!rutasOpen); }}
+                            className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-[#ACCD7B] hover:text-white transition-colors font-medium flex justify-between items-center"
+                          >
+                            Rutas
+                            <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform duration-200 ${rutasOpen ? "rotate-90" : ""}`} viewBox="0 0 20 20" fill="currentColor">
+                              <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                            </svg>
+                          </button>
+                          {rutasOpen && (
+                            <div className="absolute left-full top-0 ml-1 z-[100] bg-white rounded-lg shadow-lg border border-gray-100 min-w-[160px] overflow-hidden">
+                              <button
+                                onClick={() => { handleClickVinos(); setBeneficiosOpen(false); setRutasOpen(false); }}
+                                className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-[#ACCD7B] hover:text-white transition-colors font-medium"
+                              >
+                                Ruta del vino
+                              </button>
+                            </div>
+                          )}
+                        </div>
                         <button
                           onClick={() => { handleClickTours(); setBeneficiosOpen(false); }}
                           className="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-[#ACCD7B] hover:text-white transition-colors font-medium"
@@ -342,7 +367,7 @@ const Navbar = ({ activo, isExposed = false }) => {
                     )}
                   </div>
 
-                  {/* Visas */}
+                  {/* Visas 
                   <a
                     href="https://visitaecuador.com/visas-concierge"
                     onClick={(e) => { e.preventDefault(); handleClickVisas(); }}
@@ -353,8 +378,8 @@ const Navbar = ({ activo, isExposed = false }) => {
                     </div>
                     <label className="hidden md:flex cursor-pointer font-medium">Visas</label>
                   </a>
-
-                  {/* Nosotros */}
+*/}
+                  {/* Nosotros 
                   <a
                     href="https://visitaecuador.com/nosotros"
                     onClick={(e) => { e.preventDefault(); handleClickNosotros(); }}
@@ -365,7 +390,7 @@ const Navbar = ({ activo, isExposed = false }) => {
                     </div>
                     <label className="hidden md:flex cursor-pointer font-medium">Nosotros</label>
                   </a>
-
+*/}
                   {/* Contacto */}
                   <a
                     href="https://visitaecuador.com/contacto"
@@ -376,6 +401,18 @@ const Navbar = ({ activo, isExposed = false }) => {
                       <img src="https://visitaecuador.com/img/web/contacto.svg" className="rounded-full" style={{ height: "100%", width: "100%" }} />
                     </div>
                     <label className="hidden md:flex cursor-pointer">Contactanos</label>
+                  </a>
+
+                  {/* Puntos de carga */}
+                  <a
+                    href="https://visitaecuador.com/puntos-carga"
+                    onClick={(e) => { e.preventDefault(); handleClickPuntosCarga(); }}
+                    className={`flex gap-1 ${activo == 8 ? "bg-white text-gray-800" : "bg-white/20 text-white hover:bg-white/40"} rounded-t-lg px-4 py-2 text-sm items-center transition-all`}
+                  >
+                    <div className="rounded-full bg-white flex items-center justify-center" style={{ height: "22px", width: "22px" }}>
+                      <span className="icon-[ph--map-pin-fill] h-3.5 w-3.5 text-greenVE-600"></span>
+                    </div>
+                    <label className="hidden md:flex cursor-pointer">Puntos de Carga</label>
                   </a>
 
                 </div>

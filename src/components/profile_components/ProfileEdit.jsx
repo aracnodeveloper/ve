@@ -90,6 +90,7 @@ const ProfileEdit = ({ profileData, citiesData }) => {
                             ...prevEditModes,
                             [section]: false,
                         }));
+                        window.location.reload();
                     }
                 } else {
                     setErrorCodigo(true);
@@ -114,6 +115,7 @@ const ProfileEdit = ({ profileData, citiesData }) => {
                             ...prevEditModes,
                             [section]: false,
                         }));
+                        window.location.reload();
                     }
                 } else {
                     setLoadingModes((prevLoadingModes) => ({

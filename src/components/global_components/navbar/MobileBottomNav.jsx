@@ -10,6 +10,7 @@ const MobileBottomNav = ({
   onClickContactanos 
 }) => {
   const [beneficiosOpen, setBeneficiosOpen] = useState(false);
+  const [rutasOpen, setRutasOpen] = useState(false);
   const beneficiosRef = useRef(null);
 
   // Cerrar dropdown al tocar fuera
@@ -17,6 +18,7 @@ const MobileBottomNav = ({
     const handleClickOutside = (e) => {
       if (beneficiosRef.current && !beneficiosRef.current.contains(e.target)) {
         setBeneficiosOpen(false);
+        setRutasOpen(false);
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
@@ -83,12 +85,25 @@ const MobileBottomNav = ({
           {/* Dropdown panel — aparece encima del botón */}
           {beneficiosOpen && (
             <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 z-50 bg-white rounded-xl shadow-xl border border-gray-100 min-w-[150px] overflow-hidden">
-              <button
-                onClick={() => { onClickVinos(); setBeneficiosOpen(false); }}
-                className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-[#ACCD7B] hover:text-white transition-colors font-medium"
-              >
-                Ruta del Vino
-              </button>
+              <div>
+                <button
+                  onClick={() => setRutasOpen(!rutasOpen)}
+                  className="w-full text-left px-4 py-3 text-sm text-gray-700 hover:bg-[#ACCD7B] hover:text-white transition-colors font-medium flex justify-between items-center"
+                >
+                  Rutas
+                  <svg xmlns="http://www.w3.org/2000/svg" className={`h-4 w-4 transition-transform duration-200 ${rutasOpen ? "rotate-180" : ""}`} viewBox="0 0 20 20" fill="currentColor">
+                    <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </button>
+                {rutasOpen && (
+                  <button
+                    onClick={() => { onClickVinos(); setBeneficiosOpen(false); setRutasOpen(false); }}
+                    className="w-full text-left pl-8 pr-4 py-2.5 text-sm text-gray-600 hover:bg-[#ACCD7B] hover:text-white transition-colors font-medium bg-gray-50"
+                  >
+                    Ruta del vino
+                  </button>
+                )}
+              </div>
               <div className="h-px bg-gray-100" />
               <button
                 onClick={() => { onClickTours(); setBeneficiosOpen(false); }}

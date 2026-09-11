@@ -5,6 +5,10 @@ import Filtro from "../../models/Filtro";
 import { format } from "date-fns";
 import { NavbarSkeleton } from '../../components/global_components/Skeleton/Loadingkeleton';
 import { getWineOffers } from "../../core/vinoApiService";
+import { precargarBeneficios, esOneShot } from "../../global/oneShot";
+import { contarPendientes, TYPE_CERTIFICADO } from "../../controllers/certificado/certificadoController";
+import { sessionStatus } from "../../global/util";
+import PendingBenefitsModal from "../../components/booking_history_components/PendingBenefitsModal";
 
 // Desktop Components
 const Navbar = lazy(() => import("../../components/global_components/navbar/Navbar"));
@@ -72,6 +76,21 @@ const Hotel = () => {
     window.addEventListener('resize', handleResize);
     // Actualiza opciones, fechas y URL cuando el usuario busca desde la searchBar del hotel
   return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Se precarga al entrar a la pagina, no al abrir el modal: asi el estado ya
+  // esta resuelto cuando el usuario llega al boton de generar certificado.
+  // No hace nada si el usuario no es OneShot.
+  useEffect(() => {
+    precargarBeneficios();
+  }, []);
+
+  // Certificados en active=1 (generados sin marcar): obligan a ir al historial.
+  // Solo aplica al producto OneShot; el resto de usuarios no se ven afectados.
+  const [certPendientes, setCertPendientes] = useState(0);
+  useEffect(() => {
+    if (!sessionStatus() || !esOneShot()) return;
+    contarPendientes(TYPE_CERTIFICADO).then(setCertPendientes);
   }, []);
 
   // Función para buscar ofertas de vino relacionadas con el establecimiento
@@ -386,6 +405,9 @@ const Hotel = () => {
   if (isMobile) {
     return (
       <div>
+        {certPendientes > 0 && (
+          <PendingBenefitsModal tipo={TYPE_CERTIFICADO} cantidad={certPendientes} />
+        )}
         <Suspense><Navbar /></Suspense>
         
         {/* Banner Mobile */}
@@ -499,6 +521,9 @@ const Hotel = () => {
   // Desktop View
   return (
     <div>
+      {certPendientes > 0 && (
+        <PendingBenefitsModal tipo={TYPE_CERTIFICADO} cantidad={certPendientes} />
+      )}
       <Suspense fallback={<NavbarSkeleton />}>
         <Navbar activo={1} />
       </Suspense>

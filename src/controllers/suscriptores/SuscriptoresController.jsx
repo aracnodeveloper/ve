@@ -1,7 +1,6 @@
 import SuscriptoresService from "../../services/suscriptores/SuscriptoresService";
 
 const susService = new SuscriptoresService();
-const session = JSON.parse(localStorage.getItem("datos"));
 
 export const listarSuscriptores = async function ({
   filtros,
@@ -9,6 +8,9 @@ export const listarSuscriptores = async function ({
   idUsuario,
 }) {
   try {
+    const session = JSON.parse(localStorage.getItem("datos"));
+    if (!session) return;
+
     var params = {
       token: session.token,
       pagina: pagina,

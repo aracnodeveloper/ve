@@ -8,6 +8,7 @@ import { Checkbox, ClickAwayListener } from "@mui/material";
 import { setSolicitudCashback } from "../../../controllers/perfil/perfilController";
 import { Spinner } from "@material-tailwind/react";
 import CashbackFactura from "./CashbackFactura";
+import MisSuscriptores from "./MisSuscriptores";
 import { DateRange } from "react-date-range";
 import "react-date-range/dist/styles.css"; // main css file
 import "react-date-range/dist/theme/default.css"; // theme css file
@@ -233,6 +234,8 @@ const Cashback = () => {
             </div>
           ))}
       </div>
+      <MisSuscriptores fechas={date} cambiar={cambiar} />
+
       {correcto ? <CashbackFactura total={total} /> : <></>}
     </div>
   );

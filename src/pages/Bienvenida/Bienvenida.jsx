@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { gestionarSuscripcion } from '../../controllers/suscripcion/suscripcionController';
+import { gestionarSuscripcion, notificarPagoPayphone } from '../../controllers/suscripcion/suscripcionController';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/global_components/navbar/Navbar';
 import DataSuscription from '../../components/suscription_components/data_suscription';
@@ -96,11 +96,22 @@ const Bienvenida = () => {
                 }
             }
 
+            // Los botones 4 y 5 son el formulario de PayPhone: contabilidad solo
+            // recibia el voucher que manda PayPhone, sin datos del cliente ni de
+            // la compra. Se avisa aqui, con la suscripcion ya creada, para poder
+            // incluir el codigo de suscriptor.
+            const esPayphone = state.pago?.tipo_pago_boton == null
+                && ["4", "5"].includes(String(state.pago?.IdTipoBotonPago));
+
             gestionarSuscripcion(schema).then((result)=>{
                 firstTime=true;
                 if(result && result.estado){
                     setNombre(state.persona.nombres)
                     setDataSuscription(result.data)
+                    if (esPayphone) {
+                        // Sin await: el correo no debe retrasar la bienvenida.
+                        notificarPagoPayphone({ state, dataSuscripcion: result.data });
+                    }
                     navigate(location.pathname, { replace: true, state: null });
                 }else{
                     setErrorCuenta(true);

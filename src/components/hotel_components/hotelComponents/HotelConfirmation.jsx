@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { createReservation, getCertificado } from "../../../controllers/establecimiento/establecimientoController";
+import { crearCertificado } from "../../../controllers/certificado/certificadoController";
+import { useBeneficios, puedeGenerarCertificado } from "../../../global/oneShot";
 import { Spinner } from "@material-tailwind/react";
 import { useNavigate } from "react-router-dom";
 import Icons from "../../../global/icons";
@@ -18,8 +20,8 @@ const StepIndicator = ({ currentStep, onStepClick }) => {
                 <div key={step.num} className="flex items-center">
                     <div className="flex flex-col items-center gap-1">
                         <button
-                                onClick={() => onStepClick && onStepClick(step.num)}
-                                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all duration-300
+                            onClick={() => onStepClick && onStepClick(step.num)}
+                            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border-2 transition-all duration-300
                                 ${currentStep === step.num
                                     ? "bg-greenVE-600 border-greenVE-600 text-white shadow-md scale-110"
                                     : currentStep + 1 === step.num
@@ -38,12 +40,12 @@ const StepIndicator = ({ currentStep, onStepClick }) => {
                         </button>
                         <span className={`text-[10px] font-medium transition-colors duration-300
                             ${currentStep === step.num
-                            ? "bg-greenVE-600 border-greenVE-600 text-white shadow-md scale-110"
-                            : currentStep > step.num
-                                ? "bg-greenVE-500 border-greenVE-500 text-white cursor-pointer hover:bg-greenVE-600 hover:scale-105"
-                                : currentStep + 1 === step.num  // ← paso siguiente: permitir click
-                                ? "bg-white/30 border-white/50 text-white/60 cursor-pointer hover:bg-white/40"
-                                : "bg-white/30 border-white/50 text-white/60 cursor-not-allowed"}`}>
+                                ? "bg-greenVE-600 border-greenVE-600 text-white shadow-md scale-110"
+                                : currentStep > step.num
+                                    ? "bg-greenVE-500 border-greenVE-500 text-white cursor-pointer hover:bg-greenVE-600 hover:scale-105"
+                                    : currentStep + 1 === step.num  // ← paso siguiente: permitir click
+                                        ? "bg-white/30 border-white/50 text-white/60 cursor-pointer hover:bg-white/40"
+                                        : "bg-white/30 border-white/50 text-white/60 cursor-not-allowed"}`}>
                             {step.label}
                         </span>
                     </div>
@@ -61,11 +63,27 @@ const StepIndicator = ({ currentStep, onStepClick }) => {
 
 
 // ── PASO 1: Consultar disponibilidad ─────────────────────────────────────────
-const Step1Consultar = ({ Establecimiento, Fechas, WineOffer, Ofertas, Opciones }) => {
+const Step1Consultar = ({ Establecimiento, Fechas, WineOffer, Ofertas, Opciones, Valores }) => {
     const [isCreatingCert, setIsCreatingCert] = useState(false);
     const [certGenerated, setCertGenerated] = useState(false);
     const [inputUser, setInputUser] = useState('');
     const [showCertInput, setShowCertInput] = useState(false);
+
+    const getCodigoFromLocalStorage = () => {
+        try {
+            const datos = localStorage.getItem("datos");
+            if (datos) return JSON.parse(datos)?.data?.codigo || null;
+        } catch { }
+        return null;
+    };
+    const canEditId = ["39579", "77562", "79277", "77424", "2"].includes(getCodigoFromLocalStorage());
+
+
+    // Politica OneShot: un solo certificado. Al agotarlo se oculta el boton de
+    // generar y tambien los contactos, para que no pueda reservar por fuera.
+    // La peticion ya la disparo Hotel.jsx al entrar; aqui solo se lee el cache.
+    const { beneficios, cargando: cargandoBeneficios } = useBeneficios();
+    const beneficioAgotado = !puedeGenerarCertificado(beneficios);
 
     const formatDateShort = (date) => {
         if (!date) return '-';
@@ -120,6 +138,16 @@ const Step1Consultar = ({ Establecimiento, Fechas, WineOffer, Ofertas, Opciones 
         return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     };
 
+    // Misma formula que el Resumen (Step2), para que el total del certificado
+    // y el de la reserva generada coincidan.
+    const totalReserva = () =>
+        Number(
+            ((Valores?.SinImpuestos || 0) +
+                (Valores?.Impuestos || 0) +
+                (wineOfferInfo?.precio || 0)
+            ).toFixed(2)
+        );
+
     const createCert = () => {
         if (isCreatingCert || !Fechas?.[0]) return;
         setIsCreatingCert(true);
@@ -137,8 +165,48 @@ const Step1Consultar = ({ Establecimiento, Fechas, WineOffer, Ofertas, Opciones 
         getCertificado(inputUser, Establecimiento.IdEstablecimiento, dataOfertas, fechas, Opciones.adult, Opciones.children).then((result) => {
             setIsCreatingCert(false);
             if (result) {
-                window.open("/certificado?" + result + personasParams + wineOfferParams, '_blank');
+                // Si hay ofertas mezcladas (dos líneas de la misma habitación:
+                // entre semana + fin de semana), el backend cobra cada una por
+                // la estancia completa. Se corrige el precio del certificado con
+                // el desglose real: se sobrescriben Habitaciones/Subtotal/Total
+                // (los últimos valores en la URL ganan al parsear el certificado).
+                let overrideParams = '';
+                if (Ofertas.some(o => o._porcionDe)) {
+                    const r2 = (n) => Math.round((Number(n) || 0) * 100) / 100;
+                    const habitaciones = Ofertas.map(o => ({
+                        Cantidad: Number(o.NumOfertas) || 1,
+                        Nombre: o.TituloOferta,
+                        Adultos: Number(o.Adultos) || 0,
+                        Ninos: Number(o.Ninos) || 0,
+                        AplicaEn: o.AplicaEn,
+                        Acomodacion: o.Acomodacion || '',
+                        Subtotal: r2(Number(o.FinalSinImpuestos) * (Number(o.NumOfertas) || 1)),
+                    }));
+                    const subtotal = r2(habitaciones.reduce((s, h) => s + h.Subtotal, 0));
+                    const impuestos = r2(Ofertas.reduce((s, o) => s + Number(o.Impuestos) * (Number(o.NumOfertas) || 1), 0));
+                    const totalHosp = r2(subtotal + impuestos);
+                    overrideParams =
+                        `&Habitaciones=${encodeURIComponent(JSON.stringify(habitaciones))}` +
+                        `&Subtotal=${subtotal}&Impuestos=${impuestos}&Total=${totalHosp}`;
+                }
+                window.open("/certificado?" + result + personasParams + wineOfferParams + overrideParams, '_blank');
                 setCertGenerated(true);
+                // Se registra en tbl_certificado para el historial. No bloquea la descarga.
+                crearCertificado({
+                    idEstablecimiento: Establecimiento.IdEstablecimiento,
+                    idOferta: Ofertas?.[0]?.Id,
+                    adultos: Opciones.adult,
+                    ninos: Opciones.children,
+                    edadesNinos: Opciones.childrenAges,
+                    latitud: Establecimiento.Latitud,
+                    longitud: Establecimiento.Longitud,
+                    ubicacion: [Establecimiento.Ciudad, Establecimiento.Direccion].filter(Boolean).join(' - '),
+                    // Se guardan para poder convertir el certificado en reserva
+                    // al marcarlo como usado (tbl_reserva_new los exige).
+                    fechaInicio: fechas.inicio,
+                    fechaFin: fechas.fin,
+                    precioTotal: totalReserva(),
+                });
             }
         });
     };
@@ -178,171 +246,201 @@ const Step1Consultar = ({ Establecimiento, Fechas, WineOffer, Ofertas, Opciones 
                 </div>
             </div>
 
-            {/* ── Certificado ── */}
-            <div className="rounded-xl border border-greenVE-200 bg-greenVE-50 overflow-hidden">
-                <div className="px-3 py-2.5 flex items-center gap-2">
-                    <div className="w-7 h-7 bg-greenVE-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <span className="icon-[ph--certificate-bold] h-4 w-4 text-greenVE-600"></span>
+            {/* ── Beneficio OneShot agotado: reemplaza certificado y contactos ── */}
+            {beneficioAgotado && (
+                <div className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-3 flex gap-2.5">
+                    <div className="w-7 h-7 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span className="icon-[mdi--information-outline] h-4 w-4 text-amber-600"></span>
                     </div>
-                    <div className="flex-1 min-w-0">
-                        <p className="text-xs font-semibold text-greenVE-800">Certificado de reserva</p>
-                        <p className="text-[10px] text-greenVE-600 leading-tight">Descárgalo para confirmar tu estadía</p>
+                    <div>
+                        <p className="text-xs font-bold text-amber-800">Ya usaste tu certificado</p>
+                        <p className="text-[11px] text-amber-700 leading-relaxed">
+                            Tu suscripción OneShot incluye un solo certificado de hospedaje y ya lo utilizaste.
+                        </p>
                     </div>
-                    {certGenerated && (
-                        <div className="flex items-center gap-1 bg-green-100 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">
-                            <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                            </svg>
-                            Descargado
-                        </div>
-                    )}
                 </div>
+            )}
 
-                <div className="px-3 pb-3 space-y-2">
-                    {/* Toggle otro usuario */}
-                    <button
-                        onClick={() => setShowCertInput(v => !v)}
-                        className="flex items-center gap-1.5 text-[10px] text-greenVE-600 hover:text-greenVE-800 transition-colors"
-                    >
-{showCertInput
-  ? <span className="icon-[mdi--chevron-up] h-3.5 w-3.5"></span>
-  : <span className="icon-[mdi--chevron-down] h-3.5 w-3.5"></span>
-}                        ¿El certificado es para otra persona?
-{showCertInput
-  ? <span className="icon-[mdi--chevron-up] h-3.5 w-3.5"></span>
-  : <span className="icon-[mdi--chevron-down] h-3.5 w-3.5"></span>
-}  
-                    </button>
-                    {showCertInput && (
-                        <input
-                            className="w-full border border-greenVE-200 focus:border-greenVE-400 focus:ring-1 focus:ring-greenVE-200 rounded-lg px-3 py-2 text-xs outline-none transition-all bg-white"
-                            type="text"
-                            value={inputUser}
-                            onChange={(e) => setInputUser(e.target.value)}
-                            placeholder="ID de otro usuario (opcional)"
-                        />
-                    )}
-                    <button
-                        onClick={createCert}
-                        disabled={isCreatingCert}
-                        className="w-full flex items-center justify-center gap-2 bg-greenVE-600 hover:bg-greenVE-700 disabled:opacity-60 text-white font-semibold py-2.5 px-4 rounded-xl transition-all shadow-sm hover:shadow-md active:scale-95 text-sm"
-                    >
-                        {isCreatingCert ? (
+            {/* ── Certificado ── */}
+            {!beneficioAgotado && (
+                <div className="rounded-xl border border-greenVE-200 bg-greenVE-50 overflow-hidden">
+                    <div className="px-3 py-2.5 flex items-center gap-2">
+                        <div className="w-7 h-7 bg-greenVE-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                            <span className="icon-[ph--certificate-bold] h-4 w-4 text-greenVE-600"></span>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                            <p className="text-xs font-semibold text-greenVE-800">Certificado de reserva</p>
+                            <p className="text-[10px] text-greenVE-600 leading-tight">Descárgalo para confirmar tu estadía</p>
+                        </div>
+                        {certGenerated && (
+                            <div className="flex items-center gap-1 bg-green-100 text-green-700 text-[10px] font-semibold px-2 py-0.5 rounded-full flex-shrink-0">
+                                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                                </svg>
+                                Descargado
+                            </div>
+                        )}
+                    </div>
+
+                    <div className="px-3 pb-3 space-y-2">
+                        {canEditId && (
                             <>
-                                <Spinner color="white" className="h-4 w-4" />
-                                <span>Generando...</span>
-                            </>
-                        ) : (
-                            <>
-                                <span className="icon-[ph--download-bold] h-4 w-4"></span>
-                                <span>Descargar certificado</span>
+                                <button
+                                    onClick={() => setShowCertInput(v => !v)}
+                                    className="flex items-center gap-1.5 text-[10px] text-greenVE-600 hover:text-greenVE-800 transition-colors"
+                                >
+                                    {showCertInput
+                                        ? <span className="icon-[mdi--chevron-up] h-3.5 w-3.5"></span>
+                                        : <span className="icon-[mdi--chevron-down] h-3.5 w-3.5"></span>
+                                    }                        ¿El certificado es para otra persona?
+                                    {showCertInput
+                                        ? <span className="icon-[mdi--chevron-up] h-3.5 w-3.5"></span>
+                                        : <span className="icon-[mdi--chevron-down] h-3.5 w-3.5"></span>
+                                    }
+                                </button>
+                                {showCertInput && (
+                                    <input
+                                        className="w-full border border-greenVE-200 focus:border-greenVE-400 focus:ring-1 focus:ring-greenVE-200 rounded-lg px-3 py-2 text-xs outline-none transition-all bg-white"
+                                        type="text"
+                                        value={inputUser}
+                                        onChange={(e) => setInputUser(e.target.value)}
+                                        placeholder="ID de otro usuario (opcional)"
+                                    />
+                                )}
                             </>
                         )}
-                    </button>
+                        <button
+                            onClick={createCert}
+                            disabled={isCreatingCert || cargandoBeneficios}
+                            className="w-full flex items-center justify-center gap-2 bg-greenVE-600 hover:bg-greenVE-700 disabled:opacity-60 disabled:cursor-not-allowed text-white font-semibold py-2.5 px-4 rounded-xl transition-all shadow-sm hover:shadow-md active:scale-95 text-sm"
+                        >
+                            {isCreatingCert ? (
+                                <>
+                                    <Spinner color="white" className="h-4 w-4" />
+                                    <span>Generando...</span>
+                                </>
+                            ) : cargandoBeneficios ? (
+                                <>
+                                    <Spinner color="white" className="h-4 w-4" />
+                                    <span>Verificando tu suscripción...</span>
+                                </>
+                            ) : (
+                                <>
+                                    <span className="icon-[ph--download-bold] h-4 w-4"></span>
+                                    <span>Descargar certificado</span>
+                                </>
+                            )}
+                        </button>
+                    </div>
                 </div>
-            </div>
+            )}
 
-            {/* ── Aviso consultar disponibilidad ── */}
-            <div className="bg-blue-50 border border-blue-100 rounded-xl px-3 py-2.5 flex gap-2.5">
-                <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <span className="icon-[mdi--calendar-search] h-3.5 w-3.5 text-blue-600"></span>
-                </div>
-                <div>
-                    <p className="text-xs font-bold text-blue-800">Consulta la disponibilidad</p>
-                    <p className="text-[11px] text-blue-600 leading-relaxed">
-                        Contacta al establecimiento para confirmar disponibilidad antes de tu reserva.
-                    </p>
-                </div>
-            </div>
-
-            {/* ── Central de reservas ── */}
-            <div className="rounded-xl border border-gray-100 overflow-hidden shadow-sm">
-                <div className="bg-gray-50 border-b border-gray-100 px-3 py-2 flex items-center gap-2">
-                    <span className="icon-[ph--phone-bold] h-3.5 w-3.5 text-greenVE-600"></span>
-                    <h3 className="text-xs font-semibold text-gray-700">Central de reservas</h3>
-                </div>
-                <div className="p-3 space-y-1.5">
-                    {contactosCentral?.Whatsapp?.length > 0 && (
-                        <div className={contactosCentral.Whatsapp.length > 1 ? "flex flex-row gap-2" : ""}>
-                            {contactosCentral.Whatsapp.map((item, i) => (
-                                <ContactBtn key={i}
-                                    icon="icon-[mdi--whatsapp]" iconBg="bg-green-100" iconColor="text-green-600"
-                                    borderHover="hover:border-green-400"
-                                    label="WhatsApp central" sublabel={item.valor}
-                                    onClick={() => handleWhatsApp(item.formateado.replaceAll("+", "").replaceAll(" ", ""))}
-                                />
-                            ))}
-                        </div>
-                    )}
-                    {contactosCentral?.Email?.length > 0 && (
-                        <div className={contactosCentral.Email.length > 1 ? "flex flex-row gap-2" : ""}>
-                            {contactosCentral.Email.map((item, i) => (
-                                <ContactBtn key={i}
-                                    icon="icon-[material-symbols--mail-outline-rounded]" iconBg="bg-red-100" iconColor="text-red-600"
-                                    borderHover="hover:border-red-400"
-                                    label="Email central" sublabel={item.valor}
-                                    onClick={() => handleEmail(item.valor)}
-                                />
-                            ))}
-                        </div>
-                    )}
-                </div>
-            </div>
-
-            {/* ── Hotel directo ── */}
-            {contactosHotel && (contactosHotel.Whatsapp?.length > 0 || contactosHotel.Telefono?.length > 0 || contactosHotel.Email?.length > 0) && (
+            {/* ── Contactos: se ocultan por completo si el beneficio se agoto ── */}
+            {!beneficioAgotado && (
                 <>
-                    <div className="flex items-center gap-3">
-                        <div className="flex-1 h-px bg-gray-200"></div>
-                        <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wide">o también</span>
-                        <div className="flex-1 h-px bg-gray-200"></div>
+                    {/* ── Aviso consultar disponibilidad ── */}
+                    <div className="bg-blue-50 border border-blue-100 rounded-xl px-3 py-2.5 flex gap-2.5">
+                        <div className="w-6 h-6 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="icon-[mdi--calendar-search] h-3.5 w-3.5 text-blue-600"></span>
+                        </div>
+                        <div>
+                            <p className="text-xs font-bold text-blue-800">Consulta la disponibilidad</p>
+                            <p className="text-[11px] text-blue-600 leading-relaxed">
+                                Contacta al establecimiento o a nuestra central de reservas para confirmar disponibilidad antes de tu reserva.
+                            </p>
+                        </div>
                     </div>
 
+                    {/* ── Central de reservas ── */}
                     <div className="rounded-xl border border-gray-100 overflow-hidden shadow-sm">
                         <div className="bg-gray-50 border-b border-gray-100 px-3 py-2 flex items-center gap-2">
-                            <span className="icon-[mdi--hotel] h-3.5 w-3.5 text-greenVE-600"></span>
-                            <h3 className="text-xs font-semibold text-gray-700">Directo al hotel</h3>
+                            <span className="icon-[ph--phone-bold] h-3.5 w-3.5 text-greenVE-600"></span>
+                            <h3 className="text-xs font-semibold text-gray-700">Central de reservas</h3>
                         </div>
                         <div className="p-3 space-y-1.5">
-                            {contactosHotel.Whatsapp?.length > 0 && (
-                                <div className={contactosHotel.Whatsapp.length > 1 ? "flex flex-row gap-2" : ""}>
-                                    {contactosHotel.Whatsapp.map((item, i) => (
+                            {contactosCentral?.Whatsapp?.length > 0 && (
+                                <div className={contactosCentral.Whatsapp.length > 1 ? "flex flex-row gap-2" : ""}>
+                                    {contactosCentral.Whatsapp.map((item, i) => (
                                         <ContactBtn key={i}
                                             icon="icon-[mdi--whatsapp]" iconBg="bg-green-100" iconColor="text-green-600"
                                             borderHover="hover:border-green-400"
-                                            label="WhatsApp hotel" sublabel={item}
-                                            onClick={() => handleWhatsApp(item.replaceAll("+", "").replaceAll(" ", ""))}
+                                            label="WhatsApp central" sublabel={item.valor}
+                                            onClick={() => handleWhatsApp(item.formateado.replaceAll("+", "").replaceAll(" ", ""))}
                                         />
                                     ))}
                                 </div>
                             )}
-                            {contactosHotel.Telefono?.map((item, i) => (
-                                <a key={i} href={`tel:${item}`}
-                                    className="w-full flex items-center gap-2.5 p-2.5 bg-white border border-gray-200 hover:border-blue-400 rounded-xl transition-all hover:shadow-sm">
-                                    <div className="bg-blue-100 p-1.5 rounded-lg">
-                                        <span className="icon-[ph--phone-bold] h-4 w-4 text-blue-600"></span>
-                                    </div>
-                                    <div className="flex-1 text-left">
-                                        <p className="text-[10px] text-gray-400">Teléfono hotel</p>
-                                        <p className="text-xs font-medium text-gray-700">{item}</p>
-                                    </div>
-                                    <span className="icon-[material-symbols--arrow-forward-ios-rounded] h-3.5 w-3.5 text-gray-300"></span>
-                                </a>
-                            ))}
-                            {contactosHotel.Email?.length > 0 && (
-                                <div className={contactosHotel.Email.length > 1 ? "flex flex-row gap-2" : ""}>
-                                    {contactosHotel.Email.map((item, i) => (
+                            {contactosCentral?.Email?.length > 0 && (
+                                <div className={contactosCentral.Email.length > 1 ? "flex flex-row gap-2" : ""}>
+                                    {contactosCentral.Email.map((item, i) => (
                                         <ContactBtn key={i}
                                             icon="icon-[material-symbols--mail-outline-rounded]" iconBg="bg-red-100" iconColor="text-red-600"
                                             borderHover="hover:border-red-400"
-                                            label="Email hotel" sublabel={item}
-                                            onClick={() => handleEmail(item)}
+                                            label="Email central" sublabel={item.valor}
+                                            onClick={() => handleEmail(item.valor)}
                                         />
                                     ))}
                                 </div>
                             )}
                         </div>
                     </div>
+
+                    {/* ── Hotel directo ── */}
+                    {contactosHotel && (contactosHotel.Whatsapp?.length > 0 || contactosHotel.Telefono?.length > 0 || contactosHotel.Email?.length > 0) && (
+                        <>
+                            <div className="flex items-center gap-3">
+                                <div className="flex-1 h-px bg-gray-200"></div>
+                                <span className="text-[10px] text-gray-400 font-medium uppercase tracking-wide">o también</span>
+                                <div className="flex-1 h-px bg-gray-200"></div>
+                            </div>
+
+                            <div className="rounded-xl border border-gray-100 overflow-hidden shadow-sm">
+                                <div className="bg-gray-50 border-b border-gray-100 px-3 py-2 flex items-center gap-2">
+                                    <span className="icon-[mdi--hotel] h-3.5 w-3.5 text-greenVE-600"></span>
+                                    <h3 className="text-xs font-semibold text-gray-700">Directo al hotel</h3>
+                                </div>
+                                <div className="p-3 space-y-1.5">
+                                    {contactosHotel.Whatsapp?.length > 0 && (
+                                        <div className={contactosHotel.Whatsapp.length > 1 ? "flex flex-row gap-2" : ""}>
+                                            {contactosHotel.Whatsapp.map((item, i) => (
+                                                <ContactBtn key={i}
+                                                    icon="icon-[mdi--whatsapp]" iconBg="bg-green-100" iconColor="text-green-600"
+                                                    borderHover="hover:border-green-400"
+                                                    label="WhatsApp hotel" sublabel={item}
+                                                    onClick={() => handleWhatsApp(item.replaceAll("+", "").replaceAll(" ", ""))}
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
+                                    {contactosHotel.Telefono?.map((item, i) => (
+                                        <a key={i} href={`tel:${item}`}
+                                            className="w-full flex items-center gap-2.5 p-2.5 bg-white border border-gray-200 hover:border-blue-400 rounded-xl transition-all hover:shadow-sm">
+                                            <div className="bg-blue-100 p-1.5 rounded-lg">
+                                                <span className="icon-[ph--phone-bold] h-4 w-4 text-blue-600"></span>
+                                            </div>
+                                            <div className="flex-1 text-left">
+                                                <p className="text-[10px] text-gray-400">Teléfono hotel</p>
+                                                <p className="text-xs font-medium text-gray-700">{item}</p>
+                                            </div>
+                                            <span className="icon-[material-symbols--arrow-forward-ios-rounded] h-3.5 w-3.5 text-gray-300"></span>
+                                        </a>
+                                    ))}
+                                    {contactosHotel.Email?.length > 0 && (
+                                        <div className={contactosHotel.Email.length > 1 ? "flex flex-row gap-2" : ""}>
+                                            {contactosHotel.Email.map((item, i) => (
+                                                <ContactBtn key={i}
+                                                    icon="icon-[material-symbols--mail-outline-rounded]" iconBg="bg-red-100" iconColor="text-red-600"
+                                                    borderHover="hover:border-red-400"
+                                                    label="Email hotel" sublabel={item}
+                                                    onClick={() => handleEmail(item)}
+                                                />
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </>
             )}
         </div>
@@ -376,7 +474,7 @@ const Step2Resumen = ({ Ofertas, Establecimiento, Fechas, Valores, Opciones, Win
 
     return (
         <div className="space-y-1">
-              {/* ── Establecimiento ── */}
+            {/* ── Establecimiento ── */}
             <Section icon="icon-[mdi--hotel]" title="Establecimiento">
                 <div className="flex gap-3">
                     {(Establecimiento.image || Establecimiento.FotoPrincipal) && (
@@ -408,24 +506,49 @@ const Step2Resumen = ({ Ofertas, Establecimiento, Fechas, Valores, Opciones, Win
 
             {/* ── Acomodación ── */}
             <Section icon="icon-[material-symbols--bed-outline-rounded]" title="Habitaciones seleccionadas - Personas">
+                {Ofertas.some(o => o._porcionDe) && (
+                    <div className="flex items-start gap-2 bg-blue-50 border border-blue-100 rounded-lg px-3 py-2 mb-2">
+                        <span className="icon-[mdi--information-outline] h-4 w-4 text-blue-500 flex-shrink-0 mt-0.5"></span>
+                        <p className="text-[11px] text-blue-700 leading-snug">
+                            Tu estadía cruza días entre semana y fin de semana. Cada habitación se
+                            cobra por sus noches: las de entre semana a su tarifa y las de fin de
+                            semana a la suya.
+                        </p>
+                    </div>
+                )}
                 <div className="space-y-2">
                     {Ofertas.map((item, index) => (
                         <div key={index} className="flex items-center justify-between bg-gray-50 rounded-lg px-3 py-2">
-                            <div className="flex items-center gap-2">
-                                <span className="bg-greenVE-100 text-greenVE-700 text-xs font-bold px-2 py-0.5 rounded-full">
+                            <div className="flex items-start gap-2">
+                                <span className="bg-greenVE-100 text-greenVE-700 text-xs font-bold px-2 py-0.5 rounded-full mt-0.5">
                                     {item.NumOfertas}x
                                 </span>
-                                <p className="text-sm text-gray-700 font-medium">{item.TituloOferta}</p>
+                                <div>
+                                    <p className="text-sm text-gray-700 font-medium">{item.TituloOferta}</p>
+                                    {item.AplicaEn && (
+                                        <p className="text-[11px] text-blue-500 mt-0.5 flex items-center gap-1">
+                                            <span className="icon-[material-symbols-light--calendar-month-rounded] h-3.5 w-3.5"></span>
+                                            {item.AplicaEn}
+                                        </p>
+                                    )}
+                                </div>
                             </div>
-                            {item.Acomodacion && (
-                                <span className="text-xs text-gray-500 bg-white border border-gray-200 px-2 py-0.5 rounded-full">
-                                    {item.Acomodacion}
-                                </span>
-                            )}
+                            <div className="flex items-center gap-2 flex-shrink-0">
+                                {item.Acomodacion && (
+                                    <span className="text-xs text-gray-500 bg-white border border-gray-200 px-2 py-0.5 rounded-full">
+                                        {item.Acomodacion}
+                                    </span>
+                                )}
+                                {item.FinalSinImpuestos != null && (
+                                    <span className="text-sm font-semibold text-gray-700">
+                                        ${(Number(item.FinalSinImpuestos) * (Number(item.NumOfertas) || 1)).toFixed(2)}
+                                    </span>
+                                )}
+                            </div>
                         </div>
                     ))}
                 </div>
-                 <div className="flex gap-4 space-y-2">
+                <div className="flex gap-4 space-y-2">
                     <div className="flex items-center gap-2 px-3">
                         <div className="flex gap-0.5">
                             {Array(Opciones.adult).fill(null).map((_, i) => (
@@ -452,7 +575,7 @@ const Step2Resumen = ({ Ofertas, Establecimiento, Fechas, Valores, Opciones, Win
                 </div>
             </Section>
 
-          
+
 
             {/* ── Oferta Vino (si existe) ── */}
             {wineOfferInfo && (
@@ -539,176 +662,12 @@ const Step2Resumen = ({ Ofertas, Establecimiento, Fechas, Valores, Opciones, Win
 };
 
 
-// ── PASO 3: Certificado ───────────────────────────────────────────────────────
-const Step3Certificado = ({ Ofertas, Establecimiento, Fechas, Opciones, WineOffer, onCertificateGenerated, onReservaDirect, isLoading }) => {
-    const [isCreatingCert, setIsCreatingCert] = useState(false);
-    const [inputUser, setInputUser] = useState('');
-    const [certGenerated, setCertGenerated] = useState(false);
-
-    const fechaString = (fecha) => {
-        const d = new Date(fecha);
-        return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-    };
-
-    const wineOfferInfo = WineOffer ? {
-        titulo: WineOffer.TituloOferta || WineOffer.title || 'Oferta Ruta del Vino',
-        precio: parseFloat(WineOffer.price || WineOffer.Precio || 0),
-        imagen: WineOffer.FotoPrincipal || WineOffer.image || '',
-        descripcion: WineOffer.Detalle || WineOffer.description || '',
-        idOferta: WineOffer.IdOferta || WineOffer.id,
-        inventarios: WineOffer.inventories || WineOffer.Inventarios || [],
-    } : null;
-
-    const createCert = () => {
-        if (isCreatingCert) return;
-        if (!Fechas?.[0]) return;
-
-        setIsCreatingCert(true);
-        const dataOfertas = Ofertas.map(item => ({ cant: item.NumOfertas, oferta: item.Id }));
-        const fechas = {
-            inicio: fechaString(Fechas[0].startDate),
-            fin: fechaString(Fechas[0].endDate),
-        };
-
-        const personasParams = `&Adultos=${Opciones.adult}&Ninos=${Opciones.children || 0}`;
-
-        let wineOfferParams = '';
-        if (wineOfferInfo) {
-            wineOfferParams = `&WineOfferTitulo=${encodeURIComponent(wineOfferInfo.titulo)}` +
-                `&WineOfferPrecio=${wineOfferInfo.precio}` +
-                `&WineOfferImagen=${encodeURIComponent(wineOfferInfo.imagen)}` +
-                `&WineOfferDescripcion=${encodeURIComponent(wineOfferInfo.descripcion)}` +
-                `&WineOfferRegalos=${encodeURIComponent(wineOfferInfo.inventarios.map(i => i.name).join(', '))}`;
-        }
-
-        getCertificado(
-            inputUser,
-            Establecimiento.IdEstablecimiento,
-            dataOfertas,
-            fechas,
-            Opciones.adult,
-            Opciones.children
-        ).then((result) => {
-            setIsCreatingCert(false);
-            if (result) {
-                window.open("/certificado?" + result + personasParams + wineOfferParams, '_blank');
-                setCertGenerated(true);
-                onCertificateGenerated?.();
-            }
-        });
-    };
-
-    return (
-        <div className="space-y-4">
-            {/* Explicación */}
-            <div className="bg-greenVE-50 border border-greenVE-200 rounded-xl p-4 text-center">
-                <div className="w-14 h-14 bg-greenVE-100 rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="icon-[ph--certificate-bold] h-7 w-7 text-greenVE-600"></span>
-                </div>
-                <h3 className="font-bold text-greenVE-800 text-base mb-1">Genera tu certificado de reserva</h3>
-                <p className="text-sm text-gray-600 leading-relaxed">
-                    El certificado es el documento que necesitas para confirmar tu reserva.
-                    Descárgalo y úsalo para confirmar tu reserva con el hotel o nuestra central.
-                </p>
-            </div>
-
-            {/* Campo para otro usuario */}
-            <div className="rounded-xl border border-gray-200 p-4">
-                <label className="block text-sm font-semibold text-gray-700 mb-1">
-                    ¿El certificado es para otra persona?
-                </label>
-                <p className="text-xs text-gray-500 mb-3">
-                    Deja este campo vacío si el certificado es para el titular de esta cuenta.
-                </p>
-                <input
-                    className="w-full border border-gray-200 focus:border-greenVE-400 focus:ring-1 focus:ring-greenVE-200 rounded-lg px-3 py-2 text-sm outline-none transition-all"
-                    type="text"
-                    value={inputUser}
-                    onChange={(e) => setInputUser(e.target.value)}
-                    placeholder="ID de otro usuario (opcional)"
-                />
-            </div>
-
-            {/* Botón generar */}
-            <button
-                onClick={createCert}
-                disabled={isCreatingCert}
-                className="w-full flex items-center justify-center gap-3 bg-greenVE-600 hover:bg-greenVE-700 disabled:opacity-60 text-white font-semibold py-3 px-6 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-95"
-            >
-                {isCreatingCert ? (
-                    <>
-                        <Spinner color="white" className="h-5 w-5" />
-                        <span>Generando certificado...</span>
-                    </>
-                ) : (
-                    <>
-                        <span className="icon-[ph--download-bold] h-5 w-5"></span>
-                        <span>Generar y descargar certificado</span>
-                    </>
-                )}
-            </button>
-
-            {/* Estado: certificado ya generado */}
-            {certGenerated && (
-                <div className="flex items-center gap-3 bg-green-50 border border-green-200 rounded-xl p-3">
-                    <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                        <svg className="w-4 h-4 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
-                        </svg>
-                    </div>
-                    <div>
-                        <p className="text-sm font-semibold text-green-700">¡Certificado generado!</p>
-                        <p className="text-xs text-green-600">Úsalo para confirmar tu reserva con el hotel o la central.</p>
-                    </div>
-                </div>
-            )}
-
-            {/* Reserva directa web 
-            <div className="rounded-xl border border-gray-100 overflow-hidden shadow-sm">
-                <div className="bg-gray-50 border-b border-gray-100 px-4 py-2.5 flex items-center gap-2">
-                    <span className="icon-[mdi--web] h-4 w-4 text-greenVE-600"></span>
-                    <h3 className="text-sm font-semibold text-gray-700">O confirma directamente en la plataforma</h3>
-                </div>
-                <div className="p-4">
-                    <button
-                        onClick={onReservaDirect}
-                        disabled={isLoading}
-                        className="w-full flex items-center gap-3 p-3 bg-gradient-to-r from-greenVE-600 to-greenVE-500 hover:from-greenVE-700 hover:to-greenVE-600 rounded-xl transition-all shadow-md hover:shadow-lg active:scale-95 disabled:opacity-50"
-                    >
-                        <div className="bg-white/20 p-2 rounded-lg">
-                            <span className="icon-[mdi--web] h-5 w-5 text-white"></span>
-                        </div>
-                        <div className="flex-1 text-left">
-                            <p className="text-xs text-white/80">Reserva directa en la plataforma</p>
-                            <p className="text-sm font-semibold text-white">Confirmar ahora en la web</p>
-                        </div>
-                        {isLoading ? (
-                            <Spinner color="white" className="h-5 w-5" />
-                        ) : (
-                            <span className="icon-[material-symbols--arrow-forward-ios-rounded] h-4 w-4 text-white/80"></span>
-                        )}
-                    </button>
-                </div>
-            </div>*/}
-
-            {/* Tip */}
-            <div className="flex items-start gap-2 bg-amber-50 border border-amber-100 rounded-xl p-3">
-                <span className="icon-[mdi--information-outline] h-4 w-4 text-amber-600 flex-shrink-0 mt-0.5"></span>
-                <p className="text-xs text-amber-700">
-                    El certificado se abrirá en una nueva pestaña. Guárdalo o descárgalo desde tu navegador y
-                    úsalo para confirmar tu reserva con el hotel o la central.
-                </p>
-            </div>
-        </div>
-    );
-};
-
-
 const HotelConfirmation = ({ Ofertas, isOpen, Establecimiento, Fechas, Valores, OnClose, Opciones, WineOffer }) => {
     const navigate = useNavigate();
     const [currentStep, setCurrentStep] = useState(1);
     const [isLoading, setIsLoading] = useState(false);
-    const [certGenerated, setCertGenerated] = useState(false);
+    const { beneficios, cargando: cargandoBeneficios } = useBeneficios();
+    const beneficioAgotado = !puedeGenerarCertificado(beneficios);
 
     const user = JSON.parse(localStorage.getItem('datos'));
 
@@ -731,60 +690,9 @@ const HotelConfirmation = ({ Ofertas, isOpen, Establecimiento, Fechas, Valores, 
         } catch { return ''; }
     }
 
-    const handleReservaDirect = async () => {
-        if (isLoading) return;
-        setIsLoading(true);
-        let total = 0;
-        try {
-            const datosReserva = { id_tbl_estado_reserva: 1, id_empresa: 1 };
-            const listaOfertas = [];
-
-            if (!Fechas?.[0]) { setIsLoading(false); return; }
-
-            for (const oferta of Ofertas) {
-                listaOfertas.push({
-                    id_tbl_establecimiento: oferta.IdEstablecimiento,
-                    id_tbl_info_indice_oferta: oferta.Id,
-                    adultos: oferta.Adultos,
-                    ninos: oferta.Ninos || "0",
-                    cantidad_ofertas: oferta.NumOfertas,
-                    fecha_inicio: formatDateToAAAAMMDD(Fechas[0].startDate),
-                    fecha_fin: formatDateToAAAAMMDD(Fechas[0].endDate),
-                    precio_total: oferta.Final * parseInt(oferta.NumOfertas),
-                    edades_ninos: Opciones.childrenAges?.join(",") || "",
-                });
-                total += oferta.Final * parseInt(oferta.NumOfertas);
-            }
-
-            const wineOfferInfo = WineOffer ? {
-                idOferta: WineOffer.IdOferta || WineOffer.id,
-                titulo: WineOffer.TituloOferta || WineOffer.title,
-                precio: parseFloat(WineOffer.price || WineOffer.Precio || 0),
-                inventarios: WineOffer.inventories || WineOffer.Inventarios || [],
-            } : null;
-
-            if (wineOfferInfo) {
-                datosReserva.wine_offer = {
-                    id_oferta_vino: wineOfferInfo.idOferta,
-                    titulo: wineOfferInfo.titulo,
-                    precio: wineOfferInfo.precio,
-                    regalos: wineOfferInfo.inventarios.map(i => ({ nombre: i.name, precio: i.price || 0 })),
-                };
-                total += wineOfferInfo.precio;
-            }
-            datosReserva.total_reserva = total;
-
-            createReservation(datosReserva, listaOfertas).then((res) => {
-                setIsLoading(false);
-                if (res) navigate("/historial");
-            });
-        } catch {
-            setIsLoading(false);
-        }
-    };
 
     return (
-        <div className="fixed inset-0 flex items-end sm:items-center justify-center z-40">
+        <div className="fixed inset-0 flex items-end sm:items-center justify-center z-50">
             {/* Backdrop */}
             <div
                 className="absolute inset-0 bg-black/50 backdrop-blur-sm"
@@ -813,10 +721,11 @@ const HotelConfirmation = ({ Ofertas, isOpen, Establecimiento, Fechas, Valores, 
                             </svg>
                         </button>
                     </div>
-
-                    <div className="bg-white/10 rounded-xl px-2 pt-3 pb-1">
+                    {!beneficioAgotado && (
+                        <div className="bg-white/10 rounded-xl px-2 pt-3 pb-1">
                             <StepIndicator currentStep={currentStep} onStepClick={(step) => setCurrentStep(step)} />
                         </div>
+                    )}
                 </div>
 
                 {/* ── Contenido scrollable ── */}
@@ -828,6 +737,7 @@ const HotelConfirmation = ({ Ofertas, isOpen, Establecimiento, Fechas, Valores, 
                             WineOffer={WineOffer}
                             Ofertas={Ofertas}
                             Opciones={Opciones}
+                            Valores={Valores}
                         />
                     )}
                     {currentStep === 2 && (
@@ -856,19 +766,20 @@ const HotelConfirmation = ({ Ofertas, isOpen, Establecimiento, Fechas, Valores, 
                             Anterior
                         </button>
                     )}
-
-                    {currentStep < 2 && (
-                        <button
-                            onClick={() => setCurrentStep(s => s + 1)}
-                            className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-greenVE-600 hover:bg-greenVE-700 text-white font-semibold text-sm transition-all shadow-md hover:shadow-lg active:scale-95"
-                        >
-                            Ver resumen de reserva
-                            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </button>
-                    )}
-
+                    {!beneficioAgotado && (
+                        <>
+                            {currentStep < 2 && (
+                                <button
+                                    onClick={() => setCurrentStep(s => s + 1)}
+                                    className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-greenVE-600 hover:bg-greenVE-700 text-white font-semibold text-sm transition-all shadow-md hover:shadow-lg active:scale-95"
+                                >
+                                    Ver resumen de reserva
+                                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </button>
+                            )}
+                        </>)}
                     {currentStep === 2 && (
                         <button
                             onClick={OnClose}

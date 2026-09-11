@@ -10,6 +10,11 @@ const ProfileMenu = ({ handleChangeOption, selectedOption, profileData }) => {
         window.open("https://visitaecuador.com/vesite", "_blank");
     };
 
+    const handleLogout = () => {
+        localStorage.removeItem("datos");
+        window.location.reload();
+    };
+
     return (
         <div className="border rounded-md">
             <div className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:text-greenVE-500"
@@ -75,6 +80,13 @@ const ProfileMenu = ({ handleChangeOption, selectedOption, profileData }) => {
                 <label
                     className={`${selectedOption == 6 ? "text-greenVE-500" : ""} font-medium cursor-pointer text-sm `}>My
                     VeSite</label>
+            </div>
+            <div className="flex items-center gap-3 px-4 py-2 cursor-pointer border-t hover:bg-red-50 hover:text-red-600 group"
+                 onClick={handleLogout}>
+                <div className="bg-red-50 h-9 w-9 rounded-full flex items-center justify-center group-hover:bg-red-100">
+                    <span className="icon-[material-symbols-light--logout] h-6 w-6 text-red-500"></span>
+                </div>
+                <label className="font-medium cursor-pointer text-sm text-red-500">Cerrar sesión</label>
             </div>
         </div>
     );

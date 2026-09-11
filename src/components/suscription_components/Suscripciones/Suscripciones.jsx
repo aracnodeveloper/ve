@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import ProductItem from "./ProductItem";
 import ProductItemSelect from "./ProductItemSelect";
+import ProductItemEspecial, { PROGRAMAS } from "./ProductItemEspecial";
 import { useLocation } from "react-router-dom";
 
 const Suscripciones = ({
@@ -17,8 +18,14 @@ const Suscripciones = ({
   );
   const precio = searchParams.get("value");
   const tiempoAdicional = searchParams.get("time");
-  var firstProducts = productos.slice(0, 4).reverse();
-  var secondProducts = productos.slice(4, productos.length);
+  // Programas especiales (lista de precio 155): Campaña Mes del Turismo (523)
+  // y Embajadores (524). Van en su propio bloque, separados y etiquetados,
+  // porque no son paquetes de suscripcion comunes.
+  const especiales = productos.filter((p) => PROGRAMAS[p.IdProductoSuscripcion]);
+  const comunes = productos.filter((p) => !PROGRAMAS[p.IdProductoSuscripcion]);
+
+  var firstProducts = comunes.slice(0, 4).reverse();
+  var secondProducts = comunes.slice(4, comunes.length);
 
   var paquetes = productos.filter(
     (map) => map.IdProducto == "13538" || map.IdProducto == "13540" || map.IdProducto == "17522" || map.IdProducto == "17527"
@@ -84,35 +91,63 @@ const Suscripciones = ({
         <></>
       )}
 
-      <div className="flex flex-col bg-gray-200 p-3 rounded-lg">
-        <label className="font-semibold text-xl md:text-2xl">Elige</label>
-        <label className="text-xs md:text-sm font-light text-gray-500 italic">
-          Escoge uno de nuestros productos.
-        </label>
-        <div className="border-b border-gray-400 my-2"></div>
-        <div className="flex flex-col gap-2">
-          {firstProducts.map((item) => (
-            <ProductItem
-              Producto={item}
-              setOpcion={setOpcion}
-              setProducto={setProducto}
-              codigo={codigo}
-              setCodigo={setCodigo}
-            ></ProductItem>
-          ))}
-          {secondProducts.length > 0 ? (
-            <ProductItemSelect
-              setOpcion={setOpcion}
-              listaProductos={secondProducts}
-              setProducto={setProducto}
-              codigo={codigo}
-              setCodigo={setCodigo}
-            ></ProductItemSelect>
-          ) : (
-            <></>
-          )}
+      {especiales.length > 0 && (
+        <div className="flex flex-col gap-3">
+          <div>
+            <label className="font-semibold text-xl md:text-2xl">Programas especiales</label>
+            <label className="block text-xs md:text-sm font-light text-gray-500 italic">
+              Cada programa es independiente. Elige el que te corresponde.
+            </label>
+          </div>
+          <div className="flex flex-col gap-3">
+            {especiales
+              .slice()
+              .sort((a, b) => Number(a.IdProductoSuscripcion) - Number(b.IdProductoSuscripcion))
+              .map((item) => (
+                <ProductItemEspecial
+                  key={item.IdProducto}
+                  Producto={item}
+                  setOpcion={setOpcion}
+                  setProducto={setProducto}
+                  codigo={codigo}
+                  setCodigo={setCodigo}
+                />
+              ))}
+          </div>
         </div>
-      </div>
+      )}
+
+      {comunes.length > 0 && (
+        <div className="flex flex-col bg-gray-200 p-3 rounded-lg">
+          <label className="font-semibold text-xl md:text-2xl">Elige</label>
+          <label className="text-xs md:text-sm font-light text-gray-500 italic">
+            Escoge uno de nuestros productos.
+          </label>
+          <div className="border-b border-gray-400 my-2"></div>
+          <div className="flex flex-col gap-2">
+            {firstProducts.map((item) => (
+              <ProductItem
+                Producto={item}
+                setOpcion={setOpcion}
+                setProducto={setProducto}
+                codigo={codigo}
+                setCodigo={setCodigo}
+              ></ProductItem>
+            ))}
+            {secondProducts.length > 0 ? (
+              <ProductItemSelect
+                setOpcion={setOpcion}
+                listaProductos={secondProducts}
+                setProducto={setProducto}
+                codigo={codigo}
+                setCodigo={setCodigo}
+              ></ProductItemSelect>
+            ) : (
+              <></>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

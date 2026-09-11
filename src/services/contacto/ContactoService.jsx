@@ -16,6 +16,13 @@ class ContactoService extends GenericService{
         const url = `${Config.URL_SERVICIOS}${Config.VERAPP}diferidos/`;
         return await this.post(url, params);
     }
+
+    // Envia el formulario de contacto. El destinatario/asunto lo decide el
+    // backend segun params.tipo (ej. "contactoWeb", "emprendedor").
+    async enviarContacto(params){
+        const url = `${Config.URL_SERVICIOS}${Config.VERINFO}contactanos/`;
+        return await this.post(url, params);
+    }
 }
 
 export default ContactoService;

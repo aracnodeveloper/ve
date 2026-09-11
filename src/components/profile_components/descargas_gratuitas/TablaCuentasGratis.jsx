@@ -3,8 +3,8 @@ import { useState } from "react";
 import Config from "../../../global/config";
 import EditarCuentaGratis from "./EditarCuentaGratis";
 import { capitalize } from "../../../global/util";
-import { getDatosCRM } from "../../../controllers/crm/CrmController";
-import VisualizadorCRM from "./VisualizadorCRM";
+import { getDetalleClienteRise } from "../../../controllers/rise/RiseController";
+import VisualizadorRise from "./VisualizadorRise";
 
 const TablaCuentasGratis = ({ listado, handleUpdateData }) => {
   const [loadingId, setLoadingId] = useState();
@@ -13,13 +13,22 @@ const TablaCuentasGratis = ({ listado, handleUpdateData }) => {
   const [openEdit, setOpenEdit] = useState(false);
   const [openCRM, setOpenCRM] = useState(false);
   const [dataCRM, setDataCRM] = useState();
+  const [sinDatos, setSinDatos] = useState(null);
 
+  // Consulta el detalle del cliente en RIS (antes iba al CRM viejo).
   const handleClickCrm = () => {
-    getDatosCRM(cedulaCRM)
+    const cedula = cedulaCRM;
+    setSinDatos(null);
+    getDetalleClienteRise(cedula)
       .then((res) => {
         if (res) {
           setDataCRM(res);
           setOpenCRM(true);
+        } else {
+          // RIS devuelve 404 cuando la cedula no esta registrada: se avisa en
+          // vez de dejar el boton sin reaccion aparente.
+          setSinDatos(cedula);
+          setTimeout(() => setSinDatos(null), 4000);
         }
       })
       .finally(() => {
@@ -51,7 +60,7 @@ const TablaCuentasGratis = ({ listado, handleUpdateData }) => {
     return (
       <div>
         <div
-          title="Buscar en CRM"
+          title="Ver detalle en RIS"
           onClick={() => {
             cedulaCRM = id;
             setLoadingId(id);
@@ -67,6 +76,29 @@ const TablaCuentasGratis = ({ listado, handleUpdateData }) => {
       </div>
     );
   };
+  /**
+   * Una cuenta es "prueba gratis" mientras no tenga suscripcion asociada.
+   * listarCuentasGratisPatrocinador devuelve s.id_tbl_suscripcion en la raiz del
+   * item (viene de un LEFT JOIN, asi que llega null cuando el usuario solo se
+   * descargo la app y todavia no compro).
+   */
+  const esSuscriptor = (item) =>
+    item.id_tbl_suscripcion != null &&
+    item.id_tbl_suscripcion !== "" &&
+    parseInt(item.id_tbl_suscripcion) > 0;
+
+  const badgeTipo = (suscriptor) => (
+    <span
+      className={`px-2 py-0.5 rounded-full text-[11px] font-semibold whitespace-nowrap ${
+        suscriptor
+          ? "bg-greenVE-100 text-greenVE-700"
+          : "bg-blue-50 text-blue-600"
+      }`}
+    >
+      {suscriptor ? "Suscriptor" : "Prueba gratis"}
+    </span>
+  );
+
   // Definir las columnas y su configuración
   const columns = [
     { field: "id", headerName: "#", flex: 2 },
@@ -76,6 +108,12 @@ const TablaCuentasGratis = ({ listado, handleUpdateData }) => {
       flex: 7,
       renderCell: (params) => buttonEditar(params.row.id_tbl_usuario),
       sortable: false,
+    },
+    {
+      field: "tipo",
+      headerName: "Tipo",
+      flex: 10,
+      renderCell: (params) => badgeTipo(params.row.esSuscriptor),
     },
     { field: "nombre", headerName: "Nombre", flex: 19 },
     { field: "ci", headerName: "Cédula", flex: 10 },
@@ -96,6 +134,9 @@ const TablaCuentasGratis = ({ listado, handleUpdateData }) => {
   const rows = listado.map((item, index) => ({
     id: index + 1, // Utilizo el índice + 1 como identificador
     id_tbl_usuario: item.id_tbl_usuario,
+    esSuscriptor: esSuscriptor(item),
+    // Valor de texto para que la columna se pueda ordenar por tipo.
+    tipo: esSuscriptor(item) ? "Suscriptor" : "Prueba gratis",
     nombre: capitalize(item.nombre),
     ci: item.ci,
     mail: item.mail,
@@ -113,7 +154,14 @@ const TablaCuentasGratis = ({ listado, handleUpdateData }) => {
           disableSelectionOnClick
           localeText={Config.esEs}
           hideFooterPagination={true}
-          sx={Config.SettingTable}
+          getRowClassName={(params) =>
+            params.row.esSuscriptor ? "fila-suscriptor" : ""
+          }
+          sx={{
+            ...(Config.SettingTable || {}),
+            // Tinte suave para leer de un vistazo quien ya compro.
+            "& .fila-suscriptor": { backgroundColor: "#f9fde8" },
+          }}
           autoHeight
           pagination={false}
           initialState={{
@@ -133,8 +181,16 @@ const TablaCuentasGratis = ({ listado, handleUpdateData }) => {
           handleUpdateData={handleUpdateData}
         />
       )}
+      {sinDatos && (
+        <div className="fixed bottom-4 right-4 z-50 flex items-center gap-2 bg-gray-900 text-white rounded-lg px-4 py-2 shadow-lg">
+          <span className="icon-[fluent--error-circle-24-regular] h-5 w-5 text-orange-400" />
+          <span className="text-sm">
+            RIS no tiene registro de la cédula {sinDatos}.
+          </span>
+        </div>
+      )}
       {openCRM && dataCRM && (
-        <VisualizadorCRM
+        <VisualizadorRise
           open={openCRM}
           data={dataCRM}
           onClose={() => setOpenCRM(false)}

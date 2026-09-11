@@ -30,6 +30,7 @@ export const getRemoteTarjetas = async function (){
                         tarjetaTmp.Nombre=tarjeta["nombre"]
                         tarjetaTmp.Logo=tarjeta["logo"]
                         tarjetaTmp.IdTipoTarjeta=tarjeta["id_tipo_tarjeta"]
+                        tarjetaTmp.Cuenta=tarjeta["cuenta"]
                         const listaDiferidos=[]
                         for(const diferido of tarjeta["diferidos"]){
                             const diferidosTmp= new Diferido()

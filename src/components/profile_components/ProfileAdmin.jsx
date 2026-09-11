@@ -6,10 +6,12 @@ import { formatDate } from "../../global/util";
 import ReactPaginate from "react-paginate";
 
 const ProfileAdmin = () => {
-  const [fInicio, setFInicio] = useState(
-    formatDate(new Date().setMonth(new Date().getMonth() - 1))
-  );
-  const [fFin, setFFin] = useState(formatDate(new Date()));
+  const [fInicio, setFInicio] = useState(() => {
+    const d = new Date();
+    d.setMonth(d.getMonth() - 1);
+    return formatDate(d);
+  });
+  const [fFin, setFFin] = useState(() => formatDate(new Date()));
   const [selPagina, setSelPagina] = useState(0);
   const [loading, setLoading] = useState();
   const [data, setData] = useState();
@@ -63,6 +65,60 @@ const ProfileAdmin = () => {
     setSelPagina(page.selected); // Cambiar el estado de la página seleccionada
   };
 
+  /**
+   * Conteo por tipo de la pagina cargada.
+   *
+   * Es de la pagina, no del total: el listado se pagina en el servidor, asi que
+   * aqui solo estan los registros que se trajeron. Por eso la etiqueta lo dice
+   * explicitamente y no se presenta como un total del filtro.
+   */
+  const resumenPagina = () => {
+    const lista = data || [];
+    const suscriptores = lista.filter(
+      (i) =>
+        i.id_tbl_suscripcion != null &&
+        i.id_tbl_suscripcion !== "" &&
+        parseInt(i.id_tbl_suscripcion) > 0
+    ).length;
+    return { suscriptores, gratis: lista.length - suscriptores };
+  };
+
+  /**
+   * Se pinta encima y debajo de la tabla: con 20+ filas, tener que bajar hasta
+   * el final para cambiar de pagina es incomodo. Es la misma instancia de
+   * configuracion, asi que ambas quedan siempre sincronizadas por selPagina.
+   */
+  const paginacion = () => (
+    <ReactPaginate
+      forcePage={selPagina}
+      breakLabel="..."
+      nextLabel="Siguiente"
+      onPageChange={handleOnPageChange}
+      pageRangeDisplayed={5}
+      pageCount={numPaginas}
+      previousLabel="Anterior"
+      renderOnZeroPageCount={null}
+      containerClassName={"flex justify-center p-4"}
+      pageClassName={"mx-1"}
+      pageLinkClassName={
+        "px-3 py-1 border border-gray-300 text-greenVE-600 rounded cursor-pointer transition duration-200 hover:bg-greenVE-100"
+      }
+      previousClassName={"mx-1"}
+      previousLinkClassName={
+        "px-3 py-1  border border-gray-300 text-greenVE-600 rounded cursor-pointer transition duration-200 hover:bg-greenVE-100"
+      }
+      nextClassName={"mx-1"}
+      nextLinkClassName={
+        "px-3 py-1 border border-gray-300 text-greenVE-600 rounded cursor-pointer transition duration-200 hover:bg-greenVE-100"
+      }
+      breakClassName={"mx-1"}
+      breakLinkClassName={
+        "px-3 py-1 border border-gray-300 text-greenVE-600 rounded cursor-pointer transition duration-200 hover:bg-greenVE-100"
+      }
+      activeClassName={"bg-greenVE-300 rounded py-1 -mt-1"}
+    />
+  );
+
   const handleUpdateData = (index, item) => {
     setData((prevData) =>
       prevData.map((cuenta) =>
@@ -81,6 +137,22 @@ const ProfileAdmin = () => {
           </h1>
           <label>Administra tus descargas</label>
         </div>
+
+        {data && data.length > 0 && (
+          <div className="flex flex-col items-end gap-1">
+            <div className="flex gap-2 flex-wrap justify-end">
+              <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-greenVE-100 text-greenVE-700">
+                {resumenPagina().suscriptores} suscriptores
+              </span>
+              <span className="px-2.5 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-600">
+                {resumenPagina().gratis} pruebas gratis
+              </span>
+            </div>
+            <label className="text-[11px] text-gray-400">
+              en esta página{total ? ` · ${total} en total` : ""}
+            </label>
+          </div>
+        )}
       </div>
       {loading ? (
         <div className="w-full flex items-center justify-center mt-5">
@@ -92,40 +164,12 @@ const ProfileAdmin = () => {
         </div>
       ) : (
         <div className="relative overflow-x-auto shadow-md  ">
+          {paginacion()}
           <TablaCuentasGratis
             listado={data}
             handleUpdateData={handleUpdateData}
           />
-          {
-            <ReactPaginate
-              forcePage={selPagina}
-              breakLabel="..."
-              nextLabel="Siguiente"
-              onPageChange={handleOnPageChange}
-              pageRangeDisplayed={5}
-              pageCount={numPaginas}
-              previousLabel="Anterior"
-              renderOnZeroPageCount={null}
-              containerClassName={"flex justify-center p-4"}
-              pageClassName={"mx-1"}
-              pageLinkClassName={
-                "px-3 py-1 border border-gray-300 text-greenVE-600 rounded cursor-pointer transition duration-200 hover:bg-greenVE-100"
-              }
-              previousClassName={"mx-1"}
-              previousLinkClassName={
-                "px-3 py-1  border border-gray-300 text-greenVE-600 rounded cursor-pointer transition duration-200 hover:bg-greenVE-100"
-              }
-              nextClassName={"mx-1"}
-              nextLinkClassName={
-                "px-3 py-1 border border-gray-300 text-greenVE-600 rounded cursor-pointer transition duration-200 hover:bg-greenVE-100"
-              }
-              breakClassName={"mx-1"}
-              breakLinkClassName={
-                "px-3 py-1 border border-gray-300 text-greenVE-600 rounded cursor-pointer transition duration-200 hover:bg-greenVE-100"
-              }
-              activeClassName={"bg-greenVE-300 rounded py-1 -mt-1"}
-            />
-          }
+          {paginacion()}
         </div>
       )}
     </div>
