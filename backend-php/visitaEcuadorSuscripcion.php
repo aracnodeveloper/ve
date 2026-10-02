@@ -47,7 +47,7 @@
     <table style="background-color: #96c121;" width="750" align="center" cellspacing="0">
         <tr>
             <td style="padding: 0px; padding-left: 7px; border: #96c121 solid 1.0; width: 50px;" align="center">
-                <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/logo_ve_blanco.png"
+                <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/logo_ve_blanco.png"
                     style="margin-left: 20px;" height="50">
             </td>
             <td style="padding: 0px; padding-left: 7px; border: #96c121 solid 1.0; width: 150px;" align="left">
@@ -69,7 +69,7 @@
                 </table>
             </td>
             <td style="padding: 0; border: #96c121 solid 1.0; width: 50px;" align="right">
-                <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/cashback_verde.png"
+                <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/cashback_verde.png"
                     alt="Visita Ecuador" height="50" width="50">
             </td>
             <td style="padding: 0px; padding-right: 10px;border: #96c121 solid 1.0; width: 160px;" align="right">
@@ -87,7 +87,7 @@
                 </table>
             </td>
             <td style="padding: 0; border: #96c121 solid 1.0; width: 40px;" align="right">
-                <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/ve_express-19.png"
+                <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/ve_express-19.png"
                     alt="Visita Ecuador" height="40" width="40">
             </td>
         </tr>
@@ -108,22 +108,22 @@
             <td align="center" style="height: 20px; width: 400px; padding-right: 100px;border:solid #84b60a 1.0; padding: 0px;padding-bottom: 5px; padding-top: 5px;">
             </td>
             <td align="center" style="height: 20px; border:solid #84b60a 1.0; padding: 0px; padding-top: 5px; padding-right: 10px;padding-bottom: 5px;">
-                <a href="https://api.whatsapp.com/send/?phone=593981850436&text&type=phone_number&app_absent=0"><img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/whatsapp.png" width="20" height="20"></a>
+                <a href="https://api.whatsapp.com/send/?phone=593981850436&text&type=phone_number&app_absent=0"><img src="https://visitaecuador.com/img/mailing/nuevosRecursos/whatsapp.png" width="20" height="20"></a>
             </td>
             <td align="center" style="height: 20px; border:solid #84b60a 1.0; padding: 0px; padding-top: 5px; padding-right: 10px;padding-bottom: 5px;">
-                <a href="https://www.tiktok.com/@visitaecuador.com"><img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/tiktok.png" width="20" height="20"></a>
+                <a href="https://www.tiktok.com/@visitaecuador.com"><img src="https://visitaecuador.com/img/mailing/nuevosRecursos/tiktok.png" width="20" height="20"></a>
             </td>
             <td align="center" style="height: 20px; border:solid #84b60a 1.0; padding: 0px; padding-top: 5px; padding-right: 10px;padding-bottom: 5px;">
-                <a href="https://www.facebook.com/visitaecuadorcom"><img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/facebook.png" width="20" height="20"></a>
+                <a href="https://www.facebook.com/visitaecuadorcom"><img src="https://visitaecuador.com/img/mailing/nuevosRecursos/facebook.png" width="20" height="20"></a>
             </td>
             <td align="center" style="height: 20px; border:solid #84b60a 1.0; padding: 0px; padding-top: 5px; padding-right: 10px;padding-bottom: 5px;">
-                <a href="https://www.instagram.com/visitaecuadorcom/"><img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/instagram.png" width="20" height="20"></a>
+                <a href="https://www.instagram.com/visitaecuadorcom/"><img src="https://visitaecuador.com/img/mailing/nuevosRecursos/instagram.png" width="20" height="20"></a>
             </td>
             <td align="center" style="height: 20px; border:solid #84b60a 1.0; padding: 0px; padding-top: 5px; padding-right: 10px;padding-bottom: 5px;">
-                <a href="https://www.youtube.com/channel/UClovC-v5-XvWcL2eYr4enXg"><img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/youtube.png" width="20" height="20"></a>
+                <a href="https://www.youtube.com/channel/UClovC-v5-XvWcL2eYr4enXg"><img src="https://visitaecuador.com/img/mailing/nuevosRecursos/youtube.png" width="20" height="20"></a>
             </td>
             <td align="center" style="height: 20px; padding-right: 100px;border:solid #84b60a 1.0; padding: 0px; padding-top: 5px;padding-bottom: 5px;">
-                <a href="https://www.youtube.com/channel/UClovC-v5-XvWcL2eYr4enXg"><img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/twiterx.png" width="20" height="20"></a>
+                <a href="https://www.youtube.com/channel/UClovC-v5-XvWcL2eYr4enXg"><img src="https://visitaecuador.com/img/mailing/nuevosRecursos/twiterx.png" width="20" height="20"></a>
             </td>
             <td align="center" style="height: 20px; width: 400px;padding-right: 100px;border:solid #84b60a 1.0; padding: 0px; padding-top: 5px; padding-bottom: 5px;">
             </td>
@@ -142,7 +142,7 @@
                 <table width="730" align="center" cellspacing="0">
                     <tr>
                         <td style="color: black; padding: 0px; width: 30px; padding-left: 5px; padding-right: 15px; vertical-align: middle;" align="center">
-                            <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/icon-13.png" width="17">
+                            <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/icon-13.png" width="17">
                         </td>
                         <td style="background-color: #aacc4d; color: white; font-weight: 600; padding-top: 1px; padding-bottom: 1px; padding-left: 22px; border: #aacc4d solid 1; font-size: 13px; width: 160px;">
                             <label>Tipo de Suscripci&oacute;n</label>
@@ -214,7 +214,7 @@
                     </tr>
                     <tr>
                         <td style=" color: black; padding-left: 5px; padding: 0px; padding-right: 15px;" align="center">
-                            <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/icon-14.png" width="17">
+                            <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/icon-14.png" width="17">
                         </td>
                         <td style="padding-left: 22px; background-color: #aacc4d; color: white; font-weight: 600; padding-top: 1px; padding-bottom: 1px;  border: #aacc4d solid 1;  font-size: 13px; ">
                             <label>Datos de ingreso</label>
@@ -243,7 +243,7 @@
                     </tr>
                     <tr>
                         <td style="padding: 0px;color: black; padding-left: 5px; padding-right: 15px;" align="center">
-                            <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/icon-17.png" width="17">
+                            <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/icon-17.png" width="17">
                         </td>
                         <td style="padding-left: 22px; background-color: #aacc4d; color: white; font-weight: 600; padding-top: 1px; padding-bottom: 1px; border: #aacc4d solid 1; font-size: 13px;">
                             <label>Ingresa a tu cuenta</label>
@@ -272,7 +272,7 @@
                     </tr>
                     <tr>
                         <td style="color: black; padding: 0px; padding-left: 5px; padding-right: 15px;" align="center">
-                            <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/icon-15.png" width="17">
+                            <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/icon-15.png" width="17">
                         </td>
                         <td style="padding-left: 22px; background-color: #aacc4d; color: white; font-weight: 600; padding-top: 1px; padding-bottom: 1px; border: #aacc4d solid 1; font-size: 13px;">
                             <label>Servicio al cliente</label>
@@ -280,14 +280,14 @@
                         <td style=" width: 40px; padding: 0px; background-color: #aacc4d; border: #aacc4d solid 1.0; "></td>
                         <td style="width: 150px; padding: 0px; background-color: #aacc4d; align-items: center; padding-left: 8px; color: #2c305a; text-decoration:none; border: #aacc4d solid 1.0; font-size: 13px; " align="center">
                             <a style="display: flex; align-items: center; color: #2c305a;text-decoration:none" href="https://api.whatsapp.com/send?phone=593986263432&text=Hola%20Denisse,%20quisiera%20que%20me%20asesores%20para%20mi%20proximo%20hospedaje%20">
-                                <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/whatsapp.png" height="16">
+                                <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/whatsapp.png" height="16">
                                 +593 9862 63432
                             </a>
                         </td>
                         <td style=" width: 10px; padding: 0px; background-color: #aacc4d; border: #aacc4d solid 1.0; "></td>
                         <td style="width: 150px;padding: 0px; background-color: #aacc4d; align-items: center;  padding-left: 8px; color: #2c305a; text-decoration: none; border: #aacc4d solid 1.0; font-size: 13px;" align="center">
                             <a style="display: flex; align-items: center; color: #2c305a; text-decoration:none" href="https://api.whatsapp.com/send?phone=593981850436&text=Hola%20Paula,%20quisiera%20que%20me%20asesores%20para%20mi%20proximo%20hospedaje%20">
-                                <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/whatsapp.png" height="16">
+                                <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/whatsapp.png" height="16">
                                 +593 9818 50436
                             </a>
                         </td>
@@ -306,7 +306,7 @@
                     </tr>
                     <tr>
                         <td style="color: #2c305a; padding: 0px; padding-left: 5px; padding-right: 15px;" align="center">
-                            <img src="https://www.visitaecuador.com/img/mailing/nuevosRecursos/icon-16.png" width="17">
+                            <img src="https://visitaecuador.com/img/mailing/nuevosRecursos/icon-16.png" width="17">
                         </td>
                         <td style="padding-left: 22px; background-color: #aacc4d; color: white; font-weight: 600; padding-top: 1px; padding-bottom: 1px; border-right: #aacc4d solid 2px; border-left: #aacc4d solid 2px; font-size: 13px;">
                             <label>Agencias</label>

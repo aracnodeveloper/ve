@@ -12,6 +12,7 @@ import MarcaPais from "./MarcaPais";
 import MobileMenu from "./MobileMenu";
 import MobileBottomNav from "./MobileBottomNav";
 import ModalCodigoPromocional from "../../login_components/ModalCodigoPromocional";
+import { cargarCodigosHeader, etiquetaMarcaActual } from "../../../global/codigoMadre";
 
 const icons = new Icons();
 
@@ -46,6 +47,22 @@ const Navbar = ({ activo, isExposed = false }) => {
   const [rutasOpen, setRutasOpen] = useState(false);
   const beneficiosRef = useRef(null);
   const [scrolled, setScrolled] = useState(false);
+  // Marca a mostrar en el header (BYD, JETOUR, ...), o null si no aplica.
+  // Igual que la app: codigo madre de la suscripcion o codigo propio; los dos
+  // vienen en la sesion, sin consultas extra.
+  // Las marcas del header se administran en el admin; hasta que lleguen se usa la lista local.
+  const [codigoMadre, setCodigoMadre] = useState(() => etiquetaMarcaActual(session));
+
+  // Solo al montar: `session` se reconstruye en cada render y dispararía el efecto sin parar.
+  useEffect(() => {
+    let cancelado = false;
+    cargarCodigosHeader().then((cambiaron) => {
+      if (cancelado || !cambiaron) return;
+      setCodigoMadre(etiquetaMarcaActual(JSON.parse(localStorage.getItem("datos"))));
+    });
+    return () => { cancelado = true; };
+  }, []);
+
 
 
   useEffect(() => {
@@ -185,6 +202,16 @@ const Navbar = ({ activo, isExposed = false }) => {
 
       <div className="bg-[#8AB600] flex justify-center lg:justify-between xl:justify-between md:justify-center xs:justify-center sm:justify-center xl:px-28 lg:px-5 flex-wrap sm:flex-row">
         <a className="p-2" href="/"><img src="https://visitaecuador.com/img/web/ve_logo.svg" title="nosotros" style={{ width: "70px", height: "auto" }} /></a>
+        {codigoMadre && (
+          <div className="flex flex-1 items-center justify-center px-2">
+            <span
+              className="rounded-[10px]  px-3.5 py-1.5 leading-none whitespace-nowrap text-white font-extrabold tracking-[0.08em] text-sm sm:text-lg shadow-md"
+              style={{ textShadow: "0 1px 2px rgba(0,0,0,0.25)" }}
+            >
+              {codigoMadre}
+            </span>
+          </div>
+        )}
         {!isExposedRoute && (<div className="flex flex-center items-center gap-4 py-2">
           <div className="flex sm:justify-end gap-3 align-start py-3 lg:px-6 p-2 ">
             {!codigo && <MarcaPais />}

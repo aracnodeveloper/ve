@@ -33,9 +33,18 @@ const Campo = ({ label, name, value, onChange, required, type = "text", placehol
 
 /**
  * Formulario de contacto reutilizable.
- * tipo: "contactoWeb" (tab Contacto) o "emprendedor" (tab Emprende con Nosotros).
+ * tipo: "contactoWeb" (tab Contacto), "emprendedor" (tab Emprende con Nosotros) o
+ * "puntoCarga" (mapa de Puntos de Carga). El backend decide destinatarios y asunto segun el tipo.
+ * textoBoton / textoExito permiten adaptar los textos sin duplicar el formulario.
  */
-const ContactForm = ({ tipo = "contactoWeb", titulo, subtitulo }) => {
+const ContactForm = ({
+    tipo = "contactoWeb",
+    titulo,
+    subtitulo,
+    textoBoton = "Enviar contacto",
+    textoExito = "Gracias por escribirnos. Nos pondremos en contacto contigo si es necesario.",
+    onCancelar,
+}) => {
     const [datos, setDatos] = useState(VACIO);
     const [enviando, setEnviando] = useState(false);
     const [resultado, setResultado] = useState(null); // "ok" | "error" | null
@@ -83,9 +92,7 @@ const ContactForm = ({ tipo = "contactoWeb", titulo, subtitulo }) => {
                     <span className="icon-[mdi--check-bold] h-7 w-7 text-green-600"></span>
                 </div>
                 <h3 className="font-bold text-lg text-gray-800">¡Mensaje enviado!</h3>
-                <p className="text-sm text-gray-500 max-w-sm">
-                    Gracias por escribirnos. Nos pondremos en contacto contigo si es necesario.
-                </p>
+                <p className="text-sm text-gray-500 max-w-sm">{textoExito}</p>
                 <button
                     onClick={() => setResultado(null)}
                     className="mt-2 text-sm font-medium text-greenVE-700 hover:text-greenVE-800"
@@ -162,12 +169,12 @@ const ContactForm = ({ tipo = "contactoWeb", titulo, subtitulo }) => {
                     ) : (
                         <>
                             <span className="icon-[mdi--send] h-4 w-4"></span>
-                            <span>Enviar contacto</span>
+                            <span>{textoBoton}</span>
                         </>
                     )}
                 </button>
                 <button
-                    onClick={limpiar}
+                    onClick={onCancelar || limpiar}
                     disabled={enviando}
                     className="py-2.5 px-6 rounded-xl border border-gray-200 text-gray-600 font-medium text-sm hover:bg-gray-50 transition-all"
                 >

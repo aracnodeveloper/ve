@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CheckPromocionalCode } from '../../../controllers/suscripcion/suscripcionCodigoPromocional';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-const Promociones = ({setProductos, setOpcion, setCodigo, setReferedCode, referedCode}) => {
+const Promociones = ({setProductos, setOpcion, setCodigo, setReferedCode, referedCode, setProducto}) => {
     const [errorCode, setErrorCode] = useState(false);
     const [loading, setLoading] = useState(false);
     const [code, setCode] = useState(localStorage.getItem('codigo')?localStorage.getItem('codigo'):null);
@@ -12,6 +12,10 @@ const Promociones = ({setProductos, setOpcion, setCodigo, setReferedCode, refere
     const handleClickVerificar=()=>{
         setErrorCode(false);
         setLoading(true);
+        // Se llega con referedCode solo desde un link (?codigo=XXXX). Despues de
+        // la primera verificacion se limpia, asi que un codigo escrito a mano
+        // no entra aqui.
+        const vieneDeLink = referedCode != null;
         try{
             CheckPromocionalCode({codigo:(code==null&&referedCode)?referedCode:code, convenio: codigo}).then((result)=>{
                 if(result){
@@ -22,7 +26,18 @@ const Promociones = ({setProductos, setOpcion, setCodigo, setReferedCode, refere
                     setCodigo(result.codigo);
                     console.log(result.codigo)
                     setReferedCode()
-                    setOpcion(2)
+                    // Link de un codigo con un solo paquete: no hay nada que
+                    // elegir en el paso 2, se preselecciona y se va al 3.
+                    // Si el link ya trae ?producto=, lo resuelve el paso 2 con
+                    // su propia logica (precio y tiempo adicional por URL).
+                    const productoEnUrl = new URLSearchParams(window.location.search).get("producto");
+                    if (vieneDeLink && setProducto && !productoEnUrl
+                        && Array.isArray(result.productos) && result.productos.length === 1) {
+                        setProducto(result.productos[0])
+                        setOpcion(3)
+                    } else {
+                        setOpcion(2)
+                    }
                 }else{
                     setErrorCode(true);
                 }

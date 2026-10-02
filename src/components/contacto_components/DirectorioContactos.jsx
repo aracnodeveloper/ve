@@ -1,5 +1,11 @@
 import { useMemo, useState } from "react";
 
+// Lineas de la central. Reemplazan al PBX 07 4134500, que ya no esta en uso.
+const LINEAS_CENTRAL = ["0962801997", "0979210889", "0984796610", "0987549523"];
+
+// 0962801997 -> 096 280 1997, para que se lea de un vistazo.
+const formatoTelefono = (t) => `${t.slice(0, 3)} ${t.slice(3, 6)} ${t.slice(6)}`;
+
 // Directorio de extensiones. Lista estatica (no hay endpoint).
 const CONTACTOS = [
     { cargo: "Recepción", ext: "100", nombre: "Paula Calle", correo: "recepcion@visitaecuador.com" },
@@ -35,6 +41,27 @@ const DirectorioContactos = () => {
                 <div>
                     <h2 className="text-lg font-bold text-greenVE-800">Directorio Club Visita</h2>
 
+                </div>
+            </div>
+
+            {/* Lineas de la central */}
+            <div className="border border-greenVE-200 bg-greenVE-50 rounded-xl p-4">
+                <div className="flex items-center gap-2">
+                    <span className="icon-[ph--phone-call-fill] h-4 w-4 text-greenVE-600"></span>
+                    <h3 className="font-bold text-greenVE-800 text-sm">Central telefónica</h3>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-3">
+                    {LINEAS_CENTRAL.map((t) => (
+                        <a
+                            key={t}
+                            href={`tel:${t}`}
+                            className="inline-flex items-center gap-1.5 bg-white border border-greenVE-200 rounded-full px-3 py-1.5
+                                       text-sm font-bold text-greenVE-700 hover:border-greenVE-400 hover:text-greenVE-800"
+                        >
+                            <span className="icon-[ph--phone-fill] h-3.5 w-3.5"></span>
+                            {formatoTelefono(t)}
+                        </a>
+                    ))}
                 </div>
             </div>
 

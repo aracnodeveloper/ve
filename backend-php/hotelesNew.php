@@ -2795,7 +2795,22 @@ public function getEstablecimientosAdmin($data)
 		if (!empty($data['fecha_hasta'])) {
 			$whereExtra[] = "DATE(cont.fecha_fin) <= '" . date('Y-m-d', strtotime($data['fecha_hasta'])) . "'";
 		}
- 
+
+		// Filtro por tipo de establecimiento (tbl_info_indice.id_tbl_servicio;
+		// el catalogo es el de getTiposEstablecimiento)
+		if (!empty($data['id_tbl_servicio']) && intval($data['id_tbl_servicio']) > 0) {
+			$whereExtra[] = "infest.id_tbl_servicio = " . intval($data['id_tbl_servicio']);
+		}
+
+		// Filtros de ubicacion: se aplican aqui (y no en el navegador) para que el total
+		// y la paginacion cuenten todos los resultados, no solo la pagina cargada.
+		if (!empty($data['provincia'])) {
+			$whereExtra[] = "prov.desc_lugar = '" . $this->sanearString($data['provincia']) . "'";
+		}
+		if (!empty($data['ciudad'])) {
+			$whereExtra[] = "lug.desc_lugar = '" . $this->sanearString($data['ciudad']) . "'";
+		}
+
         // ── Paginación ────────────────────────────────────────────────────
         $nPorPagina = isset($data['nitems']) && $data['nitems'] > 0 ? intval($data['nitems']) : 20;
         $pagina     = isset($data['pag'])    && $data['pag']    > 1 ? intval($data['pag'])    : 1;
@@ -2826,12 +2841,22 @@ public function getEstablecimientosAdmin($data)
         }
 
         // ── SQL compacto ──────────────────────────────────────────────────
-        $selectSQL = 'est.id_tbl_establecimiento, est.catalogacion, est.direccion_establecimiento, est.id_tbl_estado_modificacion, infest.titulo AS nombreEstablecimiento, infest.latitud, infest.longitud, lug.desc_lugar AS ciudad, prov.desc_lugar AS provincia, pais.desc_lugar AS pais, fo.direccion_foto AS logo, cont.id_tbl_contrato, cont.fecha_ini AS inicioContrato, cont.fecha_fin AS finContrato, CASE WHEN DATE(cont.fecha_fin) < CURDATE() THEN "caducado" WHEN DATE(cont.fecha_fin) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL ' . $diasAlerta . ' DAY) THEN "por_vencer" ELSE "activo" END AS estadoContrato, DATEDIFF(cont.fecha_fin, NOW()) AS diasRestantes, COALESCE(oa.ofertasActivas, 0) AS ofertasActivas, COALESCE(rv.nReservas, 0) AS nReservas, COALESCE(rv.nNoches, 0) AS nNoches';
+        $selectSQL = 'est.id_tbl_establecimiento, est.catalogacion, est.direccion_establecimiento, est.id_tbl_estado_modificacion, infest.titulo AS nombreEstablecimiento, infest.latitud, infest.longitud, infest.id_tbl_servicio AS idTipoEstablecimiento, serv.descripcion_servicio AS tipoEstablecimiento, lug.desc_lugar AS ciudad, prov.desc_lugar AS provincia, pais.desc_lugar AS pais, fo.direccion_foto AS logo, cont.id_tbl_contrato, cont.fecha_ini AS inicioContrato, cont.fecha_fin AS finContrato, CASE WHEN DATE(cont.fecha_fin) < CURDATE() THEN "caducado" WHEN DATE(cont.fecha_fin) BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL ' . $diasAlerta . ' DAY) THEN "por_vencer" ELSE "activo" END AS estadoContrato, DATEDIFF(cont.fecha_fin, NOW()) AS diasRestantes, COALESCE(oa.ofertasActivas, 0) AS ofertasActivas, COALESCE(rv.nReservas, 0) AS nReservas, COALESCE(rv.nNoches, 0) AS nNoches';
  
-        $fromSQL = "tbl_establecimiento est JOIN tbl_info_indice infest ON infest.id_tbl_info_indice = est.id_tbl_info_indice JOIN ( SELECT id_tbl_establecimiento, MAX(id_tbl_contrato) id_tbl_contrato FROM tbl_contrato GROUP BY id_tbl_establecimiento ) cont_max ON cont_max.id_tbl_establecimiento = est.id_tbl_establecimiento JOIN tbl_contrato cont ON cont.id_tbl_contrato = cont_max.id_tbl_contrato LEFT JOIN tbl_foto fo ON fo.id_tbl_foto = est.id_tbl_foto JOIN tbl_lugar lug ON lug.id_tbl_lugar = infest.id_tbl_lugar JOIN tbl_lugar prov ON prov.id_tbl_lugar = lug.id_tbl_lugarpadre JOIN tbl_lugar reg ON reg.id_tbl_lugar = prov.id_tbl_lugarpadre JOIN tbl_lugar pais ON pais.id_tbl_lugar = reg.id_tbl_lugarpadre LEFT JOIN ( SELECT DISTINCT prd.id_tbl_establecimiento FROM tbl_oferta_empresa oe JOIN tbl_oferta of3 ON of3.id_tbl_oferta = oe.id_tbl_oferta JOIN tbl_producto prd ON prd.id_tbl_producto = of3.id_tbl_producto ) oe_est ON oe_est.id_tbl_establecimiento = est.id_tbl_establecimiento LEFT JOIN ( SELECT prd2.id_tbl_establecimiento, COUNT(*) AS ofertasActivas FROM tbl_oferta of2 JOIN tbl_producto prd2 ON prd2.id_tbl_producto = of2.id_tbl_producto WHERE of2.id_tbl_activacion = 1 AND CURDATE() BETWEEN DATE(of2.fecha_inicio) AND DATE(of2.fecha_fin) GROUP BY prd2.id_tbl_establecimiento ) oa ON oa.id_tbl_establecimiento = est.id_tbl_establecimiento LEFT JOIN ( SELECT ro.id_tbl_establecimiento, COUNT(DISTINCT ro.id_tbl_reserva) AS nReservas, COALESCE(SUM(DATEDIFF(ro.fecha_fin, ro.fecha_inicio)), 0) AS nNoches FROM tbl_reserva_oferta ro JOIN tbl_reserva_new r ON r.id_tbl_reserva = ro.id_tbl_reserva WHERE r.id_tbl_estado_reserva = 2 GROUP BY ro.id_tbl_establecimiento ) rv ON rv.id_tbl_establecimiento = est.id_tbl_establecimiento";
+        $fromSQL = "tbl_establecimiento est JOIN tbl_info_indice infest ON infest.id_tbl_info_indice = est.id_tbl_info_indice LEFT JOIN tbl_servicio serv ON serv.id_tbl_servicio = infest.id_tbl_servicio JOIN ( SELECT id_tbl_establecimiento, MAX(id_tbl_contrato) id_tbl_contrato FROM tbl_contrato GROUP BY id_tbl_establecimiento ) cont_max ON cont_max.id_tbl_establecimiento = est.id_tbl_establecimiento JOIN tbl_contrato cont ON cont.id_tbl_contrato = cont_max.id_tbl_contrato LEFT JOIN tbl_foto fo ON fo.id_tbl_foto = est.id_tbl_foto JOIN tbl_lugar lug ON lug.id_tbl_lugar = infest.id_tbl_lugar JOIN tbl_lugar prov ON prov.id_tbl_lugar = lug.id_tbl_lugarpadre JOIN tbl_lugar reg ON reg.id_tbl_lugar = prov.id_tbl_lugarpadre JOIN tbl_lugar pais ON pais.id_tbl_lugar = reg.id_tbl_lugarpadre LEFT JOIN ( SELECT DISTINCT prd.id_tbl_establecimiento FROM tbl_oferta_empresa oe JOIN tbl_oferta of3 ON of3.id_tbl_oferta = oe.id_tbl_oferta JOIN tbl_producto prd ON prd.id_tbl_producto = of3.id_tbl_producto ) oe_est ON oe_est.id_tbl_establecimiento = est.id_tbl_establecimiento LEFT JOIN ( SELECT prd2.id_tbl_establecimiento, COUNT(*) AS ofertasActivas FROM tbl_oferta of2 JOIN tbl_producto prd2 ON prd2.id_tbl_producto = of2.id_tbl_producto WHERE of2.id_tbl_activacion = 1 AND CURDATE() BETWEEN DATE(of2.fecha_inicio) AND DATE(of2.fecha_fin) GROUP BY prd2.id_tbl_establecimiento ) oa ON oa.id_tbl_establecimiento = est.id_tbl_establecimiento LEFT JOIN ( SELECT ro.id_tbl_establecimiento, COUNT(DISTINCT ro.id_tbl_reserva) AS nReservas, COALESCE(SUM(DATEDIFF(ro.fecha_fin, ro.fecha_inicio)), 0) AS nNoches FROM tbl_reserva_oferta ro JOIN tbl_reserva_new r ON r.id_tbl_reserva = ro.id_tbl_reserva WHERE r.id_tbl_estado_reserva = 2 GROUP BY ro.id_tbl_establecimiento ) rv ON rv.id_tbl_establecimiento = est.id_tbl_establecimiento";
  
-        $groupSQL = "est.id_tbl_establecimiento, est.catalogacion, est.direccion_establecimiento, est.id_tbl_estado_modificacion, infest.titulo, infest.latitud, infest.longitud, lug.desc_lugar, prov.desc_lugar, pais.desc_lugar, fo.direccion_foto, cont.id_tbl_contrato, cont.fecha_ini, cont.fecha_fin";
- 
+        $groupSQL = "est.id_tbl_establecimiento, est.catalogacion, est.direccion_establecimiento, est.id_tbl_estado_modificacion, infest.titulo, infest.latitud, infest.longitud, infest.id_tbl_servicio, serv.descripcion_servicio, lug.desc_lugar, prov.desc_lugar, pais.desc_lugar, fo.direccion_foto, cont.id_tbl_contrato, cont.fecha_ini, cont.fecha_fin";
+
+        // ── Total de resultados (sin paginar) ──────────────────────────────
+        // La consulta agrupa por establecimiento, asi que el total es el numero de
+        // establecimientos distintos que cumplen los filtros.
+        $totalFila = $this->find('first', array(
+            'select' => 'COUNT(DISTINCT est.id_tbl_establecimiento) AS total',
+            'from'   => $fromSQL,
+            'where'  => $whereFinal,
+        ));
+        $this->totalEstablecimientos = $totalFila ? intval($totalFila['total']) : 0;
+
         // ── Consulta ──────────────────────────────────────────────────────
         $establecimientos = $this->find('all', array(
             'select' => $selectSQL,
@@ -2846,6 +2871,7 @@ public function getEstablecimientosAdmin($data)
         if (empty($establecimientos)) {
             $this->establecimientos = [];
             $this->resumenContratos = ['activo' => 0, 'por_vencer' => 0, 'caducado' => 0];
+            $this->totalEstablecimientos = 0;
             return true;
         }
  
@@ -2855,7 +2881,7 @@ public function getEstablecimientosAdmin($data)
         foreach ($establecimientos as &$est) {
             // Campos de texto — normalizar a UTF-8 limpio
             // Los registros legacy (2008) pueden estar en Latin-1 o Windows-1252
-            $camposTexto = ['nombreEstablecimiento', 'ciudad', 'provincia', 'pais', 'direccion_establecimiento'];
+            $camposTexto = ['nombreEstablecimiento', 'ciudad', 'provincia', 'pais', 'direccion_establecimiento', 'tipoEstablecimiento'];
             foreach ($camposTexto as $campo) {
                 if (!empty($est[$campo])) {
                     $enc = mb_detect_encoding($est[$campo], ['UTF-8', 'ISO-8859-1', 'Windows-1252'], true);
@@ -2874,6 +2900,7 @@ public function getEstablecimientosAdmin($data)
             $est['catalogacion']  = intval($est['catalogacion']);
             $est['nReservas']     = intval($est['nReservas']);
             $est['nNoches']       = intval($est['nNoches']);
+            $est['idTipoEstablecimiento'] = intval($est['idTipoEstablecimiento']);
  
             if (isset($resumen[$est['estadoContrato']]))
                 $resumen[$est['estadoContrato']]++;
@@ -2891,9 +2918,70 @@ public function getEstablecimientosAdmin($data)
         return false;
     }
 }
- 
- 
- 
+
+/**
+ * [getUbicacionesEstablecimientos provincias y ciudades para los filtros del admin]
+ * Son las de TODOS los establecimientos aprobados (no solo la pagina cargada), asi el
+ * selector ofrece todas las opciones aunque el listado este paginado.
+ * @param string $provincia si viene, las ciudades se limitan a esa provincia
+ * @return array ['provincias' => [...], 'ciudades' => [...]]
+ */
+public function getUbicacionesEstablecimientos($provincia = '')
+{
+    try {
+        $fromUbic = "tbl_establecimiento est
+            JOIN tbl_info_indice infest ON infest.id_tbl_info_indice = est.id_tbl_info_indice
+            JOIN tbl_lugar lug  ON lug.id_tbl_lugar = infest.id_tbl_lugar
+            JOIN tbl_lugar prov ON prov.id_tbl_lugar = lug.id_tbl_lugarpadre";
+
+        $whereUbic = "est.id_tbl_estado_modificacion = 3";
+
+        $provincias = $this->find('all', array(
+            'select' => 'DISTINCT prov.desc_lugar AS nombre',
+            'from'   => $fromUbic,
+            'where'  => $whereUbic,
+            'order'  => 'prov.desc_lugar ASC',
+        ));
+
+        $whereCiudades = $whereUbic;
+        if (!empty($provincia))
+            $whereCiudades .= " AND prov.desc_lugar = '" . $this->sanearString($provincia) . "'";
+
+        $ciudades = $this->find('all', array(
+            'select' => 'DISTINCT lug.desc_lugar AS nombre',
+            'from'   => $fromUbic,
+            'where'  => $whereCiudades,
+            'order'  => 'lug.desc_lugar ASC',
+        ));
+
+        // Los registros legacy pueden venir en Latin-1: se normalizan igual que el listado
+        $normalizar = function ($filas) {
+            $salida = [];
+            foreach ((array)$filas as $fila) {
+                $texto = isset($fila['nombre']) ? $fila['nombre'] : '';
+                if ($texto === '') continue;
+                $enc = mb_detect_encoding($texto, ['UTF-8', 'ISO-8859-1', 'Windows-1252'], true);
+                if ($enc && $enc !== 'UTF-8')      $texto = mb_convert_encoding($texto, 'UTF-8', $enc);
+                elseif (!$enc)                     $texto = mb_convert_encoding($texto, 'UTF-8', 'ISO-8859-1');
+                $salida[] = iconv('UTF-8', 'UTF-8//IGNORE', $texto);
+            }
+            return array_values(array_unique($salida));
+        };
+
+        return array(
+            'provincias' => $normalizar($provincias),
+            'ciudades'   => $normalizar($ciudades),
+        );
+
+    } catch (Exception $e) {
+        $this->error     = $e->getMessage();
+        $this->codeerror = $e->getCode();
+        return array('provincias' => [], 'ciudades' => []);
+    }
+}
+
+
+
 /**
  * [enviarAlertaContratos Envía email con reporte de contratos por vencer o caducados]
  * @param int    $diasAlerta  Días umbral para "por vencer"

@@ -67,7 +67,7 @@ const StepsSuscription = () => {
                     <div className='md:w-9/12 w-full order-2 md:order-1'>
                         {
                             opcion == 1
-                                ? <Promociones setCodigo={setCodigo} setOpcion={setOpcion} setProductos={setProductos} setReferedCode={setReferedCode} referedCode={referedCode} />
+                                ? <Promociones setCodigo={setCodigo} setOpcion={setOpcion} setProductos={setProductos} setReferedCode={setReferedCode} referedCode={referedCode} setProducto={setProducto} />
                                 : opcion == 2
                                     ? <Suscripciones productos={productos} setProducto={setProducto} setOpcion={setOpcion} codigo={codigo} setCodigo={setCodigo}></Suscripciones>
                                     : opcion == 3

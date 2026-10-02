@@ -96,12 +96,14 @@ const Bienvenida = () => {
                 }
             }
 
-            // Los botones 4 y 5 son el formulario de PayPhone: contabilidad solo
-            // recibia el voucher que manda PayPhone, sin datos del cliente ni de
-            // la compra. Se avisa aqui, con la suscripcion ya creada, para poder
-            // incluir el codigo de suscriptor.
+            // Solo el boton 4 cobra por el formulario de PayPhone: contabilidad
+            // solo recibia el voucher de PayPhone, sin datos del cliente ni de la
+            // compra. El 5 comparte este camino pero es el registro de tarjeta
+            // de Banco Austro (no pasa por PayPhone), asi que no se avisa.
+            // Se avisa aqui, con la suscripcion ya creada, para incluir el
+            // codigo de suscriptor.
             const esPayphone = state.pago?.tipo_pago_boton == null
-                && ["4", "5"].includes(String(state.pago?.IdTipoBotonPago));
+                && String(state.pago?.IdTipoBotonPago) === "4";
 
             gestionarSuscripcion(schema).then((result)=>{
                 firstTime=true;

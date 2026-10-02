@@ -4,6 +4,45 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>VisitaEcuador.com - En hoteles TOP, el mejor precio certificado. Pero en serio. </title>
+  <!-- Vista previa al compartir (Facebook, WhatsApp, LinkedIn...).
+       Facebook las deducia solas y avisaba que faltaba og:image; ahora van
+       explicitas. La imagen es de 1200x630, el tamano que recomienda Facebook,
+       y su URL va absoluta: los rastreadores no resuelven rutas relativas.
+
+       Este bloque va al INICIO del head, antes de description, keywords y
+       author, por precaucion: el servidor responde por rangos (el depurador de
+       Meta muestra codigo 206), asi que mientras mas arriba esten, menos riesgo
+       hay de que un rastreador corte el archivo antes de leerlas. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="VisitaEcuador.com" />
+  <meta property="og:locale" content="es_EC" />
+  <meta property="og:url" content="https://visitaecuador.com/" />
+  <meta property="og:title"
+    content="VisitaEcuador.com - En hoteles TOP, el mejor precio certificado. Pero en serio." />
+  <meta property="og:description"
+    content="VisitaEcuador.com es la plataforma de reservas hoteleras más importante del Ecuador." />
+  <meta property="og:image" content="https://visitaecuador.com/img/web/og-visitaecuador.png" />
+  <meta property="og:image:secure_url" content="https://visitaecuador.com/img/web/og-visitaecuador.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="VisitaEcuador.com - En hoteles TOP, el mejor precio certificado." />
+
+  <!-- App de Facebook de VisitaEcuador, la misma que usa la aplicacion movil
+       (android/app/src/main/res/values/strings.xml y ios/Runner/Info.plist).
+       Sirve para que las estadisticas de lo compartido se registren en esa app;
+       no afecta como se ve la vista previa. Si la web usa otra app, cambiar
+       solo este numero. -->
+  <meta property="fb:app_id" content="854353125537196" />
+
+  <!-- X / Twitter usa sus propias etiquetas; sin ellas la tarjeta sale chica. -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title"
+    content="VisitaEcuador.com - En hoteles TOP, el mejor precio certificado. Pero en serio." />
+  <meta name="twitter:description"
+    content="VisitaEcuador.com es la plataforma de reservas hoteleras más importante del Ecuador." />
+  <meta name="twitter:image" content="https://visitaecuador.com/img/web/og-visitaecuador.png" />
   <meta name="description"
     content="VisitaEcuador.com es la plataforma de reservas hoteleras más importante del Ecuador." />
   <meta name="keywords" content="infotour,plna de recompensas, cashback,disney concierge, clubvisita, www.clubvisita.com , visita ecuador, visitaecuador, vivecuador,vivecuador.com,turismo ecuador, ecuador turistico, porta oficializado de turismo de  ecuador, turismo en ecuador, ecuador turismo, www.visitaecuador.com, ecuaventura, ecuador, visita ecuador, visitaecuador.com, www.ecuaventura.com, visitaecuador, turismo de ecuador, ecuador turismo, visitaecuador, ecuaventura, ofertas, promociones, hospedaje, alimentación, especiales tursticos, transporte y aerolíneas, hoteles, Esmeraldas, Manabí, Guayas, Ríos, Oro, Carchi, Imbabura, Pichincha, Cotopaxi, Tungurahua, Bolivar, Chimborazo, Cañar, Azuay, Sucumbíos, Napo, Pastaza, Morona, Santiago, Zamora, Chinchipe, Loja, Quito, Guayaquil, Salinas, Cuenca, Equator, Tourism, Turismo, Ecotourism, Ecoturismo, Rainforest, Bosque, Tropical, Biodiversidad, Biodiversity, Conservation, Conservacion, America, Sur, Sudamerica, Latin, America, latinoamerica, Viajes, Travel, Airplane, Avion, Bus, Automovil, Carro, Paramos, Costa, Sierra, oriente, Gal�pagos, Gualaceo, Paute, Cuenca, Guayaquil, Quito, Salinas, Playas, Manta, Milagro, Ingapirca, Mitad, Mundo, Middle, World, Wildlife, Vida, Salvaje, Caminata, Hiking, Mountain, River, Lake, Monta�a, Rio, Lago, Ibarra, Otavalo, Artesanías, Artesanía, Handicraft, Biology, Biología, Backpacking, Outdoor, Bitacora, Aracno, Aventura, Adventure, Climbing, Escalar, Biking, Bicicleta, Riding, Cabalgata, Caballo, Horse, Animals, Plants, Insects, Animales, Plantas, Insectos, Hoteles, Hotels, Restaurants, restaurantes, Food, Comida, Hostales, Motel, Camping, Campamento, Mar, Sea, Beach, Playa, Bebida, Drink, Party, Fiesta, World,  Guia, Guide, List, Lista, Chat, Ecuachat, Conversacion, Charla, Barco, Ship, e-commerce, E-Commerce, Comercio, Electronico, comercio-e, Exportacion, Export, importacion, import, demand, offer, ofertas, demanda, Web, dise�o, design, hosting, almacenamiento, trade, agriculture, agricultura, industries, industrias, negocios, business, internet, oportunidades, dinero, money, finance, finanzas, español, spanish, viajes, leads, computer, computadora, ofertas, remates, 70 % descuento, ahorro">
@@ -17,8 +56,8 @@
       margin: 0;
     }
   </style>
-  <title>VisitaEcuador.com - En hoteles TOP, el mejor precio certificado. Pero en serio. </title>
   <link rel="icon" href="https://visitaecuador.com/img/web/logo_verde.png" />
+
   <script>
     if (window.location.hash && window.location.hash.startsWith("#/")) {
       const newUrl = window.location.href.replace("/#/", "/");

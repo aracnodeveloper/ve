@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, CircleMarker, Popup, Tooltip, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { PUNTOS_CARGA } from "./puntosCargaData";
+import ContactForm from "../contacto_components/ContactForm";
 
 /**
  * Mapa de puntos a pantalla completa.
@@ -43,6 +44,59 @@ const CapturarMapa = ({ onReady }) => {
     return null;
 };
 
+/**
+ * Datos del punto. Se usa igual al pasar el cursor (globo) y al hacer click
+ * (ventana), asi no hay dos versiones del mismo contenido que mantener. Los
+ * enlaces solo van en el click: en el globo no se pueden tocar, porque se
+ * cierra al mover el cursor.
+ */
+const DetallePunto = ({ p, conEnlaces = false }) => (
+    <>
+        <strong className="block text-gray-800">{p.nombre}</strong>
+        {(p.ciudad || p.provincia) && (
+            <span className="block text-gray-600">
+                {[p.ciudad, p.provincia].filter(Boolean).join(", ")}
+            </span>
+        )}
+        {p.convenio && (
+            <span className="block text-gray-500 text-[11px] mt-0.5">Convenio: {p.convenio}</span>
+        )}
+
+        {(p.conectores || []).length > 0 && (
+            <span className="block mt-1.5">
+                <span className="block font-semibold text-gray-700">Conectores</span>
+                {p.conectores.map((c, i) => (
+                    <span key={i} className="block text-gray-600">
+                        • {c.conector}
+                        {c.cantidad > 1 ? ` (x${c.cantidad})` : ""} — {c.potencia}, {c.tipoCarga === "RAPIDA" ? "carga rápida" : "carga estándar"}
+                    </span>
+                ))}
+            </span>
+        )}
+
+        <span className="block text-gray-600 mt-1">
+            {p.tarifado === "SI" ? "Servicio tarifado" : "Sin costo"}
+        </span>
+
+        {conEnlaces ? (
+            <>
+                {p.app && (
+                    <a href={p.app} target="_blank" rel="noreferrer" className="block text-greenVE-700 mt-1">
+                        Descargar app del operador
+                    </a>
+                )}
+                <a href={googleMapsUrl(p)} target="_blank" rel="noreferrer" className="block text-greenVE-700 mt-1">
+                    Cómo llegar
+                </a>
+            </>
+        ) : (
+            <span className="block text-gray-400 text-[11px] mt-1.5">
+                Haz clic para ver cómo llegar
+            </span>
+        )}
+    </>
+);
+
 const Selector = ({ label, value, onChange, options, placeholder = "Todos" }) => (
     <div className="flex flex-col gap-1">
         <label className="text-xs text-white/80">{label}:</label>
@@ -74,6 +128,9 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
     const [tipoCarga, setTipoCarga] = useState("");
     const [convenio, setConvenio] = useState("");
     const [aviso, setAviso] = useState(null);
+    // Formulario "Agregar tu punto de carga": mismos campos que Contáctanos, pero el correo
+    // sale con tipo "puntoCarga" y el backend lo manda solo a gerencia y desarrollo.
+    const [formAbierto, setFormAbierto] = useState(false);
 
     // Opciones de los selects, sacadas de los propios datos
     const unicos = (campo) =>
@@ -172,42 +229,18 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
                             fillColor: (CATEGORIAS[p.categoria] || CATEGORIAS.puntos).color,
                             fillOpacity: 1,
                         }}
+                        eventHandlers={{
+                            // Si la ventana del punto ya esta abierta, el globo
+                            // sobra y ademas la tapa.
+                            mouseover: (e) => e.target.isPopupOpen() && e.target.closeTooltip(),
+                            popupopen: (e) => e.target.closeTooltip(),
+                        }}
                     >
+                        <Tooltip direction="top" offset={[0, -8]} opacity={1} className="punto-carga-globo">
+                            <DetallePunto p={p} />
+                        </Tooltip>
                         <Popup>
-                            <strong className="block text-gray-800">{p.nombre}</strong>
-                            {(p.ciudad || p.provincia) && (
-                                <span className="block text-gray-600">
-                                    {[p.ciudad, p.provincia].filter(Boolean).join(", ")}
-                                </span>
-                            )}
-                            {p.convenio && (
-                                <span className="block text-gray-500 text-[11px] mt-0.5">Convenio: {p.convenio}</span>
-                            )}
-
-                            {(p.conectores || []).length > 0 && (
-                                <span className="block mt-1.5">
-                                    <span className="block font-semibold text-gray-700">Conectores</span>
-                                    {p.conectores.map((c, i) => (
-                                        <span key={i} className="block text-gray-600">
-                                            • {c.conector}
-                                            {c.cantidad > 1 ? ` (x${c.cantidad})` : ""} — {c.potencia}, {c.tipoCarga === "RAPIDA" ? "carga rápida" : "carga estándar"}
-                                        </span>
-                                    ))}
-                                </span>
-                            )}
-
-                            <span className="block text-gray-600 mt-1">
-                                {p.tarifado === "SI" ? "Servicio tarifado" : "Sin costo"}
-                            </span>
-
-                            {p.app && (
-                                <a href={p.app} target="_blank" rel="noreferrer" className="block text-greenVE-700 mt-1">
-                                    Descargar app del operador
-                                </a>
-                            )}
-                            <a href={googleMapsUrl(p)} target="_blank" rel="noreferrer" className="block text-greenVE-700 mt-1">
-                                Cómo llegar
-                            </a>
+                            <DetallePunto p={p} conEnlaces />
                         </Popup>
                     </CircleMarker>
                 ))}
@@ -237,31 +270,68 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
                 </div>
             </div>
 
-            {/* Filtros: abajo a la derecha */}
-            <div className="absolute bottom-8 right-3 z-[1000] bg-[#1e293b]/95 backdrop-blur rounded-lg shadow-xl p-3 w-56 flex flex-col gap-2.5">
-                <Selector label="Ciudad" value={ciudad} onChange={setCiudad} options={ciudades} placeholder="Todas" />
-                <Selector label="Conector" value={conector} onChange={setConector} options={conectores} />
-                <Selector label="Tipo de Carga" value={tipoCarga} onChange={setTipoCarga} options={tiposCarga} />
-                <Selector label="Convenio" value={convenio} onChange={setConvenio} options={convenios} />
-
+            {/* Columna de abajo a la derecha: el boton de agregar punto va pegado encima del panel
+                de filtros, asi sube y baja con el panel sin medidas fijas. */}
+            <div className="absolute bottom-8 right-3 z-[1000] w-56 flex flex-col gap-2">
                 <button
-                    onClick={irAlMasCercano}
-                    className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm rounded py-1.5 transition-colors"
+                    onClick={() => setFormAbierto(true)}
+                    className="bg-[#8AB600] hover:bg-greenVE-600 text-white font-semibold text-sm rounded-lg shadow-xl
+                           py-2.5 px-3 transition-colors flex items-center justify-center gap-2"
                 >
-                    Ir al más cercano
-                </button>
-                <button
-                    onClick={reiniciar}
-                    className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm rounded py-1.5 transition-colors"
-                >
-                    Reiniciar filtros
+                    <span className="icon-[ph--plus-circle-fill] h-4 w-4"></span>
+                    Solicita tu punto de carga
                 </button>
 
-                {aviso && <p className="text-[11px] text-white/80 leading-snug">{aviso}</p>}
-                <p className="text-[11px] text-white/50">
-                    {filtrados.length} de {puntos.length} puntos
-                </p>
+                {/* Filtros */}
+                <div className="bg-[#1e293b]/95 backdrop-blur rounded-lg shadow-xl p-3 flex flex-col gap-2.5">
+                    <Selector label="Ciudad" value={ciudad} onChange={setCiudad} options={ciudades} placeholder="Todas" />
+                    <Selector label="Conector" value={conector} onChange={setConector} options={conectores} />
+                    <Selector label="Tipo de Carga" value={tipoCarga} onChange={setTipoCarga} options={tiposCarga} />
+                    <Selector label="Convenio" value={convenio} onChange={setConvenio} options={convenios} />
+
+                    <button
+                        onClick={irAlMasCercano}
+                        className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm rounded py-1.5 transition-colors"
+                    >
+                        Ir al más cercano
+                    </button>
+                    <button
+                        onClick={reiniciar}
+                        className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm rounded py-1.5 transition-colors"
+                    >
+                        Reiniciar filtros
+                    </button>
+
+                    {aviso && <p className="text-[11px] text-white/80 leading-snug">{aviso}</p>}
+                    <p className="text-[11px] text-white/50">
+                        {filtrados.length} de {puntos.length} puntos
+                    </p>
+                </div>
             </div>
+
+            {formAbierto && (
+                <div className="fixed inset-0 z-[1100] flex items-start justify-center overflow-y-auto bg-black/50 backdrop-blur-sm p-4">
+                    <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl my-6">
+                        <button
+                            onClick={() => setFormAbierto(false)}
+                            aria-label="Cerrar"
+                            className="absolute top-3 right-3 h-8 w-8 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100"
+                        >
+                            <span className="icon-[ph--x-bold] h-4 w-4"></span>
+                        </button>
+                        <div className="p-4 sm:p-6">
+                            <ContactForm
+                                tipo="puntoCarga"
+                                titulo="Agregar tu punto de carga"
+                                subtitulo="Cuéntanos dónde está tu punto de carga y nos comunicamos contigo."
+                                textoBoton="Enviar punto de carga"
+                                textoExito="Gracias. Revisaremos tu punto de carga y nos comunicamos contigo."
+                                onCancelar={() => setFormAbierto(false)}
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

@@ -23,6 +23,12 @@ class InfoService extends GenericService{
         return await this.post(url, params);
     }
 
+    /** Códigos madre que se muestran como "letras" en el header (los administra el módulo de publicidad). */
+    async obtenerCodigosHeader(params){
+        const url = `${Config.URL_SERVICIOS}${Config.VERINFO}getCodigosHeader/`;
+        return await this.post(url, params);
+    }
+
     async obtenerOperador(){
         const url = `${Config.URL_SERVICIOS}${Config.VERAPP}getOperadorCallcenter/`;
         return await this.post(url, {});

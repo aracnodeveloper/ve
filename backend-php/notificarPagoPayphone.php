@@ -32,6 +32,51 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 
 include('configuraciones.php');
 
+/**
+ * Token de consulta de PayPhone (el mismo que usa getStatusTransaction en el
+ * front). Deberia vivir en configuraciones.php junto al resto de credenciales;
+ * queda aqui para no tocar ese archivo compartido.
+ */
+define('TOKEN_CONSULTA_PAYPHONE', '_lHifGqe0mLy7wQ-NElk3oX62v6KzkOjEkmn6DJwN_qPMoWUpCBc5ThqnMRcENtYVEfHPUFtBsiBYjuWnJhNihqZoDFqktxQxQsPkW455r4rsDhurhaNNhE-B9mZVYCryWVGK-h9gzvYzEXzaDOAvPkuA7mAQhBvgcojamlhk0RBE-gXum-VwXd_wQk2Y5aokqjAN4h9o5wBcLmBJ9g8C_0pj_jiN85hdkqK6_Nujk8H1MEQqPcVRY5w5KzdSz-yKX6CsAxCfp6-UGzufSUh5OeTQsaACdQnOlVTZ495ktUp8SNklZ-hfJ7xTehAeX4vhlzX9g');
+
+/**
+ * Consulta el detalle de la transaccion en PayPhone.
+ *
+ * El Create que usa el formulario devuelve solo 7 campos (cardToken,
+ * authorizationCode, messageCode, status, statusCode, transactionId,
+ * clientTransactionId): no trae recap, ni digitos de la tarjeta, ni fecha, ni
+ * monto. Esta consulta es la que puede completarlos.
+ *
+ * Nunca lanza: si falla, el correo sale igual con lo que haya.
+ *
+ * @return array campos devueltos por PayPhone, o array vacio
+ */
+function consultarTransaccionPayphone($transactionId)
+{
+    $id = trim((string)$transactionId);
+    if ($id === '' || !preg_match('/^[A-Za-z0-9_-]+$/', $id)) return array();
+
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_URL            => 'https://pay.payphonetodoesposible.com/api/sale/' . rawurlencode($id),
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT        => 20,
+        CURLOPT_HTTPHEADER     => array(
+            'Authorization: Bearer ' . TOKEN_CONSULTA_PAYPHONE,
+            'Accept: application/json'
+        )
+    ));
+    $cruda  = curl_exec($curl);
+    $codigo = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+    curl_close($curl);
+
+    if ($cruda === false || $codigo < 200 || $codigo >= 300)
+        return array('_consulta' => 'PayPhone respondio HTTP ' . $codigo);
+
+    $json = json_decode($cruda, true);
+    return is_array($json) ? $json : array();
+}
+
 try {
     if ($_SERVER['REQUEST_METHOD'] != 'POST')
         throw new Exception("Metodo de conexion equivocado", 1004);
@@ -47,6 +92,34 @@ try {
     $g = function ($arr, $k, $def = '') {
         return isset($arr[$k]) ? $arr[$k] : $def;
     };
+
+    // Solo el boton 4 cobra por el formulario de PayPhone. El 5 comparte la
+    // misma pantalla en web y app pero es el registro de tarjeta de Banco
+    // Austro (cobro manual, sin transaccion de PayPhone). Se filtra tambien
+    // aqui para cubrir las versiones de la app ya instaladas, que lo enviaban.
+    // id_boton lo mandan los clientes nuevos; los anteriores enviaban el id en
+    // "boton".
+    $idBoton = trim((string)$g($pago, 'id_boton', $g($pago, 'boton')));
+    if ($idBoton !== '4') {
+        echo json_encode(array(
+            'estado' => false,
+            'codigo' => 2,
+            'msj'    => 'No aplica: solo se notifican pagos del formulario de PayPhone (boton 4)'
+        ));
+        exit;
+    }
+
+    $transaccion = isset($post['transaccion']) && is_array($post['transaccion'])
+        ? $post['transaccion'] : array();
+
+    // Se completa con la consulta a PayPhone cuando hubo transaccion real.
+    $consulta = array();
+    foreach ($transaccion as $k => $v) {
+        if (strcasecmp($k, 'transactionId') === 0 && !empty($v)) {
+            $consulta = consultarTransaccionPayphone($v);
+            break;
+        }
+    }
 
     include_once($GLOBALS['vtClass'] . 'enviarMail.php');
     $mail = new Mail();
@@ -67,8 +140,8 @@ try {
         'intereses'         => $g($pago, 'intereses'),
         'codigoSuscripcion' => $g($pago, 'codigo_suscripcion'),
 
-        'transaccion'       => isset($post['transaccion']) && is_array($post['transaccion'])
-            ? $post['transaccion'] : array()
+        'transaccion'       => $transaccion,
+        'consultaPayphone'  => $consulta
     ));
 
     echo json_encode(array(

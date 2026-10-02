@@ -101,7 +101,9 @@ export const notificarPagoPayphone = async function ({ state, dataSuscripcion })
         total: total,
       },
       pago: {
-        boton: state?.pago?.NombreBotonPago || state?.pago?.IdTipoBotonPago || "",
+        // id_boton es el que valida el servidor; boton es solo para mostrar.
+        id_boton: String(state?.pago?.IdTipoBotonPago || ""),
+        boton: state?.pago?.TipoBotonPago || state?.pago?.IdTipoBotonPago || "",
         diferido: state?.pago?.Meses || "",
         intereses: state?.pago?.Intereses || "",
         codigo_suscripcion: dataSuscripcion?.codigo || "",

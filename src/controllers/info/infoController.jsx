@@ -147,6 +147,31 @@ export const getDestinoExpress = async function (lat, long){
     }
 }
 
+/**
+ * Códigos madre habilitados para el header (endpoint getCodigosHeader).
+ * Devuelve { CODIGO: "ETIQUETA" } o null si falla (el llamador usa la lista local).
+ */
+export const getCodigosHeader = async function(){
+    try{
+        const bdStr = await checkData('datos');
+        if(!bdStr) return null;
+        const bd = JSON.parse(bdStr);
+        const infoService = new InfoService();
+        const res = await infoService.obtenerCodigosHeader({ token: bd['token'] });
+        if(res && res['estado'] && res['codigo'] === 0){
+            const mapa = {};
+            for(const fila of (res['data']?.['codigos'] ?? [])){
+                const codigo = String(fila['codigo'] ?? '').trim().toUpperCase();
+                if(codigo) mapa[codigo] = String(fila['etiqueta'] ?? codigo).trim().toUpperCase();
+            }
+            return mapa;
+        }
+        return null;
+    }catch{
+        return null;
+    }
+}
+
 export const getBanners  = async function(){
     try{
         const bdStr= await checkData('datos');
@@ -156,7 +181,9 @@ export const getBanners  = async function(){
             const listaBanners=[];
             const params={
                 "token": bd['token'],
-                "id_servicio": Config.IDSERVICIO // 1 = visita; fuerza el servicio aunque no haya login
+                "id_servicio": Config.IDSERVICIO, // 1 = visita; fuerza el servicio aunque no haya login
+                // Código madre del visitante (enlace .../?codigo=BYD): banners de esa cuenta madre
+                "codigo": localStorage.getItem("codigo") || ""
             }
 
             const res= await infoService.obtenerBannersWeb(params)

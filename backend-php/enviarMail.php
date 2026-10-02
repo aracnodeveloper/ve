@@ -101,26 +101,34 @@ public function configureSMTP()
 
 
     /**
-     * Correo del formulario de contacto (tab Contacto) y de Emprende con Nosotros.
+     * Correo de los formularios de la web: Contacto, Emprende con Nosotros y
+     * "Agregar tu punto de carga" (mapa de Puntos de Carga).
      *
-     * Produccion: To gerencia@, CC subgerencia@ + gventas@, BCC desarrollo@.
-     * Prueba: solo llega a desarrollo@ (para no molestar a gerencia/ventas
-     * mientras se valida). Cambiar $MODO_PRUEBA a false para produccion.
+     * Contacto / Emprendedor: To gerencia@, CC subgerencia@ + gventas@, BCC desarrollo@.
+     *   Cuerpo armado en armarBodyContacto().
+     * Punto de carga: To gerencia@, desarrollo@, asistentecomercial@ y gventas@, con su
+     *   propia plantilla (plantillasMail/puntoCarga.php).
      *
-     * $post: tipo (contactoWeb | emprendedor), ci, nombres, email, telefonos,
+     * En los tres casos el Reply-To es el correo de quien escribio, para responderle directo.
+     *
+     * $post: tipo (contactoWeb | emprendedor | puntoCarga), ci, nombres, email, telefonos,
      *        direccion, ciudad, pais, mensaje.
      */
     public function sendMailContacto($post)
     {
         try {
-            // Cambiar a false para enviar a los correos reales.
-            $MODO_PRUEBA = true;
-
             $this->configureSMTP();
 
-            if ($MODO_PRUEBA) {
-                // Prueba: unicamente a desarrollo.
+            $tipo = isset($post['tipo']) ? $post['tipo'] : '';
+            $esEmprendedor = ($tipo === 'emprendedor');
+            // Formulario "Agregar tu punto de carga" (mapa de Puntos de Carga).
+            $esPuntoCarga = ($tipo === 'puntoCarga');
+
+            if ($esPuntoCarga) {
+                $this->emails->addAddress("gerencia@visitaecuador.com", "Gerencia");
                 $this->emails->addAddress("desarrollo@visitaecuador.com", "Desarrollo");
+                $this->emails->addAddress("asistentecomercial@visitaecuador.com", "Asistente Comercial");
+                $this->emails->addAddress("gventas@visitaecuador.com", "Gerente Ventas");
             } else {
                 $this->emails->addAddress("gerencia@visitaecuador.com", "Gerencia");
                 $this->emails->addCC("subgerencia@visitaecuador.com", "Subgerencia");
@@ -129,13 +137,32 @@ public function configureSMTP()
                 $this->emails->addBCC("desarrollo@visitaecuador.com", "Desarrollo");
             }
 
-            $esEmprendedor = (isset($post['tipo']) && $post['tipo'] === 'emprendedor');
+            // Responder al interesado directamente desde el correo.
+            if (!empty($post['email']) && filter_var(trim($post['email']), FILTER_VALIDATE_EMAIL)) {
+                $this->emails->addReplyTo(trim($post['email']), isset($post['nombres']) ? $post['nombres'] : '');
+            }
 
-            $this->emails->Subject = $esEmprendedor
-                ? "Nuevo emprendedor - VisitaEcuador.com"
-                : "Nuevo contacto web - VisitaEcuador.com";
+            if ($esPuntoCarga)
+                $this->emails->Subject = "Nuevo punto de carga - VisitaEcuador.com";
+            elseif ($esEmprendedor)
+                $this->emails->Subject = "Nuevo emprendedor - VisitaEcuador.com";
+            else
+                $this->emails->Subject = "Nuevo contacto web - VisitaEcuador.com";
 
-            $this->emails->Body = $this->armarBodyContacto($post, $esEmprendedor);
+            if ($esPuntoCarga) {
+                // Plantilla propia, con la identidad grafica de los demas correos.
+                $datos = $post;
+                $datos['fechaActual'] = date('d/m/Y H:i');
+                $this->emails->Body = $this->renderTemplate(
+                    $GLOBALS['vtClass'] . 'plantillasMail/puntoCarga.php',
+                    $datos
+                );
+            } else {
+                $titulo = $esEmprendedor ? "Nuevo interesado en emprender" : "Nuevo mensaje de contacto";
+                $this->emails->Body = $this->armarBodyContacto($post, $titulo);
+            }
+
+            $this->emails->isHTML(true);
 
             $this->emails->Send();
             return true;
@@ -153,13 +180,11 @@ public function configureSMTP()
     /**
      * Arma el cuerpo HTML del correo de contacto con los campos que traiga $post.
      */
-    private function armarBodyContacto($post, $esEmprendedor)
+    private function armarBodyContacto($post, $titulo)
     {
         $g = function ($k) use ($post) {
             return isset($post[$k]) ? htmlspecialchars(trim((string)$post[$k]), ENT_QUOTES, 'UTF-8') : '';
         };
-
-        $titulo = $esEmprendedor ? "Nuevo interesado en emprender" : "Nuevo mensaje de contacto";
 
         $campos = array(
             'ci'        => 'CI',
@@ -244,6 +269,9 @@ public function configureSMTP()
                 'telefono'       => isset($post['telefono']) ? $post['telefono'] : '',
                 'correo'         => isset($post['correo']) ? $post['correo'] : '',
                 'suscripcion'    => isset($post['suscripcion']) ? $post['suscripcion'] : '',
+                // Paquete comprado (id_tbl_prod_suscripcion): la plantilla lo usa
+                // para mostrar la duracion solo en los programas especiales.
+                'idProdSuscripcion' => isset($post['idProdSuscripcion']) ? $post['idProdSuscripcion'] : '',
                 'metodoPago'     => 'Transferencia / Depósito',
                 'subtotal'       => isset($post['subtotal']) ? $post['subtotal'] : '',
                 'iva'            => isset($post['iva']) ? $post['iva'] : '',
@@ -302,11 +330,16 @@ public function configureSMTP()
             }
 
             $t = (isset($post['transaccion']) && is_array($post['transaccion'])) ? $post['transaccion'] : array();
+            $c = (isset($post['consultaPayphone']) && is_array($post['consultaPayphone'])) ? $post['consultaPayphone'] : array();
+
+            // La consulta a PayPhone trae mas campos que el Create (que solo
+            // devuelve 7), asi que se busca primero ahi y se cae al Create.
+            $fuentes = array_merge($c, $t);
 
             /** Primera clave existente y no vacia, ignorando mayusculas. */
-            $de = function ($claves, $def = '') use ($t) {
+            $de = function ($claves, $def = '') use ($fuentes) {
                 foreach ($claves as $clave) {
-                    foreach ($t as $k => $v) {
+                    foreach ($fuentes as $k => $v) {
                         if (strcasecmp($k, $clave) === 0 && $v !== null && $v !== '') return $v;
                     }
                 }
@@ -352,7 +385,8 @@ public function configureSMTP()
                 'fechaTransaccion'    => $de(array('transactionDate', 'date', 'fecha')),
 
                 'fechaActual'       => date('d/m/Y H:i'),
-                'transaccion'       => $t
+                'transaccion'       => $t,
+                'consultaPayphone'  => $c
             );
 
             $plantillaPath = $GLOBALS['vtClass'] . 'plantillasMail/pagoPayphone.php';
@@ -539,14 +573,14 @@ public function configureSMTP()
     private function fotosBanners()
     {
         $fotosBanners = [
-            'https://www.visitaecuador.com/img/mailing/nuevosRecursos/ve_express-20.png',
-            'https://www.visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-22.png',
-            'https://www.visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-23.png',
-            'https://www.visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-24.png',
-            'https://www.visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-25.png',
-            'https://www.visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-26.png',
-            'https://www.visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-27.png',
-            'https://www.visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-28.png',
+            'https://visitaecuador.com/img/mailing/nuevosRecursos/ve_express-20.png',
+            'https://visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-22.png',
+            'https://visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-23.png',
+            'https://visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-24.png',
+            'https://visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-25.png',
+            'https://visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-26.png',
+            'https://visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-27.png',
+            'https://visitaecuador.com/img/mailing/nuevosRecursos/ve_express1-28.png',
         ];
         $claveAleatoria = array_rand($fotosBanners);
         return $fotosBanners[$claveAleatoria];
@@ -753,7 +787,7 @@ public function configureSMTP()
             <!-- Tabla encabezado y letrero principal -->
             <table width="800" align="center">
                 <tr>
-                    <td align="center"><img src="https://www.visitaecuador.com/img/mailing/email-vec-cabecera.png" alt="visitaecuador.com"></td>
+                    <td align="center"><img src="https://visitaecuador.com/img/mailing/email-vec-cabecera.png" alt="visitaecuador.com"></td>
                 </tr>
             </table>
             <table width="800" align="center">
@@ -881,7 +915,7 @@ public function configureSMTP()
                     </td>
                 </tr>
                 <tr>
-                    <td align="center"> <a href="visitaecuador.com"> <img src="https://www.visitaecuador.com/img/mailing/email-vec-footer.png" alt="Descarga la aplicaci&oacute;n"></a></td>
+                    <td align="center"> <a href="visitaecuador.com"> <img src="https://visitaecuador.com/img/mailing/email-vec-footer.png" alt="Descarga la aplicaci&oacute;n"></a></td>
                 </tr>
             </table>
             <!-- Tabla y botones de redes sociales -->
