@@ -30,6 +30,11 @@ class Config {
     return `${Config.URL_PHP_DIRECTO}/subirComprobante.php`;
   }
 
+  // Foto que adjunta quien llena "Agregar tu punto de carga" en el mapa.
+  static get URL_FOTO_PUNTO_CARGA() {
+    return `${Config.URL_PHP_DIRECTO}/subirFotoPuntoCarga.php`;
+  }
+
   static get URL_PAYPHONE_LINKS() {
     return `${Config.URL_SERVICIOS}/payphoneLinks/`;
   }

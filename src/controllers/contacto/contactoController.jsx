@@ -22,6 +22,8 @@ export const enviarContacto = async function (datos, tipo = "contactoWeb") {
             ciudad: datos.ciudad?.trim() || "",
             pais: datos.pais?.trim() || "",
             mensaje: datos.mensaje?.trim() || "",
+            // URL de la foto ya subida (solo la usa el correo de punto de carga).
+            fotoUrl: datos.fotoUrl || "",
         };
 
         const res = await service.enviarContacto(params);

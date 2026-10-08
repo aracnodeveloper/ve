@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Spinner } from "@material-tailwind/react";
 import { enviarContacto } from "../../controllers/contacto/contactoController";
+import Config from "../../global/config";
 
 const VACIO = {
     ci: "",
@@ -44,13 +45,51 @@ const ContactForm = ({
     textoBoton = "Enviar contacto",
     textoExito = "Gracias por escribirnos. Nos pondremos en contacto contigo si es necesario.",
     onCancelar,
+    // conFoto: muestra el campo para adjuntar una foto (lo usa "Agregar tu punto
+    // de carga"). La foto se sube al elegirla y su URL viaja en el correo.
+    conFoto = false,
+    etiquetaFoto = "Foto",
 }) => {
     const [datos, setDatos] = useState(VACIO);
     const [enviando, setEnviando] = useState(false);
+    const [foto, setFoto] = useState(null);        // { url, nombre } cuando ya subió
+    const [subiendoFoto, setSubiendoFoto] = useState(false);
+    const [errorFoto, setErrorFoto] = useState("");
+    const [vistaPrevia, setVistaPrevia] = useState(null);
     const [resultado, setResultado] = useState(null); // "ok" | "error" | null
     const [error, setError] = useState("");
 
     const onChange = (e) => setDatos((d) => ({ ...d, [e.target.name]: e.target.value }));
+
+    const subirFoto = async (archivo) => {
+        setSubiendoFoto(true);
+        setErrorFoto("");
+        setFoto(null);
+        try {
+            const cuerpo = new FormData();
+            cuerpo.append("foto", archivo);
+            const resp = await fetch(Config.URL_FOTO_PUNTO_CARGA, { method: "POST", body: cuerpo });
+            const data = await resp.json();
+            if (data && data.estado && data.url) setFoto({ url: data.url, nombre: archivo.name });
+            else setErrorFoto((data && data.msj) || "No se pudo subir la foto.");
+        } catch {
+            setErrorFoto("Error de conexión al subir la foto.");
+        }
+        setSubiendoFoto(false);
+    };
+
+    const alElegirFoto = (e) => {
+        const archivo = e.target.files && e.target.files[0];
+        if (!archivo) return;
+        setVistaPrevia(URL.createObjectURL(archivo));
+        subirFoto(archivo);
+    };
+
+    const quitarFoto = () => {
+        setFoto(null);
+        setVistaPrevia(null);
+        setErrorFoto("");
+    };
 
     const validar = () => {
         if (!datos.ci.trim()) return "Ingresa tu CI.";
@@ -69,11 +108,12 @@ const ContactForm = ({
         }
         setError("");
         setEnviando(true);
-        const ok = await enviarContacto(datos, tipo);
+        const ok = await enviarContacto({ ...datos, fotoUrl: foto?.url || "" }, tipo);
         setEnviando(false);
         if (ok) {
             setResultado("ok");
             setDatos(VACIO);
+            quitarFoto();
         } else {
             setResultado("error");
         }
@@ -83,6 +123,7 @@ const ContactForm = ({
         setDatos(VACIO);
         setError("");
         setResultado(null);
+        quitarFoto();
     };
 
     if (resultado === "ok") {
@@ -136,9 +177,39 @@ const ContactForm = ({
                         value={datos.mensaje}
                         onChange={onChange}
                         placeholder="Escribe tu mensaje..."
-                        className="w-full flex-1 min-h-[200px] border border-gray-400 rounded-lg px-3 py-2 text-sm outline-none transition-all
-                                   focus:border-greenVE-400 focus:ring-1 focus:ring-greenVE-200 resize-y"
+                        className={`w-full flex-1 ${conFoto ? "min-h-[120px]" : "min-h-[200px]"} border border-gray-400 rounded-lg px-3 py-2 text-sm outline-none transition-all
+                                   focus:border-greenVE-400 focus:ring-1 focus:ring-greenVE-200 resize-y`}
                     />
+
+                    {conFoto && (
+                        <div className="mt-3">
+                            <label className="text-sm text-gray-600">
+                                {etiquetaFoto} <span className="text-gray-400">(opcional)</span>
+                            </label>
+                            <input
+                                type="file"
+                                accept="image/*"
+                                onChange={alElegirFoto}
+                                className="mt-1 w-full text-xs text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg
+                                           file:border-0 file:text-xs file:font-semibold file:bg-greenVE-50 file:text-greenVE-700
+                                           hover:file:bg-greenVE-100 cursor-pointer"
+                            />
+
+                            {vistaPrevia && (
+                                <div className="mt-2 flex items-center gap-3">
+                                    <img src={vistaPrevia} alt="Vista previa" className="h-20 w-20 object-cover rounded-lg border border-gray-200" />
+                                    <div className="text-xs">
+                                        {subiendoFoto && <span className="text-gray-500">Subiendo foto...</span>}
+                                        {foto && <span className="text-greenVE-700 font-medium">Foto lista</span>}
+                                        {errorFoto && <span className="text-red-600">{errorFoto}</span>}
+                                        <button type="button" onClick={quitarFoto} className="block mt-1 text-gray-500 hover:text-gray-700 underline">
+                                            Quitar
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             </div>
 
@@ -157,7 +228,7 @@ const ContactForm = ({
             <div className="flex flex-wrap justify-center gap-3 pt-2">
                 <button
                     onClick={handleSubmit}
-                    disabled={enviando}
+                    disabled={enviando || subiendoFoto}
                     className="flex items-center justify-center gap-2 bg-greenVE-600 hover:bg-greenVE-700 disabled:opacity-60
                                text-white font-semibold py-2.5 px-6 rounded-xl transition-all shadow-sm hover:shadow-md active:scale-95 text-sm"
                 >

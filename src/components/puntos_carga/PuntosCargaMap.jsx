@@ -1,7 +1,19 @@
 import { useMemo, useState } from "react";
-import { MapContainer, TileLayer, CircleMarker, Popup, Tooltip, useMap } from "react-leaflet";
+import { MapContainer, TileLayer, CircleMarker, Marker, Popup, Tooltip, useMap } from "react-leaflet";
+import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { PUNTOS_CARGA } from "./puntosCargaData";
+import iconoEvinka from "../../assets/punto-carga-evinka.png";
+import logoByd from "../../assets/logos/byd.png";
+import logoEvinka from "../../assets/logos/evinka.png";
+import logoCondor from "../../assets/logos/condor.png";
+import logoRayoCarga from "../../assets/logos/rayo-carga.png";
+import logoPlugNDrive from "../../assets/logos/plug-n-drive.png";
+import logoVisitaEcuador from "../../assets/logos/visitaecuador.png";
+import logoKfc from "../../assets/logos/kfc.png";
+import logoWyndham from "../../assets/logos/wyndham.png";
+import logoOroVerde from "../../assets/logos/oro-verde.png";
+import logoDk from "../../assets/logos/dk.png";
 import ContactForm from "../contacto_components/ContactForm";
 
 /**
@@ -19,6 +31,56 @@ export const CATEGORIAS = {
 };
 
 export const PUNTOS = PUNTOS_CARGA;
+
+// Los puntos del convenio Evinka no van como circulo azul: llevan su propio
+// logo. El icono se mide en pixeles y se ancla al centro, para que quede sobre
+// la coordenada igual que el circulo al que reemplaza.
+const ICONO_EVINKA = L.icon({
+    iconUrl: iconoEvinka,
+    iconSize: [20, 20],
+    iconAnchor: [15, 15],
+    popupAnchor: [0, -15],
+    tooltipAnchor: [0, -15],
+    className: "punto-carga-evinka",
+});
+
+const esEvinka = (p) => /evinka/i.test(p.convenio || "");
+
+/**
+ * Logos que se muestran en el detalle de un punto.
+ *
+ * Son archivos en blanco sobre fondo transparente, por eso van dentro de una
+ * pastilla oscura: sobre el fondo blanco de la ventana no se verian.
+ *
+ * - Por convenio: un convenio como "BYD - Evinka" muestra los dos logos.
+ * - Por local: hoy solo coincide KFC; Wyndham, Oro Verde y dk quedan listos
+ *   para cuando se agreguen esos puntos.
+ */
+const LOGOS_CONVENIO = [
+    { busca: /byd/i, nombre: "BYD", src: logoByd },
+    { busca: /evinka/i, nombre: "Evinka", src: logoEvinka },
+    { busca: /condor|cóndor/i, nombre: "Condor Energy", src: logoCondor },
+    { busca: /rayo/i, nombre: "Rayo Carga", src: logoRayoCarga },
+    { busca: /plug/i, nombre: "Plug N' Drive", src: logoPlugNDrive },
+];
+
+const LOGOS_LOCAL = [
+    { busca: /^kfc\b/i, nombre: "KFC", src: logoKfc },
+    { busca: /wyndham/i, nombre: "Wyndham", src: logoWyndham },
+    { busca: /oro\s*verde/i, nombre: "Oro Verde", src: logoOroVerde },
+    { busca: /\bdk\b/i, nombre: "dk", src: logoDk },
+];
+
+const logosDelPunto = (p) => {
+    const encontrados = LOGOS_CONVENIO.filter((l) => l.busca.test(p.convenio || ""));
+    // Los puntos del convenio Evinka llevan ademas el logo de VisitaEcuador.
+    if (esEvinka(p))
+        encontrados.push({ nombre: "VisitaEcuador.com", src: logoVisitaEcuador });
+    LOGOS_LOCAL.forEach((l) => {
+        if (l.busca.test(p.nombre || "")) encontrados.push(l);
+    });
+    return encontrados;
+};
 
 const CENTRO_ECUADOR = [-1.6, -78.6];
 const ZOOM_ECUADOR = 7;
@@ -62,6 +124,16 @@ const DetallePunto = ({ p, conEnlaces = false }) => (
             <span className="block text-gray-500 text-[11px] mt-0.5">Convenio: {p.convenio}</span>
         )}
 
+        {logosDelPunto(p).length > 0 && (
+            <span className="flex flex-wrap items-center gap-1 mt-1.5">
+                {logosDelPunto(p).map((l) => (
+                    <span key={l.nombre} className="inline-flex items-center bg-[#1e293b] rounded px-1.5 py-1">
+                        <img src={l.src} alt={l.nombre} title={l.nombre} style={{ height: 16, width: "auto" }} />
+                    </span>
+                ))}
+            </span>
+        )}
+
         {(p.conectores || []).length > 0 && (
             <span className="block mt-1.5">
                 <span className="block font-semibold text-gray-700">Conectores</span>
@@ -86,11 +158,12 @@ const DetallePunto = ({ p, conEnlaces = false }) => (
                     </a>
                 )}
                 <a href={googleMapsUrl(p)} target="_blank" rel="noreferrer" className="block text-greenVE-700 mt-1">
+                    <span className="icon-[ph--map-pin-fill] h-3 w-3 text-red flex-shrink-0"></span>
                     Cómo llegar
                 </a>
             </>
         ) : (
-            <span className="block text-gray-400 text-[11px] mt-1.5">
+            <span className="block font-bold text-black text-[11px] mt-1.5">
                 Haz clic para ver cómo llegar
             </span>
         )}
@@ -218,32 +291,40 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
                     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 />
 
-                {filtrados.map((p) => (
-                    <CircleMarker
-                        key={p.id}
-                        center={p.coords}
-                        radius={7}
-                        pathOptions={{
-                            color: "#ffffff",
-                            weight: 2,
-                            fillColor: (CATEGORIAS[p.categoria] || CATEGORIAS.puntos).color,
-                            fillOpacity: 1,
-                        }}
-                        eventHandlers={{
-                            // Si la ventana del punto ya esta abierta, el globo
-                            // sobra y ademas la tapa.
-                            mouseover: (e) => e.target.isPopupOpen() && e.target.closeTooltip(),
-                            popupopen: (e) => e.target.closeTooltip(),
-                        }}
-                    >
-                        <Tooltip direction="top" offset={[0, -8]} opacity={1} className="punto-carga-globo">
-                            <DetallePunto p={p} />
-                        </Tooltip>
-                        <Popup>
-                            <DetallePunto p={p} conEnlaces />
-                        </Popup>
-                    </CircleMarker>
-                ))}
+                {filtrados.map((p) => {
+                    const Punto = esEvinka(p) ? Marker : CircleMarker;
+                    const propiosDelPunto = esEvinka(p)
+                        ? { position: p.coords, icon: ICONO_EVINKA }
+                        : {
+                            center: p.coords,
+                            radius: 7,
+                            pathOptions: {
+                                color: "#ffffff",
+                                weight: 2,
+                                fillColor: (CATEGORIAS[p.categoria] || CATEGORIAS.puntos).color,
+                                fillOpacity: 1,
+                            },
+                        };
+                    return (
+                        <Punto
+                            key={p.id}
+                            {...propiosDelPunto}
+                            eventHandlers={{
+                                // Si la ventana del punto ya esta abierta, el globo
+                                // sobra y ademas la tapa.
+                                mouseover: (e) => e.target.isPopupOpen() && e.target.closeTooltip(),
+                                popupopen: (e) => e.target.closeTooltip(),
+                            }}
+                        >
+                            <Tooltip direction="top" offset={[0, -8]} opacity={1} className="punto-carga-globo">
+                                <DetallePunto p={p} />
+                            </Tooltip>
+                            <Popup>
+                                <DetallePunto p={p} conEnlaces />
+                            </Popup>
+                        </Punto>
+                    );
+                })}
             </MapContainer>
 
             {/* Leyenda / capas: arriba a la derecha */}
@@ -326,6 +407,8 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
                                 subtitulo="Cuéntanos dónde está tu punto de carga y nos comunicamos contigo."
                                 textoBoton="Enviar punto de carga"
                                 textoExito="Gracias. Revisaremos tu punto de carga y nos comunicamos contigo."
+                                conFoto
+                                etiquetaFoto="Foto de tu punto de carga"
                                 onCancelar={() => setFormAbierto(false)}
                             />
                         </div>

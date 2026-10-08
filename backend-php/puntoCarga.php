@@ -5,7 +5,8 @@
  * Se renderiza desde Mail::sendMailContacto() con renderTemplate(), por lo que aqui se dispone
  * del arreglo $params.
  *
- * $params: ci, nombres, email, telefonos, direccion, ciudad, pais, mensaje, fechaActual.
+ * $params: ci, nombres, email, telefonos, direccion, ciudad, pais, mensaje, fotoUrl,
+ *          fechaActual.
  *
  * Misma identidad grafica que visitaEcuadorSuscripcion.php, confirmacionPago.php y
  * pagoPayphone.php: encabezado verde con logo, franja naranja, barra de redes, secciones con
@@ -168,6 +169,26 @@ $ubicacion = trim(implode(', ', array_filter(array($e('ciudad'), $e('pais')))));
                             </div>
                         </td>
                     </tr>
+
+                    <?php if ($e('fotoUrl') !== '') { ?>
+                        <?php echo $seccion('', 'Foto del punto'); ?>
+                        <tr>
+                            <td style="padding: 0px;"></td>
+                            <td colspan="2" align="center" style="padding-top: 12px; padding-bottom: 4px;">
+                                <a href="<?php echo $e('fotoUrl'); ?>" target="_blank">
+                                    <img src="<?php echo $e('fotoUrl'); ?>" alt="Foto del punto de carga"
+                                        style="max-width: 560px; border: 1px solid #f0f8ea;" width="560">
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 0px;"></td>
+                            <td colspan="2" align="center" style="padding-top: 0px; font-size: 12px;">
+                                <a href="<?php echo $e('fotoUrl'); ?>" target="_blank" style="color: #84b60a;">Ver la foto en tamaño original</a>
+                                <span style="color: #909090;"> &middot; tambi&eacute;n va adjunta</span>
+                            </td>
+                        </tr>
+                    <?php } ?>
                 </table>
             </td>
         </tr>

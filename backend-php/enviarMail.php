@@ -157,6 +157,10 @@ public function configureSMTP()
                     $GLOBALS['vtClass'] . 'plantillasMail/puntoCarga.php',
                     $datos
                 );
+                // La foto va embebida en el correo (la plantilla la muestra por
+                // su URL) y ademas adjunta, para poder guardarla sin entrar a la
+                // web. Solo se adjunta si el archivo esta en este servidor.
+                $this->adjuntarFotoPuntoCarga(isset($post['fotoUrl']) ? $post['fotoUrl'] : '');
             } else {
                 $titulo = $esEmprendedor ? "Nuevo interesado en emprender" : "Nuevo mensaje de contacto";
                 $this->emails->Body = $this->armarBodyContacto($post, $titulo);
@@ -174,6 +178,32 @@ public function configureSMTP()
             $this->error = $e->getMessage();
             $this->codeerror = $e->getCode();
             return false;
+        }
+    }
+
+    /**
+     * Adjunta la foto del punto de carga cuando el archivo esta guardado en este
+     * mismo servidor (la sube subirFotoPuntoCarga.php). Si no se encuentra, el
+     * correo sale igual: la plantilla ya la muestra por su URL.
+     */
+    private function adjuntarFotoPuntoCarga($fotoUrl)
+    {
+        $fotoUrl = trim((string)$fotoUrl);
+        if ($fotoUrl === '') return;
+
+        $nombreArchivo = basename(parse_url($fotoUrl, PHP_URL_PATH));
+        if ($nombreArchivo === '') return;
+
+        $rutas = array(
+            __DIR__ . '/../fotos-puntos-carga/' . $nombreArchivo,
+            __DIR__ . '/fotos-puntos-carga/' . $nombreArchivo,
+            $_SERVER['DOCUMENT_ROOT'] . '/apiv1.7/fotos-puntos-carga/' . $nombreArchivo,
+        );
+        foreach ($rutas as $ruta) {
+            if (is_file($ruta)) {
+                $this->emails->addAttachment($ruta, $nombreArchivo);
+                return;
+            }
         }
     }
 
