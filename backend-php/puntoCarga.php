@@ -5,8 +5,9 @@
  * Se renderiza desde Mail::sendMailContacto() con renderTemplate(), por lo que aqui se dispone
  * del arreglo $params.
  *
- * $params: ci, nombres, email, telefonos, direccion, ciudad, pais, mensaje, fotoUrl,
- *          fechaActual.
+ * $params: ci, nombres, email, telefonos, direccion, ciudad, pais, mensaje,
+ *          fotoEstablecimiento, fotoParqueadero, fotoLugar (URLs, cada una opcional),
+ *          latitud, longitud (punto marcado en el mapa), fechaActual.
  *
  * Misma identidad grafica que visitaEcuadorSuscripcion.php, confirmacionPago.php y
  * pagoPayphone.php: encabezado verde con logo, franja naranja, barra de redes, secciones con
@@ -16,7 +17,7 @@ $e = function ($k) use ($params) {
     return isset($params[$k]) ? htmlentities(trim((string)$params[$k]), ENT_QUOTES, 'UTF-8') : '';
 };
 
-$iconos = 'https://www.visitaecuador.com/img/mailing/nuevosRecursos/';
+$iconos = 'https://visitaecuador.com/img/mailing/nuevosRecursos/';
 
 // Cabecera de seccion: icono + titulo en la barra verde. Sin icono ($icono vacio) la celda queda
 // en blanco, para no usar uno que no corresponda.
@@ -44,6 +45,33 @@ $fila = function ($etiqueta, $valor) {
 };
 
 $ubicacion = trim(implode(', ', array_filter(array($e('ciudad'), $e('pais')))));
+
+// Punto marcado en el mapa: solo se acepta si las dos coordenadas son numeros.
+$coordenada = function ($k) use ($params) {
+    $v = isset($params[$k]) ? trim((string)$params[$k]) : '';
+    return is_numeric($v) ? $v : '';
+};
+$lat = $coordenada('latitud');
+$lng = $coordenada('longitud');
+// Fotos del formulario, cada una opcional. fotoUrl es el campo único de la versión
+// anterior del formulario; se sigue aceptando por si llega de una página en caché.
+// Solo se aceptan URLs http(s).
+$fotos = array();
+foreach (array(
+    'fotoEstablecimiento' => 'Establecimiento',
+    'fotoParqueadero'     => 'Parqueadero',
+    'fotoLugar'           => 'Lugar del punto',
+    'fotoUrl'             => 'Foto del punto',
+) as $clave => $titulo) {
+    if (preg_match('#^https?://#i', $e($clave)))
+        $fotos[] = array('titulo' => $titulo, 'url' => $e($clave));
+}
+
+$enlaceMapa = ($lat !== '' && $lng !== '')
+    ? '<a href="https://www.google.com/maps?q=' . $lat . ',' . $lng . '" target="_blank" style="color: #84b60a;">'
+        . $lat . ', ' . $lng . '</a> &middot; <a href="https://www.google.com/maps?q=' . $lat . ',' . $lng
+        . '" target="_blank" style="color: #84b60a;">Ver en el mapa</a>'
+    : '';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -160,6 +188,7 @@ $ubicacion = trim(implode(', ', array_filter(array($e('ciudad'), $e('pais')))));
                     echo $fila('Pa&iacute;s', $e('pais'));
 
                     echo $seccion('icon-13.png', 'Su punto de carga');
+                    echo $fila('Ubicaci&oacute;n', $enlaceMapa);
                     ?>
                     <tr>
                         <td style="padding: 0px;"></td>
@@ -170,22 +199,33 @@ $ubicacion = trim(implode(', ', array_filter(array($e('ciudad'), $e('pais')))));
                         </td>
                     </tr>
 
-                    <?php if ($e('fotoUrl') !== '') { ?>
-                        <?php echo $seccion('', 'Foto del punto'); ?>
+                    <?php if ($fotos) { ?>
+                        <?php echo $seccion('', count($fotos) === 1 ? 'Foto' : 'Fotos'); ?>
                         <tr>
                             <td style="padding: 0px;"></td>
-                            <td colspan="2" align="center" style="padding-top: 12px; padding-bottom: 4px;">
-                                <a href="<?php echo $e('fotoUrl'); ?>" target="_blank">
-                                    <img src="<?php echo $e('fotoUrl'); ?>" alt="Foto del punto de carga"
-                                        style="max-width: 560px; border: 1px solid #f0f8ea;" width="560">
-                                </a>
+                            <td colspan="2" style="padding-top: 12px; padding-bottom: 4px;">
+                                <table width="100%" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <?php foreach ($fotos as $foto) { ?>
+                                            <td align="center" valign="top" width="<?php echo floor(100 / count($fotos)); ?>%" style="padding: 0 6px;">
+                                                <div style="color: #2c305a; font-size: 12px; font-weight: 600; padding-bottom: 6px;"><?php echo $foto['titulo']; ?></div>
+                                                <a href="<?php echo $foto['url']; ?>" target="_blank">
+                                                    <img src="<?php echo $foto['url']; ?>" alt="<?php echo $foto['titulo']; ?>"
+                                                        width="176" style="width: 176px; max-width: 100%; height: auto; border: 1px solid #e3eccf; border-radius: 4px;">
+                                                </a>
+                                                <div style="padding-top: 4px; font-size: 11px;">
+                                                    <a href="<?php echo $foto['url']; ?>" target="_blank" style="color: #84b60a;">Ver en tama&ntilde;o original</a>
+                                                </div>
+                                            </td>
+                                        <?php } ?>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
                         <tr>
                             <td style="padding: 0px;"></td>
-                            <td colspan="2" align="center" style="padding-top: 0px; font-size: 12px;">
-                                <a href="<?php echo $e('fotoUrl'); ?>" target="_blank" style="color: #84b60a;">Ver la foto en tamaño original</a>
-                                <span style="color: #909090;"> &middot; tambi&eacute;n va adjunta</span>
+                            <td colspan="2" align="center" style="padding-top: 4px; font-size: 11px; color: #909090;">
+                                Las fotos tambi&eacute;n van adjuntas a este correo.
                             </td>
                         </tr>
                     <?php } ?>

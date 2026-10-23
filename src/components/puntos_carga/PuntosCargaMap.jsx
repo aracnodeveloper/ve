@@ -3,7 +3,9 @@ import { MapContainer, TileLayer, CircleMarker, Marker, Popup, Tooltip, useMap }
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { PUNTOS_CARGA } from "./puntosCargaData";
-import iconoEvinka from "../../assets/punto-carga-evinka.png";
+import { PUNTOS_KIA } from "./puntosCargaKia";
+import { PUNTOS_CHEVROLET } from "./puntosCargaChevrolet";
+import iconoEvinka from "../../assets/Logo VE - evinka.png";
 import logoByd from "../../assets/logos/byd.png";
 import logoEvinka from "../../assets/logos/evinka.png";
 import logoCondor from "../../assets/logos/condor.png";
@@ -14,7 +16,9 @@ import logoKfc from "../../assets/logos/kfc.png";
 import logoWyndham from "../../assets/logos/wyndham.png";
 import logoOroVerde from "../../assets/logos/oro-verde.png";
 import logoDk from "../../assets/logos/dk.png";
-import ContactForm from "../contacto_components/ContactForm";
+import logoKia from "../../assets/logos/kia.png";
+import logoChevrolet from "../../assets/logos/chevrolet.png";
+import SolicitudPuntoCarga from "./SolicitudPuntoCarga";
 
 /**
  * Mapa de puntos a pantalla completa.
@@ -30,7 +34,9 @@ export const CATEGORIAS = {
     destinos: { label: "Destinos", color: "#84b60a" },
 };
 
-export const PUNTOS = PUNTOS_CARGA;
+// Los nuestros, las electrolineras de Kia y los puntos de Chevrolet que no estaban ya
+// (puntosCargaKia.js y puntosCargaChevrolet.js se generan con scripts/importarPuntos*.js).
+export const PUNTOS = [...PUNTOS_CARGA, ...PUNTOS_KIA, ...PUNTOS_CHEVROLET];
 
 // Los puntos del convenio Evinka no van como circulo azul: llevan su propio
 // logo. El icono se mide en pixeles y se ancla al centro, para que quede sobre
@@ -62,6 +68,8 @@ const LOGOS_CONVENIO = [
     { busca: /condor|cóndor/i, nombre: "Condor Energy", src: logoCondor },
     { busca: /rayo/i, nombre: "Rayo Carga", src: logoRayoCarga },
     { busca: /plug/i, nombre: "Plug N' Drive", src: logoPlugNDrive },
+    { busca: /^kia$/i, nombre: "Kia", src: logoKia },
+    { busca: /^chevrolet$/i, nombre: "Chevrolet", src: logoChevrolet },
 ];
 
 const LOGOS_LOCAL = [
@@ -120,15 +128,19 @@ const DetallePunto = ({ p, conEnlaces = false }) => (
                 {[p.ciudad, p.provincia].filter(Boolean).join(", ")}
             </span>
         )}
+        {p.direccion && <span className="block text-gray-500 text-[11px]">{p.direccion}</span>}
         {p.convenio && (
             <span className="block text-gray-500 text-[11px] mt-0.5">Convenio: {p.convenio}</span>
         )}
 
         {logosDelPunto(p).length > 0 && (
             <span className="flex flex-wrap items-center gap-1 mt-1.5">
+                {/* Todos los recuadros miden lo mismo: los logos tienen proporciones muy distintas
+                    (dk es cuadrado, Plug N' Drive siete veces más ancho que alto), así que cada uno se
+                    ajusta dentro del mismo espacio sin deformarse. */}
                 {logosDelPunto(p).map((l) => (
-                    <span key={l.nombre} className="inline-flex items-center bg-[#1e293b] rounded px-1.5 py-1">
-                        <img src={l.src} alt={l.nombre} title={l.nombre} style={{ height: 16, width: "auto" }} />
+                    <span key={l.nombre} className="inline-flex items-center justify-center bg-[#1e293b] rounded w-[88px] h-7 px-1.5">
+                        <img src={l.src} alt={l.nombre} title={l.nombre} className="max-w-full max-h-[18px] w-auto h-auto object-contain" />
                     </span>
                 ))}
             </span>
@@ -140,15 +152,34 @@ const DetallePunto = ({ p, conEnlaces = false }) => (
                 {p.conectores.map((c, i) => (
                     <span key={i} className="block text-gray-600">
                         • {c.conector}
-                        {c.cantidad > 1 ? ` (x${c.cantidad})` : ""} — {c.potencia}, {c.tipoCarga === "RAPIDA" ? "carga rápida" : "carga estándar"}
+                        {c.cantidad > 1 ? ` (x${c.cantidad})` : ""} —{" "}
+                        {/* Chevrolet (PlugShare) no publica la potencia: se omite si no viene. */}
+                        {[c.potencia, c.tipoCarga === "RAPIDA" ? "carga rápida" : "carga estándar"].filter(Boolean).join(", ")}
                     </span>
                 ))}
             </span>
         )}
 
-        <span className="block text-gray-600 mt-1">
-            {p.tarifado === "SI" ? "Servicio tarifado" : "Sin costo"}
-        </span>
+        {/* Sin el detalle de conectores (los puntos de Kia no lo publican), al menos la velocidad si se conoce. */}
+        {(p.conectores || []).length === 0 && p.tipoCarga && (
+            <span className="block text-gray-600 mt-1">
+                {p.tipoCarga === "RAPIDA" ? "Carga rápida" : "Carga estándar"}
+            </span>
+        )}
+
+        {p.horario && (
+            <span className="block text-gray-600 mt-1">
+                Horario: {p.horario}
+                {p.horarioFeriados && <span className="block">Feriados: {p.horarioFeriados}</span>}
+            </span>
+        )}
+
+        {/* La tarifa solo se muestra si se conoce. */}
+        {(p.tarifado === "SI" || p.tarifado === "NO") && (
+            <span className="block text-gray-600 mt-1">
+                {p.tarifado === "SI" ? "Servicio tarifado" : "Sin costo"}
+            </span>
+        )}
 
         {conEnlaces ? (
             <>
@@ -172,12 +203,12 @@ const DetallePunto = ({ p, conEnlaces = false }) => (
 
 const Selector = ({ label, value, onChange, options, placeholder = "Todos" }) => (
     <div className="flex flex-col gap-1">
-        <label className="text-xs text-white/80">{label}:</label>
+        <label className="text-xs text-black/80">{label}:</label>
         <select
             value={value}
             onChange={(e) => onChange(e.target.value)}
-            className="bg-white/10 border border-white/20 text-white text-sm rounded px-2 py-1.5
-                       focus:outline-none focus:border-white/50 [&>option]:text-gray-800"
+            className="bg-white border border-greenVE-500 text-black text-sm rounded px-2 py-1.5
+                       focus:outline-none focus:border-greenVE-500 [&>option]:text-gray-800"
         >
             <option value="">{placeholder}</option>
             {options.map((o) => (
@@ -201,8 +232,7 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
     const [tipoCarga, setTipoCarga] = useState("");
     const [convenio, setConvenio] = useState("");
     const [aviso, setAviso] = useState(null);
-    // Formulario "Agregar tu punto de carga": mismos campos que Contáctanos, pero el correo
-    // sale con tipo "puntoCarga" y el backend lo manda solo a gerencia y desarrollo.
+    // Panel lateral "Solicita tu punto de carga" (ver SolicitudPuntoCarga).
     const [formAbierto, setFormAbierto] = useState(false);
 
     // Opciones de los selects, sacadas de los propios datos
@@ -223,6 +253,13 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
     const tieneConector = (p, c) =>
         !c || (p.conectores || []).some((x) => x.conector === c);
 
+    // Se mira cada conector; los puntos sin detalle de conectores (los de Kia) usan su tipo general.
+    const tieneTipoCarga = (p, t) => {
+        if (!t) return true;
+        const conectores = p.conectores || [];
+        return conectores.length > 0 ? conectores.some((c) => c.tipoCarga === t) : p.tipoCarga === t;
+    };
+
     const filtrados = useMemo(
         () =>
             puntos.filter(
@@ -231,7 +268,7 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
                     (!ciudad || p.ciudad === ciudad) &&
                     tieneConector(p, conector) &&
                     (!convenio || p.convenio === convenio) &&
-                    (!tipoCarga || (p.conectores || []).some((c) => c.tipoCarga === tipoCarga))
+                    tieneTipoCarga(p, tipoCarga)
             ),
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [puntos, visibles, ciudad, conector, convenio, tipoCarga]
@@ -353,7 +390,7 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
 
             {/* Columna de abajo a la derecha: el boton de agregar punto va pegado encima del panel
                 de filtros, asi sube y baja con el panel sin medidas fijas. */}
-            <div className="absolute bottom-8 right-3 z-[1000] w-56 flex flex-col gap-2">
+            <div className="absolute bottom-24 md:bottom-8 right-3 w-72 flex flex-col gap-2 z-[1000]">
                 <button
                     onClick={() => setFormAbierto(true)}
                     className="bg-[#8AB600] hover:bg-greenVE-600 text-white font-semibold text-sm rounded-lg shadow-xl
@@ -364,7 +401,7 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
                 </button>
 
                 {/* Filtros */}
-                <div className="bg-[#1e293b]/95 backdrop-blur rounded-lg shadow-xl p-3 flex flex-col gap-2.5">
+                <div className="bg-white backdrop-blur rounded-lg shadow-xl p-3 flex flex-col gap-2.5">
                     <Selector label="Ciudad" value={ciudad} onChange={setCiudad} options={ciudades} placeholder="Todas" />
                     <Selector label="Conector" value={conector} onChange={setConector} options={conectores} />
                     <Selector label="Tipo de Carga" value={tipoCarga} onChange={setTipoCarga} options={tiposCarga} />
@@ -372,49 +409,25 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
 
                     <button
                         onClick={irAlMasCercano}
-                        className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm rounded py-1.5 transition-colors"
+                        className="bg-white hover:bg-greenVE-500/10 border border-greenVE-500 text-black text-sm rounded py-1.5 transition-colors"
                     >
                         Ir al más cercano
                     </button>
                     <button
                         onClick={reiniciar}
-                        className="bg-white/10 hover:bg-white/20 border border-white/20 text-white text-sm rounded py-1.5 transition-colors"
+                        className="bg-white hover:bg-greenVE-500/10 border border-greenVE-500 text-black text-sm rounded py-1.5 transition-colors"
                     >
                         Reiniciar filtros
                     </button>
 
-                    {aviso && <p className="text-[11px] text-white/80 leading-snug">{aviso}</p>}
-                    <p className="text-[11px] text-white/50">
+                    {aviso && <p className="text-[11px] text-black/80 leading-snug">{aviso}</p>}
+                    <p className="text-[11px] text-black/50">
                         {filtrados.length} de {puntos.length} puntos
                     </p>
                 </div>
             </div>
 
-            {formAbierto && (
-                <div className="fixed inset-0 z-[1100] flex items-start justify-center overflow-y-auto bg-black/50 backdrop-blur-sm p-4">
-                    <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-3xl my-6">
-                        <button
-                            onClick={() => setFormAbierto(false)}
-                            aria-label="Cerrar"
-                            className="absolute top-3 right-3 h-8 w-8 rounded-full flex items-center justify-center text-gray-500 hover:bg-gray-100"
-                        >
-                            <span className="icon-[ph--x-bold] h-4 w-4"></span>
-                        </button>
-                        <div className="p-4 sm:p-6">
-                            <ContactForm
-                                tipo="puntoCarga"
-                                titulo="Agregar tu punto de carga"
-                                subtitulo="Cuéntanos dónde está tu punto de carga y nos comunicamos contigo."
-                                textoBoton="Enviar punto de carga"
-                                textoExito="Gracias. Revisaremos tu punto de carga y nos comunicamos contigo."
-                                conFoto
-                                etiquetaFoto="Foto de tu punto de carga"
-                                onCancelar={() => setFormAbierto(false)}
-                            />
-                        </div>
-                    </div>
-                </div>
-            )}
+            {formAbierto && <SolicitudPuntoCarga onCerrar={() => setFormAbierto(false)} />}
         </div>
     );
 };

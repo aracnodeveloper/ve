@@ -68,14 +68,33 @@ if (!isset($permitidos[$mime])) {
 
 $ext = $permitidos[$mime];
 
-if (!is_dir($carpeta)) {
-    @mkdir($carpeta, 0755, true);
+// La carpeta debe existir y ser escribible por el usuario de Apache. Si PHP no puede
+// crearla (permisos de la carpeta padre o SELinux), se dice cuál es el problema en
+// lugar de fallar más abajo con un mensaje genérico; el detalle va al log de Apache.
+if (!is_dir($carpeta) && !@mkdir($carpeta, 0755, true)) {
+    $e = error_get_last();
+    error_log('subirFotoPuntoCarga: no se pudo crear ' . $carpeta . ': ' . ($e ? $e['message'] : 'sin detalle'));
+    http_response_code(500);
+    echo json_encode(["estado" => false, "msj" => "La carpeta de fotos no existe en el servidor y no se pudo crear."]);
+    exit;
+}
+if (!is_writable($carpeta)) {
+    error_log('subirFotoPuntoCarga: sin permiso de escritura en ' . $carpeta);
+    http_response_code(500);
+    echo json_encode(["estado" => false, "msj" => "La carpeta de fotos no tiene permiso de escritura en el servidor."]);
+    exit;
+}
+// Un index.html vacío evita que Apache liste las fotos si el listado de carpetas está activo.
+if (!file_exists($carpeta . '/index.html')) {
+    @file_put_contents($carpeta . '/index.html', '');
 }
 
 $nombre = "punto_carga_" . date("Ymd_His") . "_" . bin2hex(random_bytes(4)) . "." . $ext;
 $destino = $carpeta . "/" . $nombre;
 
 if (!move_uploaded_file($file['tmp_name'], $destino)) {
+    $e = error_get_last();
+    error_log('subirFotoPuntoCarga: move_uploaded_file a ' . $destino . ' falló: ' . ($e ? $e['message'] : 'sin detalle'));
     http_response_code(500);
     echo json_encode(["estado" => false, "msj" => "No se pudo guardar la foto en el servidor."]);
     exit;

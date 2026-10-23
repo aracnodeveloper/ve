@@ -1,6 +1,6 @@
 import "react-multi-carousel/lib/styles.css";
 import WineOfferItem from "./WineOfferItem";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -11,6 +11,7 @@ import "slick-carousel/slick/slick-theme.css";
 
 import { getWineOffers } from "../../../core/vinoApiService";
 import { getOfferTypeConfig } from "../../../core/offertTypeConfig";
+import { cumpleFiltrosVino } from "../../../core/filtrosVino";
 import WineOfferItemSkeleton from "./WineOfferItemSkeleton";
 import CreateOfferModal from "../admin/CreateoffertsModal";
 
@@ -63,6 +64,14 @@ const WineOffersBanner = ({ filters, offerType = 'rutas' }) => {
   const handleOfferCreated = () => {
     fetchData();
   };
+
+  // Lo que se muestra: las ofertas del tipo que cumplen los filtros de la barra de
+  // búsqueda (ciudad o país, día y hora, calificación), con la misma regla que la
+  // página de resultados.
+  const visibles = useMemo(
+    () => (data ? data.filter((o) => cumpleFiltrosVino(o, filters)) : null),
+    [data, filters]
+  );
 
   const CustomNextArrow = (props) => (
     <div
@@ -123,7 +132,7 @@ const WineOffersBanner = ({ filters, offerType = 'rutas' }) => {
     ],
   });
 
-  const settings = getSliderSettings(data?.length || 0);
+  const settings = getSliderSettings(visibles?.length || 0);
 
   return (
     <div className="pt-5 mx-5 md:mx-0">
@@ -183,11 +192,12 @@ const WineOffersBanner = ({ filters, offerType = 'rutas' }) => {
         </div>
       )}
 
-      {/* Lista de ofertas */}
-      {data && data.length > 0 && (
+      {/* Lista de ofertas. El key reinicia el carrusel al cambiar los resultados: si no,
+          al pasar de muchas a pocas ofertas puede quedar parado en una posición vacía. */}
+      {visibles && visibles.length > 0 && (
         <div>
-          <Slider {...settings}>
-            {data.map((offer, index) => (
+          <Slider key={visibles.map((o) => o.id).join(",")} {...settings}>
+            {visibles.map((offer, index) => (
               <div key={offer.id || index} className="border-4 border-white">
                 <WineOfferItem offer={offer} />
               </div>
@@ -197,7 +207,7 @@ const WineOffersBanner = ({ filters, offerType = 'rutas' }) => {
       )}
 
       {/* Sin resultados */}
-      {data && data.length === 0 && (
+      {visibles && visibles.length === 0 && (
         <div className="text-center py-10 bg-amber-50 rounded-xl border border-amber-200">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-16 w-16 text-amber-300 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

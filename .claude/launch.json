@@ -93,6 +93,21 @@
         "PORT": "3007",
         "BROWSER": "none"
       }
+    },
+    {
+      "name": "dashboard",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "/Users/aracnocia.ltda./Documents/Proyectos React/dashboard",
+        "run",
+        "dev",
+        "--",
+        "--port",
+        "5179",
+        "--strictPort"
+      ],
+      "port": 5179
     }
   ]
 }

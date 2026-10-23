@@ -235,6 +235,10 @@ try {
 
 		$arrayFecha = explode("-", $subscriber->fecha_final_suscripcion);
 		$campos['fecha_caducidad_texto'] = $arrayFecha[2] . ' de ' . $model->meses['full'][$arrayFecha[1]] . ' de ' . $arrayFecha['0'];
+
+		// Alta hecha desde RISE: avisar a administracion para que ingresen el pago.
+		if (isset($post['origen']) && $post['origen'] === 'rise')
+			notificarSuscripcionRise($app, $subscriber, $post);
 	}
 
 	if ($id_usuario_creador > 0) {
@@ -283,4 +287,59 @@ try {
 	echo json_encode($retornar);
 	// echo json_encode(array('estado'=>false,'message'=>$e->getMessage()));
 
+}
+
+
+/**
+ * Aviso interno de una suscripcion creada desde RISE (venta del call center), para que
+ * administracion y contabilidad ingresen el pago. Usa el mismo correo que el pago con
+ * tarjeta por POS (sendContacto tipo 7, plantilla_notificacion_pago_por_tarjeta_CV.php)
+ * y los mismos destinatarios que Subscriber::setPagoBoton.
+ *
+ * La suscripcion ya quedo creada: si el correo falla solo se deja en el log, sin tocar
+ * la respuesta. Lo que imprima PHPMailer o algun warning se descarta para no romper
+ * el JSON que espera RISE.
+ */
+function notificarSuscripcionRise($app, $subscriber, $post)
+{
+	try {
+		$info = array();
+		$asunto = '';
+		if ($subscriber->demo) {
+			$asunto = '(EMAIL DE PRUEBA) ';
+			$info['bcc'][] = array('email' => 'desarrollo@visitaecuador.com', 'nombre' => 'Desarrollo');
+		} else {
+			$info['bcc'][] = array('email' => 'GAdministrativo@visitaecuador.com', 'nombre' => 'Diego');
+			$info['bcc'][] = array('email' => 'subgerencia@visitaecuador.com', 'nombre' => 'Ma. Andrea');
+			$info['bcc'][] = array('email' => 'contabilidad3@visitaecuador.com', 'nombre' => 'Gabriela');
+		}
+
+		$pago = isset($post['producto']['pago'][0]) ? $post['producto']['pago'][0] : array();
+		$vendedor = is_array($subscriber->vendedor) ? $subscriber->vendedor : array();
+
+		$info['subject']          = $asunto . 'Suscripción creada en RISE - Ingresar pago - VisitaEcuador.com';
+		$info['id_servicio']      = $post['id_servicio'];
+		$info['identificacion']   = $post['personal']['ci'];
+		$info['nombreSuscriptor'] = $post['personal']['nombres'];
+		$info['celular']          = $post['personal']['celular'];
+		$info['emailCliente']     = $post['personal']['email'];
+		$info['codigo']           = $subscriber->codigo;
+		$info['nombreProducto']   = $subscriber->nombreProducto;
+		$info['valorSuscripcion'] = isset($pago['total']) ? $pago['total'] : $subscriber->valorSuscripcion;
+		$info['codigoVendedor']   = isset($vendedor['codigo']) ? $vendedor['codigo'] : '';
+		$info['nombreVendedor']   = isset($vendedor['ltNomUsuario']) ? $vendedor['ltNomUsuario'] : '';
+		$info['origen']           = 'RISE';
+		$info['formaPago']        = 'Por confirmar con el cliente';
+
+		ob_start();
+		$enviado = $app->sendContacto(7, $info);
+		ob_end_clean();
+
+		if (!$enviado)
+			error_log('notificarSuscripcionRise: ' . $app->error);
+	} catch (Throwable $e) {
+		if (ob_get_level() > 0)
+			ob_end_clean();
+		error_log('notificarSuscripcionRise: ' . $e->getMessage());
+	}
 }

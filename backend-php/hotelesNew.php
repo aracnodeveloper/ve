@@ -385,23 +385,20 @@ class Hotels  extends Model
 				if (!$producto)
 					throw new Exception("No existe oferta", 1);
 
-				// Bloquear reserva mientras AHORA esté dentro del rango de agotamiento
-				$estadoAgot = $this->find('first', array(
-					'select' => 'of.fecha_hora, of.fecha_hora_fin',
+				// Bloquear la reserva si el día de check-in cae dentro de alguno de los
+				// rangos de agotamiento de la oferta (tbl_oferta_agotada).
+				$ofertaAgot = $this->find('first', array(
+					'select' => 'of.id_tbl_oferta',
 					'from'	=> 'tbl_oferta of JOIN tbl_producto prd ON prd.id_tbl_producto = of.id_tbl_producto',
 					'where'	=> 'prd.id_tbl_info_indice = ' . intval($data['id_oferta']),
 				));
-				if ($estadoAgot) {
-					$ini = !empty($estadoAgot['fecha_hora'])     ? strtotime($estadoAgot['fecha_hora'])     : null;
-					$fin = !empty($estadoAgot['fecha_hora_fin']) ? strtotime($estadoAgot['fecha_hora_fin']) : null;
-					$ahora = time();
-					$dentroRango = ($ini !== null || $fin !== null)
-						&& ($ini === null || $ahora >= $ini)
-						&& ($fin === null || $ahora <= $fin);
-					if ($dentroRango) {
-						throw new Exception('Esta oferta está agotada temporalmente'
-							. (!empty($estadoAgot['fecha_hora_fin'])
-								? ', disponible nuevamente el ' . $estadoAgot['fecha_hora_fin']
+				if ($ofertaAgot) {
+					$rangosAgot = $this->listarAgotamientosOferta($ofertaAgot['id_tbl_oferta']);
+					$bloqueo = $this->rangoAgotamientoQueBloquea($rangosAgot, $fecha_inicio);
+					if ($bloqueo !== null) {
+						throw new Exception('Esta oferta está agotada para esa fecha'
+							. (!empty($bloqueo['fin'])
+								? ', disponible nuevamente después del ' . date('d/m/Y', strtotime($bloqueo['fin']))
 								: '') . '.', 5710);
 					}
 				}
@@ -970,18 +967,276 @@ class Hotels  extends Model
 
 
 	/**
-	 * Agotada solo mientras AHORA esté dentro del rango fecha_hora .. fecha_hora_fin.
-	 * Un extremo vacío queda abierto; sin ninguna fecha = disponible.
+	 * ¿Está agotada la oferta para una búsqueda?
+	 *
+	 * Lee la lista de rangos de tbl_oferta_agotada (clave 'agotamientos') y, si no
+	 * viene, cae al rango único de siempre (fecha_hora .. fecha_hora_fin) para no
+	 * romper a quien llame este método con una oferta cruda de tbl_oferta.
+	 * La regla de cada rango está en rangoAgotamientoQueBloquea().
+	 *
+	 * @param array       $oferta
+	 * @param string|null $fechaCheckIn día de check-in buscado o reservado ('Y-m-d...');
+	 *                                  sin él se evalúa contra "ahora"
 	 */
-	public function ofertaAgotadaAhora($oferta)
+	public function ofertaAgotadaAhora($oferta, $fechaCheckIn = null)
 	{
-		$ini = !empty($oferta['fecha_hora'])     ? strtotime($oferta['fecha_hora'])     : null;
-		$fin = !empty($oferta['fecha_hora_fin']) ? strtotime($oferta['fecha_hora_fin']) : null;
-		if ($ini === null && $fin === null) return false;
+		$rangos = array();
+		if (!empty($oferta['agotamientos']) && is_array($oferta['agotamientos'])) {
+			$rangos = $oferta['agotamientos'];
+		} elseif (!empty($oferta['fecha_hora']) || !empty($oferta['fecha_hora_fin'])) {
+			$rangos[] = array(
+				'inicio' => isset($oferta['fecha_hora'])     ? $oferta['fecha_hora']     : null,
+				'fin'    => isset($oferta['fecha_hora_fin']) ? $oferta['fecha_hora_fin'] : null,
+			);
+		}
+		return $this->rangoAgotamientoQueBloquea($rangos, $fechaCheckIn) !== null;
+	}
+
+	/**
+	 * El rango de agotamiento que bloquea una búsqueda, o null si la oferta está libre.
+	 * Misma regla que esOfertaAgotada() del frontend (global/ofertasPricing.js):
+	 *  1. Si el rango ya terminó (fin < ahora), no bloquea.
+	 *  2. Con día de check-in, bloquea solo si ese día cae dentro del rango: un
+	 *     agotamiento vigente hoy no impide reservar para después de que termine.
+	 *  3. Sin día de check-in, bloquea mientras esté vigente ahora.
+	 * Un extremo vacío queda abierto; sin ninguna fecha = no bloquea.
+	 *
+	 * @return array|null ['inicio'=>, 'fin'=>, ...] tal como viene en $rangos
+	 */
+	public function rangoAgotamientoQueBloquea($rangos, $fechaCheckIn = null)
+	{
+		if (!$rangos || !is_array($rangos)) return null;
+
 		$ahora = time();
-		if ($ini !== null && $ahora < $ini) return false;
-		if ($fin !== null && $ahora > $fin) return false;
-		return true;
+		$diaCheckIn = !empty($fechaCheckIn) ? date('Y-m-d', strtotime(substr($fechaCheckIn, 0, 10))) : null;
+
+		foreach ($rangos as $rango) {
+			$ini = !empty($rango['inicio']) ? strtotime($rango['inicio']) : null;
+			$fin = !empty($rango['fin'])    ? strtotime($rango['fin'])    : null;
+			if ($ini === null && $fin === null) continue;
+			if ($fin !== null && $ahora > $fin) continue;
+
+			if ($diaCheckIn === null) {
+				if ($ini !== null && $ahora < $ini) continue;
+				return $rango;
+			}
+
+			if ($ini !== null && $diaCheckIn < date('Y-m-d', $ini)) continue;
+			if ($fin !== null && $diaCheckIn > date('Y-m-d', $fin)) continue;
+			return $rango;
+		}
+		return null;
+	}
+
+	/**
+	 * Rangos de agotamiento (tbl_oferta_agotada) de varias ofertas a la vez.
+	 *
+	 * @param  array $idsOfertas ids de tbl_oferta
+	 * @return array [id_tbl_oferta => [ ['id'=>, 'inicio'=>, 'fin'=>, 'comentario'=>], ... ]]
+	 */
+	public function getAgotamientosOfertas($idsOfertas)
+	{
+		$ids = array();
+		foreach ((array) $idsOfertas as $id) {
+			$id = intval($id);
+			if ($id > 0) $ids[$id] = $id;
+		}
+		if (!$ids) return array();
+
+		try {
+			$filas = $this->find('all', array(
+				'select' => 'ag.id_tbl_oferta_agotada id, ag.id_tbl_oferta, ag.fecha_inicio, ag.fecha_fin, ag.comentario',
+				'from'   => 'tbl_oferta_agotada ag',
+				'where'  => 'ag.activo = 1 AND ag.id_tbl_oferta IN (' . implode(',', $ids) . ')',
+				'order'  => 'ag.fecha_inicio asc, ag.id_tbl_oferta_agotada asc',
+			));
+		} catch (Exception $e) {
+			// Si la tabla todavía no existe en este entorno, el módulo sigue
+			// funcionando con el rango único de tbl_oferta.
+			return array();
+		}
+		if (!$filas) return array();
+
+		$porOferta = array();
+		foreach ($filas as $fila) {
+			$idOferta = intval($fila['id_tbl_oferta']);
+			$porOferta[$idOferta][] = array(
+				'id'         => intval($fila['id']),
+				'inicio'     => $fila['fecha_inicio'],
+				'fin'        => $fila['fecha_fin'],
+				'comentario' => $fila['comentario'],
+			);
+		}
+		return $porOferta;
+	}
+
+	/**
+	 * De una lista de rangos devuelve el que manda para los campos antiguos
+	 * fecha_hora / fecha_hora_fin del payload: el vigente ahora y, si no hay
+	 * ninguno vigente, el próximo que empieza. Así la app móvil y cualquier
+	 * cliente que todavía lea un solo rango siguen comportándose bien.
+	 *
+	 * @return array ['inicio'=>, 'fin'=>] con null si no hay rangos
+	 */
+	public function rangoAgotamientoPrincipal($rangos)
+	{
+		$vacio = array('inicio' => null, 'fin' => null);
+		if (!$rangos || !is_array($rangos)) return $vacio;
+
+		$ahora     = time();
+		$proximo   = null;
+		$proximoEn = null;
+		foreach ($rangos as $rango) {
+			$ini = !empty($rango['inicio']) ? strtotime($rango['inicio']) : null;
+			$fin = !empty($rango['fin'])    ? strtotime($rango['fin'])    : null;
+			if ($ini === null && $fin === null) continue;
+
+			$vigente = ($ini === null || $ahora >= $ini) && ($fin === null || $ahora <= $fin);
+			if ($vigente)
+				return array('inicio' => $rango['inicio'], 'fin' => $rango['fin']);
+
+			// Todavía no empieza: se guarda el más cercano.
+			if ($ini !== null && $ini > $ahora && ($proximoEn === null || $ini < $proximoEn)) {
+				$proximoEn = $ini;
+				$proximo   = array('inicio' => $rango['inicio'], 'fin' => $rango['fin']);
+			}
+		}
+		return $proximo ? $proximo : $vacio;
+	}
+
+	/**
+	 * Rangos de agotamiento de UNA oferta, para el administrador.
+	 * @return array lista de rangos (vacía si no tiene)
+	 */
+	public function listarAgotamientosOferta($idOferta)
+	{
+		$agotamientos = $this->getAgotamientosOfertas(array($idOferta));
+		$idOferta = intval($idOferta);
+		return isset($agotamientos[$idOferta]) ? $agotamientos[$idOferta] : array();
+	}
+
+	/**
+	 * Reemplaza la lista de rangos de agotamiento de una oferta.
+	 *
+	 * Se guarda la lista completa (no rangos sueltos): los anteriores se desactivan
+	 * y se insertan los que manda el administrador. Mandar una lista vacía deja la
+	 * oferta disponible.
+	 *
+	 * @param  array $post ['id_tbl_oferta', 'rangos' => [['inicio','fin','comentario'], ...], 'id_tbl_usuario']
+	 * @return array la lista guardada, o false con $this->error
+	 */
+	public function guardarAgotamientosOferta($post)
+	{
+		try {
+			$idOferta = isset($post['id_tbl_oferta']) ? intval($post['id_tbl_oferta']) : 0;
+			if ($idOferta <= 0)
+				throw new Exception("Falta la oferta", 400);
+
+			$rangos = isset($post['rangos']) && is_array($post['rangos']) ? $post['rangos'] : array();
+
+			// Validación previa: nada se guarda si un rango está mal.
+			$limpios = array();
+			foreach ($rangos as $pos => $rango) {
+				$inicio = isset($rango['inicio']) ? trim($rango['inicio']) : '';
+				$fin    = isset($rango['fin'])    ? trim($rango['fin'])    : '';
+				if ($inicio === '' && $fin === '')
+					throw new Exception("El rango " . ($pos + 1) . " no tiene fechas", 400);
+				if ($inicio !== '' && strtotime($inicio) === false)
+					throw new Exception("Fecha de inicio inválida en el rango " . ($pos + 1), 400);
+				if ($fin !== '' && strtotime($fin) === false)
+					throw new Exception("Fecha de fin inválida en el rango " . ($pos + 1), 400);
+				if ($inicio !== '' && $fin !== '' && strtotime($fin) <= strtotime($inicio))
+					throw new Exception("En el rango " . ($pos + 1) . " el fin debe ser posterior al inicio", 400);
+
+				$limpios[] = array(
+					'inicio'     => $inicio !== '' ? date('Y-m-d H:i:s', strtotime($inicio)) : null,
+					'fin'        => $fin    !== '' ? date('Y-m-d H:i:s', strtotime($fin))    : null,
+					'comentario' => isset($rango['comentario']) ? substr(trim($rango['comentario']), 0, 255) : null,
+				);
+			}
+
+			// Rangos que se solapan entre sí: se avisa, porque casi siempre es un error
+			// de captura y deja fechas duplicadas en el calendario.
+			$solapado = $this->rangosSeSolapan($limpios);
+			if ($solapado)
+				throw new Exception("Los rangos " . $solapado . " se cruzan entre sí", 400);
+
+			// Fuera los anteriores (borrado lógico, para conservar el historial).
+			$this->table  = 'tbl_oferta_agotada';
+			$this->fields = array('activo' => 0);
+			$this->where  = 'id_tbl_oferta = ' . $idOferta . ' AND activo = 1';
+			$this->update();
+
+			$idUsuario = isset($post['id_tbl_usuario']) ? intval($post['id_tbl_usuario']) : 0;
+			foreach ($limpios as $rango) {
+				$campos = array(
+					'id_tbl_oferta'  => $idOferta,
+					'activo'         => 1,
+					'fecha_creacion' => date('Y-m-d H:i:s'),
+				);
+				// El Model omite los campos NULL al guardar, así que solo se mandan
+				// los extremos que realmente tienen fecha (el otro queda NULL en la BD).
+				if ($rango['inicio'] !== null) $campos['fecha_inicio'] = $rango['inicio'];
+				if ($rango['fin']    !== null) $campos['fecha_fin']    = $rango['fin'];
+				if ($rango['comentario']) $campos['comentario'] = $rango['comentario'];
+				if ($idUsuario > 0) $campos['id_tbl_usuario_creacion'] = $idUsuario;
+
+				$this->table  = 'tbl_oferta_agotada';
+				$this->fields = $campos;
+				if (!$this->save())
+					throw new Exception("No se pudo guardar el agotamiento: " . $this->error, $this->codeerror);
+			}
+
+			return $this->listarAgotamientosOferta($idOferta);
+
+		} catch (Exception $e) {
+			$this->error     = $e->getMessage();
+			$this->codeerror = $e->getCode();
+			return false;
+		}
+	}
+
+	/**
+	 * Devuelve "1 y 3" con los dos primeros rangos que se cruzan, o '' si no hay cruces.
+	 * Un extremo vacío cuenta como infinito hacia ese lado.
+	 */
+	public function rangosSeSolapan($rangos)
+	{
+		$total = count($rangos);
+		for ($i = 0; $i < $total; $i++) {
+			$iniA = $rangos[$i]['inicio'] !== null ? strtotime($rangos[$i]['inicio']) : -PHP_INT_MAX;
+			$finA = $rangos[$i]['fin']    !== null ? strtotime($rangos[$i]['fin'])    : PHP_INT_MAX;
+			for ($j = $i + 1; $j < $total; $j++) {
+				$iniB = $rangos[$j]['inicio'] !== null ? strtotime($rangos[$j]['inicio']) : -PHP_INT_MAX;
+				$finB = $rangos[$j]['fin']    !== null ? strtotime($rangos[$j]['fin'])    : PHP_INT_MAX;
+				if ($iniA <= $finB && $iniB <= $finA)
+					return ($i + 1) . " y " . ($j + 1);
+			}
+		}
+		return '';
+	}
+
+	/** Elimina (borrado lógico) un rango de agotamiento por su id. */
+	public function eliminarAgotamientoOferta($idAgotamiento)
+	{
+		try {
+			$id = intval($idAgotamiento);
+			if ($id <= 0)
+				throw new Exception("Falta el id del agotamiento", 400);
+
+			$this->table  = 'tbl_oferta_agotada';
+			$this->fields = array('activo' => 0);
+			$this->where  = 'id_tbl_oferta_agotada = ' . $id;
+			if (!$this->update())
+				throw new Exception("No se pudo eliminar el agotamiento: " . $this->error, $this->codeerror);
+
+			return true;
+
+		} catch (Exception $e) {
+			$this->error     = $e->getMessage();
+			$this->codeerror = $e->getCode();
+			return false;
+		}
 	}
 
 	/**
@@ -1478,6 +1733,11 @@ class Hotels  extends Model
 				$esSuscriptor = ($tmpSus && $tmpSus['esSuscriptor'] === 'true');
 			}
 
+			// Rangos de agotamiento de todas las ofertas de la página, en una sola consulta.
+			$idsAgotamiento = array();
+			foreach ($ofertas as $ofertaTmp) $idsAgotamiento[] = $ofertaTmp['id_tbl_oferta'];
+			$agotamientosPorOferta = $this->getAgotamientosOfertas($idsAgotamiento);
+
 			foreach ($ofertas as $llave => $oferta) {
 
 				$id                 = intval($oferta['id']);
@@ -1490,10 +1750,14 @@ class Hotels  extends Model
 				$misOfertas[$llave]['habitaciones']       = $oferta['habitaciones'];
 				$misOfertas[$llave]['id_establecimiento'] = $id_establecimiento;
 
-				// Rango de agotamiento: el front considera agotada la oferta solo
-				// mientras AHORA esté entre fecha_hora (inicio) y fecha_hora_fin.
-				$misOfertas[$llave]['fecha_hora']     = $oferta['fechaHoraAgotado'];
-				$misOfertas[$llave]['fecha_hora_fin'] = $oferta['fechaHoraAgotadoFin'];
+				// Agotamiento: lista completa de rangos (tbl_oferta_agotada). Los campos
+				// fecha_hora / fecha_hora_fin se mantienen con el rango vigente o el
+				// próximo, para los clientes que todavía leen un solo rango.
+				$rangosAgot = isset($agotamientosPorOferta[$id_oferta]) ? $agotamientosPorOferta[$id_oferta] : array();
+				$principal  = $this->rangoAgotamientoPrincipal($rangosAgot);
+				$misOfertas[$llave]['agotamientos']   = $rangosAgot;
+				$misOfertas[$llave]['fecha_hora']     = $principal['inicio'];
+				$misOfertas[$llave]['fecha_hora_fin'] = $principal['fin'];
 
 				$misEstab[$id_establecimiento]['titulo']            = utf8_encode($oferta['nombreEstablecimiento']);
 				$misEstab[$id_establecimiento]['ciudad']            = utf8_encode($oferta['ciudadEstablecimiento']);
@@ -1782,7 +2046,7 @@ class Hotels  extends Model
 
 				$ListaOfertas = [];
 				foreach ($demoest['ofertas'] as $oferta) {
-					if (isset($oferta['id'], $oferta['sinImpuestos']) and !$this->ofertaAgotadaAhora($oferta)) {
+					if (isset($oferta['id'], $oferta['sinImpuestos']) and !$this->ofertaAgotadaAhora($oferta, isset($fechas['inicio']) ? $fechas['inicio'] : null)) {
 						$ListaOfertas[] = [
 							'id'           => $oferta['id'],
 							'adultos'      => $oferta['adultos'],
@@ -2329,6 +2593,11 @@ public function verROfertas($data)
         if (count($ofertas) == 1)
             $txtMsjResultado = str_replace('|nOfertas|', count($ofertas) . " oferta", $txtMsjResultado);
 
+        // Rangos de agotamiento de todas las ofertas de la página, en una sola consulta.
+        $idsAgotamiento = array();
+        foreach ($ofertas as $ofertaTmp) $idsAgotamiento[] = $ofertaTmp['id_tbl_oferta'];
+        $agotamientosPorOferta = $this->getAgotamientosOfertas($idsAgotamiento);
+
         foreach ($ofertas as $llave => $oferta) {
             $id = intval($oferta['id']);
             $id_establecimiento = intval($oferta['id_tbl_establecimiento']);
@@ -2340,10 +2609,14 @@ public function verROfertas($data)
             $misOfertas[$llave]['habitaciones'] = $oferta['habitaciones'];
             $misOfertas[$llave]['id_establecimiento'] = $id_establecimiento;
 
-            // Rango de agotamiento: el front considera agotada la oferta solo
-            // mientras AHORA esté entre fecha_hora (inicio) y fecha_hora_fin.
-            $misOfertas[$llave]['fecha_hora']     = $oferta['fechaHoraAgotado'];
-            $misOfertas[$llave]['fecha_hora_fin'] = $oferta['fechaHoraAgotadoFin'];
+            // Agotamiento: lista completa de rangos (tbl_oferta_agotada). Los campos
+            // fecha_hora / fecha_hora_fin se mantienen con el rango vigente o el
+            // próximo, para los clientes que todavía leen un solo rango.
+            $rangosAgot = isset($agotamientosPorOferta[$id_oferta]) ? $agotamientosPorOferta[$id_oferta] : array();
+            $principal  = $this->rangoAgotamientoPrincipal($rangosAgot);
+            $misOfertas[$llave]['agotamientos']   = $rangosAgot;
+            $misOfertas[$llave]['fecha_hora']     = $principal['inicio'];
+            $misOfertas[$llave]['fecha_hora_fin'] = $principal['fin'];
 
             $misEstab[$id_establecimiento]['titulo'] = utf8_encode($oferta['nombreEstablecimiento']);
             $misEstab[$id_establecimiento]['ciudad'] = utf8_encode($oferta['ciudadEstablecimiento']);
@@ -2632,7 +2905,7 @@ public function verROfertas($data)
             $demoest['id_establecimiento'] = $key;
             $ListaOfertas = [];
             foreach ($demoest['ofertas'] as $oferta) {
-                if (isset($oferta['id'], $oferta['sinImpuestos']) and !$this->ofertaAgotadaAhora($oferta)) {
+                if (isset($oferta['id'], $oferta['sinImpuestos']) and !$this->ofertaAgotadaAhora($oferta, isset($fechas['inicio']) ? $fechas['inicio'] : null)) {
                     $ListaOfertas[] = [
                         'id' => $oferta['id'],
                         'adultos' => $oferta['adultos'],

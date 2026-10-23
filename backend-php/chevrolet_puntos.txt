@@ -1,0 +1,7183 @@
+[
+	{
+		"access": 1,
+		"address": "R355+6JG, Portete de Tarqui, Guayaquil 090616, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 574257,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.19192525285731,
+		"longitude": -79.94099266827106,
+		"name": "Automotores Zhong Xing",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1488767,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 3384913,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/574257"
+	},
+	{
+		"access": 1,
+		"address": "Av. Malecón y Calle 23",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS2",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676102,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -0.9422809502611796,
+		"longitude": -80.73253359999998,
+		"name": "Mall del Pacífico",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 3097845,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5468749,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097846,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5468750,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097847,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468751,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676102"
+	},
+	{
+		"access": 1,
+		"address": "Av. Ramón Mujica s/n Urb. San Eduardo, El Chipe, Piura, Piura 20009, Peru",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 328304,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -5.181307,
+		"longitude": -80.630771,
+		"name": "Hotel Casa Andina",
+		"score": 4.9,
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 771259,
+				"network_id": 1337,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2261585,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 771260,
+				"network_id": 1337,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2261586,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/328304"
+	},
+	{
+		"access": 1,
+		"address": "Av Max Uhle 453, Cuenca, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 377122,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.90421,
+		"longitude": -78.984052,
+		"name": "Empresa Eléctrica",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2973211,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5338215,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/377122"
+	},
+	{
+		"access": 1,
+		"address": "Calle 13 Avenida Panamerica, Ipiales, Nariño, Colombia",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 470178,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.830567,
+		"longitude": -77.636466,
+		"name": "Enel X, Éxito",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 1202196,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2908220,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 1202197,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2908221,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/470178"
+	},
+	{
+		"access": 1,
+		"address": "Punta Sal Suites & Bungalows Resort",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 328306,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -3.956694,
+		"longitude": -80.95602,
+		"name": "Punta Sal Suites & Bungalows Resort",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 771266,
+				"network_id": 1337,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2261597,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 771267,
+				"network_id": 1337,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2261598,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/328306"
+	},
+	{
+		"access": 1,
+		"address": "R3XH+4JF, Same, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1503951,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.8478059421383818,
+		"longitude": -79.92096092551947,
+		"name": "Parqueadero La Tienda",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 2915394,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5279218,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2915395,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5279219,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1503951"
+	},
+	{
+		"access": 1,
+		"address": "Av. Ferroviaria, Machala, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS1"
+		],
+		"icon": "https://assets.plugshare.com/icons/Y.png",
+		"icon_type": "Y",
+		"id": 2297763,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -3.279721874385094,
+		"longitude": -79.91598442196846,
+		"name": "Terminal Machala",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3775044,
+				"outlets": [
+					{
+						"connector": 13,
+						"id": 6213997,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2297763"
+	},
+	{
+		"access": 1,
+		"address": "Av 4 de noviembre , Manta, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537842,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.9644944527920087,
+		"longitude": -80.70786936688823,
+		"name": "Metrocar Chevrolet - Manta",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390416,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203958,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537842"
+	},
+	{
+		"access": 1,
+		"address": "VQQV+H9 Camarones, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2118812,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.11105058295148665,
+		"longitude": -80.20651205091269,
+		"name": "Jama Campay",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3545178,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5936481,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2118812"
+	},
+	{
+		"access": 1,
+		"address": "Av. Mariano Acosta y Camilo Ponce Enriquez, Ibarra, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1522041,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.3471864273446412,
+		"longitude": -78.13130515580232,
+		"name": "Automotores de la Sierra Chevrolet - Ibarra",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2934087,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5298217,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1522041"
+	},
+	{
+		"access": 1,
+		"address": "Cra. 33 # 10-5, Puerto Asís, Putumayo, Colombia",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2043869,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.49443696683715277,
+		"longitude": -76.48991201072931,
+		"name": "7KW/H",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3468973,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5856397,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2043869"
+	},
+	{
+		"access": 1,
+		"address": "Av. Carlos Espinoza y C.3, Salinas, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1530552,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.2290589516103876,
+		"longitude": -80.92794607206075,
+		"name": "Automotores Continental Chevrolet - Salinas",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2942137,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5306924,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5306925,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530552"
+	},
+	{
+		"access": 1,
+		"address": "Av. Chone y San Cristobal",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS2",
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676098,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -0.2545907176277682,
+		"longitude": -79.19206869785059,
+		"name": "Bambolí Shopping",
+		"station_count": 5,
+		"stations": [
+			{
+				"id": 3097835,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5468738,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097836,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5468739,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097837,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468740,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097838,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468741,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097839,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 5468742,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676098"
+	},
+	{
+		"access": 1,
+		"address": "Mall de los Andes, Av. Atahualpa, 180103 Ambato, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS2",
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2162852,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -1.2647837889155127,
+		"longitude": -78.62825285643339,
+		"name": "Ambato",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 3590085,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5992093,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3590086,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5992094,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3590087,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5992095,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2162852"
+	},
+	{
+		"access": 1,
+		"address": "Av. Pedro Gual y Fausto Velez, Portoviejo, Ecuador",
+		"available_station_count": null,
+		"coming_soon": true,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 1530420,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.0605921435752357,
+		"longitude": -80.45866664845539,
+		"name": "Metrocar Chevrolet - Portoviejo (Coming Soon)",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2941997,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5306811,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530420"
+	},
+	{
+		"access": 1,
+		"address": "Luis Cordero Crespo ( Azogues)",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2",
+			"Wall"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268966,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.741789,
+		"longitude": -78.847685,
+		"name": "Cargador Colegio Luis Rogerio González",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 592554,
+				"outlets": [
+					{
+						"connector": 1,
+						"id": 1640109,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 592555,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1640110,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 592556,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 1640111,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268966"
+	},
+	{
+		"access": 1,
+		"address": "76V3+3P, Ayampe, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2123639,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.7069175026329728,
+		"longitude": -80.79510323703289,
+		"name": "Cerro Lobo",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3549950,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5941633,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2123639"
+	},
+	{
+		"access": 1,
+		"address": "Las Cañas, Ambuquí, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2188235,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.4695023578761772,
+		"longitude": -78.03073715418577,
+		"name": "Lotización \"El Refugio\"",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3654615,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6090216,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2188235"
+	},
+	{
+		"access": 1,
+		"address": "V5RR+W89, Tonsupa, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2",
+			"Wall"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2238224,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.892169919010547,
+		"longitude": -79.80924930000664,
+		"name": "Hotel Kemarios",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 3709531,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 6146928,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 6146929,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3709533,
+				"outlets": [
+					{
+						"connector": 1,
+						"id": 6146932,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2238224"
+	},
+	{
+		"access": 1,
+		"address": "3VXJ+6QF, Pedro Vicente Maldonado, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676228,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.09816245002720658,
+		"longitude": -79.1181478,
+		"name": "Hosteria Balcón de Alcalá",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3098025,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468900,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676228"
+	},
+	{
+		"access": 1,
+		"address": "QW6G+8HP, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 934836,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.2402710875705845,
+		"longitude": -80.07365740835667,
+		"name": "Cargador Paseo del Sol 2",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2316099,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4643184,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/934836"
+	},
+	{
+		"access": 1,
+		"address": "MFF4+CJW, Pelileo, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS2",
+			"CHAdeMO",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2279249,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -1.3265349087044245,
+		"longitude": -78.54344543069601,
+		"name": "EV Quick Charge",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 3754608,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 6193658,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3754609,
+				"outlets": [
+					{
+						"connector": 3,
+						"id": 6193659,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3754610,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6193660,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2279249"
+	},
+	{
+		"access": 1,
+		"address": "PG4X+6M8, Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS1"
+		],
+		"icon": "https://assets.plugshare.com/icons/Y.png",
+		"icon_type": "Y",
+		"id": 2287362,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -0.2942949555073157,
+		"longitude": -78.4509466606763,
+		"name": "Burger King Evinka",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3764390,
+				"outlets": [
+					{
+						"connector": 13,
+						"id": 6203379,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2287362"
+	},
+	{
+		"access": 1,
+		"address": "Via Alóag Sto Domingo e20, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS2",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1766345,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -0.2622289378231873,
+		"longitude": -79.11488295473131,
+		"name": "Super Cargadores Multimarca",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3191450,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5565216,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					},
+					{
+						"connector": 20,
+						"id": 5565217,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5565218,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1766345"
+	},
+	{
+		"access": 1,
+		"address": "QM3P+9VX, Pifo 170175, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1509359,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.24686033575080105,
+		"longitude": -78.31347615507374,
+		"name": "Cargadores Kia Puma",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 2921143,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5284837,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2921144,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5284838,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1509359"
+	},
+	{
+		"access": 1,
+		"address": "Conector Alpachaca S/N",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268957,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.125123,
+		"longitude": -78.361149,
+		"name": "Estacionamiento Aeropuerto UIO",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592542,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639958,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268957"
+	},
+	{
+		"access": 1,
+		"address": "Av. Bolívar Madero Vargas SN y Av. Circunvalación Norte",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676094,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -3.252927100902548,
+		"longitude": -79.97545269999999,
+		"name": "Supermaxi Vía al Puerto",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 3097817,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468719,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097818,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468720,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097819,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 5468721,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676094"
+	},
+	{
+		"access": 1,
+		"address": "Q4MM+P72, Santa Elena, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2300562,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.2157417329916176,
+		"longitude": -80.86684226989746,
+		"name": "Terminal Terrestre Sumpa",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3777753,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6216517,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2300562"
+	},
+	{
+		"access": 1,
+		"address": "5, Calle Autopista Cuenca - Azogues, Cuenca, Azuay, 010109 Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 357324,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.854622,
+		"longitude": -78.91484,
+		"name": "Supermaxi Challuabamba",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 852113,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2376540,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 852114,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2376541,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 852115,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2376542,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/357324"
+	},
+	{
+		"access": 1,
+		"address": "X3CQ+QRF, Vial 1, Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": true,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 1103573,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.0286007707075697,
+		"longitude": -79.91098780184984,
+		"name": "Tía La Joya (Coming Soon)",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2481880,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4817643,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1103573"
+	},
+	{
+		"access": 1,
+		"address": "Av. Eloy Alfaro y N75",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268946,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.100343,
+		"longitude": -78.469606,
+		"name": "Estacionamiento 1 Terminal Carcelén",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592528,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639848,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268946"
+	},
+	{
+		"access": 1,
+		"address": "Av. 24 de Mayo y Guayaquil",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268939,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.224939,
+		"longitude": -78.514336,
+		"name": "Estacionamiento La Ronda",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592512,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639830,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268939"
+	},
+	{
+		"access": 1,
+		"address": "Panamericana y Rio Chimbo 984G+R2X, Riobamba, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537841,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.6431514494509158,
+		"longitude": -78.67484689215912,
+		"name": "Automotores de la Sierra Chevrolet - Riobamba",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390415,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203957,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537841"
+	},
+	{
+		"access": 1,
+		"address": "Sector Chipipe Malecón, y, Salinas",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676110,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.200923400610278,
+		"longitude": -80.97531385000002,
+		"name": "Salinas Yacth Club",
+		"station_count": 4,
+		"stations": [
+			{
+				"id": 3097863,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468772,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097864,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468773,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097865,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468774,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097866,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468775,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676110"
+	},
+	{
+		"access": 1,
+		"address": "Av. Fco. De Orellana Y 8vo Pasaje 20b No, Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1104447,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.081602310508988,
+		"longitude": -79.91482604295015,
+		"name": "McDonald's Ciudad Orellana",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2482917,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4818746,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1104447"
+	},
+	{
+		"access": 1,
+		"address": "Calle París y Calle C",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2265995,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.07522118910966603,
+		"longitude": -78.4194790944457,
+		"name": "Parque Familiar Gross",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 3739886,
+				"network_id": 1913,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6178584,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3739887,
+				"network_id": 1637,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6178585,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2265995"
+	},
+	{
+		"access": 1,
+		"address": "Q979+P2V, Ambato 180101, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 349879,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.235183954238892,
+		"longitude": -78.63287353515625,
+		"name": "Supermaxi Ficoa",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 2097306,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360727,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097309,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360731,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097311,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360733,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/349879"
+	},
+	{
+		"access": 1,
+		"address": "C. Primera 315, Guayaquil 090613, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 387235,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.15796,
+		"longitude": -79.926209,
+		"name": "Taller Mecánico Servicentenario",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 932063,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 3101344,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/387235"
+	},
+	{
+		"access": 1,
+		"address": "Av. Quito y Pasaje Satélite, Santo Domingo, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537839,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.24670457945103902,
+		"longitude": -79.1523392091614,
+		"name": "Induauto Chevrolet - Santo Domingo",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390413,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203954,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5295044,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537839"
+	},
+	{
+		"access": 1,
+		"address": "Av León Febres Cordero Ribadeneyra, Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1103606,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.050205681793392,
+		"longitude": -79.88722812384367,
+		"name": "McDonald's La Aurora",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2481913,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4817676,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1103606"
+	},
+	{
+		"access": 1,
+		"address": "Panamericana Norte Km 1, Ibarra 100110, Equador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676217,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.3647425501011302,
+		"longitude": -78.11192935,
+		"name": "Hosteria el Prado",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3097998,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468869,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676217"
+	},
+	{
+		"access": 1,
+		"address": "Av. Isidro Ayora N1187 y Juan José Flores, Loja, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537846,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -3.976492716330903,
+		"longitude": -79.20335346499644,
+		"name": "Mirasol Chevrolet - Loja",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390420,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203966,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537846"
+	},
+	{
+		"access": 1,
+		"address": "Vía a Daule Km 14.5, Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": true,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 1530585,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.084833201020011,
+		"longitude": -79.93795955559274,
+		"name": "E.Maulme Chevrolet - Daule (Coming Soon)",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2942151,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5306942,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5306943,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530585"
+	},
+	{
+		"access": 1,
+		"address": "triangulo de papallacta",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2103088,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.3783486,
+		"longitude": -78.13861469999999,
+		"name": "Pana Llacta Restobar",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3530463,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5921433,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 16,
+						"id": 5921434,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2103088"
+	},
+	{
+		"access": 1,
+		"address": "Galo Plaza Lasso Km 4.5, 170144 Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1530621,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.11892206882952354,
+		"longitude": -78.47953998104913,
+		"name": "Automotores Continental Chevrolet - Pana Norte",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2942188,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5306982,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5306983,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530621"
+	},
+	{
+		"access": 1,
+		"address": "36, Bonaterra 091910, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1103640,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.0395252257167065,
+		"longitude": -79.8691500350833,
+		"name": "McDonald's Vía a Salitre",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2481984,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4817749,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1103640"
+	},
+	{
+		"access": 1,
+		"address": "Federico Malo y Tadeo Torres",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268965,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.904662,
+		"longitude": -79.004281,
+		"name": "Parque de la Madre (Cuenca)",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592552,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1640107,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268965"
+	},
+	{
+		"access": 1,
+		"address": "363W+PWV Plaza La Quadra, Manta, Manabí, Manta, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676230,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.9456132002620975,
+		"longitude": -80.75268205,
+		"name": "Centro Comercial La Quadra",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3098027,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468902,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676230"
+	},
+	{
+		"access": 1,
+		"address": "La Industrial Oe7-118 y Leonor Stacey",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS1",
+			"CCS2",
+			"GB/T (Fast)"
+		],
+		"icon": "https://assets.plugshare.com/icons/Y.png",
+		"icon_type": "Y",
+		"id": 2249941,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -0.15589209530488213,
+		"longitude": -78.49948664383795,
+		"name": "Power Hub El Bosque",
+		"station_count": 6,
+		"stations": [
+			{
+				"id": 3722110,
+				"outlets": [
+					{
+						"connector": 13,
+						"id": 6159413,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3722111,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 6159414,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3758722,
+				"outlets": [
+					{
+						"connector": 17,
+						"id": 6197777,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3758723,
+				"outlets": [
+					{
+						"connector": 17,
+						"id": 6197778,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3758724,
+				"outlets": [
+					{
+						"connector": 17,
+						"id": 6197779,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3758725,
+				"outlets": [
+					{
+						"connector": 17,
+						"id": 6197780,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2249941"
+	},
+	{
+		"access": 1,
+		"address": "Av Benjamín Carrión Mora 1y, Guayaquil 090501, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 453797,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.141477,
+		"longitude": -79.909412,
+		"name": "City Mall",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1095739,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2757898,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/453797"
+	},
+	{
+		"access": 1,
+		"address": "Ángel Ludeña y Av. Machala",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676105,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.12769895003539714,
+		"longitude": -78.49909729999999,
+		"name": "Supermaxi San Carlos",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 3097852,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468757,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097853,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468758,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097854,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 5468759,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676105"
+	},
+	{
+		"access": 1,
+		"address": "PFGC+H9 Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 730580,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.273609,
+		"longitude": -78.52904529999999,
+		"name": "Supermaxi San Bartolo",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 2097295,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360716,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097296,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360717,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097297,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360718,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": true,
+		"url": "http://api.plugshare.com/view/location/730580"
+	},
+	{
+		"access": 1,
+		"address": "Av. Francisco de Orellana Norte, Km 3.5 , Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1530519,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.126013410685745,
+		"longitude": -79.90568690975533,
+		"name": "Automotores Continental Chevrolet - Orellana",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2942103,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5306888,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5306889,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530519"
+	},
+	{
+		"access": 1,
+		"address": "4QF7+C6X, Puerto Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676229,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.12330916132019945,
+		"longitude": -79.23676967913923,
+		"name": "Hotel ANDY",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3098026,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468901,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676229"
+	},
+	{
+		"access": 1,
+		"address": "3XHP+J94, Turi, Equador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676233,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.920821553561037,
+		"longitude": -79.01402052023772,
+		"name": "Mall del Alto",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 3688356,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6124938,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3688357,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6124939,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676233"
+	},
+	{
+		"access": 1,
+		"address": "Río Ushimana, Quito, Equador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676236,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.305051964356321,
+		"longitude": -78.4366560031178,
+		"name": "PA' QUÉ ME INVITAN",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3098039,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468914,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676236"
+	},
+	{
+		"access": 1,
+		"address": "Km 5 Via Samborondon",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676113,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1111132005853652,
+		"longitude": -79.87099334999999,
+		"name": "Club de La Union",
+		"station_count": 8,
+		"stations": [
+			{
+				"id": 3097876,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468793,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097877,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468794,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097878,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468795,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097879,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468796,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097880,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468797,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097881,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468798,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097882,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468799,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097883,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468800,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676113"
+	},
+	{
+		"access": 1,
+		"address": "Francisco Barba y Chasqui Oe2-29 y, 170602 Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1892571,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.238678,
+		"longitude": -78.5218345,
+		"name": "The club black label barbershop",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3320131,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5702495,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1892571"
+	},
+	{
+		"access": 1,
+		"address": "MGRX+MQ2, Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 593548,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.308285505180189,
+		"longitude": -78.45054373621143,
+		"name": "Kia point of charge at Megamaxi",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1544187,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3470743,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/593548"
+	},
+	{
+		"access": 1,
+		"address": "R297+4RC, Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 335950,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.182592,
+		"longitude": -79.985537,
+		"name": "Supermaxi Vía a la Costa",
+		"station_count": 4,
+		"stations": [
+			{
+				"id": 792137,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2288709,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 792138,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 5466231,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 792139,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5466232,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 792140,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5466233,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": true,
+		"url": "http://api.plugshare.com/view/location/335950"
+	},
+	{
+		"access": 1,
+		"address": "W33P+XH3, 2° Pasaje 9 NO, Guayaquil 090112, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1106085,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.0948060978447707,
+		"longitude": -79.91353154182434,
+		"name": "Mall Del Norte",
+		"station_count": 7,
+		"stations": [
+			{
+				"id": 2484678,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4820066,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2484679,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4820067,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2484680,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4820068,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2484681,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4820069,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2484682,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4820070,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2484683,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4820071,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2484684,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4820072,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1106085"
+	},
+	{
+		"access": 1,
+		"address": "Av. de las Américas y González Suárez, Cuenca 010109, Ecuador",
+		"available_station_count": null,
+		"coming_soon": true,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 1530016,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.8882826749295543,
+		"longitude": -78.96676082199886,
+		"name": "Mirasol Chevrolet - Quinta Chica (Coming Soon)",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2941606,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5306189,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5306190,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530016"
+	},
+	{
+		"access": 1,
+		"address": "Av. Naciones Unidas y Av. América",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268949,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.174721,
+		"longitude": -78.492309,
+		"name": "Plaza de las Américas",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592531,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639851,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268949"
+	},
+	{
+		"access": 1,
+		"address": "Av. Galo Plaza Lasso y Fray Leonardo Murialdo",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676103,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.1312545500363623,
+		"longitude": -78.48173759999999,
+		"name": "Supermaxi Plaza Norte",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 3097848,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468752,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097849,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468753,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097850,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 5468754,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676103"
+	},
+	{
+		"access": 1,
+		"address": "Av. Cevallos y Filomentor, Ambato, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1529728,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.2360600156930528,
+		"longitude": -78.62076178340638,
+		"name": "Automotores de la Sierra Chevrolet - Av. Cevallos",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2941332,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5305819,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1529728"
+	},
+	{
+		"access": 1,
+		"address": "Av. Francisco de Orellana y San Ignacio, Quito 170517, Ecuador",
+		"available_station_count": null,
+		"coming_soon": true,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 1529997,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.2007543853177032,
+		"longitude": -78.48147615925808,
+		"name": "Metrocar Chevrolet - Gonzalez Suarez (Coming Soon)",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2941554,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5306091,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1529997"
+	},
+	{
+		"access": 1,
+		"address": "Av. 24 de Mayo, Cuenca, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS1",
+			"CCS2",
+			"GB/T",
+			"GB/T (Fast)",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/Y.png",
+		"icon_type": "Y",
+		"id": 589268,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -2.91365810688293,
+		"longitude": -78.9895809916924,
+		"name": "Wayra Plaza",
+		"station_count": 16,
+		"stations": [
+			{
+				"id": 2097340,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360766,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097341,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360767,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097342,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360768,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097343,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360769,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097344,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360770,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097345,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360771,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097346,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360772,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097347,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360773,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097348,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360774,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097349,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360775,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097350,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360776,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097351,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360777,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097352,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360778,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097353,
+				"outlets": [
+					{
+						"connector": 13,
+						"id": 4360779,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097354,
+				"outlets": [
+					{
+						"connector": 17,
+						"id": 4360780,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097355,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 4360781,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/589268"
+	},
+	{
+		"access": 1,
+		"address": "Av. América 17-192 y Caracas, 170109 Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1921131,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.20724646258104387,
+		"longitude": -78.50291524082422,
+		"name": "Carga EV - Imprenta FORCON El Ejido (GB/T, T1, T2)",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 3347519,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5741226,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 2,
+						"id": 5741227,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3357841,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 5741228,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1921131"
+	},
+	{
+		"access": 1,
+		"address": "Calle Simon Bolivar, Cuenca, Azuay, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 357984,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.898349,
+		"longitude": -78.996929,
+		"name": "Portal Artesanal",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 853979,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2379174,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/357984"
+	},
+	{
+		"access": 1,
+		"address": "Av. Oswaldo Guayasamín E5-25",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1198806,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.20579363312306584,
+		"longitude": -78.4275375453678,
+		"name": "Pilisimas Power Port - La Tejedora",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 2580739,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4921672,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2580740,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4921673,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1198806"
+	},
+	{
+		"access": 1,
+		"address": "QHW4+4HP, Quito 170902, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 347689,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.204451,
+		"longitude": -78.443373,
+		"name": "Aneta Cumbaya Drivers Academy",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 825875,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2333037,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 825876,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2333038,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/347689"
+	},
+	{
+		"access": 1,
+		"address": "Av. Guillermo Pareja Rolando y Virgilio Jaime Salinas, Guayaquil 090513, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1530587,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1498821255155884,
+		"longitude": -79.89206726927247,
+		"name": "Induauto Chevrolet - Garzota",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2942154,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5306948,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530587"
+	},
+	{
+		"access": 1,
+		"address": "Av. Del Rotarismo y Miguel Aspiazu Carbo",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676095,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1704994506018593,
+		"longitude": -79.9059086,
+		"name": "Supermaxi Urdesa",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 3097820,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468722,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097821,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468723,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097822,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 5468724,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676095"
+	},
+	{
+		"access": 1,
+		"address": "Av. Francisco de Orellana, Guayaquil 090512, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 137955,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.169457741717472,
+		"longitude": -79.89827749745055,
+		"name": "San Marino Shopping Center",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 256581,
+				"network_id": 71,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 520957,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3674657,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 6111214,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/137955"
+	},
+	{
+		"access": 1,
+		"address": "Av. Pdte. Carlos Julio Arosemena Tola Km 4, Guayaquil 090615, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537834,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.165127880461692,
+		"longitude": -79.92359960412777,
+		"name": "Induauto Chevrolet - Matriz",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390407,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203946,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5294902,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537834"
+	},
+	{
+		"access": 1,
+		"address": "Av. Rumichaca Ñan y Matilde Álvarez",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 268952,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.286687,
+		"longitude": -78.549693,
+		"name": "Estacionamiento Parque Carolo-Las Cuadras",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592534,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639875,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": true,
+		"url": "http://api.plugshare.com/view/location/268952"
+	},
+	{
+		"access": 1,
+		"address": "Juan Pío Montúfar y JJ Olmedo",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268940,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.220288,
+		"longitude": -78.508712,
+		"name": "Estacionamiento Montúfar 1",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592513,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639832,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268940"
+	},
+	{
+		"access": 1,
+		"address": "Av. Francisco de Orellana E4-43, 170517 Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS1",
+			"CCS2",
+			"GB/T"
+		],
+		"icon": "https://assets.plugshare.com/icons/Y.png",
+		"icon_type": "Y",
+		"id": 1788850,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -0.19736083055538745,
+		"longitude": -78.48812095107994,
+		"name": "Conectz",
+		"station_count": 8,
+		"stations": [
+			{
+				"id": 3213592,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5589826,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3213593,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5589827,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3213594,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5589828,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3213595,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5589829,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3213596,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5589830,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3213597,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5589831,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3213598,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 5589832,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3213599,
+				"outlets": [
+					{
+						"connector": 13,
+						"id": 5589833,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1788850"
+	},
+	{
+		"access": 1,
+		"address": "Av. Eloy Alfaro y De los Granados, Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1522183,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.16550209335724672,
+		"longitude": -78.46789306606284,
+		"name": "Proauto Chevrolet - Matriz",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 2934284,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5298469,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2934285,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5298470,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1522183"
+	},
+	{
+		"access": 1,
+		"address": "Av. 10 de Agosto & República, Quito 170102, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1529928,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.18264470169563868,
+		"longitude": -78.49051365647877,
+		"name": "Induauto Chevrolet - 10 de Agosto",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2941548,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5306080,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1529928"
+	},
+	{
+		"access": 1,
+		"address": "Av España 314 y Sebastián de Benalcázar, Cuenca 010103, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537845,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.8937669507647032,
+		"longitude": -78.99364760534472,
+		"name": "Mirasol Chevrolet - Matriz",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 1390419,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203965,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2931413,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5295334,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537845"
+	},
+	{
+		"access": 1,
+		"address": "Av. Rio Esmeraldas, Samborondon 092301",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676116,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1437376505944314,
+		"longitude": -79.86854894999999,
+		"name": "Parque Histórico",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 3097888,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468809,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097889,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468810,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676116"
+	},
+	{
+		"access": 1,
+		"address": "Av. 10 de Agosto N45-310, Quito 170138, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537832,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.1559972701622827,
+		"longitude": -78.48473997571703,
+		"name": "Automotores Continental Chevrolet - Labrador",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390404,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203939,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5292183,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537832"
+	},
+	{
+		"access": 1,
+		"address": "Av. Francisco de Orellana, Guayaquil 090512, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 137956,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.157099,
+		"longitude": -79.897666,
+		"name": "Kia Motor",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 256583,
+				"network_id": 71,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 520959,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/137956"
+	},
+	{
+		"access": 1,
+		"address": "Km 3.5 Via Samborodon Ave los Arrozales",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676115,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1275621005899383,
+		"longitude": -79.86843825,
+		"name": "Urbanización Parque Magno",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 3097886,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5468806,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3097887,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468807,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676115"
+	},
+	{
+		"access": 1,
+		"address": "Av. Gral. Rumiñahui 700, Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1529894,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.30445172735994175,
+		"longitude": -78.4537988163218,
+		"name": "EcuaAuto Chevrolet - San Rafael",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2941511,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5306036,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5306037,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1529894"
+	},
+	{
+		"access": 1,
+		"address": "PG4V+QP5, Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 466937,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.292858,
+		"longitude": -78.455647,
+		"name": "Supermaxi Plaza San Gabriel",
+		"station_count": 4,
+		"stations": [
+			{
+				"id": 1188937,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2886602,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 1188938,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2886603,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 1188939,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2886604,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 1188940,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2886605,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/466937"
+	},
+	{
+		"access": 1,
+		"address": "Av Ilaló y Rio Curaray, Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537844,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.29467477589108876,
+		"longitude": -78.45113485378592,
+		"name": "EcuaAuto Chevrolet - Valle de los Chillos",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390418,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203964,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5295262,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537844"
+	},
+	{
+		"access": 1,
+		"address": "Mall de los Andes, Av Atahualpa, Ambato 180103, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 272693,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.264976,
+		"longitude": -78.628071,
+		"name": "Mall de Los Andes",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 602293,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1671092,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 854364,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 2379687,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/272693"
+	},
+	{
+		"access": 1,
+		"address": "Av. Los Chasquis, Ambato 180207, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 272694,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.26764,
+		"longitude": -78.62401,
+		"name": "Universidad Técnica de Ambato",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 602294,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 1671093,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/272694"
+	},
+	{
+		"access": 1,
+		"address": "Vía a la Costa km 11, Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1936604,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1858079590063584,
+		"longitude": -79.97266293818777,
+		"name": "Primax Puerto Azul",
+		"score": 7.4,
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 3363066,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5746555,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5746556,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3363067,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5746557,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5746558,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1936604"
+	},
+	{
+		"access": 1,
+		"address": "Av. Remigio Crespo y Federico Proaño, Cuenca, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1522249,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.906778979747598,
+		"longitude": -79.00942361408615,
+		"name": "Metrocar Chevrolet - Remigio Crespo",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 2934288,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5298473,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3092376,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5462966,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1522249"
+	},
+	{
+		"access": 1,
+		"address": "Avenida Naciones Unidas entre, Av. 6 de Diciembre, Quito, Equador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS2",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 497621,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -0.176469628157994,
+		"longitude": -78.4794670343399,
+		"name": "Quicentro",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 1282668,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3029523,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3098005,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468876,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3098006,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5468877,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/497621"
+	},
+	{
+		"access": 1,
+		"address": "RG9C+PP8, Julio Moreno, Quito 170135, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS1",
+			"CCS2",
+			"GB/T",
+			"GB/T (Fast)",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/Y.png",
+		"icon_type": "Y",
+		"id": 730577,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -0.1806505,
+		"longitude": -78.4780813,
+		"name": "Megamaxi 6 de diciembre",
+		"station_count": 18,
+		"stations": [
+			{
+				"id": 2097275,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360695,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097276,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360696,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097277,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360697,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097278,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360698,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097279,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360699,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097280,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360700,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097281,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360701,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097282,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360702,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097283,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360703,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097284,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360704,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097285,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360705,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097286,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360706,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097287,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360707,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097288,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360708,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097289,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360709,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097290,
+				"outlets": [
+					{
+						"connector": 13,
+						"id": 4360710,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097291,
+				"outlets": [
+					{
+						"connector": 17,
+						"id": 4360711,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097292,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 4360712,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/730577"
+	},
+	{
+		"access": 1,
+		"address": "Guayaquil y Francisco de Caldas",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268942,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.217084,
+		"longitude": -78.505902,
+		"name": "Estacionamiento San Blas",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592517,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639837,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268942"
+	},
+	{
+		"access": 1,
+		"address": "Av. Juan Tanca Marengo y calle 13, Guayaquil 090513, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1530486,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1580333981868605,
+		"longitude": -79.89230822505314,
+		"name": "Automotores Continental Chevrolet - Tanca Marengo",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2942070,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5306886,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5306887,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530486"
+	},
+	{
+		"access": 1,
+		"address": "Av. 10 de Agosto 3731, Quito 170521, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 804176,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.1748837795324618,
+		"longitude": -78.48843667656183,
+		"name": "Pilisimas Power Port - Edificio Tofino",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2193454,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4515441,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/804176"
+	},
+	{
+		"access": 1,
+		"address": "Pablo Herrera Oe4-17, Quito 170102, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 730575,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.171238971333766,
+		"longitude": -78.49101674455727,
+		"name": "Supermaxi Granda Centeno",
+		"station_count": 4,
+		"stations": [
+			{
+				"id": 2097270,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360689,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097271,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360690,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097272,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360691,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097273,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360692,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/730575"
+	},
+	{
+		"access": 1,
+		"address": "Mejía y Sebastián de Benalcázar",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268941,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.218132,
+		"longitude": -78.511625,
+		"name": "Estacionamiento Cadisán",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592516,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639836,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268941"
+	},
+	{
+		"access": 1,
+		"address": "Av. Amazonas y Mariana de Jesús",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268948,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.189344,
+		"longitude": -78.487563,
+		"name": "Mall El Jardín",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592530,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639850,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268948"
+	},
+	{
+		"access": 1,
+		"address": "Av. Eloy Alfaro y Juan Severino",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 268938,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.189449,
+		"longitude": -78.484165,
+		"name": "Parqueo #8 Parque La Carolina",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 592511,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 1639829,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/268938"
+	},
+	{
+		"access": 1,
+		"address": "Av. Huayna Cápac y Juan Jaramillo, Cuenca, Ecuador",
+		"available_station_count": null,
+		"coming_soon": true,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 1530254,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.902087526705522,
+		"longitude": -78.99699532597087,
+		"name": "Metrocar Chevrolet - Huayna Capac (Coming Soon)",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2941831,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5306517,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530254"
+	},
+	{
+		"access": 1,
+		"address": "Centro Comercial Alhambra, 312, Piso: 2 Via Samborondon, Kilometro 2.5, Av. Samborondón, 092301 Samborondón, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1760960,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1318018738847306,
+		"longitude": -79.86347278829321,
+		"name": "Alhambra punto Kia",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3185941,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5559909,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1760960"
+	},
+	{
+		"access": 1,
+		"address": "Av. Samborondón 2, Moderna Town Center 092301, Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1530620,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.128791303277044,
+		"longitude": -79.863354922914,
+		"name": "Induauto Chevrolet - Moderna",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2942187,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5306981,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1530620"
+	},
+	{
+		"access": 1,
+		"address": "Av. Moran Valverde y Llira Ñan, Quito 170146, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1522077,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.28686931299017376,
+		"longitude": -78.5409667600929,
+		"name": "Automotores Continental Chevrolet - Morán Valverde",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2934167,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5298345,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5298346,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1522077"
+	},
+	{
+		"access": 1,
+		"address": "Diego de Robles 205, Quito 170901, Equador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676221,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.19546380005416603,
+		"longitude": -78.43619795000001,
+		"name": "Burger King - Cumbaya",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3098012,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468884,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676221"
+	},
+	{
+		"access": 1,
+		"address": "Av. Chone, Santo Domingo, Equador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"CCS2",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676226,
+		"in_use_station_count": null,
+		"is_fast_charger": true,
+		"latitude": -0.2543600499276075,
+		"longitude": -79.1942144650625,
+		"name": "Centro Comercial Bombolí",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 3098020,
+				"outlets": [
+					{
+						"connector": 20,
+						"id": 5468895,
+						"is_dc": true,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "DC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3098021,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468896,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3098022,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468897,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676226"
+	},
+	{
+		"access": 1,
+		"address": "Av. Quito &, Santo Domingo, Equador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676227,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.24752851669225892,
+		"longitude": -79.15421391213884,
+		"name": "Plaza La Quadra",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 3098023,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468898,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3098024,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468899,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676227"
+	},
+	{
+		"access": 1,
+		"address": "Pje. El Valle E6-67, Quito 170902, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1425614,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.20660422165290082,
+		"longitude": -78.42574264656145,
+		"name": "Scala Shopping",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2833691,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5192280,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1425614"
+	},
+	{
+		"access": 1,
+		"address": "Av. Interoceánica km 12.5 y, Av. Florencia 1 2 y, Quito 170902, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1446082,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.20823853811928508,
+		"longitude": -78.4248187020421,
+		"name": "Hospital De Los Valles",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2857064,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5217675,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1446082"
+	},
+	{
+		"access": 1,
+		"address": "Av MALDONADO",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1407506,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.2523673109432699,
+		"longitude": -78.52194832382341,
+		"name": "Parqueaderos CC El Recreo",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2811197,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5168768,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1407506"
+	},
+	{
+		"access": 1,
+		"address": "Av. Pedro Vicente Maldonado y Moraspungo, Quito 170121, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1529795,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.2540989125807718,
+		"longitude": -78.52256720772465,
+		"name": "Automotores Continental Chevrolet - El Recreo",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2941371,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5305860,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5305861,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1529795"
+	},
+	{
+		"access": 1,
+		"address": "Av. Oswaldo Guayasamín S/N, Quito 170901, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1425514,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.1970958304061262,
+		"longitude": -78.43996125604262,
+		"name": "MacDonalds",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2833591,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5192212,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1425514"
+	},
+	{
+		"access": 1,
+		"address": "Av. de las Américas 795, Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1522381,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1616513404864897,
+		"longitude": -79.89074996550058,
+		"name": "E.Maulme Chevrolet - Matriz",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2934318,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5298513,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1522381"
+	},
+	{
+		"access": 1,
+		"address": "OSWALDO GUAYASAMIN Y Oe7, 170902 Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537831,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.19673940122158545,
+		"longitude": -78.44143793970032,
+		"name": "Automotores Continental Chevrolet - Cumbayá",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390403,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203938,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5292177,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537831"
+	},
+	{
+		"access": 1,
+		"address": "RH26+HRH, Quito 170902, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1425547,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.19864976024483255,
+		"longitude": -78.43772239717006,
+		"name": "Centro Comercial Villa Cumbayá",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2833624,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5192213,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1425547"
+	},
+	{
+		"access": 1,
+		"address": "P38H+4RP, E583, El Cambio, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1326448,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -3.2848184144960357,
+		"longitude": -79.92038492113352,
+		"name": "BYD MACHALA",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 2719414,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5069679,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2719415,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5069680,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2719416,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5069681,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1326448"
+	},
+	{
+		"access": 1,
+		"address": "W34P+9WQ, Av. Francisco de Orellana, Guayaquil 090112, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1493730,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.094000486783779,
+		"longitude": -79.9127401878954,
+		"name": "PROMART",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2905504,
+				"network_id": 5175,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5269585,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1493730"
+	},
+	{
+		"access": 1,
+		"address": "Av Atahualpa y Río Guayllabamba, Ambato 180207, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537840,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.2652704470029121,
+		"longitude": -78.62707926104508,
+		"name": "Automotores de la Sierra Chevrolet - Matriz",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390414,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203956,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537840"
+	},
+	{
+		"access": 1,
+		"address": "RH26+R9V, Quito 170157, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676219,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.19780107343881145,
+		"longitude": -78.43920801250754,
+		"name": "Gasolinera Primax Cumbaya",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 3098007,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468878,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3098008,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468879,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3098009,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468880,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676219"
+	},
+	{
+		"access": 1,
+		"address": "RGPQ+RG3, Av. Simón Bolívar, Quito 170124, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 526389,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.162921514601064,
+		"longitude": -78.46127361059189,
+		"name": "Produbanco Parqueadero Clientes",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1357338,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3151412,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/526389"
+	},
+	{
+		"access": 1,
+		"address": "Samborondon",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 2089005,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.0710130362114128,
+		"longitude": -79.8724728387619,
+		"name": "Promart",
+		"station_count": 4,
+		"stations": [
+			{
+				"id": 3515727,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5906539,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3515728,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5906540,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3515729,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5906541,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3515730,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5906542,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/2089005"
+	},
+	{
+		"access": 1,
+		"address": "Av León Febres Cordero Ribadeneyra, Guayaquil, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537837,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.0505899796261216,
+		"longitude": -79.88791027559175,
+		"name": "Induauto Chevrolet - Nueva Aurora",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390410,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203950,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5295010,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537837"
+	},
+	{
+		"access": 1,
+		"address": "V4FP+5FH, 092301 Samborondón, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1760927,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.12620737018225,
+		"longitude": -79.86435960154668,
+		"name": "Marbol Plaza",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3185908,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5559907,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					},
+					{
+						"connector": 7,
+						"id": 5559908,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1760927"
+	},
+	{
+		"access": 1,
+		"address": "Av. 25 de Junio y Guillermo Castro Benítez, Machala, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 537849,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -3.2841563400268243,
+		"longitude": -79.92002229406124,
+		"name": "E.Maulme Chevrolet - Machala",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 1390423,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 3203972,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/537849"
+	},
+	{
+		"access": 1,
+		"address": "Av. Interoceánica, y Esq, Equador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1676220,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.19651115786968976,
+		"longitude": -78.4380876700989,
+		"name": "Centro Plaza Cumbaya",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3098010,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5468881,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1676220"
+	},
+	{
+		"access": 1,
+		"address": "RH47+2M9, 170902 Quito, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1892158,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.19495799769632416,
+		"longitude": -78.43576412647963,
+		"name": "Urbapark Pampite",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3319816,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5702200,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1892158"
+	},
+	{
+		"access": 1,
+		"address": "W4HH+75 Samborondón, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772",
+			"Type 2",
+			"Wall"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 211559,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.071445943000927,
+		"longitude": -79.87200634110451,
+		"name": "Plaza Batan",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 454149,
+				"network_id": 71,
+				"outlets": [
+					{
+						"connector": 1,
+						"id": 919509,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 454193,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 919511,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3095529,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5466229,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": true,
+		"url": "http://api.plugshare.com/view/location/211559"
+	},
+	{
+		"access": 1,
+		"address": "QJM3+QXR, Av. Oswaldo Guayasamín, Quito 170184, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/GR.png",
+		"icon_type": "GR",
+		"id": 730581,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.2153406,
+		"longitude": -78.39464420000002,
+		"name": "Supermaxi La Cerámica",
+		"station_count": 4,
+		"stations": [
+			{
+				"id": 2097298,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360719,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097299,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360720,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097300,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360721,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097301,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360722,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": true,
+		"url": "http://api.plugshare.com/view/location/730581"
+	},
+	{
+		"access": 1,
+		"address": "QJM3+QXR, Av. Oswaldo Guayasamín, Quito 170184, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1425581,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -0.21560956853718008,
+		"longitude": -78.39518348252274,
+		"name": "Megakywi",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2833658,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5192247,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1425581"
+	},
+	{
+		"access": 1,
+		"address": "Av samborondon",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"J-1772"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1594456,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.097486768440056,
+		"longitude": -79.8747293651104,
+		"name": "Plaza lagos",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3009782,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 5376616,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1594456"
+	},
+	{
+		"access": 1,
+		"address": "Mall de los Andes, Av. Atahualpa, Ambato 180103, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"GB/T",
+			"J-1772",
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 730582,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.2652797,
+		"longitude": -78.6281705,
+		"name": "Mall de los Andes",
+		"station_count": 3,
+		"stations": [
+			{
+				"id": 2097302,
+				"outlets": [
+					{
+						"connector": 2,
+						"id": 4360723,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097303,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4360724,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 2097304,
+				"outlets": [
+					{
+						"connector": 16,
+						"id": 4360725,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/730582"
+	},
+	{
+		"access": 1,
+		"address": "Q3H4+G33, Salinas, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1873684,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.2211246831606974,
+		"longitude": -80.94485539945084,
+		"name": "Supermaxi Salinas",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 3301426,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5682419,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1873684"
+	},
+	{
+		"access": 1,
+		"address": "Via a Tonchigue, Av. Principal. Same – Esmeraldas, Same, 170516",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1860749,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": 0.8477866238747027,
+		"longitude": -79.92104619619599,
+		"name": "Supermercado La Tienda - Casa Blanca (Conectz)",
+		"station_count": 2,
+		"stations": [
+			{
+				"id": 3288659,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5668595,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3288660,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 5668596,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1860749"
+	},
+	{
+		"access": 1,
+		"address": "Guaranda",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 319206,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.584541,
+		"longitude": -79.004951,
+		"name": "Cargador 1",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 747133,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 3101343,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/319206"
+	},
+	{
+		"access": 1,
+		"address": "Venezuela y Mariana de Jesús",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 1104579,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -1.671519771423551,
+		"longitude": -78.64408147991753,
+		"name": "Estación de servicio P&S San Alfonso",
+		"station_count": 1,
+		"stations": [
+			{
+				"id": 2482960,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 4818796,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/1104579"
+	},
+	{
+		"access": 1,
+		"address": "C.C 5, Samborondón 092301, Ecuador",
+		"available_station_count": null,
+		"coming_soon": false,
+		"connector_types": [
+			"Type 2"
+		],
+		"icon": "https://assets.plugshare.com/icons/G.png",
+		"icon_type": "G",
+		"id": 741326,
+		"in_use_station_count": null,
+		"is_fast_charger": false,
+		"latitude": -2.1262276595324643,
+		"longitude": -79.86434379576798,
+		"name": "Márbol Plaza",
+		"station_count": 4,
+		"stations": [
+			{
+				"id": 2126769,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6193786,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3754694,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6193787,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3754695,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6193788,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			},
+			{
+				"id": 3754696,
+				"outlets": [
+					{
+						"connector": 7,
+						"id": 6193789,
+						"is_dc": false,
+						"kilowatts": null,
+						"power": 0,
+						"power_type": "AC",
+						"status": null
+					}
+				]
+			}
+		],
+		"under_repair": false,
+		"url": "http://api.plugshare.com/view/location/741326"
+	}
+]

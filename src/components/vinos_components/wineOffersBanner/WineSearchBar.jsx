@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ClickAwayListener } from "@mui/material";
 import MenuTabs from "../../global_components/menu_tabs/MenuTabs";
 import DateTimePicker from "./DateTimePicker";
+import { getWineOffers } from "../../../core/vinoApiService";
+import { normalizarTexto } from "../../../core/filtrosVino";
 
 // ─── Ratings ────────────────────────────────────────────────────────────────
 const RATINGS = [
@@ -21,45 +23,69 @@ const getNow = () => {
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
 };
 
-// ─── Datos de ubicaciones ────────────────────────────────────────────────────
-const AVAILABLE_COUNTRIES = ["Ecuador"];
+// ─── Ubicaciones ─────────────────────────────────────────────────────────────
+// Las ciudades del buscador salen de las propias ofertas (ciudad y país de cada
+// establecimiento), así aparece cualquier ciudad que tenga algo y ninguna vacía.
 
-const AVAILABLE_CITIES = {
-  Ecuador: ["Cuenca", "Quito", "Guayaquil", "Loja", "Ambato", "Riobamba", "Manta", "Salinas", "Baños", "Otavalo", "Vilcabamba", "Montañita", "Puerto López", "Tena", "Puyo"],
-  Argentina: ["Mendoza", "Buenos Aires", "Salta", "San Juan", "La Rioja", "Neuquén", "Cafayate"],
-  Chile: ["Santiago", "Valparaíso", "Valle de Maipo", "Valle de Colchagua", "Valle de Casablanca", "Valle del Maule"],
-  España: ["La Rioja", "Barcelona", "Madrid", "Ribera del Duero", "Jerez", "Penedès", "Priorat"],
-  Francia: ["Bordeaux", "Champagne", "Burgundy", "Provence", "Valle del Loira", "Alsacia"],
-  Italia: ["Toscana", "Piamonte", "Veneto", "Sicilia", "Umbría", "Lombardía"],
-  Portugal: ["Porto", "Lisboa", "Alentejo", "Douro", "Madeira"],
-  "Estados Unidos": ["Napa Valley", "Sonoma", "Oregon", "Washington"],
-  México: ["Valle de Guadalupe", "Querétaro", "Aguascalientes"],
-  Perú: ["Ica", "Lima", "Arequipa"],
-  Colombia: ["Bogotá", "Medellín", "Villa de Leyva"],
-};
-
-// Devuelve sugerencias filtradas por lo que el usuario escribió
-const buildSuggestions = (query) => {
-  const q = (query || "").toLowerCase().trim();
-  const results = [];
-
-  // Primero ciudades
-  Object.entries(AVAILABLE_CITIES).forEach(([country, cities]) => {
-    cities.forEach((city) => {
-      if (!q || city.toLowerCase().includes(q) || country.toLowerCase().includes(q)) {
-        results.push({ type: "city", label: city, sublabel: country, country, city });
-      }
-    });
+/**
+ * [{ city, country }] únicos, ordenados por país y ciudad. Si una ciudad aparece con
+ * distintos países (p. ej. un "Ecuadpr" mal escrito) se queda con el más frecuente,
+ * para no mostrar el error como una opción aparte.
+ */
+export const ubicacionesDesdeOfertas = (ofertas) => {
+  const porCiudad = new Map();
+  (ofertas || []).forEach((o) => {
+    const est = (o && o.establishment) || {};
+    const city = (est.city || "").trim();
+    const country = (est.country || "").trim();
+    if (!city) return;
+    const clave = normalizarTexto(city);
+    if (!porCiudad.has(clave)) porCiudad.set(clave, { city, paises: new Map() });
+    const paises = porCiudad.get(clave).paises;
+    if (country) paises.set(country, (paises.get(country) || 0) + 1);
   });
 
-  // Luego países
-  AVAILABLE_COUNTRIES.forEach((country) => {
-    if (!q || country.toLowerCase().includes(q)) {
+  return [...porCiudad.values()]
+    .map(({ city, paises }) => ({
+      city,
+      country: [...paises.entries()].sort((a, b) => b[1] - a[1])[0]?.[0] || "",
+    }))
+    .sort((a, b) => a.country.localeCompare(b.country, "es") || a.city.localeCompare(b.city, "es"));
+};
+
+// Una sola descarga de ofertas para todos los buscadores de la página que no las reciben.
+let ubicacionesEnCurso = null;
+const cargarUbicaciones = () => {
+  if (!ubicacionesEnCurso) {
+    ubicacionesEnCurso = getWineOffers()
+      .then((r) => ubicacionesDesdeOfertas(Array.isArray(r) ? r : (r && r.data) || []))
+      .catch(() => {
+        ubicacionesEnCurso = null;   // permite reintentar en el próximo montaje
+        return [];
+      });
+  }
+  return ubicacionesEnCurso;
+};
+
+// Devuelve sugerencias filtradas por lo que el usuario escribió: ciudades y luego países.
+const buildSuggestions = (query, ubicaciones) => {
+  const q = normalizarTexto(query);
+  const results = [];
+
+  (ubicaciones || []).forEach(({ city, country }) => {
+    if (!q || normalizarTexto(city).includes(q) || normalizarTexto(country).includes(q)) {
+      results.push({ type: "city", label: city, sublabel: country, country, city });
+    }
+  });
+
+  [...new Set((ubicaciones || []).map((u) => u.country).filter(Boolean))].forEach((country) => {
+    if (!q || normalizarTexto(country).includes(q)) {
       results.push({ type: "country", label: country, sublabel: null, country, city: "" });
     }
   });
 
-  return results.slice(0, 8);
+  // El desplegable tiene scroll: se muestran todas las que coinciden.
+  return results;
 };
 
 // ─── Iconos ───────────────────────────────────────────────────────────────────
@@ -79,7 +105,7 @@ const CountryIcon = () => (
 // IMPORTANTE: este componente está definido FUERA de WineSearchBar.
 // Si se definiera adentro, React lo destruiría y recrearía en cada render,
 // haciendo que el input pierda el foco cada vez que el usuario escribe.
-const LocationField = ({ inputClassName = "", externalFilters, onSelect }) => {
+const LocationField = ({ inputClassName = "", externalFilters, onSelect, ubicaciones }) => {
   const inputRef = useRef(null);
 
   const getDisplayValue = () => {
@@ -92,22 +118,28 @@ const LocationField = ({ inputClassName = "", externalFilters, onSelect }) => {
 
   const [inputValue, setInputValue] = useState(getDisplayValue);
   const [open, setOpen] = useState(false);
-  const [suggestions, setSuggestions] = useState(() => buildSuggestions(""));
+  const [suggestions, setSuggestions] = useState(() => buildSuggestions("", ubicaciones));
 
   // Sincronizar cuando los filtros cambian desde afuera (p.ej. limpiar filtros)
   useEffect(() => {
     setInputValue(getDisplayValue());
   }, [externalFilters.country, externalFilters.city]);
 
+  // Las ubicaciones llegan después de montar (cuando cargan las ofertas).
+  useEffect(() => {
+    setSuggestions(buildSuggestions(inputValue, ubicaciones));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ubicaciones]);
+
   const handleChange = (e) => {
     const val = e.target.value;
     setInputValue(val);
-    setSuggestions(buildSuggestions(val));
+    setSuggestions(buildSuggestions(val, ubicaciones));
     setOpen(true);
   };
 
   const handleFocus = () => {
-    setSuggestions(buildSuggestions(inputValue));
+    setSuggestions(buildSuggestions(inputValue, ubicaciones));
     setOpen(true);
   };
 
@@ -203,9 +235,22 @@ const LocationField = ({ inputClassName = "", externalFilters, onSelect }) => {
 };
 
 // ─── Componente principal ────────────────────────────────────────────────────
-const WineSearchBar = ({ type = 0, onFilterChange, initialFilters, offerType = "vinos" }) => {
+// ofertas: si la página ya las tiene (WineSearch), las pasa y no se descargan de nuevo;
+// null mientras la página las carga. Sin la prop (Restaurant), el buscador las pide solo.
+const WineSearchBar = ({ type = 0, onFilterChange, initialFilters, offerType = "vinos", ofertas }) => {
   const navigate = useNavigate();
   const location = useLocation();
+
+  const [ubicaciones, setUbicaciones] = useState([]);
+  useEffect(() => {
+    if (ofertas !== undefined) {
+      setUbicaciones(ubicacionesDesdeOfertas(ofertas));
+      return undefined;
+    }
+    let vigente = true;
+    cargarUbicaciones().then((u) => vigente && setUbicaciones(u));
+    return () => { vigente = false; };
+  }, [ofertas]);
 
   const [filters, setFilters] = useState(
     initialFilters || { country: "", city: "", scheduleDateTime: "", rate: 0 }
@@ -226,6 +271,14 @@ const WineSearchBar = ({ type = 0, onFilterChange, initialFilters, offerType = "
     setFilters(next);
     if (onFilterChange) onFilterChange(next);
   };
+
+  // La fecha solo aplica a tours: en vinos y promociones no se muestra ni filtra. Si
+  // quedó una puesta (link viejo o cambio de tours a rutas en la sidebar), se quita.
+  const conFecha = (offerType || "").toLowerCase().trim() === "tours";
+  useEffect(() => {
+    if (!conFecha && filters.scheduleDateTime) handleFilterChange("scheduleDateTime", "");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [conFecha]);
 
   const handleLocationSelect = (suggestion) => {
     const next = { ...filters, country: suggestion.country, city: suggestion.city };
@@ -277,24 +330,27 @@ const WineSearchBar = ({ type = 0, onFilterChange, initialFilters, offerType = "
           <div className="grid lg:grid-cols-12 md:grid-cols-12 grid-flow-row border-b border-gray-200">
 
             {/* Campo unificado Ciudad / País */}
-            <div className="col-span-4 border-r border-gray-200 px-4 py-2 relative">
+            <div className={`${conFecha ? "col-span-4" : "col-span-6"} border-r border-gray-200 px-4 py-2 relative`}>
               <LocationField
                 inputClassName="text-xs"
                 externalFilters={filters}
                 onSelect={handleLocationSelect}
+                ubicaciones={ubicaciones}
               />
             </div>
 
-            {/* Disponibilidad */}
-            <div className="col-span-3 border-r border-gray-200 px-4 py-2 relative">
-              <DateTimePicker
-                value={pickerValue}
-                onChange={(val) => handleFilterChange("scheduleDateTime", val)}
-              />
-            </div>
+            {/* Disponibilidad (solo tours) */}
+            {conFecha && (
+              <div className="col-span-3 border-r border-gray-200 px-4 py-2 relative">
+                <DateTimePicker
+                  value={pickerValue}
+                  onChange={(val) => handleFilterChange("scheduleDateTime", val)}
+                />
+              </div>
+            )}
 
             {/* Rating */}
-            <div className="col-span-3 px-4 py-2 relative">
+            <div className={`${conFecha ? "col-span-3" : "col-span-4"} px-4 py-2 relative`}>
               <ClickAwayListener onClickAway={() => setOpenRate(false)}>
                 <div className="cursor-pointer" onClick={() => setOpenRate(!openRate)}>
                   <div className="flex flex-row gap-3 items-center">
@@ -396,16 +452,19 @@ const WineSearchBar = ({ type = 0, onFilterChange, initialFilters, offerType = "
               inputClassName="text-sm"
               externalFilters={filters}
               onSelect={handleLocationSelect}
+              ubicaciones={ubicaciones}
             />
           </div>
 
-          {/* Disponibilidad */}
-          <div className="relative border-b border-gray-200 px-4 py-3">
-            <DateTimePicker
-              value={pickerValue}
-              onChange={(val) => handleFilterChange("scheduleDateTime", val)}
-            />
-          </div>
+          {/* Disponibilidad (solo tours) */}
+          {conFecha && (
+            <div className="relative border-b border-gray-200 px-4 py-3">
+              <DateTimePicker
+                value={pickerValue}
+                onChange={(val) => handleFilterChange("scheduleDateTime", val)}
+              />
+            </div>
+          )}
 
           {/* Rating */}
           <div className="relative border-b border-gray-200">

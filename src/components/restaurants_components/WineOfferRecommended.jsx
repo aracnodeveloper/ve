@@ -80,7 +80,7 @@ const WineOfferRecommended = ({ ofertaSeleccionada, establecimiento, includeInRe
   const daysRemaining = getDaysRemaining();
 
   const handleClickReservar = () => {
-    // Si viene un callback onReservar (estamos dentro de Restaurants), hacer scroll a la tabla
+    // Si viene un callback onReservar (estamos dentro de Restaurants), se abre el ticket de la oferta
     if (onReservar) {
       onReservar();
       return;
@@ -306,12 +306,15 @@ const WineOfferRecommended = ({ ofertaSeleccionada, establecimiento, includeInRe
               <span className="font-semibold text-lg text-gray-600">Consultar precio</span>
             )}
           </div>
-           {ofertType !== "promociones" ? (
+           {/* Las promociones también generan ticket dentro del restaurante; fuera de él
+               (página del hotel) siguen llevando a la app. */}
+           {ofertType !== "promociones" || onReservar ? (
           <button
             className="bg-greenVE-500 hover:bg-greenVE-600 transition-colors text-white font-medium py-2 px-6 rounded-full shadow-sm hover:shadow-md"
             onClick={handleClickReservar}
           >
-            Reservar
+            {/* Dentro del restaurante abre el ticket; desde el hotel lleva a la página del restaurante. */}
+            {onReservar ? "Generar ticket" : "Reservar"}
           </button>
             ) : (
               <div className='flex flex-col gap-1'>

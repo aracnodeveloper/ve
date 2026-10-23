@@ -13,7 +13,9 @@ const PuntosCarga = () => {
                 <Suspense><Navbar activo={8} /></Suspense>
             </div>
 
-            <div className="flex-1 min-h-0">
+            {/* isolate: encierra los z-index internos de Leaflet (panes 400-700) para que
+                no se pinten por encima de la barra inferior del movil. */}
+            <div className="flex-1 min-h-0 isolate">
                 <PuntosCargaMap />
             </div>
         </div>

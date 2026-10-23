@@ -31,6 +31,14 @@ function crearLeadPuntoCarga($post)
 	};
 
 	$ciudad = $g('ciudad');
+
+	// La ubicacion marcada en el mapa va al final de la observacion, con enlace para abrirla.
+	$observacion = $g('mensaje');
+	if (is_numeric($g('latitud')) && is_numeric($g('longitud'))) {
+		$coords = $g('latitud') . ',' . $g('longitud');
+		$observacion .= "\n\nUbicación del punto: " . $coords . ' (https://www.google.com/maps?q=' . $coords . ')';
+	}
+
 	$payload = array(
 		'stageId'     => $stageId,
 		'typeId'      => $typeId,
@@ -42,8 +50,8 @@ function crearLeadPuntoCarga($post)
 		'city'        => $ciudad !== '' ? $ciudad : 'No especificada',
 		'address'     => $g('direccion'),
 		'occupation'  => '',
-		// El mensaje del formulario queda como observacion del lead.
-		'observation' => $g('mensaje'),
+		// El mensaje del formulario (y la ubicacion) quedan como observacion del lead.
+		'observation' => $observacion,
 	);
 
 	try {

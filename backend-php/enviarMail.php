@@ -157,10 +157,12 @@ public function configureSMTP()
                     $GLOBALS['vtClass'] . 'plantillasMail/puntoCarga.php',
                     $datos
                 );
-                // La foto va embebida en el correo (la plantilla la muestra por
-                // su URL) y ademas adjunta, para poder guardarla sin entrar a la
-                // web. Solo se adjunta si el archivo esta en este servidor.
-                $this->adjuntarFotoPuntoCarga(isset($post['fotoUrl']) ? $post['fotoUrl'] : '');
+                // Las fotos van embebidas en el correo (la plantilla las muestra por
+                // su URL) y ademas adjuntas, para poder guardarlas sin entrar a la
+                // web. Solo se adjuntan las que estan en este servidor. fotoUrl es el
+                // campo unico de la version anterior del formulario.
+                foreach (array('fotoEstablecimiento', 'fotoParqueadero', 'fotoLugar', 'fotoUrl') as $campoFoto)
+                    $this->adjuntarFotoPuntoCarga(isset($post[$campoFoto]) ? $post[$campoFoto] : '');
             } else {
                 $titulo = $esEmprendedor ? "Nuevo interesado en emprender" : "Nuevo mensaje de contacto";
                 $this->emails->Body = $this->armarBodyContacto($post, $titulo);

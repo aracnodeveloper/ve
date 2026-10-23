@@ -111,6 +111,7 @@ const WineOfferItem = ({ offer }) => {
       FotoPrincipal: offer.image,
       Detalle: offer.description || offer.title,
       IdOferta: offer.id,
+      id: offer.id,
       price: offer.price || 0,
       Precio: offer.price || 0,
       FinalSinImpuestos: offer.price || 0,
@@ -122,6 +123,8 @@ const WineOfferItem = ({ offer }) => {
       type: offer.type || '',
       subType: offer.subType || '',
       wineEstablishment: {
+        // UUID de vino_api: es el que se guarda en el ticket (tbl_certificado).
+        id: establishment.id || offer.establishmentId,
         name: establishmentName,
         city: establishment.city,
         country: establishment.country

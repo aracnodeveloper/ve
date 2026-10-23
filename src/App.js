@@ -40,6 +40,8 @@ const Promo = lazy(() => import("./pages/Promo/Promo"));
 const Tips = lazy(() => import("./pages/Tips/Tips"));
 const Suscribete = lazy(() => import("./pages/Suscribete/Suscribete"));
 const PuntosCarga = lazy(() => import("./pages/PuntosCarga/PuntosCarga"));
+const BeneficiosMarca = lazy(() => import("./pages/BeneficiosMarca/BeneficiosMarca"));
+const MisBeneficios = lazy(() => import("./pages/MisBeneficios/MisBeneficios"));
 const SearchBar = lazy(
   () => import("./components/global_components/searchBar/searchBar")
 );
@@ -90,6 +92,8 @@ const handleOnClick = () => {
 
 function App() {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+  const isPuntos = window.location.pathname === "/puntos-carga";
 
   useEffect(() => {
     const handleResize = () => {
@@ -326,6 +330,22 @@ function App() {
             }
           />
           <Route
+            path="/marca"
+            element={
+              <Suspense>
+                <BeneficiosMarca />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/mis-beneficios"
+            element={
+              <Suspense>
+                <MisBeneficios />
+              </Suspense>
+            }
+          />
+          <Route
             path="/emprende"
             element={
               <Suspense>
@@ -407,7 +427,7 @@ function App() {
           ></Route>
         </Routes>
       </Router>
-      {!isMobile ? (
+      {!isMobile && !isPuntos ? (
         <div
           className="fixed bottom-5 right-0 bg-transparent py-2 rounded-full cursor-pointer"
           onClick={() => handleOnClick()}

@@ -51,7 +51,7 @@ export const OFFER_TYPES = {
     tagBorder: 'border-rose-300',
     iconColor: 'text-rose-600',
     subTypes: [
-      { value: 'burgerKing', label: 'burgerKing' },
+      { value: 'burgerKing', label: 'Burger King' },
       { value: 'bares', label: 'Bares & Lounges' },
       { value: 'vinotecas', label: 'Vinotecas' },
     ],

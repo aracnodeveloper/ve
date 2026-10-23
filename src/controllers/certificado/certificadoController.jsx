@@ -121,6 +121,49 @@ export const crearCertificado = async function ({
 };
 
 /**
+ * Genera el ticket de una oferta de vino_api (restaurantes, rutas, tours) y lo devuelve
+ * listo para mostrar en TicketModal: con código, código de barras, nombre del
+ * establecimiento, título y foto de la oferta.
+ *
+ * A diferencia de crearCertificado, devuelve el mensaje del servidor cuando falla (por
+ * ejemplo, el límite OneShot de un ticket por beneficio) para poder explicárselo al usuario.
+ * Devuelve { ok: true, ticket } o { ok: false, msj }.
+ */
+export const generarTicketVino = async function ({ oferta, personas = 1, ubicacion, latitud, longitud } = {}) {
+    try {
+        const bd = getSesion();
+        if (!bd) return { ok: false, msj: "Inicia sesión para generar el ticket." };
+
+        const params = {
+            token: bd["token"],
+            id_tbl_type: TYPE_TICKET,
+            id_tbl_usuario: bd["data"]["id_usuario"],
+            beneficiarios: personas,
+        };
+        const idOferta = oferta?.id || oferta?.IdOferta;
+        const idEstablecimiento = oferta?.wineEstablishment?.id;
+        if (idOferta) params.id_tbl_oferta = idOferta;
+        if (idEstablecimiento) params.id_tbl_establecimiento = idEstablecimiento;
+        if (latitud) params.latitud = latitud;
+        if (longitud) params.longitud = longitud;
+        if (ubicacion) params.ubicacion = ubicacion;
+        // Se guardan para poder contar beneficios por subType sin consultar vino_api.
+        if (oferta?.type) params.wine_type = oferta.type;
+        if (oferta?.subType) params.wine_subtype = oferta.subType;
+
+        const res = await new CertificadoService().crearCertificado(params);
+        if (!res || !res["estado"]) {
+            return { ok: false, msj: (res && res["msj"]) || "No se pudo generar el ticket. Intenta nuevamente." };
+        }
+
+        const ticket = await resolverVino(res["data"]?.ticket || { id_tbl_certificado: res["data"]?.id_tbl_certificado });
+        return { ok: true, ticket };
+    } catch {
+        return { ok: false, msj: "No se pudo generar el ticket. Revisa tu conexión e intenta nuevamente." };
+    }
+};
+
+/**
  * Certificados del usuario logueado (paginado).
  * Usa obtenerCertificado, que resuelve establecimiento y oferta contra VE.
  * tipo: 1 = Certificado, 2 = Ticket. Pasar null para traer ambos.

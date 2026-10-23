@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { cargarCodigosHeader, etiquetaMarcaDeSesion } from "../../../global/codigoMadre";
 
 const MenuTabs = () => {
   const navigate = useNavigate();
@@ -9,6 +10,23 @@ const MenuTabs = () => {
   const [rutasOpen, setRutasOpen] = useState(false);
   const dropdownRef = useRef(null);
 
+  // Marca del usuario (BYD, JETOUR...) al lado de Beneficios, misma regla que la
+  // Navbar: solo con sesión, porque los beneficios se resuelven con el token.
+  const leerMarca = () => {
+    const session = JSON.parse(localStorage.getItem("datos"));
+    return session && session.data?.nivel !== "visitante" ? etiquetaMarcaDeSesion(session) : null;
+  };
+  const [marca, setMarca] = useState(leerMarca);
+
+  // Las marcas se administran en el admin y llegan después (con caché de 6 horas).
+  useEffect(() => {
+    let cancelado = false;
+    cargarCodigosHeader().then(() => {
+      if (!cancelado) setMarca(leerMarca());
+    });
+    return () => { cancelado = true; };
+  }, []);
+
   const getActiveTab = () => {
     if (pathname === "/" || pathname.startsWith("/busqueda") || pathname.startsWith("/hotel/")) return 1;
     if (pathname === "/vinos" || pathname === "/Tours" || pathname === "/Promociones") return 4;
@@ -17,6 +35,7 @@ const MenuTabs = () => {
     if (pathname.startsWith("/nosotros")) return 6;
     if (pathname.startsWith("/contacto")) return 7;
     if (pathname.startsWith("/puntos-carga")) return 8;
+    if (pathname.startsWith("/marca")) return 9;
     return 1;
   };
 
@@ -30,6 +49,7 @@ const MenuTabs = () => {
   const handleClickNosotros = () => navigate("/nosotros");
   const handleClickContactanos = () => navigate("/contacto");
   const handleClickPuntosCarga = () => navigate("/puntos-carga");
+  const handleClickMarca = () => navigate("/marca");
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -137,7 +157,7 @@ const MenuTabs = () => {
                       className="w-full text-left px-4 py-2.5  text-sm text-gray-700 hover:bg-[#ACCD7B] hover:text-white transition-colors font-medium"
                     >
                       Ruta del vino
-                    </button>|
+                    </button>
                   </div>
                 )}
               </div>
@@ -157,7 +177,21 @@ const MenuTabs = () => {
           )}
         </div>
 
-        {/* Items 5–7 */}
+        {/* ── Marca del usuario ── */}
+        {marca && (
+          <a
+            href="/marca"
+            onClick={(e) => { e.preventDefault(); handleClickMarca(); }}
+            className={renderTabClass(9)}
+          >
+            <div className="rounded-full bg-white flex items-center justify-center" style={{ height: "22px", width: "22px" }}>
+              <span className="icon-[ph--storefront-fill] h-3.5 w-3.5 text-greenVE-600"></span>
+            </div>
+            <label className="hidden md:flex cursor-pointer font-medium">{marca}</label>
+          </a>
+        )}
+
+        {/* Items 5–8 */}
         {menuItems.filter((i) => i.id > 4).map((item) => (
           <a
             key={item.id}

@@ -8,7 +8,7 @@ import { getIcon } from '../../../global/icons2';
 import HotelExpress from './HotelExpress';
 import HotelExpressConfirmacion from './HotelExpressConfirmacion';
 import AlertExpress from '../../global_components/alert/AlertExpress';
-import { contarNoches, construirOfertasMostradas, esOfertaAgotada, textoAgotada } from '../../../global/ofertasPricing';
+import { contarNoches, construirOfertasMostradas, esOfertaAgotada, periodosAgotados, textoAgotada } from '../../../global/ofertasPricing';
 
 const HotelOfertas = (props) => {
   const { Establecimiento, Noches, Fechas, Opciones, clickRecomendados, SetRecomendados, OfertaSeleccionada, includeWineOffer = true, setIncludeWineOffer } = props;
@@ -163,7 +163,8 @@ const HotelOfertas = (props) => {
 
   // Agotada si su día de reactivación es posterior al día de check-in elegido
   // (ver esOfertaAgotada en ofertasPricing.js).
-  const esAgotada = (oferta) => esOfertaAgotada(oferta, Fechas && Fechas[0] && Fechas[0].startDate);
+  const checkIn = Fechas && Fechas[0] && Fechas[0].startDate;
+  const esAgotada = (oferta) => esOfertaAgotada(oferta, checkIn);
 
   // Desglose de noches (entre semana / fin de semana) y ofertas a mostrar:
   // si la estancia cruza ambos tipos, se fusionan las ofertas pareja (mismo
@@ -402,11 +403,20 @@ const HotelOfertas = (props) => {
                           </div>) : (<></>)
                         }
                         {
-                          esAgotada(item) ? (<div className="ml-5 flex items-center text-xs bg-gray-100 rounded-md px-2 gap-1.5 py-0.5 mb-2 w-fit border border-gray-200">
-                            <span className="icon-[material-symbols-light--event-busy-outline-rounded] text-gray-400 h-4 w-4"></span>
-                            <label className="text-gray-500 text-xs font-medium">
-                              {textoAgotada(item)}
-                            </label>
+                          esAgotada(item) ? (<div className="ml-5 flex flex-col mb-2 w-fit">
+                            <div className="flex items-center text-xs bg-gray-100 rounded-md px-2 gap-1.5 py-0.5 border border-gray-200">
+                              <span className="icon-[material-symbols-light--event-busy-outline-rounded] text-gray-400 h-4 w-4"></span>
+                              <label className="text-gray-500 text-xs font-medium">
+                                {textoAgotada(item, checkIn)}
+                              </label>
+                            </div>
+                            {/* Con varias ventanas de agotamiento, el cartel explica la que
+                                bloquea estas fechas y aquí se listan todas las demás. */}
+                            {periodosAgotados(item).length > 1 && (
+                              <label className="text-[10px] text-gray-400 mt-0.5 ml-1">
+                                Fechas no disponibles: {periodosAgotados(item).join(" · ")}
+                              </label>
+                            )}
                           </div>) : (<></>)
                         }
                         <label className="ml-2 text-xs font-semibold text-gray-500">Aplica:</label>

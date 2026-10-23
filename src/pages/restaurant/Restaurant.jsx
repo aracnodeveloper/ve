@@ -30,10 +30,10 @@ const Restaurants = () => {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const { nombre } = useParams();
-  
+
   const searchInitiated = useRef(false);
   const ofertasRef = useRef(null);
-  
+
   const getInitialId = () => {
     try {
       const id = searchParams.get('id');
@@ -50,7 +50,6 @@ const Restaurants = () => {
 
   const [idHotel, setIdHotel] = useState(getInitialId);
   const [establecimiento, setEstablecimiento] = useState(null);
-  const [options, setOptions] = useState({ adult: 2, children: 0, childrenAges: [], room: 1 });
   const [date, setDate] = useState(null);
   const [destination, setDestination] = useState(null);
   const [openMap, setOpenMap] = useState(false);
@@ -62,7 +61,16 @@ const Restaurants = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const [errorMessage, setErrorMessage] = useState(null);
   const [wineOfferLoading, setWineOfferLoading] = useState(false);
-  
+  // Pedido de ticket desde la oferta recomendada: { id, n } (n cambia para poder repetirlo).
+  const [solicitudTicket, setSolicitudTicket] = useState(null);
+
+  // Baja a las ofertas y abre el ticket de la recomendada.
+  const pedirTicketRecomendada = () => {
+    ofertasRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const id = ofertaSeleccionada?.id || ofertaSeleccionada?.IdOferta;
+    if (id) setSolicitudTicket({ id, n: Date.now() });
+  };
+
   const session = JSON.parse(localStorage.getItem("datos"));
   const nivel = session ? session.data.nivel : "visitante";
   const codigo = localStorage.getItem('codigo');
@@ -102,11 +110,11 @@ const Restaurants = () => {
   // Retorna: { recommended, allOffers } - la oferta recomendada y TODAS las ofertas del establecimiento
   const searchRelatedWineOffer = async (establishmentName, establishmentCity) => {
     if (!establishmentName) return { recommended: null, allOffers: [] };
-    
+
     try {
       setWineOfferLoading(true);
       const wineOffers = await getWineOffers();
-      
+
       if (!wineOffers || wineOffers.length === 0) {
         return { recommended: null, allOffers: [] };
       }
@@ -186,9 +194,6 @@ const Restaurants = () => {
         setIncludeWineOffer(true);
       }
 
-      if (location.state?.options) {
-        setOptions(location.state.options);
-      }
       if (location.state?.date) {
         const dates = location.state.date.map(d => ({
           startDate: new Date(d.startDate),
@@ -207,10 +212,10 @@ const Restaurants = () => {
         setEstablecimiento(est);
         if (location.state.destination) setDestination(location.state.destination);
         setOpenMap(location.state.openMap || false);
-        
+
         // Buscar TODAS las ofertas de vino del establecimiento
         const { recommended, allOffers } = await searchRelatedWineOffer(est.Titulo, est.Ciudad);
-        
+
         if (!location.state?.OfertaSeleccionada) {
           if (recommended) {
             setOfertaSeleccionada(recommended);
@@ -230,7 +235,6 @@ const Restaurants = () => {
         const opcionesParam = searchParams.get('opciones');
         if (opcionesParam && !location.state?.options) {
           parsedOptions = JSON.parse(decodeURIComponent(opcionesParam));
-          setOptions(parsedOptions);
         }
 
         const fechasParam = searchParams.get('fechas');
@@ -257,9 +261,9 @@ const Restaurants = () => {
         console.error("[Restaurants] Error parsing URL params:", error);
       }
 
-      const searchName = location.state?.searchEstablishmentName || 
-                         nombre?.replaceAll("-", " ") ||            
-                         null;
+      const searchName = location.state?.searchEstablishmentName ||
+        nombre?.replaceAll("-", " ") ||
+        null;
 
       if (!searchName && !idHotel) {
         setErrorMessage('No se pudo determinar el establecimiento a buscar');
@@ -269,7 +273,7 @@ const Restaurants = () => {
       const today = new Date();
       const tomorrow = new Date(today);
       tomorrow.setDate(today.getDate() + 1);
-      
+
       const searchDateStart = parsedDate?.[0]?.startDate || location.state?.date?.[0]?.startDate || today;
       const searchDateEnd = parsedDate?.[0]?.endDate || location.state?.date?.[0]?.endDate || tomorrow;
 
@@ -293,7 +297,7 @@ const Restaurants = () => {
 
       try {
         const result = await getResultadoRFiltro(filtro);
-        
+
         if (result === 401) {
           localStorage.removeItem("datos");
           window.location.reload();
@@ -302,10 +306,10 @@ const Restaurants = () => {
 
         if (result?.Establecimientos?.length > 0) {
           let matchedEstablishment = result.Establecimientos[0];
-          
+
           if (searchName && !idHotel) {
             const normalizedSearch = searchName.toLowerCase().trim();
-            const exactMatch = result.Establecimientos.find(e => 
+            const exactMatch = result.Establecimientos.find(e =>
               e.Titulo?.toLowerCase().trim() === normalizedSearch
             );
             if (exactMatch) {
@@ -314,7 +318,7 @@ const Restaurants = () => {
           }
 
           setEstablecimiento(matchedEstablishment);
-          
+
           setDestination({
             Titulo: matchedEstablishment.Titulo,
             Tipo: 'establecimiento',
@@ -328,7 +332,7 @@ const Restaurants = () => {
 
           // Buscar TODAS las ofertas de vino del establecimiento
           const { recommended, allOffers } = await searchRelatedWineOffer(
-            matchedEstablishment.Titulo, 
+            matchedEstablishment.Titulo,
             matchedEstablishment.Ciudad
           );
 
@@ -372,19 +376,19 @@ const Restaurants = () => {
     return (
       <div className="h-screen w-screen flex flex-col justify-center items-center bg-white">
         {!codigo && (
-          <img 
-            src="https://visitaecuador.com/img/web/logo_verde.png" 
-            style={{ width: "300px", height: "auto" }} 
+          <img
+            src="https://visitaecuador.com/img/web/logo_verde.png"
+            style={{ width: "300px", height: "auto" }}
             alt="Logo"
             className="mb-6"
           />
         )}
-        
+
         {errorMessage ? (
           <div className="text-center px-4">
             <div className="text-red-500 text-lg mb-4">⚠️</div>
             <p className="text-gray-700 font-medium mb-2">{errorMessage}</p>
-            <button 
+            <button
               onClick={() => window.history.back()}
               className="mt-4 bg-greenVE-500 text-white px-6 py-2 rounded-lg hover:bg-greenVE-600"
             >
@@ -408,14 +412,14 @@ const Restaurants = () => {
         {ticketsPendientes > 0 && (
           <PendingBenefitsModal tipo={TYPE_TICKET} cantidad={ticketsPendientes} />
         )}
-        <Suspense><Navbar  activo={4}/></Suspense>
-        
+        <Suspense><Navbar activo={4} /></Suspense>
+
         {/* Banner Mobile */}
         <Suspense>
-          <HotelBannerMobile 
+          <HotelBannerMobile
             Titulo={establecimiento.Titulo}
             Catalogacion={establecimiento.Catalogacion}
-            Galeria={establecimiento.Galeria} 
+            Galeria={establecimiento.Galeria}
             Incluye={establecimiento.Incluye}
             NoIncluye={establecimiento.NoIncluye}
             Adicionales={establecimiento.Adicionales}
@@ -437,7 +441,7 @@ const Restaurants = () => {
                   ofertaSeleccionada={ofertaSeleccionada}
                   establecimiento={establecimiento}
                   showCheckbox={false}
-                  onReservar={() => ofertasRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+                  onReservar={pedirTicketRecomendada}
                 />
               </Suspense>
             </div>
@@ -456,8 +460,8 @@ const Restaurants = () => {
 
         {/* Search Mobile */}
         <Suspense>
-          <WineSearchBar 
-            type={0} 
+          <WineSearchBar
+            type={0}
             onFilterChange={handleFilterChange}
             initialFilters={wineFilters}
             navigateTo="/busqueda-beneficios"
@@ -474,10 +478,8 @@ const Restaurants = () => {
                 <RestaurantOfertas
                   Establecimiento={establecimiento}
                   Ofertas={wineOffersForEstablishment}
-                  Fechas={date}
-                  Opciones={options}
-                  scheduleDateTime={wineFilters.scheduleDateTime}
                   ofertaActiva={ofertaSeleccionada}
+                  solicitudTicket={solicitudTicket}
                 />
               </Suspense>
             </div>
@@ -487,12 +489,12 @@ const Restaurants = () => {
 
         {/* Map Mobile */}
         <Suspense>
-          <HotelMap 
-            className="z-10" 
-            Latitud={establecimiento.Latitud} 
-            Longitud={establecimiento.Longitud} 
-            Direccion={establecimiento.Direccion} 
-            Titulo={establecimiento.Titulo} 
+          <HotelMap
+            className="z-10"
+            Latitud={establecimiento.Latitud}
+            Longitud={establecimiento.Longitud}
+            Direccion={establecimiento.Direccion}
+            Titulo={establecimiento.Titulo}
             PrecioSinImpuestos={establecimiento.PrecioSinImpuestos}
           />
         </Suspense>
@@ -532,17 +534,17 @@ const Restaurants = () => {
       <Suspense fallback={<NavbarSkeleton />}>
         <Navbar activo={4} />
       </Suspense>
-      
+
       <div className="flex flex-col md:flex-row mx-auto max-w-6xl py-6 sm:px-6 lg:px-8">
         <div className="md:w-9/12">
-          <Suspense><HotelGallery Galeria={establecimiento.Galeria} /></Suspense> 
+          <Suspense><HotelGallery Galeria={establecimiento.Galeria} /></Suspense>
         </div>
-      {!wineOffersForEstablishment.some(o => o.type === 'promociones') && (
+        {!wineOffersForEstablishment.some(o => o.type === 'promociones') && (
 
           <div className="md:w-3/12 ml-5 mb-5">
             <Suspense>
-              <WineSearchBar 
-                type={3} 
+              <WineSearchBar
+                type={3}
                 onFilterChange={handleFilterChange}
                 initialFilters={wineFilters}
                 navigateTo="/busqueda-beneficios"
@@ -555,7 +557,7 @@ const Restaurants = () => {
         )}
       </div>
 
-     <div className="flex mx-auto max-w-6xl py-0 sm:px-6 lg:px-8">
+      <div className="flex mx-auto max-w-6xl py-0 sm:px-6 lg:px-8">
         <Suspense><HotelBanner Establecimiento={establecimiento} offer={ofertaSeleccionada} /></Suspense>
       </div>
 
@@ -567,7 +569,7 @@ const Restaurants = () => {
               ofertaSeleccionada={ofertaSeleccionada}
               establecimiento={establecimiento}
               showCheckbox={false}
-              onReservar={() => ofertasRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+              onReservar={pedirTicketRecomendada}
             />
           </Suspense>
         </div>
@@ -582,37 +584,35 @@ const Restaurants = () => {
         </div>
       )}
 
-     {nivel === "suscriptor" && !wineOffersForEstablishment.some(o => o.type === 'promociones') && (
-            <div className="flex flex-col md:flex-row mx-auto max-w-6xl py-0 sm:px-6 lg:px-8">
-        <div className="md:w-9/12 mt-5 mb-5">
-          <Suspense><HotelDetails Establecimiento={establecimiento} /></Suspense>
-        </div>
-        <div className="flex flex-col md:w-3/12">
-           <Suspense>
+      {nivel === "suscriptor" && !wineOffersForEstablishment && (
+        <div className="flex flex-col md:flex-row mx-auto max-w-6xl py-0 sm:px-6 lg:px-8">
+          <div className="md:w-9/12 mt-5 mb-5">
+            <Suspense><HotelDetails Establecimiento={establecimiento} /></Suspense>
+          </div>
+          <div className="flex flex-col md:w-3/12">
+            <Suspense>
               <HotelContacts
                 Contactos={establecimiento.Contactos}
                 ContactosCentral={establecimiento.ContactosCentral}
               />
             </Suspense>
-       
-        </div>
-      </div>   )}
 
-      {/* Tabla de ofertas de vino - RestaurantOfertas */}
-      {!wineOffersForEstablishment.some(o => o.type === 'promociones') && (
-      <div ref={ofertasRef} className="flex mx-auto max-w-6xl py-0 sm:px-6 lg:px-8 mb-20">
-        <Suspense>
-          <RestaurantOfertas
-            Establecimiento={establecimiento}
-            Ofertas={wineOffersForEstablishment}
-            Fechas={date}
-            Opciones={options}
-            scheduleDateTime={wineFilters.scheduleDateTime}
-            ofertaActiva={ofertaSeleccionada}
-          />
-        </Suspense>
-      </div>
-)}
+          </div>
+        </div>)}
+
+      {/* Ofertas de beneficio (rutas, tours y promociones), cada una con su ticket */}
+      {wineOffersForEstablishment.length > 0 && (
+        <div ref={ofertasRef} className="flex mx-auto max-w-6xl py-0 sm:px-6 lg:px-8 mb-20">
+          <Suspense>
+            <RestaurantOfertas
+              Establecimiento={establecimiento}
+              Ofertas={wineOffersForEstablishment}
+              ofertaActiva={ofertaSeleccionada}
+              solicitudTicket={solicitudTicket}
+            />
+          </Suspense>
+        </div>
+      )}
       <Suspense><Footer /></Suspense>
     </div>
   );

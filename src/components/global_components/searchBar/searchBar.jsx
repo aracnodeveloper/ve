@@ -325,9 +325,16 @@ const SearchBar = (props) => {
                   }`}</span>
                 </div>
               </div>
+              {/* El panel lleva stopPropagation: vive dentro del div que abre y
+                  cierra el desplegable, asi que sin eso cada clic en + o -
+                  llegaba hasta el padre y lo cerraba. Mismo recurso que ya usa
+                  el panel del calendario. */}
               {openOptions && (
                 <ClickAwayListener onClickAway={handleClickAway}>
-                  <div className="absolute top-16 bg-white shadow-xl px-1 py-2 z-50">
+                  <div
+                    className="absolute top-16 bg-white shadow-xl px-1 py-2 z-50"
+                    onClick={(e) => e.stopPropagation()}
+                  >
                     <div className="flex justify-between px-3 ">
                       <span>Adultos</span>
                       <div className="flex items-center justify-between border border-greenVE-600 rounded-md ">

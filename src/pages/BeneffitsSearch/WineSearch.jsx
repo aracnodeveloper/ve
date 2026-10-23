@@ -6,6 +6,7 @@ import { getOfferTypeConfig } from "../../core/offertTypeConfig";
 import WineSearchItem from "../../components/global_components/Beneffits/WineSearchItem";
 import WineSearchItemSkeleton from "../../components/global_components/Beneffits/WineSearchItemSkeleton";
 import WineSearchBar from "../../components/vinos_components/wineOffersBanner/WineSearchBar";
+import { cumpleFiltrosVino } from "../../core/filtrosVino";
 import CreateOfferModal from "../../components/vinos_components/admin/CreateoffertsModal";
 import BenefitsSidebar from "../../components/global_components/Beneffits/BenefitsSideBar";
 import LeafletMap from "../../components/global_components/maps/LeafletMap";
@@ -99,20 +100,6 @@ const WineSearch = () => {
     fetchData();
   }, []);
 
-  const matchesSchedule = (offer) => {
-    const { scheduleDateTime } = filters;
-    if (!scheduleDateTime) return true;
-
-    const d = new Date(scheduleDateTime);
-    const jsDay = d.getDay();
-    const isoDay = jsDay === 0 ? 7 : jsDay;
-
-    const schedules = offer.schedules || [];
-    if (schedules.length === 0) return true;
-
-    return schedules.some((s) => isoDay >= s.day_start && isoDay <= s.day_end);
-  };
-
   // ── Handlers de la sidebar ──
   const handleTypeChange = (typeKey) => {
     setOfferType(typeKey);
@@ -145,22 +132,8 @@ const WineSearch = () => {
         if (st !== offerSubType) return false;
       }
 
-      // ── Filtros de searchBar ──
-      const est = offer.establishment || {};
-      if (
-        filters.country &&
-        !est.country?.toLowerCase().includes(filters.country.toLowerCase())
-      )
-        return false;
-      if (
-        filters.city &&
-        !est.city?.toLowerCase().includes(filters.city.toLowerCase())
-      )
-        return false;
-      if (filters.rate > 0 && (est.rate || 0) < filters.rate) return false;
-      if (!matchesSchedule(offer)) return false;
-
-      return true;
+      // ── Filtros de searchBar (misma regla que el banner, ver core/filtrosVino) ──
+      return cumpleFiltrosVino(offer, filters);
     });
 
     // ── Ordenamiento ──
@@ -343,7 +316,7 @@ const WineSearch = () => {
         <Suspense><Navbar /></Suspense>
 
         <div className="bg-white border-b border-gray-200 sticky top-0 z-40">
-          <WineSearchBar type={3} onFilterChange={setFilters} initialFilters={filters} />
+          <WineSearchBar type={3} onFilterChange={setFilters} initialFilters={filters} ofertas={data} offerType={offerType} />
         </div>
 
         <div className="p-4">
@@ -376,7 +349,7 @@ const WineSearch = () => {
 
       <div className="bg-white sticky top-0 z-30 shadow-sm">
         <div className="max-w-6xl mx-auto px-6">
-          <WineSearchBar type={0} onFilterChange={setFilters} initialFilters={filters} />
+          <WineSearchBar type={0} onFilterChange={setFilters} initialFilters={filters} ofertas={data} offerType={offerType} />
         </div>
       </div>
 

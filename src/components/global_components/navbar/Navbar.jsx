@@ -12,7 +12,7 @@ import MarcaPais from "./MarcaPais";
 import MobileMenu from "./MobileMenu";
 import MobileBottomNav from "./MobileBottomNav";
 import ModalCodigoPromocional from "../../login_components/ModalCodigoPromocional";
-import { cargarCodigosHeader, etiquetaMarcaActual } from "../../../global/codigoMadre";
+import { cargarCodigosHeader, etiquetaMarcaActual, etiquetaMarcaDeSesion } from "../../../global/codigoMadre";
 
 const icons = new Icons();
 
@@ -29,6 +29,8 @@ const Navbar = ({ activo, isExposed = false }) => {
   const yaGanaste = session ? session.data.permisos.perfil.yaGanaste : false;
   const dashboard = session ? session.data.permisos.perfil.dashboard : false;
   const beta = session ? session.data.permisos.perfil.pruebasBeta : false;
+  // Cuenta madre (permiso 544): administra los beneficios de su marca.
+  const misBeneficios = session?.data?.permisos?.perfil?.misBeneficios === true;
   const foto = session ? (session.data.fotos ? session.data.fotos.m : "") : "";
   const [isLoadingAdmin, setLoadingAdmin] = useState(false);
   const [isLoadingAdminBeta, setLoadingAdminBeta] = useState(false);
@@ -52,6 +54,11 @@ const Navbar = ({ activo, isExposed = false }) => {
   // vienen en la sesion, sin consultas extra.
   // Las marcas del header se administran en el admin; hasta que lleguen se usa la lista local.
   const [codigoMadre, setCodigoMadre] = useState(() => etiquetaMarcaActual(session));
+  // Menú de la marca junto a Beneficios, como en la app. Solo con sesión: los
+  // beneficios se resuelven con el token, y un visitante que entró con
+  // ?codigo=BYD todavía no tiene de dónde sacarlos. Se recalcula en cada
+  // render porque las marcas del servidor llegan después (setCodigoMadre).
+  const marcaMenu = nivel !== "visitante" ? etiquetaMarcaDeSesion(session) : null;
 
   // Solo al montar: `session` se reconstruye en cada render y dispararía el efecto sin parar.
   useEffect(() => {
@@ -82,12 +89,13 @@ const Navbar = ({ activo, isExposed = false }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleClickLogin = () => { navigate("/login"); };
-  const handleClickSuscription = () => { setOpenSuscription(false); navigate("/suscripcion", { state: { showMenu: true } }); };
+  const handleClickLogin = () => { navigate("/login"); setOpenMenu(false); };
+  const handleClickSuscription = () => { setOpenSuscription(false); setOpenMenu(false); navigate("/suscripcion", { state: { showMenu: true } }); };
   const handleClickNosotros = () => { navigate("/nosotros"); setOpenMenu(false); };
-  const handleClickProfileSet = () => { navigate("/perfil"); setOpenMobileProfile(false); };
-  const handleClickBookHistory = () => { navigate("/historial"); setOpenMobileProfile(false); };
-  const handleClickFavorites = () => { navigate("/favoritos"); setOpenMobileProfile(false); };
+  // Estas tres salen tanto del panel del perfil como del menu, asi que cierran los dos.
+  const handleClickProfileSet = () => { navigate("/perfil"); setOpenMobileProfile(false); setOpenMenu(false); };
+  const handleClickBookHistory = () => { navigate("/historial"); setOpenMobileProfile(false); setOpenMenu(false); };
+  const handleClickFavorites = () => { navigate("/favoritos"); setOpenMobileProfile(false); setOpenMenu(false); };
   const handleClickYaGanaste = () => { navigate("/yaganaste"); };
   const handleClickVinos = () => { navigate("/vinos"); setOpenMenu(false); };
   const handleClickTours = () => { navigate("/Tours"); setOpenMenu(false); };
@@ -116,6 +124,7 @@ const Navbar = ({ activo, isExposed = false }) => {
 
   const handleClickProfile = () => { setOpenProfile(!openProfile); };
   const handleClickMobileProfile = () => {
+    setOpenMenu(false);
     if (nivel == "visitante") { navigate("/login"); }
     else { setOpenMobileProfile(!openMobileProfile); }
   };
@@ -136,7 +145,9 @@ const Navbar = ({ activo, isExposed = false }) => {
   const handleClickInfotour = () => { window.open("https://www.infotour.app/"); setOpenMenu(false); };
   const handleClickContactanos = () => { navigate("/contacto"); setOpenMenu(false); };
   const handleClickPuntosCarga = () => { navigate("/puntos-carga"); setOpenMenu(false); };
-  const handleClickMenu = () => { setOpenConvenios(false); setOpenMenu(!openMenu); };
+  const handleClickMarca = () => { navigate("/marca"); setOpenMenu(false); };
+  const handleClickMisBeneficios = () => { navigate("/mis-beneficios"); setOpenProfile(false); setOpenMobileProfile(false); setOpenMenu(false); };
+  const handleClickMenu = () => { setOpenConvenios(false); setOpenMobileProfile(false); setOpenMenu(!openMenu); };
 
   /** Arma el params de loginpost desde el usuario de Firebase. */
   const construirParams = (user, metodo, idMetodo) => {
@@ -205,7 +216,7 @@ const Navbar = ({ activo, isExposed = false }) => {
         {codigoMadre && (
           <div className="flex flex-1 items-center justify-center px-2">
             <span
-              className="rounded-[10px]  px-3.5 py-1.5 leading-none whitespace-nowrap text-white font-extrabold tracking-[0.08em] text-sm sm:text-lg shadow-md"
+              className="rounded-[10px]  px-3.5 py-1.5 leading-none whitespace-nowrap text-white font-extrabold tracking-[0.08em] text-sm sm:text-lg "
               style={{ textShadow: "0 1px 2px rgba(0,0,0,0.25)" }}
             >
               {codigoMadre}
@@ -218,7 +229,7 @@ const Navbar = ({ activo, isExposed = false }) => {
             <div className={`mt-1 flex flex-row gap-2 ${isSmall ? "hidden" : ""} `}>
               <a className="w-6 h-6 rounded-full flex items-center justify-center" href="https://www.facebook.com/visitaecuadorcom" target="_blank"><span className="icon-[iconoir--facebook] text-white h-4 w-4"></span></a>
               <a className="w-6 h-6 rounded-full flex items-center justify-center" href="https://www.instagram.com/visitaecuadorcom/" target="_blank"><span className="icon-[mdi--instagram] text-white h-4 w-4"></span></a>
-              <a className="w-6 h-6 rounded-full flex items-center justify-center" href="https://walink.co/99db0b" target="_blank"><span className="icon-[mdi--whatsapp] text-white h-4 w-4"></span></a>
+              <a className="w-6 h-6 rounded-full flex items-center justify-center" href="https://wa.me/593981850436" target="_blank"><span className="icon-[mdi--whatsapp] text-white h-4 w-4"></span></a>
               <a className="w-6 h-6 rounded-full flex items-center justify-center" href="https://www.tiktok.com/@visitaecuador.com" target="_blank"><span className="icon-[ph--tiktok-logo] text-white h-4 w-4"></span></a>
               <a className="w-6 h-6 rounded-full flex items-center justify-center" href="https://www.youtube.com/@VisitaEcuador-com" target="_blank"><span className="icon-[ph--youtube-logo-bold] text-white h-4 w-4"></span></a>
               <a className="w-6 h-6 rounded-full flex items-center justify-center" href="https://www.linkedin.com/in/visita-ecuador-44411353" target="_blank"><span className="icon-[uil--linkedin-alt] h-4 w-4 text-white"></span></a>
@@ -259,14 +270,12 @@ const Navbar = ({ activo, isExposed = false }) => {
             </div>
             <div className="flex md:hidden gap-2 ml-auto items-center">
               {nivel !== "visitante" && <img src={foto} onClick={handleClickMobileProfile} className="rounded-full h-8 w-8 border-2 border-white cursor-pointer" alt="Profile" />}
-              {nivel === "visitante" ? (
-                <button onClick={handleClickMenu} className="text-white p-2">
-                  {openMenu
-                    ? <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
-                    : <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
-                  }
-                </button>
-              ) : <></>}
+              <button onClick={handleClickMenu} className="text-white p-2" aria-label="Menú">
+                {openMenu
+                  ? <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
+                  : <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" /></svg>
+                }
+              </button>
             </div>
             <div className="hidden md:flex items-end justify-end">
               {foto !== "" && nivel !== "visitante" && (
@@ -287,6 +296,7 @@ const Navbar = ({ activo, isExposed = false }) => {
                     <button className="hover:bg-greenVE-200 px-4 text-xs py-1 w-full text-start flex items-center gap-2" onClick={handleClickAdministrador}><div dangerouslySetInnerHTML={{ __html: icons.Data.Administrador }} />Administrador{isLoadingAdmin && <Spinner className="h-4 w-4" color="white" />}</button>
                     {beta && <button className="hover:bg-greenVE-200 px-4 text-xs py-1 w-full text-start flex items-center gap-2" onClick={handleClickAdministradorBeta}><div dangerouslySetInnerHTML={{ __html: icons.Data.Administrador }} />Administrador (Beta){isLoadingAdminBeta && <Spinner className="h-4 w-4" color="white" />}</button>}
                     {yaGanaste && <button className="hover:bg-greenVE-200 px-4 text-xs py-1 w-full text-start flex items-center gap-2" onClick={handleClickYaGanaste}><div dangerouslySetInnerHTML={{ __html: icons.Data.CrearUsuario }} />Crear Suscripción</button>}
+                    {misBeneficios && <button onClick={handleClickMisBeneficios} className="hover:bg-greenVE-200 w-full px-4 text-xs py-1 text-start flex items-center gap-2"><span className="icon-[ph--tag-bold] h-4 w-4 text-gray-700"></span>Mis beneficios</button>}
                     {dashboard && <button onClick={() => handleClickDashboard()} className="hover:bg-greenVE-200 w-full px-4 text-xs py-1 flex items-center gap-2"><div dangerouslySetInnerHTML={{ __html: icons.Data.Dashboard }} />Dashboard</button>}
                     <button onClick={() => handleClickLogOut()} className="hover:bg-greenVE-200 w-full px-4 text-xs py-1 flex items-center gap-2"><div dangerouslySetInnerHTML={{ __html: icons.Data.Logout }} />Cerrar sesión{isLoagingLogOut && <Spinner className="h-4 w-4" color="white" />}</button>
                   </div>
@@ -299,8 +309,8 @@ const Navbar = ({ activo, isExposed = false }) => {
       </div>
 
 
-      <div className={`flex mx-auto max-w-7xl py-2 px-3 sm:px-6 lg:px-8 ${router && !scrolled ? "hidden" : ""} ${route && !scrolled ? "hidden" : ""} ${isExposedRoute ? "-mt-14" : ""}`}>
-        <div className={`flex flex-col align-center align-middle items-center ${codigo ? "w-full" : "w-10/12"} justify-between`}>
+      <div className={`flex mx-auto w-full py-2 px-3 sm:px-6 lg:px-8 ${router && !scrolled ? "hidden" : ""} ${route && !scrolled ? "hidden" : ""} ${isExposedRoute ? "-mt-14" : ""}`}>
+        <div className={`flex flex-col align-center align-middle items-center ${codigo ? "w-full" : "w-10/12"} justify-center`}>
           <div className="relative z-40 w-full flex justify-center">
             <div className="flex w-full max-w-7xl items-center justify-between px-4">
 
@@ -394,6 +404,20 @@ const Navbar = ({ activo, isExposed = false }) => {
                     )}
                   </div>
 
+                  {/* Marca del usuario (BYD, JETOUR...), al lado de Beneficios */}
+                  {marcaMenu && (
+                    <a
+                      href="/marca"
+                      onClick={(e) => { e.preventDefault(); handleClickMarca(); }}
+                      className={`flex gap-2 ${activo == 9 ? "bg-white text-gray-800" : "bg-white/20 text-white hover:bg-white/40"} rounded-t-lg px-4 py-2 text-sm items-center transition-all`}
+                    >
+                      <div className="rounded-full bg-white flex items-center justify-center" style={{ height: "22px", width: "22px" }}>
+                        <span className="icon-[ph--storefront-fill] h-3.5 w-3.5 text-greenVE-600"></span>
+                      </div>
+                      <label className="hidden md:flex cursor-pointer font-medium">{marcaMenu}</label>
+                    </a>
+                  )}
+
                   {/* Visas 
                   <a
                     href="https://visitaecuador.com/visas-concierge"
@@ -475,6 +499,8 @@ const Navbar = ({ activo, isExposed = false }) => {
         handleClickBookHistory={handleClickBookHistory}
         handleClickFavorites={handleClickFavorites}
         handleClickLogOut={handleClickLogOut}
+        misBeneficios={misBeneficios}
+        handleClickMisBeneficios={handleClickMisBeneficios}
       />
 
       <MobileBottomNav
@@ -482,8 +508,11 @@ const Navbar = ({ activo, isExposed = false }) => {
         onClickInicio={handleClickInicio}
         onClickDisney={handleClickDisney}
         onClickVinos={handleClickVinos}
-        onClickVisas={handleClickVisas}
+        onClickTours={handleClickTours}
+        onClickPuntosCarga={handleClickPuntosCarga}
         onClickContactanos={handleClickContactanos}
+        marca={marcaMenu}
+        onClickMarca={handleClickMarca}
       />
     </header>
   );

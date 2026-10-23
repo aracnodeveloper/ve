@@ -1,0 +1,37 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appIDs": [
+          "37NBZZTJYT.ec.com.fullvacations.main",
+          "37NBZZTJYT.com.visitaEcuador.ec",
+          "37NBZZTJYT.com.hotelaso.app"
+        ],
+        "components": [
+          {
+            "/": "/administrador*",
+            "exclude": true,
+            "comment": "El administrador (incluido /administrador2) se abre en el navegador, nunca en la app."
+          },
+          { "/": "/pack/*",      "comment": "Fullpack: lo atiende root_ui.dart" },
+          { "/": "/compra/*",    "comment": "Compra con codigo: lo atiende root_ui.dart" },
+          { "/": "/suscripcion", "comment": "Suscripcion con ?codigo= y ?producto=" },
+          { "/": "/suscripcion*" }
+        ]
+      },
+      {
+        "appID": "37NBZZTJYT.ec.com.fullvacations.main",
+        "paths": [ "NOT /administrador*", "/pack/*", "/compra/*", "/suscripcion*" ]
+      },
+      {
+        "appID": "37NBZZTJYT.com.visitaEcuador.ec",
+        "paths": [ "NOT /administrador*", "/pack/*", "/compra/*", "/suscripcion*" ]
+      },
+      {
+        "appID": "37NBZZTJYT.com.hotelaso.app",
+        "paths": [ "NOT /administrador*", "/pack/*", "/compra/*", "/suscripcion*" ]
+      }
+    ]
+  }
+}

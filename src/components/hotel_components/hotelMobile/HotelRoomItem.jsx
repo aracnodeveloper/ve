@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { calcularNoches, formatearFecha } from '../../../global/formatearFecha';
-import { esOfertaAgotada, textoAgotada } from '../../../global/ofertasPricing';
+import { esOfertaAgotada, periodosAgotados, textoAgotada } from '../../../global/ofertasPricing';
 
 
 const HotelRoomItem = ({date, oferta, index, selectedRooms, setSelectedRooms}) => {
     const [selectedOption, setSelectedOption] = useState(null);
-    // Agotada si su día de reactivación es posterior al día de check-in elegido.
-    const agotada = esOfertaAgotada(oferta, date && date[0] && date[0].startDate);
+    // Agotada si el día de check-in cae dentro de alguna de sus ventanas de agotamiento.
+    const checkIn = date && date[0] && date[0].startDate;
+    const agotada = esOfertaAgotada(oferta, checkIn);
+    const ventanas = agotada ? periodosAgotados(oferta) : [];
     const handleChange = (event) => {
         const selectedValue = event.target.value;
         setSelectedOption(selectedValue);
@@ -20,11 +22,18 @@ const HotelRoomItem = ({date, oferta, index, selectedRooms, setSelectedRooms}) =
                 <label className='font-semibold'>{oferta.TituloOferta}</label>
                 {
                     agotada
-                    ?<div className='flex gap-1.5 items-center bg-red-100 border border-red-200 rounded-md px-2 py-0.5 w-fit'>
-                        <span className="icon-[ri--prohibited-2-line] text-red-500 h-4 w-4"></span>
-                        <label className='text-red-500 text-xs font-medium'>
-                            {textoAgotada(oferta)}
-                        </label>
+                    ?<div className='flex flex-col gap-0.5'>
+                        <div className='flex gap-1.5 items-center bg-red-100 border border-red-200 rounded-md px-2 py-0.5 w-fit'>
+                            <span className="icon-[ri--prohibited-2-line] text-red-500 h-4 w-4"></span>
+                            <label className='text-red-500 text-xs font-medium'>
+                                {textoAgotada(oferta, checkIn)}
+                            </label>
+                        </div>
+                        {ventanas.length > 1 && (
+                            <label className='text-[10px] text-gray-400'>
+                                Fechas no disponibles: {ventanas.join(" · ")}
+                            </label>
+                        )}
                     </div>
                     :<></>
                 }

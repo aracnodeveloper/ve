@@ -22,8 +22,12 @@ export const enviarContacto = async function (datos, tipo = "contactoWeb") {
             ciudad: datos.ciudad?.trim() || "",
             pais: datos.pais?.trim() || "",
             mensaje: datos.mensaje?.trim() || "",
-            // URL de la foto ya subida (solo la usa el correo de punto de carga).
-            fotoUrl: datos.fotoUrl || "",
+            // Solo los usa "puntoCarga": URLs de las fotos ya subidas y ubicación marcada en el mapa.
+            fotoEstablecimiento: datos.fotoEstablecimiento || "",
+            fotoParqueadero: datos.fotoParqueadero || "",
+            fotoLugar: datos.fotoLugar || "",
+            latitud: datos.latitud || "",
+            longitud: datos.longitud || "",
         };
 
         const res = await service.enviarContacto(params);
