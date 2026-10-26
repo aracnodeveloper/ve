@@ -5,7 +5,9 @@ import "leaflet/dist/leaflet.css";
 import { PUNTOS_CARGA } from "./puntosCargaData";
 import { PUNTOS_KIA } from "./puntosCargaKia";
 import { PUNTOS_CHEVROLET } from "./puntosCargaChevrolet";
+import { PUNTOS_ELECTROMAPS } from "./puntosCargaElectromaps";
 import iconoEvinka from "../../assets/Logo VE - evinka.png";
+import iconoEvinkaBlanco from "../../assets/Logo_white VE - evinka.png";
 import logoByd from "../../assets/logos/byd.png";
 import logoEvinka from "../../assets/logos/evinka.png";
 import logoCondor from "../../assets/logos/condor.png";
@@ -18,6 +20,8 @@ import logoOroVerde from "../../assets/logos/oro-verde.png";
 import logoDk from "../../assets/logos/dk.png";
 import logoKia from "../../assets/logos/kia.png";
 import logoChevrolet from "../../assets/logos/chevrolet.png";
+import logoMavesa from "../../assets/logos/mavesa.png";
+import logoAutomekano from "../../assets/logos/mekano-auto.png";
 import SolicitudPuntoCarga from "./SolicitudPuntoCarga";
 
 /**
@@ -34,9 +38,10 @@ export const CATEGORIAS = {
     destinos: { label: "Destinos", color: "#84b60a" },
 };
 
-// Los nuestros, las electrolineras de Kia y los puntos de Chevrolet que no estaban ya
-// (puntosCargaKia.js y puntosCargaChevrolet.js se generan con scripts/importarPuntos*.js).
-export const PUNTOS = [...PUNTOS_CARGA, ...PUNTOS_KIA, ...PUNTOS_CHEVROLET];
+// Los nuestros, las electrolineras de Kia, los puntos de Chevrolet y los de Mavesa y
+// Automekano (de Electromaps) que no estaban ya (puntosCargaKia.js, puntosCargaChevrolet.js
+// y puntosCargaElectromaps.js se generan con scripts/importarPuntos*.js).
+export const PUNTOS = [...PUNTOS_CARGA, ...PUNTOS_KIA, ...PUNTOS_CHEVROLET, ...PUNTOS_ELECTROMAPS];
 
 // Los puntos del convenio Evinka no van como circulo azul: llevan su propio
 // logo. El icono se mide en pixeles y se ancla al centro, para que quede sobre
@@ -70,6 +75,8 @@ const LOGOS_CONVENIO = [
     { busca: /plug/i, nombre: "Plug N' Drive", src: logoPlugNDrive },
     { busca: /^kia$/i, nombre: "Kia", src: logoKia },
     { busca: /^chevrolet$/i, nombre: "Chevrolet", src: logoChevrolet },
+    { busca: /^mavesa$/i, nombre: "Mavesa", src: logoMavesa },
+    { busca: /^automekano$/i, nombre: "Automekano", src: logoAutomekano },
 ];
 
 const LOGOS_LOCAL = [
@@ -391,6 +398,16 @@ const PuntosCargaMap = ({ puntos = PUNTOS }) => {
             {/* Columna de abajo a la derecha: el boton de agregar punto va pegado encima del panel
                 de filtros, asi sube y baja con el panel sin medidas fijas. */}
             <div className="absolute bottom-24 md:bottom-8 right-3 w-72 flex flex-col gap-2 z-[1000]">
+                <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-[#8AB600] hover:bg-greenVE-600 text-white font-semibold text-xs md:text-sm rounded-lg shadow-xl
+                           py-2.5 px-3 transition-colors flex items-center justify-center gap-2"
+                >
+                    <img className="h-6 w-6" src={iconoEvinkaBlanco} alt="" />
+                    {/* El total sale de los listados: crece solo al sumar puntos. */}
+                    {PUNTOS.length} Puntos de carga
+                </a>
                 <button
                     onClick={() => setFormAbierto(true)}
                     className="bg-[#8AB600] hover:bg-greenVE-600 text-white font-semibold text-sm rounded-lg shadow-xl

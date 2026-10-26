@@ -1,0 +1,1605 @@
+[
+	{
+		"id": 239209,
+		"name": "Estadio Reina del Cisne",
+		"latitude": -4.001886747119,
+		"longitude": -79.195628911257,
+		"marker": "2.3.2"
+	},
+	{
+		"id": 867263,
+		"name": "Kia - Motricentro Loja",
+		"latitude": -3.98340301654,
+		"longitude": -79.205819629133,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 248690,
+		"name": "Punta Sal Suites & Bungalows Resort",
+		"latitude": -3.956737269863,
+		"longitude": -80.955955982208,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 530023,
+		"name": "Hotel Punta Sal",
+		"latitude": -3.956302784158,
+		"longitude": -80.956032089889,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 530022,
+		"name": "Casa Andina Zorritos",
+		"latitude": -3.710740182697,
+		"longitude": -80.724841095507,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 134027,
+		"name": "EMOVTT SR EP",
+		"latitude": -3.447826220694,
+		"longitude": -79.974985398057,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 737501,
+		"name": "terminal terrestre binacional de santa rosa, troncal de la costa",
+		"latitude": -3.447786311925,
+		"longitude": -79.975634738803,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 817865,
+		"name": "BYD MACHALA",
+		"latitude": -3.284644357336,
+		"longitude": -79.92041811347,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 830654,
+		"name": "DePrati Machala",
+		"latitude": -3.283250598226,
+		"longitude": -79.925814581641,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 737505,
+		"name": "terminal de machala",
+		"latitude": -3.280123546689,
+		"longitude": -79.915904961527,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 880418,
+		"name": "Hotel Inti Kamari",
+		"latitude": -3.268184438103,
+		"longitude": -79.294427745044,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 447387,
+		"name": "E.MAMUEL CHEVROLET MACHALA",
+		"latitude": -3.266077305235,
+		"longitude": -79.951594434679,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 844605,
+		"name": "Garaje 24/7",
+		"latitude": -3.265045266252,
+		"longitude": -79.944081342217,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 882470,
+		"name": "Mall del Alto",
+		"latitude": -2.920893770513,
+		"longitude": -79.012301936746,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 692496,
+		"name": "Universidad del Azuay",
+		"latitude": -2.919744597158,
+		"longitude": -79.001242183149,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 558534,
+		"name": "Wayra Plaza",
+		"latitude": -2.913661191361,
+		"longitude": -78.989576920867,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 820103,
+		"name": " Centro Comercial Milenium Plaza",
+		"latitude": -2.905753853162,
+		"longitude": -79.002433754504,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 239208,
+		"name": "Parque de la Madre",
+		"latitude": -2.904632121677,
+		"longitude": -79.004328399897,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 812124,
+		"name": "Regional Centro Sur",
+		"latitude": -2.904221936006,
+		"longitude": -78.984047211707,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 518241,
+		"name": "Portal Artesanal",
+		"latitude": -2.898352413871,
+		"longitude": -78.996916115284,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 558525,
+		"name": "Mavesa Ecuador",
+		"latitude": -2.895160310579,
+		"longitude": -78.96313637495,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 716351,
+		"name": "BYD Cuenca",
+		"latitude": -2.894060533293,
+		"longitude": -78.994256206955,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 518242,
+		"name": "Mirasol Chevrolet - Matriz",
+		"latitude": -2.893776382167,
+		"longitude": -78.993646837771,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 346508,
+		"name": "Mavesa Cuenca",
+		"latitude": -2.89361766392,
+		"longitude": -78.962332047522,
+		"marker": "1.3.0"
+	},
+	{
+		"id": 239207,
+		"name": "Supermaxi Challuabamba",
+		"latitude": -2.854515041966,
+		"longitude": -78.914476409554,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 879680,
+		"name": "Hostería Capillapamba",
+		"latitude": -2.80113576759,
+		"longitude": -79.290543235838,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 879679,
+		"name": "Dos chorreras Cajas",
+		"latitude": -2.789130126869,
+		"longitude": -79.165571502425,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 316956,
+		"name": "Punto Mestizo",
+		"latitude": -2.758490270853,
+		"longitude": -79.402135536075,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 844609,
+		"name": "Instituto Superior Tecnológico del Austro",
+		"latitude": -2.751838585212,
+		"longitude": -78.845662567742,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 728754,
+		"name": "Cargador 7Kw/H Karibao",
+		"latitude": -2.60711997656,
+		"longitude": -80.461606420576,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 595599,
+		"name": "E.S. Terpel Domingo Comín",
+		"latitude": -2.231822197096,
+		"longitude": -79.890529252589,
+		"marker": "1.3.1"
+	},
+	{
+		"id": 841604,
+		"name": "Automotores Continental Salinas",
+		"latitude": -2.229087946245,
+		"longitude": -80.928152612882,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 829961,
+		"name": "Supermaxi Salinas",
+		"latitude": -2.221317551076,
+		"longitude": -80.944769494236,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 819765,
+		"name": "Hotel Colón Salinas",
+		"latitude": -2.205510020408,
+		"longitude": -80.964312404394,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 667634,
+		"name": "Primax Alpaso Puerto Azul",
+		"latitude": -2.186015967762,
+		"longitude": -79.972863681614,
+		"marker": "1.3.0"
+	},
+	{
+		"id": 239321,
+		"name": "Supermaxi vía a la Costa",
+		"latitude": -2.182515883005,
+		"longitude": -79.985671229661,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 651027,
+		"name": "Primax (Carlos julio Arosemena)",
+		"latitude": -2.175288676108,
+		"longitude": -79.912715857558,
+		"marker": "2.3.1"
+	},
+	{
+		"id": 355444,
+		"name": "Supermaxi Urdesa",
+		"latitude": -2.17058966921,
+		"longitude": -79.905894622207,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 846542,
+		"name": "Line Saes",
+		"latitude": -2.169076647852,
+		"longitude": -79.88937523216,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 451256,
+		"name": "Estación de Carga Automekano",
+		"latitude": -2.166630256531,
+		"longitude": -79.892230802693,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 266173,
+		"name": "Terpel Av. de las Americas y Juan Tanca Marengo",
+		"latitude": -2.163217650349,
+		"longitude": -79.891637982692,
+		"marker": "2.3.1"
+	},
+	{
+		"id": 72418,
+		"name": "Kia Motor",
+		"latitude": -2.158732342444,
+		"longitude": -79.898482726984,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 301056,
+		"name": "taller Servicentenario",
+		"latitude": -2.157961456136,
+		"longitude": -79.92621537298,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 604388,
+		"name": "BYD Auto Guayaquil",
+		"latitude": -2.148933485902,
+		"longitude": -79.901515245438,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 319032,
+		"name": "Grupo Mavesa Matriz Guayaquil",
+		"latitude": -2.146179786878,
+		"longitude": -79.911849461496,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 795346,
+		"name": "BYD Auto - Av. de las Americas",
+		"latitude": -2.142786486923,
+		"longitude": -79.884151025979,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 345326,
+		"name": "City Mall Guayaquil",
+		"latitude": -2.141533096993,
+		"longitude": -79.909261465073,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 447957,
+		"name": "Village Plaza, Samborondón",
+		"latitude": -2.140031063906,
+		"longitude": -79.864487424606,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 841603,
+		"name": "Automotores Continental Orellana",
+		"latitude": -2.126199620798,
+		"longitude": -79.90573206572,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 706892,
+		"name": "Márbol Green Plaza",
+		"latitude": -2.125909340876,
+		"longitude": -79.863508343697,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 599980,
+		"name": "Av. Narcisa de Jesús Condor Charge",
+		"latitude": -2.102294828642,
+		"longitude": -79.889522083104,
+		"marker": "2.3.2"
+	},
+	{
+		"id": 266174,
+		"name": "Parque Samanes",
+		"latitude": -2.102135344614,
+		"longitude": -79.889551922679,
+		"marker": "1.3.0"
+	},
+	{
+		"id": 735894,
+		"name": "PLAZA LAGOS",
+		"latitude": -2.097556202784,
+		"longitude": -79.874621406198,
+		"marker": "1.3.0"
+	},
+	{
+		"id": 661236,
+		"name": "Mall del Norte",
+		"latitude": -2.094168727211,
+		"longitude": -79.913258842359,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 794758,
+		"name": "Promart Guayaquil",
+		"latitude": -2.093774623547,
+		"longitude": -79.913236161882,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 108512,
+		"name": "Piazza Batan",
+		"latitude": -2.072298479158,
+		"longitude": -79.872467257083,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 878232,
+		"name": "Promart Samborondon",
+		"latitude": -2.07012797937,
+		"longitude": -79.872335158288,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 323924,
+		"name": "Parque de la paz",
+		"latitude": -2.049876316301,
+		"longitude": -79.898869916797,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 239237,
+		"name": "Estacion de Servicio los Arrayanes",
+		"latitude": -1.815962104788,
+		"longitude": -79.074710235,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 820786,
+		"name": "LLANTICENTRO P Y R",
+		"latitude": -1.690147215205,
+		"longitude": -78.632996506761,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 884027,
+		"name": "Gasolinera P&S",
+		"latitude": -1.671599449038,
+		"longitude": -78.643941096961,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 853895,
+		"name": "Estación MultiPlaza",
+		"latitude": -1.656832743703,
+		"longitude": -78.663908801973,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 867262,
+		"name": "Asiauto Riobamba",
+		"latitude": -1.651843568434,
+		"longitude": -78.667981736362,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 447378,
+		"name": "ASSA RIOBAMBA",
+		"latitude": -1.642914833783,
+		"longitude": -78.675086572766,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 873159,
+		"name": "Hotel Hacienda Abraspungo ",
+		"latitude": -1.640102591138,
+		"longitude": -78.640705028344,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 314664,
+		"name": "Salango",
+		"latitude": -1.593366373497,
+		"longitude": -80.843862779439,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 517322,
+		"name": "Hostería La Andaluza",
+		"latitude": -1.538376139373,
+		"longitude": -78.732695280899,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 674197,
+		"name": "Hotel Spa Miramelindo",
+		"latitude": -1.400149748523,
+		"longitude": -78.300479538739,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 517324,
+		"name": "Samari Spa Resort",
+		"latitude": -1.395274208346,
+		"longitude": -78.408174807674,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 728755,
+		"name": "Casa Verde",
+		"latitude": -1.394420577786,
+		"longitude": -78.405476957559,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 882487,
+		"name": "Quinta La Virginia",
+		"latitude": -1.345750092371,
+		"longitude": -78.502222379674,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 826491,
+		"name": "Gasolinera Panamericana",
+		"latitude": -1.32641725832,
+		"longitude": -78.543275110424,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 884025,
+		"name": "CONECTZ KFC Ambato",
+		"latitude": -1.287045966918,
+		"longitude": -78.607286028564,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 824315,
+		"name": "Paredes Car Service",
+		"latitude": -1.270374826174,
+		"longitude": -78.630605153739,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 239204,
+		"name": "Universidad Técnica de Ambato",
+		"latitude": -1.270169352417,
+		"longitude": -78.624597005546,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 307334,
+		"name": "ELECTROLINIERA ISTT",
+		"latitude": -1.268385785886,
+		"longitude": -78.611416295171,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 136009,
+		"name": "Mall de Los Andes",
+		"latitude": -1.265279541448,
+		"longitude": -78.628170378506,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 448073,
+		"name": "ASSA Chevrolet Ambato",
+		"latitude": -1.265220547237,
+		"longitude": -78.62707670778,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 574280,
+		"name": "Concesionario Kia Ambato",
+		"latitude": -1.263603904212,
+		"longitude": -78.628163002431,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 239203,
+		"name": "Supermaxi Ficoa",
+		"latitude": -1.235161482763,
+		"longitude": -78.632840104401,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 454253,
+		"name": "Automekano",
+		"latitude": -1.234965056597,
+		"longitude": -78.611171543598,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 884028,
+		"name": "Estación P&S El Jardín",
+		"latitude": -1.148368898688,
+		"longitude": -78.586124069989,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 858957,
+		"name": "Mavesa Portoviejo",
+		"latitude": -1.071994266243,
+		"longitude": -80.491799712181,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 885520,
+		"name": "Kia - Asiauto Portoviejo",
+		"latitude": -1.061658154137,
+		"longitude": -80.463670045137,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 688366,
+		"name": "Cargador Novedades Karen",
+		"latitude": -1.057174267275,
+		"longitude": -80.455494336784,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 517323,
+		"name": "Hamadryade Lodge",
+		"latitude": -1.038103080469,
+		"longitude": -77.708931901314,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 661239,
+		"name": "Teojama Comercial",
+		"latitude": -0.976085086516,
+		"longitude": -80.699358098209,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 549469,
+		"name": "Kia - Asiauto Manta 4 de Noviembre",
+		"latitude": -0.972735491911,
+		"longitude": -80.701205134392,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 858953,
+		"name": "Mavesa Manta",
+		"latitude": -0.968142816188,
+		"longitude": -80.661455463173,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 447380,
+		"name": "MetroCar, Manta",
+		"latitude": -0.964585423601,
+		"longitude": -80.70784997195,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 858956,
+		"name": "Mavesa Manta",
+		"latitude": -0.950467610798,
+		"longitude": -80.741988971818,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 549472,
+		"name": "Kia Asiauto Barbasquillo",
+		"latitude": -0.945165910103,
+		"longitude": -80.74209138751,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 661491,
+		"name": " Mantahost Hotel",
+		"latitude": -0.944326492806,
+		"longitude": -80.748885758221,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 549470,
+		"name": "Mall del Pacífico Manta",
+		"latitude": -0.94236036484,
+		"longitude": -80.732318088412,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 534742,
+		"name": "Maltearía Plaza",
+		"latitude": -0.926054366546,
+		"longitude": -78.625501580536,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 549468,
+		"name": "Kia - Asiauto Latacunga",
+		"latitude": -0.924212264386,
+		"longitude": -78.625993765891,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 671269,
+		"name": "Pepas Restaurante",
+		"latitude": -0.922721820337,
+		"longitude": -78.622641004622,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 876102,
+		"name": "ISUC",
+		"latitude": -0.799423727041,
+		"longitude": -78.619563365133,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 885522,
+		"name": "Segurillanta Chone",
+		"latitude": -0.706591613556,
+		"longitude": -80.104977227747,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 884024,
+		"name": "CONECTZ KFC Machachi",
+		"latitude": -0.508153258703,
+		"longitude": -78.574619069695,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 884890,
+		"name": "CONECTZ KFC Coca",
+		"latitude": -0.472150614585,
+		"longitude": -76.985921189189,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 827372,
+		"name": "LLANTERA CUYUJA",
+		"latitude": -0.413114946844,
+		"longitude": -78.027405850589,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 671644,
+		"name": "MegaKywi - Los Chillos",
+		"latitude": -0.308262447952,
+		"longitude": -78.447121270001,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 551035,
+		"name": "San Luis Shopping",
+		"latitude": -0.307918459619,
+		"longitude": -78.45005158335,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 819020,
+		"name": "Byd San Rafael",
+		"latitude": -0.304537918716,
+		"longitude": -78.451928123832,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 796604,
+		"name": "DC AUTOS",
+		"latitude": -0.298239173268,
+		"longitude": -78.480281755328,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 135999,
+		"name": "Terminal Terrestre Quitumbe",
+		"latitude": -0.297069031894,
+		"longitude": -78.558553309801,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 448339,
+		"name": "EcuaAuto - Chevrolet - Valle de los Chillos",
+		"latitude": -0.294782522689,
+		"longitude": -78.451106362045,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 419019,
+		"name": "S2 20",
+		"latitude": -0.294394278065,
+		"longitude": -78.40006493032,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 173761,
+		"name": "Supermaxi San Gabriel",
+		"latitude": -0.292572076221,
+		"longitude": -78.456015475094,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 547024,
+		"name": "Quicentro Sur",
+		"latitude": -0.28574359431,
+		"longitude": -78.543315343559,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 447381,
+		"name": "Estacionamiento Parque Carolo, Las Cuadras",
+		"latitude": -0.284877586812,
+		"longitude": -78.552316501737,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 187441,
+		"name": "Fundeporte",
+		"latitude": -0.284789075008,
+		"longitude": -78.551973514259,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 239236,
+		"name": "Empresa Eléctrica Av. Morán Valverde Quito ",
+		"latitude": -0.284249287099,
+		"longitude": -78.542654514312,
+		"marker": "2.3.3"
+	},
+	{
+		"id": 879642,
+		"name": "Marco",
+		"latitude": -0.278335758044,
+		"longitude": -78.543927557766,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 453686,
+		"name": "Automekano ",
+		"latitude": -0.274038003271,
+		"longitude": -78.552665139229,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 530647,
+		"name": "Energycar Supermaxi San Bartolo",
+		"latitude": -0.273354846998,
+		"longitude": -78.529167361606,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 706617,
+		"name": "Plug & Drive Santo Domingo",
+		"latitude": -0.265092260933,
+		"longitude": -79.11142300277,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 805198,
+		"name": "BYD - Evinka - PD ",
+		"latitude": -0.262110651322,
+		"longitude": -79.114708100736,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 798232,
+		"name": "Hotel Santo Domingo",
+		"latitude": -0.254911274678,
+		"longitude": -79.165623039007,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 238695,
+		"name": "Megamodelauto",
+		"latitude": -0.254813710291,
+		"longitude": -79.179516881704,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 885519,
+		"name": "C.C. BOMBOLI AC",
+		"latitude": -0.254075774812,
+		"longitude": -79.191775582731,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 826501,
+		"name": "CC Bomboli DC",
+		"latitude": -0.253794145632,
+		"longitude": -79.192364998162,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 733771,
+		"name": "P&S Puerta de Oro",
+		"latitude": -0.251963555809,
+		"longitude": -79.485134482384,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 796653,
+		"name": "Carga Rápida Kia (Santo Domingo)",
+		"latitude": -0.251754356834,
+		"longitude": -79.175876745044,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 448072,
+		"name": "Induauto Chevrolet Santo Domingo",
+		"latitude": -0.246829185844,
+		"longitude": -79.152300171554,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 549455,
+		"name": "Kia Empromotor vía Quito",
+		"latitude": -0.246649479506,
+		"longitude": -79.14970010519,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 583227,
+		"name": "Universidad Internacional del Ecuador - UIDE Quito",
+		"latitude": -0.24581800239,
+		"longitude": -78.468562178313,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 164953,
+		"name": "Parqueadero La Ronda",
+		"latitude": -0.224416166429,
+		"longitude": -78.514017239213,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 531673,
+		"name": "Terrazas de la Ceramica",
+		"latitude": -0.221136073685,
+		"longitude": -78.392895055888,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 239213,
+		"name": "Estacionamiento Montúfar 1",
+		"latitude": -0.220321469932,
+		"longitude": -78.508741334081,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 583226,
+		"name": "El Potrero de San Luis Cumbaya",
+		"latitude": -0.218963276321,
+		"longitude": -78.445642702282,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 165142,
+		"name": "Estacionamiento Cadisan",
+		"latitude": -0.21856530646,
+		"longitude": -78.512069284916,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 239214,
+		"name": "Parqueadero San Blas",
+		"latitude": -0.217257739022,
+		"longitude": -78.505796268582,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 532865,
+		"name": "Mega Santa Maria Tumbaco",
+		"latitude": -0.215964923516,
+		"longitude": -78.406354375183,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 583223,
+		"name": "MegaKywi - Tumbaco",
+		"latitude": -0.215444578655,
+		"longitude": -78.395174592733,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 584096,
+		"name": "Ventura Mall",
+		"latitude": -0.211211170381,
+		"longitude": -78.415544029846,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 530482,
+		"name": "Autofenix taller",
+		"latitude": -0.210487220089,
+		"longitude": -78.41614510864,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 583225,
+		"name": "Asiauto Cumbayá",
+		"latitude": -0.209362711508,
+		"longitude": -78.425549939275,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 707619,
+		"name": "Garage Manuel Larrea",
+		"latitude": -0.209117961567,
+		"longitude": -78.501912429929,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 742034,
+		"name": "Chery Cumbaya Maresa Center",
+		"latitude": -0.208802133556,
+		"longitude": -78.425743728876,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 583224,
+		"name": "Hospital de los Valles",
+		"latitude": -0.208636508248,
+		"longitude": -78.424695655704,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 437745,
+		"name": "Scala Shopping Mall",
+		"latitude": -0.206948404051,
+		"longitude": -78.425836600363,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 671014,
+		"name": "KIA E-GROUND",
+		"latitude": -0.206868608853,
+		"longitude": -78.487901911139,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 807607,
+		"name": "Pilisimas Power Port - La Tejedora ",
+		"latitude": -0.206238784947,
+		"longitude": -78.427972949114,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 368206,
+		"name": "Centro Comercial Artesanal Quitus",
+		"latitude": -0.203932614677,
+		"longitude": -78.499572537839,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 690798,
+		"name": "ElectriMove",
+		"latitude": -0.203300958443,
+		"longitude": -78.505594097078,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 315435,
+		"name": "Plaza Coelho",
+		"latitude": -0.201181471298,
+		"longitude": -78.428099514414,
+		"marker": "1.3.3"
+	},
+	{
+		"id": 547549,
+		"name": "Punto El Chaquiñan",
+		"latitude": -0.199861381946,
+		"longitude": -78.431525230408,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 62707,
+		"name": "Paseo San Francisco",
+		"latitude": -0.199212626605,
+		"longitude": -78.436562083581,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 689099,
+		"name": "BYD PASEO SAN FRANCISCO",
+		"latitude": -0.199005008157,
+		"longitude": -78.436681600291,
+		"marker": "1.3.0"
+	},
+	{
+		"id": 583221,
+		"name": "Centro Comercial Villa Cumbayá",
+		"latitude": -0.198289952225,
+		"longitude": -78.437953479588,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 242353,
+		"name": "KIA Quito",
+		"latitude": -0.198135726129,
+		"longitude": -78.485268317163,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 661542,
+		"name": "BYD Cumbayá",
+		"latitude": -0.197728634992,
+		"longitude": -78.438862902223,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 858733,
+		"name": "Conectz",
+		"latitude": -0.197582523818,
+		"longitude": -78.487749695778,
+		"marker": "2.3.3"
+	},
+	{
+		"id": 457163,
+		"name": "UrbaPark EEQ",
+		"latitude": -0.197521503926,
+		"longitude": -78.430775552988,
+		"marker": "1.3.3"
+	},
+	{
+		"id": 690893,
+		"name": "SERES Cumbaya - Automekano",
+		"latitude": -0.196032791887,
+		"longitude": -78.440963372314,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 149910,
+		"name": "Parque la Carolina",
+		"latitude": -0.189544324553,
+		"longitude": -78.484006337821,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 62705,
+		"name": "Mall El Jardín",
+		"latitude": -0.188772523116,
+		"longitude": -78.487477786839,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 671641,
+		"name": "Plaza Marquesina",
+		"latitude": -0.18736370042,
+		"longitude": -78.364976271987,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 748664,
+		"name": "Carolina 2",
+		"latitude": -0.187117273783,
+		"longitude": -78.48718509078,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 354755,
+		"name": "Parque de la Mujer",
+		"latitude": -0.184409933288,
+		"longitude": -78.499875962734,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 583220,
+		"name": "Rancho San Francisco",
+		"latitude": -0.183460436189,
+		"longitude": -78.441746793687,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 664191,
+		"name": "Plaza del Rancho",
+		"latitude": -0.180955600912,
+		"longitude": -78.44425432384,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 548738,
+		"name": "Megamaxi 6 de Diciembre",
+		"latitude": -0.180437601872,
+		"longitude": -78.4780940786,
+		"marker": "2.3.2"
+	},
+	{
+		"id": 519181,
+		"name": "Hostería Colibrí Aeropuerto",
+		"latitude": -0.17960182096,
+		"longitude": -78.349862929334,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 458779,
+		"name": "Produbanco ",
+		"latitude": -0.178389887433,
+		"longitude": -78.486428282545,
+		"marker": "1.3.3"
+	},
+	{
+		"id": 523690,
+		"name": "Centro Comercial Iñaquito",
+		"latitude": -0.177500932604,
+		"longitude": -78.485679030418,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 810225,
+		"name": "Plug and Drive - Evinka CCI",
+		"latitude": -0.176947059092,
+		"longitude": -78.485511392355,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 62706,
+		"name": "Quicentro Shopping",
+		"latitude": -0.17630869638,
+		"longitude": -78.479185067117,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 354754,
+		"name": "Edificio Metropolitan",
+		"latitude": -0.17601935445,
+		"longitude": -78.487371504307,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 62708,
+		"name": "Plaza Las Américas",
+		"latitude": -0.175014201338,
+		"longitude": -78.492498882115,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 717150,
+		"name": "Pilisimas Power Port - Tofino",
+		"latitude": -0.174900207986,
+		"longitude": -78.488471210003,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 507524,
+		"name": "Supermaxi Granada Centeno",
+		"latitude": -0.171061984379,
+		"longitude": -78.490919396281,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 531674,
+		"name": "Granados Outlet Kia",
+		"latitude": -0.168592351277,
+		"longitude": -78.475668691099,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 175532,
+		"name": "GIRO PERFORMANCE",
+		"latitude": -0.16586254468,
+		"longitude": -78.484863638878,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 531675,
+		"name": "BYD",
+		"latitude": -0.163198786835,
+		"longitude": -78.463551141321,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 426909,
+		"name": "Parqueadero Produbanco Clientes",
+		"latitude": -0.162909444675,
+		"longitude": -78.461459018288,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 447558,
+		"name": "Terpel Voltex Charging Station",
+		"latitude": -0.1620920448,
+		"longitude": -78.485620357096,
+		"marker": "1.3.1"
+	},
+	{
+		"id": 671016,
+		"name": "CC El Bosque",
+		"latitude": -0.160690931424,
+		"longitude": -78.498046696186,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 671642,
+		"name": "Arrayanes Country Club",
+		"latitude": -0.156212330048,
+		"longitude": -78.385221250355,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 448340,
+		"name": "Automotores Continental Labrador - Chevrolet",
+		"latitude": -0.155886107587,
+		"longitude": -78.484600111842,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 242354,
+		"name": "Centro de convenciones",
+		"latitude": -0.147560895278,
+		"longitude": -78.489508219063,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 818158,
+		"name": "Grupo Mavesa Baker",
+		"latitude": -0.137223172283,
+		"longitude": -78.482741503304,
+		"marker": "2.3.3"
+	},
+	{
+		"id": 463815,
+		"name": "MCDonald Av. de la Prensa",
+		"latitude": -0.135143646456,
+		"longitude": -78.494222201407,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 551030,
+		"name": "Galo Plaza Lasso parqueadero superior ",
+		"latitude": -0.131808442427,
+		"longitude": -78.481861500255,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 344640,
+		"name": "Supermaxi Plaza Norte",
+		"latitude": -0.131221596921,
+		"longitude": -78.481814973056,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 824976,
+		"name": "McDonald's",
+		"latitude": -0.130651647523,
+		"longitude": -78.470655984902,
+		"marker": "1.3.0"
+	},
+	{
+		"id": 817573,
+		"name": "Consecionario BYD Pananorte",
+		"latitude": -0.130089037109,
+		"longitude": -78.481076024473,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 451706,
+		"name": "Automekano ",
+		"latitude": -0.127816498499,
+		"longitude": -78.480676931676,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 412293,
+		"name": "Supermaxi San Carlos",
+		"latitude": -0.127715288138,
+		"longitude": -78.498956300318,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 136000,
+		"name": "Aeropuerto Mariscal Sucre",
+		"latitude": -0.124762853732,
+		"longitude": -78.361573219299,
+		"marker": "1.3.1"
+	},
+	{
+		"id": 220183,
+		"name": "GrupoEntregas FedEx",
+		"latitude": -0.120645001786,
+		"longitude": -78.47156457603,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 523849,
+		"name": "Llano grande",
+		"latitude": -0.119545633781,
+		"longitude": -78.432730548084,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 187450,
+		"name": "Techniprinter",
+		"latitude": -0.115633640171,
+		"longitude": -78.436221778393,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 718898,
+		"name": "Gasolinera Puma",
+		"latitude": -0.109454513077,
+		"longitude": -78.457073606551,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 510603,
+		"name": "El Portal",
+		"latitude": -0.10865588679,
+		"longitude": -78.457719348371,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 523687,
+		"name": "Condado Shopping",
+		"latitude": -0.104385146867,
+		"longitude": -78.491376712918,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 455685,
+		"name": "Quito Tenis y Golf Club El Condado",
+		"latitude": -0.099287616689,
+		"longitude": -78.49667172879,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 733773,
+		"name": "Gasolinera Ultra NRG",
+		"latitude": -0.014682411987,
+		"longitude": -79.378054663539,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 537354,
+		"name": "Tensortec Quito",
+		"latitude": 0.000588989363,
+		"longitude": -78.504811614548,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 722263,
+		"name": "Pululahua Ecolodge",
+		"latitude": 0.033922901258,
+		"longitude": -78.486126288771,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 847825,
+		"name": "BYD - EVINKA - Tierras Altas - Tabacundo",
+		"latitude": 0.045240814753,
+		"longitude": -78.226237334311,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 847826,
+		"name": "Plug and Drive - Tierras Altas - Tabacundo",
+		"latitude": 0.045667979695,
+		"longitude": -78.225815522285,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 883210,
+		"name": "Choco 112",
+		"latitude": 0.077553367775,
+		"longitude": -79.0263466537,
+		"marker": "2.3.0"
+	},
+	{
+		"id": 884889,
+		"name": "Lago Agrio",
+		"latitude": 0.083822689852,
+		"longitude": -76.886554397643,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 742972,
+		"name": "Hosteria Balcon Alcala",
+		"latitude": 0.098536934559,
+		"longitude": -79.118014834821,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 728752,
+		"name": "The River House - Charging Station",
+		"latitude": 0.110719314012,
+		"longitude": -79.228312288406,
+		"marker": "1.3.0"
+	},
+	{
+		"id": 733766,
+		"name": "Primax Puerto Quito",
+		"latitude": 0.122555400854,
+		"longitude": -79.238914065063,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 742971,
+		"name": "Hotel Restaurante Andy",
+		"latitude": 0.12360548326,
+		"longitude": -79.236881956458,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 828697,
+		"name": "P&S La Union",
+		"latitude": 0.129558296362,
+		"longitude": -79.406721778214,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 549454,
+		"name": "Hotel Puerto Lago",
+		"latitude": 0.201260815925,
+		"longitude": -78.235077895224,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 421836,
+		"name": "Hosteria Cabañas del Lago",
+		"latitude": 0.210367021164,
+		"longitude": -78.211321633356,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 875585,
+		"name": "Caranqui",
+		"latitude": 0.314560852236,
+		"longitude": -78.128621354699,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 849479,
+		"name": "Plug and Drive  - Atuntaqui - Hotel Royal",
+		"latitude": 0.329259324723,
+		"longitude": -78.213153266543,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 803622,
+		"name": "Pys electrolinera",
+		"latitude": 0.342526817673,
+		"longitude": -78.143250522944,
+		"marker": "2.3.3"
+	},
+	{
+		"id": 452330,
+		"name": "La Plaza Shopping Center - Ibarra",
+		"latitude": 0.345674295267,
+		"longitude": -78.135677240789,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 450624,
+		"name": "Laguna Mall Ibarra",
+		"latitude": 0.349140651421,
+		"longitude": -78.125284686685,
+		"marker": "0.3.3"
+	},
+	{
+		"id": 730779,
+		"name": "Plug & Drive Hosteria el Prado - Ibarra",
+		"latitude": 0.364745775869,
+		"longitude": -78.111957460642,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 874890,
+		"name": "TUNAS Y CABRAS HOTEL",
+		"latitude": 0.426546033592,
+		"longitude": -78.055036453054,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 217794,
+		"name": "Éxito Ipiales",
+		"latitude": 0.830612144696,
+		"longitude": -77.63626165688,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 239202,
+		"name": "Hotel Club del Sol",
+		"latitude": 0.868857579237,
+		"longitude": -79.855373203754,
+		"marker": "0.3.1"
+	},
+	{
+		"id": 878238,
+		"name": "Hotel Kemarios",
+		"latitude": 0.892169759719,
+		"longitude": -79.809127544667,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 454422,
+		"name": "Club del Pacífico",
+		"latitude": 0.89920718429,
+		"longitude": -79.801883250475,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 852798,
+		"name": "JAC ",
+		"latitude": 0.92337116592,
+		"longitude": -79.670718200505,
+		"marker": "0.3.0"
+	},
+	{
+		"id": 448331,
+		"name": "Exito Pasto Panamericana, Nariño",
+		"latitude": 1.206435846578,
+		"longitude": -77.285955436528,
+		"marker": "0.3.2"
+	},
+	{
+		"id": 603211,
+		"name": "Palermo Imagen",
+		"latitude": 1.223837684547,
+		"longitude": -77.286181145473,
+		"marker": "1.3.0"
+	},
+	{
+		"id": 823752,
+		"name": "MotorKia Pasto",
+		"latitude": 1.225420142021,
+		"longitude": -77.286149777545,
+		"marker": "1.3.0"
+	},
+	{
+		"id": 841590,
+		"name": "Hostal Padua",
+		"latitude": 1.344076742238,
+		"longitude": -77.283967683527,
+		"marker": "0.3.0"
+	}
+]
