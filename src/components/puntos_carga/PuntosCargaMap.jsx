@@ -38,9 +38,9 @@ export const CATEGORIAS = {
     destinos: { label: "Destinos", color: "#84b60a" },
 };
 
-// Los nuestros, las electrolineras de Kia, los puntos de Chevrolet y los de Mavesa y
-// Automekano (de Electromaps) que no estaban ya (puntosCargaKia.js, puntosCargaChevrolet.js
-// y puntosCargaElectromaps.js se generan con scripts/importarPuntos*.js).
+// Los nuestros, las electrolineras de Kia, los puntos de Chevrolet y los de Electromaps que no
+// estaban ya (puntosCargaKia.js, puntosCargaChevrolet.js y puntosCargaElectromaps.js se generan
+// con scripts/importarPuntos*.js).
 export const PUNTOS = [...PUNTOS_CARGA, ...PUNTOS_KIA, ...PUNTOS_CHEVROLET, ...PUNTOS_ELECTROMAPS];
 
 // Los puntos del convenio Evinka no van como circulo azul: llevan su propio
@@ -158,7 +158,8 @@ const DetallePunto = ({ p, conEnlaces = false }) => (
                 <span className="block font-semibold text-gray-700">Conectores</span>
                 {p.conectores.map((c, i) => (
                     <span key={i} className="block text-gray-600">
-                        • {c.conector}
+                        {/* Sin el tipo de conector (aún no lo sabemos) se nombra genérico. */}
+                        • {c.conector || "Cargador"}
                         {c.cantidad > 1 ? ` (x${c.cantidad})` : ""} —{" "}
                         {/* Chevrolet (PlugShare) no publica la potencia: se omite si no viene. */}
                         {[c.potencia, c.tipoCarga === "RAPIDA" ? "carga rápida" : "carga estándar"].filter(Boolean).join(", ")}
@@ -173,6 +174,8 @@ const DetallePunto = ({ p, conEnlaces = false }) => (
                 {p.tipoCarga === "RAPIDA" ? "Carga rápida" : "Carga estándar"}
             </span>
         )}
+
+        {p.nota && <span className="block text-amber-700 mt-1">{p.nota}</span>}
 
         {p.horario && (
             <span className="block text-gray-600 mt-1">

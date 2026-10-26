@@ -41,6 +41,9 @@ const SON_DUPLICADOS = new Set([
     1326448, // BYD MACHALA = "BYD Machala"
     593548,  // Kia point of charge at Megamaxi = "C.C. San Luis Shopping" de Kia
     2162852, // "Ambato", a 70 m del Mall de los Andes (que ya está)
+    1676228, // Hosteria Balcón de Alcalá = la nuestra (Plug & Drive), 300 m
+    1509359, // Cargadores Kia Puma = Gasolinera Puma - Via a Papallacta de Kia, 254 m
+    730577,  // Megamaxi 6 de diciembre = el nuestro de Condor (antes con la ubicación corrida 1 km)
 ]);
 const NO_SON_DUPLICADOS = new Set([
     1529795, // Concesionario Chevrolet El Recreo: está cerca del C.C. El Recreo, pero es otro lugar

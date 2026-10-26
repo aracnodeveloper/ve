@@ -4,8 +4,8 @@
  * ARCHIVO GENERADO por scripts/importarPuntosChevrolet.js a partir de backend-php/chevrolet_puntos.txt:
  * no editar a mano. Volver a correr el script (después del de Kia) cuando cambie el listado.
  *
- * 138 registros -> 72 puntos nuevos.
- * Ya estaban en nuestro listado o en el de Kia (49): Mall del Pacífico, Bambolí Shopping, Ambato, Super Cargadores Multimarca, Estacionamiento Aeropuerto UIO, Supermaxi Vía al Puerto, Terminal Terrestre Sumpa, Supermaxi Challuabamba, Estacionamiento La Ronda, Salinas Yacth Club, Supermaxi Ficoa, McDonald's La Aurora, Hosteria el Prado, McDonald's Vía a Salitre, Parque de la Madre (Cuenca), Centro Comercial La Quadra, Supermaxi San Carlos, Kia point of charge at Megamaxi, Plaza de las Américas, Supermaxi Plaza Norte, Wayra Plaza, Supermaxi Urdesa, San Marino Shopping Center, Estacionamiento Montúfar 1, Conectz, Parque Histórico, Kia Motor, Urbanización Parque Magno, Supermaxi Plaza San Gabriel, Mall de Los Andes, Quicentro, Estacionamiento San Blas, Supermaxi Granda Centeno, Mall El Jardín, Alhambra punto Kia, Burger King - Cumbaya, Centro Comercial Bombolí, Plaza La Quadra, Scala Shopping, Hospital De Los Valles, Parqueaderos CC El Recreo, Centro Comercial Villa Cumbayá, BYD MACHALA, Urbapark Pampite, Megakywi, Plaza lagos, Mall de los Andes, Supermaxi Salinas, Estación de servicio P&S San Alfonso.
+ * 138 registros -> 69 puntos nuevos.
+ * Ya estaban en nuestro listado o en el de Kia (52): Mall del Pacífico, Bambolí Shopping, Ambato, Hosteria Balcón de Alcalá, Super Cargadores Multimarca, Cargadores Kia Puma, Estacionamiento Aeropuerto UIO, Supermaxi Vía al Puerto, Terminal Terrestre Sumpa, Supermaxi Challuabamba, Estacionamiento La Ronda, Salinas Yacth Club, Supermaxi Ficoa, McDonald's La Aurora, Hosteria el Prado, McDonald's Vía a Salitre, Parque de la Madre (Cuenca), Centro Comercial La Quadra, Supermaxi San Carlos, Kia point of charge at Megamaxi, Plaza de las Américas, Supermaxi Plaza Norte, Wayra Plaza, Supermaxi Urdesa, San Marino Shopping Center, Estacionamiento Montúfar 1, Conectz, Parque Histórico, Kia Motor, Urbanización Parque Magno, Supermaxi Plaza San Gabriel, Mall de Los Andes, Quicentro, Megamaxi 6 de diciembre, Estacionamiento San Blas, Supermaxi Granda Centeno, Mall El Jardín, Alhambra punto Kia, Burger King - Cumbaya, Centro Comercial Bombolí, Plaza La Quadra, Scala Shopping, Hospital De Los Valles, Parqueaderos CC El Recreo, Centro Comercial Villa Cumbayá, BYD MACHALA, Urbapark Pampite, Megakywi, Plaza lagos, Mall de los Andes, Supermaxi Salinas, Estación de servicio P&S San Alfonso.
  * Repetidos dentro del propio listado (2): Supermercado La Tienda - Casa Blanca (Conectz), Márbol Plaza.
  * Próximamente (6): Metrocar Chevrolet - Portoviejo (Coming Soon), Tía La Joya (Coming Soon), E.Maulme Chevrolet - Daule (Coming Soon), Mirasol Chevrolet - Quinta Chica (Coming Soon), Metrocar Chevrolet - Gonzalez Suarez (Coming Soon), Metrocar Chevrolet - Huayna Capac (Coming Soon).
  * En reparación (5): Supermaxi San Bartolo, Supermaxi Vía a la Costa, Estacionamiento Parque Carolo-Las Cuadras, Plaza Batan, Supermaxi La Cerámica.
@@ -346,31 +346,6 @@ export const PUNTOS_CHEVROLET = [
     {
         "id": "chev-13",
         "categoria": "puntos",
-        "nombre": "Hosteria Balcón de Alcalá",
-        "ciudad": "Pedro Vicente Maldonado",
-        "provincia": "Pichincha",
-        "convenio": "Chevrolet",
-        "tipoCarga": "ESTANDAR",
-        "conector": "TIPO 2",
-        "conectores": [
-            {
-                "conector": "TIPO 2",
-                "tipoCarga": "ESTANDAR",
-                "potencia": "",
-                "cantidad": 1
-            }
-        ],
-        "tarifado": "",
-        "app": "",
-        "direccion": "3VXJ+6QF, Pedro Vicente Maldonado, Ecuador",
-        "coords": [
-            0.098162,
-            -79.118148
-        ]
-    },
-    {
-        "id": "chev-14",
-        "categoria": "puntos",
         "nombre": "Cargador Paseo del Sol 2",
         "ciudad": "Guayaquil",
         "provincia": "Guayas",
@@ -394,7 +369,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-15",
+        "id": "chev-14",
         "categoria": "puntos",
         "nombre": "EV Quick Charge",
         "ciudad": "Pelileo",
@@ -431,7 +406,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-16",
+        "id": "chev-15",
         "categoria": "puntos",
         "nombre": "Burger King Evinka",
         "ciudad": "Quito",
@@ -456,32 +431,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-17",
-        "categoria": "puntos",
-        "nombre": "Cargadores Kia Puma",
-        "ciudad": "Pifo",
-        "provincia": "",
-        "convenio": "Chevrolet",
-        "tipoCarga": "ESTANDAR",
-        "conector": "TIPO 2 x2",
-        "conectores": [
-            {
-                "conector": "TIPO 2",
-                "tipoCarga": "ESTANDAR",
-                "potencia": "",
-                "cantidad": 2
-            }
-        ],
-        "tarifado": "",
-        "app": "",
-        "direccion": "QM3P+9VX, Pifo 170175, Ecuador",
-        "coords": [
-            -0.24686,
-            -78.313476
-        ]
-    },
-    {
-        "id": "chev-18",
+        "id": "chev-16",
         "categoria": "puntos",
         "nombre": "Estacionamiento 1 Terminal Carcelén",
         "ciudad": "Quito",
@@ -506,7 +456,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-19",
+        "id": "chev-17",
         "categoria": "puntos",
         "nombre": "Automotores de la Sierra Chevrolet - Riobamba",
         "ciudad": "Riobamba",
@@ -531,7 +481,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-20",
+        "id": "chev-18",
         "categoria": "puntos",
         "nombre": "McDonald's Ciudad Orellana",
         "ciudad": "Guayaquil",
@@ -556,7 +506,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-21",
+        "id": "chev-19",
         "categoria": "puntos",
         "nombre": "Parque Familiar Gross",
         "ciudad": "Quito",
@@ -581,7 +531,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-22",
+        "id": "chev-20",
         "categoria": "puntos",
         "nombre": "Taller Mecánico Servicentenario",
         "ciudad": "Guayaquil",
@@ -606,7 +556,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-23",
+        "id": "chev-21",
         "categoria": "puntos",
         "nombre": "Induauto Chevrolet - Santo Domingo",
         "ciudad": "Santo Domingo",
@@ -637,7 +587,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-24",
+        "id": "chev-22",
         "categoria": "puntos",
         "nombre": "Mirasol Chevrolet - Loja",
         "ciudad": "Loja",
@@ -662,7 +612,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-25",
+        "id": "chev-23",
         "categoria": "puntos",
         "nombre": "Pana Llacta Restobar",
         "ciudad": "Papallacta",
@@ -693,7 +643,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-26",
+        "id": "chev-24",
         "categoria": "puntos",
         "nombre": "Automotores Continental Chevrolet - Pana Norte",
         "ciudad": "Quito",
@@ -724,7 +674,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-27",
+        "id": "chev-25",
         "categoria": "puntos",
         "nombre": "Power Hub El Bosque",
         "ciudad": "Quito",
@@ -761,7 +711,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-28",
+        "id": "chev-26",
         "categoria": "puntos",
         "nombre": "City Mall",
         "ciudad": "Guayaquil",
@@ -786,7 +736,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-29",
+        "id": "chev-27",
         "categoria": "puntos",
         "nombre": "Automotores Continental Chevrolet - Orellana",
         "ciudad": "Guayaquil",
@@ -817,7 +767,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-30",
+        "id": "chev-28",
         "categoria": "puntos",
         "nombre": "Hotel ANDY",
         "ciudad": "Puerto Quito",
@@ -842,7 +792,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-31",
+        "id": "chev-29",
         "categoria": "puntos",
         "nombre": "Mall del Alto",
         "ciudad": "Cuenca",
@@ -867,7 +817,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-32",
+        "id": "chev-30",
         "categoria": "puntos",
         "nombre": "PA' QUÉ ME INVITAN",
         "ciudad": "Quito",
@@ -892,7 +842,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-33",
+        "id": "chev-31",
         "categoria": "puntos",
         "nombre": "Club de La Union",
         "ciudad": "Samborondon",
@@ -923,7 +873,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-34",
+        "id": "chev-32",
         "categoria": "puntos",
         "nombre": "The club black label barbershop",
         "ciudad": "Quito",
@@ -948,7 +898,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-35",
+        "id": "chev-33",
         "categoria": "puntos",
         "nombre": "Mall Del Norte",
         "ciudad": "Guayaquil",
@@ -979,7 +929,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-36",
+        "id": "chev-34",
         "categoria": "puntos",
         "nombre": "Automotores de la Sierra Chevrolet - Av. Cevallos",
         "ciudad": "Ambato",
@@ -1004,7 +954,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-37",
+        "id": "chev-35",
         "categoria": "puntos",
         "nombre": "Carga EV - Imprenta FORCON El Ejido (GB/T, T1, T2)",
         "ciudad": "Quito",
@@ -1041,7 +991,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-38",
+        "id": "chev-36",
         "categoria": "puntos",
         "nombre": "Portal Artesanal",
         "ciudad": "Cuenca",
@@ -1066,7 +1016,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-39",
+        "id": "chev-37",
         "categoria": "puntos",
         "nombre": "Pilisimas Power Port - La Tejedora",
         "ciudad": "Quito",
@@ -1091,7 +1041,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-40",
+        "id": "chev-38",
         "categoria": "puntos",
         "nombre": "Aneta Cumbaya Drivers Academy",
         "ciudad": "Quito",
@@ -1116,7 +1066,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-41",
+        "id": "chev-39",
         "categoria": "puntos",
         "nombre": "Induauto Chevrolet - Garzota",
         "ciudad": "Guayaquil",
@@ -1141,7 +1091,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-42",
+        "id": "chev-40",
         "categoria": "puntos",
         "nombre": "Induauto Chevrolet - Matriz",
         "ciudad": "Guayaquil",
@@ -1172,7 +1122,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-43",
+        "id": "chev-41",
         "categoria": "puntos",
         "nombre": "Proauto Chevrolet - Matriz",
         "ciudad": "Quito",
@@ -1197,7 +1147,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-44",
+        "id": "chev-42",
         "categoria": "puntos",
         "nombre": "Induauto Chevrolet - 10 de Agosto",
         "ciudad": "Quito",
@@ -1222,7 +1172,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-45",
+        "id": "chev-43",
         "categoria": "puntos",
         "nombre": "Mirasol Chevrolet - Matriz",
         "ciudad": "Cuenca",
@@ -1247,7 +1197,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-46",
+        "id": "chev-44",
         "categoria": "puntos",
         "nombre": "Automotores Continental Chevrolet - Labrador",
         "ciudad": "Quito",
@@ -1278,7 +1228,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-47",
+        "id": "chev-45",
         "categoria": "puntos",
         "nombre": "EcuaAuto Chevrolet - San Rafael",
         "ciudad": "Ruminahui",
@@ -1309,7 +1259,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-48",
+        "id": "chev-46",
         "categoria": "puntos",
         "nombre": "EcuaAuto Chevrolet - Valle de los Chillos",
         "ciudad": "Quito",
@@ -1340,7 +1290,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-49",
+        "id": "chev-47",
         "categoria": "puntos",
         "nombre": "Universidad Técnica de Ambato",
         "ciudad": "Ambato",
@@ -1365,7 +1315,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-50",
+        "id": "chev-48",
         "categoria": "puntos",
         "nombre": "Primax Puerto Azul",
         "ciudad": "Guayaquil",
@@ -1396,7 +1346,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-51",
+        "id": "chev-49",
         "categoria": "puntos",
         "nombre": "Metrocar Chevrolet - Remigio Crespo",
         "ciudad": "Cuenca",
@@ -1427,62 +1377,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-52",
-        "categoria": "puntos",
-        "nombre": "Megamaxi 6 de diciembre",
-        "ciudad": "Quito",
-        "provincia": "Pichincha",
-        "convenio": "Chevrolet",
-        "tipoCarga": "RAPIDA",
-        "conector": "CCS1, GB/T, CCS2, TIPO 1 x5, TIPO 2 x5, GB/T x5",
-        "conectores": [
-            {
-                "conector": "CCS1",
-                "tipoCarga": "RAPIDA",
-                "potencia": "",
-                "cantidad": 1
-            },
-            {
-                "conector": "GB/T",
-                "tipoCarga": "RAPIDA",
-                "potencia": "",
-                "cantidad": 1
-            },
-            {
-                "conector": "CCS2",
-                "tipoCarga": "RAPIDA",
-                "potencia": "",
-                "cantidad": 1
-            },
-            {
-                "conector": "TIPO 1",
-                "tipoCarga": "ESTANDAR",
-                "potencia": "",
-                "cantidad": 5
-            },
-            {
-                "conector": "TIPO 2",
-                "tipoCarga": "ESTANDAR",
-                "potencia": "",
-                "cantidad": 5
-            },
-            {
-                "conector": "GB/T",
-                "tipoCarga": "ESTANDAR",
-                "potencia": "",
-                "cantidad": 5
-            }
-        ],
-        "tarifado": "",
-        "app": "",
-        "direccion": "RG9C+PP8, Julio Moreno, Quito 170135, Ecuador",
-        "coords": [
-            -0.18065,
-            -78.478081
-        ]
-    },
-    {
-        "id": "chev-53",
+        "id": "chev-50",
         "categoria": "puntos",
         "nombre": "Automotores Continental Chevrolet - Tanca Marengo",
         "ciudad": "Guayaquil",
@@ -1513,7 +1408,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-54",
+        "id": "chev-51",
         "categoria": "puntos",
         "nombre": "Pilisimas Power Port - Edificio Tofino",
         "ciudad": "Quito",
@@ -1538,7 +1433,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-55",
+        "id": "chev-52",
         "categoria": "puntos",
         "nombre": "Estacionamiento Cadisán",
         "ciudad": "Quito",
@@ -1563,7 +1458,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-56",
+        "id": "chev-53",
         "categoria": "puntos",
         "nombre": "Parqueo #8 Parque La Carolina",
         "ciudad": "Quito",
@@ -1588,7 +1483,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-57",
+        "id": "chev-54",
         "categoria": "puntos",
         "nombre": "Induauto Chevrolet - Moderna",
         "ciudad": "Samborondon",
@@ -1613,7 +1508,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-58",
+        "id": "chev-55",
         "categoria": "puntos",
         "nombre": "Automotores Continental Chevrolet - Morán Valverde",
         "ciudad": "Quito",
@@ -1644,7 +1539,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-59",
+        "id": "chev-56",
         "categoria": "puntos",
         "nombre": "Automotores Continental Chevrolet - El Recreo",
         "ciudad": "Pedro Vicente Maldonado",
@@ -1675,7 +1570,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-60",
+        "id": "chev-57",
         "categoria": "puntos",
         "nombre": "MacDonalds",
         "ciudad": "Quito",
@@ -1700,7 +1595,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-61",
+        "id": "chev-58",
         "categoria": "puntos",
         "nombre": "E.Maulme Chevrolet - Matriz",
         "ciudad": "Guayaquil",
@@ -1725,7 +1620,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-62",
+        "id": "chev-59",
         "categoria": "puntos",
         "nombre": "Automotores Continental Chevrolet - Cumbayá",
         "ciudad": "Quito",
@@ -1756,7 +1651,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-63",
+        "id": "chev-60",
         "categoria": "puntos",
         "nombre": "PROMART",
         "ciudad": "Guayaquil",
@@ -1781,7 +1676,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-64",
+        "id": "chev-61",
         "categoria": "puntos",
         "nombre": "Automotores de la Sierra Chevrolet - Matriz",
         "ciudad": "Ambato",
@@ -1806,7 +1701,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-65",
+        "id": "chev-62",
         "categoria": "puntos",
         "nombre": "Gasolinera Primax Cumbaya",
         "ciudad": "Quito",
@@ -1831,7 +1726,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-66",
+        "id": "chev-63",
         "categoria": "puntos",
         "nombre": "Produbanco Parqueadero Clientes",
         "ciudad": "Quito",
@@ -1856,7 +1751,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-67",
+        "id": "chev-64",
         "categoria": "puntos",
         "nombre": "Promart",
         "ciudad": "Samborondon",
@@ -1881,7 +1776,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-68",
+        "id": "chev-65",
         "categoria": "puntos",
         "nombre": "Induauto Chevrolet - Nueva Aurora",
         "ciudad": "Guayaquil",
@@ -1912,7 +1807,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-69",
+        "id": "chev-66",
         "categoria": "puntos",
         "nombre": "Marbol Plaza",
         "ciudad": "Samborondon",
@@ -1937,7 +1832,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-70",
+        "id": "chev-67",
         "categoria": "puntos",
         "nombre": "E.Maulme Chevrolet - Machala",
         "ciudad": "Machala",
@@ -1962,7 +1857,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-71",
+        "id": "chev-68",
         "categoria": "puntos",
         "nombre": "Centro Plaza Cumbaya",
         "ciudad": "Quito",
@@ -1987,7 +1882,7 @@ export const PUNTOS_CHEVROLET = [
         ]
     },
     {
-        "id": "chev-72",
+        "id": "chev-69",
         "categoria": "puntos",
         "nombre": "Cargador 1",
         "ciudad": "Guaranda",

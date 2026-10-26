@@ -1,0 +1,2106 @@
+[
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-19T21:07:00Z",
+		"ID": 493890,
+		"UUID": "0F58A691-0401-4A2C-B0C8-1F8791F09EFE",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 4,
+		"AddressInfo": {
+			"ID": 494279,
+			"Title": "Tierras Altas",
+			"AddressLine1": "panamericana norte",
+			"AddressLine2": "pacifico proaño",
+			"Town": "Tabaacundo",
+			"StateOrProvince": "pichincha",
+			"Postcode": "171004",
+			"CountryID": 69,
+			"Latitude": 0.04513187437973443,
+			"Longitude": -78.22609391682317,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 839225,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 32,
+				"Voltage": 220,
+				"PowerKW": 7,
+				"CurrentTypeID": 10,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-19T21:07:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-16T21:05:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2026-02-24T17:09:00Z",
+		"ID": 478551,
+		"UUID": "14DEF4CC-FF88-4400-BCF1-8FF113CC555D",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 4,
+		"AddressInfo": {
+			"ID": 478940,
+			"Title": "Panamericana Norte",
+			"AddressLine1": "Panamericana Norte",
+			"StateOrProvince": "Imbabura",
+			"Postcode": "100112",
+			"CountryID": 69,
+			"Latitude": 0.364628732702613,
+			"Longitude": -78.11186329518063,
+			"ContactTelephone1": "0983507969",
+			"AccessComments": "APP MUBON",
+			"RelatedURL": "http://info@plugandrive.com",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 803820,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 32,
+				"Voltage": 220,
+				"PowerKW": 7,
+				"CurrentTypeID": 10,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"GeneralComments": "Plug & Drive",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-02-24T17:09:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-02-21T17:06:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"MediaItems": [
+			{
+				"ID": 45747,
+				"ChargePointID": 311755,
+				"ItemURL": "https://s3-ap-southeast-2.amazonaws.com/openchargemap/images/EC/OCM311755/OCM-311755.orig.2025042102041731.jpg",
+				"ItemThumbnailURL": "https://s3-ap-southeast-2.amazonaws.com/openchargemap/images/EC/OCM311755/OCM-311755.thmb.2025042102041731.jpg",
+				"Comment": "",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 57890,
+					"Username": "Renato",
+					"ReputationPoints": 11,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/5f395a7ffad07eab21b3f398de5175b4?s=80&d=robohash"
+				},
+				"DateCreated": "2025-04-21T02:04:00Z"
+			}
+		],
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-04-28T11:06:00Z",
+		"ID": 311755,
+		"UUID": "9514042E-9D21-4571-9E42-4794B882F54F",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 6,
+		"UsageCost": "para clientes ",
+		"AddressInfo": {
+			"ID": 312144,
+			"Title": "Pululahua  Ecolodge",
+			"AddressLine1": "Crater Del Pululahua",
+			"Town": "Pululahua ",
+			"StateOrProvince": "Pichincha",
+			"CountryID": 69,
+			"Latitude": 0.03391791468796157,
+			"Longitude": -78.48602823409291,
+			"ContactTelephone1": "09919114333",
+			"RelatedURL": "http://www.pululahua-ecolodge.com",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 600639,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 14,
+				"Voltage": 240,
+				"PowerKW": 3.5,
+				"CurrentTypeID": 10,
+				"Quantity": 1,
+				"Comments": "para clientes del Ecolodge "
+			},
+			{
+				"ID": 600640,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"LevelID": 1,
+				"Amps": 12,
+				"Voltage": 120,
+				"PowerKW": 1.5,
+				"CurrentTypeID": 10,
+				"Quantity": 1,
+				"Comments": "para clientes del Ecolodge"
+			}
+		],
+		"NumberOfPoints": 1,
+		"GeneralComments": "Conector 110V  y  Conector 220V secadora ",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-04-28T11:06:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-04-14T12:57:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-08T16:25:00Z",
+		"ID": 492484,
+		"UUID": "C838698C-CD68-438E-B4C8-8D4C68809172",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 492873,
+			"Title": "Mall del norte",
+			"AddressLine1": "Carlos Julio Arosemena Monroy",
+			"Town": "Guayaquil",
+			"StateOrProvince": "Guayas",
+			"Postcode": "090704",
+			"CountryID": 69,
+			"Latitude": -2.0956698130935507,
+			"Longitude": -79.91250915389412,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 835496,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			},
+			{
+				"ID": 835497,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 2,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-08T16:25:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-05T16:21:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"MediaItems": [
+			{
+				"ID": 36951,
+				"ChargePointID": 212986,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM212986/OCM-212986.orig.2023031215023390.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM212986/OCM-212986.thmb.2023031215023390.jpg",
+				"Comment": "",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 44398,
+					"Username": "Bryan Silva",
+					"ReputationPoints": 4,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/60fd82bd581bb41a6e4bc3b74c8e4eaf?s=80&d=robohash"
+				},
+				"DateCreated": "2023-03-12T15:03:00Z"
+			}
+		],
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-26T21:06:00Z",
+		"ID": 212986,
+		"UUID": "FA3E41FA-77DF-4D89-8420-26B3CAE878A6",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 4,
+		"UsageCost": "0.20",
+		"AddressInfo": {
+			"ID": 213366,
+			"Title": "Electroninera BYD",
+			"AddressLine1": "Autopista Terminal Terrestre - Pascuales",
+			"Town": "Guayaquil",
+			"StateOrProvince": "Guayas",
+			"CountryID": 69,
+			"Latitude": -2.102176114783134,
+			"Longitude": -79.88957011640254,
+			"ContactTelephone1": "+593 99 235 6672",
+			"AccessComments": "https://play.google.com/store/apps/details?id=ec.com.byd.mobile_android, debe descargar la aplicación y realizar una recarga",
+			"RelatedURL": "https://bydelectrico.com/",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 354746,
+				"ConnectionTypeID": 25,
+				"Reference": "BYD",
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"CurrentTypeID": 20,
+				"Quantity": 19
+			},
+			{
+				"ID": 836203,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 90,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 20,
+		"GeneralComments": "Nothing to do while you charge. If it's sunny, it's gonna be a hard time.",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-26T21:06:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2023-01-28T02:02:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-07-08T18:06:00Z",
+		"ID": 495130,
+		"UUID": "436EE6F5-7577-4B91-AC06-A3E50C4DC261",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 495519,
+			"Title": "Plaza Lagos",
+			"AddressLine1": "Avenida Samborondón",
+			"Town": "Samborondon",
+			"StateOrProvince": "Guayas",
+			"Postcode": "092302",
+			"CountryID": 69,
+			"Latitude": -2.09752708925825,
+			"Longitude": -79.87472558090923,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 842216,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 16,
+				"Voltage": 388,
+				"PowerKW": 7,
+				"CurrentTypeID": 20,
+				"Quantity": 2
+			},
+			{
+				"ID": 847781,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"CurrentTypeID": 20,
+				"Quantity": 2
+			}
+		],
+		"NumberOfPoints": 4,
+		"GeneralComments": "Free for use, good place to walk, have a coffee or eat at any time of the day",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-07-08T18:06:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-23T20:50:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-07-08T18:00:00Z",
+		"ID": 492565,
+		"UUID": "17140CBC-332C-4F67-83DE-3F4BCDA39954",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 492954,
+			"Title": "Marbol Plaza",
+			"AddressLine1": "Calle Diana Quintana Noboa",
+			"AddressLine2": "Samborondón",
+			"StateOrProvince": "Guayas",
+			"Postcode": "092301",
+			"CountryID": 69,
+			"Latitude": -2.126693739717709,
+			"Longitude": -79.86377316040625,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 835666,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 4
+			}
+		],
+		"NumberOfPoints": 3,
+		"GeneralComments": "Good for eating any time and little shopping for home stuff",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-07-08T18:00:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-07T02:25:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-07-16T18:01:00Z",
+		"ID": 492469,
+		"UUID": "EA794136-C84E-49EE-A1CC-CE79293EA060",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 492858,
+			"Title": "Village Plaza",
+			"AddressLine1": "Avenida Samborondón",
+			"AddressLine2": "Samborondón",
+			"Town": "Samborondón",
+			"StateOrProvince": "Guayas",
+			"Postcode": "092301",
+			"CountryID": 69,
+			"Latitude": -2.1399784278165157,
+			"Longitude": -79.86456081706791,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 835473,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 3.5,
+				"Quantity": 1
+			},
+			{
+				"ID": 850806,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Voltage": 208,
+				"PowerKW": 3.5,
+				"Quantity": 2
+			}
+		],
+		"NumberOfPoints": 3,
+		"GeneralComments": "This is a mall so good to do mall stuff",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-07-16T18:01:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-05T15:54:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-07-08T18:01:00Z",
+		"ID": 497492,
+		"UUID": "EF400330-BC5E-4CF7-A61E-DB583F04E33E",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 6,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 497881,
+			"Title": "Parque Historico",
+			"AddressLine1": "Avenida Río Esmeraldas",
+			"AddressLine2": "Samborondón",
+			"Town": "Samborondon",
+			"StateOrProvince": "Guayas",
+			"Postcode": "092301",
+			"CountryID": 69,
+			"Latitude": -2.1436320709491667,
+			"Longitude": -79.86780310595418,
+			"AccessComments": "$4 visitante nacional, $5 international visitors",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 846685,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"CurrentTypeID": 10,
+				"Quantity": 1
+			},
+			{
+				"ID": 846686,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"CurrentTypeID": 10,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 2,
+		"GeneralComments": "Gratis para visitantes del parque historico",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-07-08T18:01:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-07-05T17:59:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-08T16:35:00Z",
+		"ID": 492487,
+		"UUID": "A713E4AE-BC7D-4914-BF5D-EF970D21A2B9",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 5,
+		"AddressInfo": {
+			"ID": 492876,
+			"Title": "BYD Juan Tanca Marengo",
+			"AddressLine1": "2 Retorno 16 NO",
+			"AddressLine2": "BYD",
+			"Town": "Guayaquil",
+			"StateOrProvince": "Guayas",
+			"Postcode": "090505",
+			"CountryID": 69,
+			"Latitude": -2.149045440726738,
+			"Longitude": -79.9013759964775,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 835500,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			},
+			{
+				"ID": 835501,
+				"ConnectionTypeID": 33,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 60,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 2,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-08T16:35:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-05T16:30:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-08T16:25:00Z",
+		"ID": 492485,
+		"UUID": "94B8D74B-049B-4123-8BE5-E8E4DE26D07A",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 492874,
+			"Title": "City Mall",
+			"AddressLine1": "Benjamín Carrión Mora",
+			"AddressLine2": "Lomas de Prosperina",
+			"Town": "Guayaquil",
+			"StateOrProvince": "Guayas",
+			"Postcode": "090505",
+			"CountryID": 69,
+			"Latitude": -2.141686464535894,
+			"Longitude": -79.90934343251547,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 835498,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 2
+			}
+		],
+		"NumberOfPoints": 2,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-08T16:25:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-05T16:22:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2023-01-29T11:52:00Z",
+		"ID": 83505,
+		"UUID": "0CF1E014-6AC4-43BF-802C-204A6764836A",
+		"DataProviderID": 1,
+		"OperatorID": 26,
+		"UsageTypeID": 1,
+		"UsageCost": "Free",
+		"AddressInfo": {
+			"ID": 83851,
+			"Title": "San Marino Shopping",
+			"AddressLine1": "Franciso de Orellana",
+			"Town": "Guayaquil",
+			"StateOrProvince": "Guayas",
+			"CountryID": 69,
+			"Latitude": -2.169353427242555,
+			"Longitude": -79.89823305102976,
+			"RelatedURL": "https://www.sanmarino.com.ec/",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 140695,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Voltage": 240,
+				"CurrentTypeID": 10,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2023-01-29T11:52:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2017-02-09T04:00:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-18T15:15:00Z",
+		"ID": 493623,
+		"UUID": "932C8180-1816-4FE0-9BE3-AA83AD177E13",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 5,
+		"UsageCost": "0.17/kWh",
+		"AddressInfo": {
+			"ID": 494012,
+			"Title": "Supermaxi Urdesa",
+			"AddressLine1": "Del Rotarismo",
+			"AddressLine2": "Urdesa",
+			"StateOrProvince": "Guayas",
+			"Postcode": "090909",
+			"CountryID": 69,
+			"Latitude": -2.1703786441885455,
+			"Longitude": -79.90589112881611,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 838360,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			},
+			{
+				"ID": 838361,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 2,
+		"GeneralComments": "Condor charge",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-18T15:15:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-15T15:14:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-08T16:30:00Z",
+		"ID": 492486,
+		"UUID": "E314CFF5-39B0-470E-8BF1-A68A4F909C90",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 492875,
+			"Title": "Primax Puerto Azul",
+			"AddressLine1": "Victoria Concha de Valdez",
+			"AddressLine2": "Urb. Puerto Azul",
+			"Town": "Guayaquil",
+			"StateOrProvince": "Guayas",
+			"Postcode": "090902",
+			"CountryID": 69,
+			"Latitude": -2.186076012181829,
+			"Longitude": -79.9728814638678,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 835499,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-08T16:30:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-05T16:25:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-08T16:35:00Z",
+		"ID": 492488,
+		"UUID": "A15DED04-CFD3-4E21-BC4E-DD11DEB30F56",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 5,
+		"AddressInfo": {
+			"ID": 492877,
+			"Title": "Supermaxi Salinas",
+			"AddressLine1": "Brasil",
+			"AddressLine2": "Puerto Artesanal Pesquero - Santa Rosa",
+			"Town": "Salinas",
+			"StateOrProvince": "Santa Elena",
+			"Postcode": "240207",
+			"CountryID": 69,
+			"Latitude": -2.2208895605947987,
+			"Longitude": -80.94516007632035,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 835502,
+				"ConnectionTypeID": 33,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 90,
+				"Quantity": 2
+			}
+		],
+		"NumberOfPoints": 2,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-08T16:35:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-05T16:32:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-07-05T15:00:00Z",
+		"ID": 496955,
+		"UUID": "802D210D-6D0C-46E1-8CB6-CCCC6AF359B1",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 5,
+		"AddressInfo": {
+			"ID": 497344,
+			"Title": "Avenida 25 de Junio",
+			"AddressLine1": "Avenida 25 de Junio",
+			"Town": "El Cambio",
+			"StateOrProvince": "El Oro",
+			"Postcode": "070219",
+			"CountryID": 69,
+			"Latitude": -3.285252666331772,
+			"Longitude": -79.92022968272937,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 845318,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-07-05T15:00:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-07-02T14:58:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-07-05T15:05:00Z",
+		"ID": 496956,
+		"UUID": "380F8F4B-9D0E-4247-A4CE-11F948AA708E",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 4,
+		"AddressInfo": {
+			"ID": 497345,
+			"Title": "Avenida La Ferroviaria",
+			"AddressLine1": "Avenida La Ferroviaria",
+			"Town": "El Cambio",
+			"StateOrProvince": "El Oro",
+			"Postcode": "070219",
+			"CountryID": 69,
+			"Latitude": -3.2795099222912683,
+			"Longitude": -79.91614423875313,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 845319,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 32,
+				"Voltage": 240,
+				"PowerKW": 9,
+				"CurrentTypeID": 10,
+				"Quantity": 3
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-07-05T15:05:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-07-02T15:01:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2020-07-21T15:37:00Z",
+		"ID": 161698,
+		"UUID": "30E79815-9811-452A-B2CC-834042CE0A52",
+		"DataProviderID": 1,
+		"OperatorID": 80,
+		"UsageTypeID": 7,
+		"AddressInfo": {
+			"ID": 162055,
+			"Title": "Terminal Terrestre Binacional de Santa Rosa",
+			"AddressLine1": "Eje Vial E25 y Av. Eloy Alfaro",
+			"Town": "Santa Rosa",
+			"StateOrProvince": "El Oro",
+			"Postcode": "070602",
+			"CountryID": 69,
+			"Latitude": -3.446355428889717,
+			"Longitude": -79.9743458037263,
+			"ContactTelephone1": "+59373702105",
+			"ContactEmail": "emovttsr@yahoo.com",
+			"AccessComments": "Se debe solicitar autorización a un supervisor para realizar recarga.",
+			"RelatedURL": "http://www.emovttsr.gob.ec",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 232679,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 40,
+				"Voltage": 240,
+				"PowerKW": 10,
+				"CurrentTypeID": 20,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2020-07-21T15:37:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2020-07-21T14:39:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-10T02:16:00Z",
+		"ID": 492563,
+		"UUID": "BD6F2FFE-161A-486A-A896-848B55CAA498",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 5,
+		"AddressInfo": {
+			"ID": 492952,
+			"Title": "Wayra Plaza",
+			"AddressLine1": "Avenida 24 de Mayo",
+			"Town": "Cuenca",
+			"StateOrProvince": "Azuay",
+			"Postcode": "010204",
+			"CountryID": 69,
+			"Latitude": -2.9138661781045982,
+			"Longitude": -78.98938474879144,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 835662,
+				"ConnectionTypeID": 33,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 90,
+				"Quantity": 1
+			},
+			{
+				"ID": 835663,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 2
+			},
+			{
+				"ID": 835664,
+				"ConnectionTypeID": 32,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 90,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 3,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-10T02:16:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-07T02:13:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-25T13:33:00Z",
+		"ID": 494930,
+		"UUID": "DEDE61E6-75C1-43AE-9893-BE02A6D2A733",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 5,
+		"UsageCost": "18",
+		"AddressInfo": {
+			"ID": 495319,
+			"Title": "Mall del Alto",
+			"AddressLine1": "Circunvalación Sur",
+			"Town": "Cuenca",
+			"StateOrProvince": "Azuay",
+			"Postcode": "010205",
+			"CountryID": 69,
+			"Latitude": -2.9208363881345605,
+			"Longitude": -79.0132458214328,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 841712,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 6
+			}
+		],
+		"NumberOfPoints": 6,
+		"GeneralComments": "Evinka",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-25T13:33:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-22T13:32:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-25T13:38:00Z",
+		"ID": 494931,
+		"UUID": "81903B76-ED93-429D-B906-B19DCE230E32",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 6,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 495320,
+			"Title": "Dos Chorreras",
+			"AddressLine1": "Vía Cuenca - Molleturo - Puerto Inca",
+			"Town": "Cuenca",
+			"StateOrProvince": "Azuay",
+			"CountryID": 69,
+			"Latitude": -2.783780062947372,
+			"Longitude": -79.1680813213066,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 841713,
+				"ConnectionTypeID": 1036,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"GeneralComments": "Sólo para huéspedes/Hotel guests only",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-25T13:38:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-22T13:34:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": true,
+		"DateLastVerified": "2026-06-10T02:21:00Z",
+		"ID": 492564,
+		"UUID": "26BEFAD9-5295-48C6-ACD1-B3B992AFAEC4",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 5,
+		"AddressInfo": {
+			"ID": 492953,
+			"Title": "Multiplaza",
+			"AddressLine1": "Adyacente a Canal de Riego",
+			"Town": "Riobamba",
+			"StateOrProvince": "Chimborazo",
+			"Postcode": "060105",
+			"CountryID": 69,
+			"Latitude": -1.6563588210009783,
+			"Longitude": -78.66371159213213,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 835665,
+				"ConnectionTypeID": 33,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 60,
+				"Quantity": 2
+			}
+		],
+		"NumberOfPoints": 2,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-06-10T02:21:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-06-07T02:18:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2026-02-12T16:54:00Z",
+		"ID": 475865,
+		"UUID": "C13C553F-3E02-4561-BC15-C1EB72C0D500",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 5,
+		"AddressInfo": {
+			"ID": 476254,
+			"Title": "Hostería La Andaluza",
+			"AddressLine1": "Panamericana Sur",
+			"Town": "Riobamba",
+			"StateOrProvince": "Chimborazo",
+			"CountryID": 69,
+			"Latitude": -1.5384246967228847,
+			"Longitude": -78.73267963516571,
+			"ContactTelephone1": "+593989585609",
+			"RelatedURL": "https://www.hosteriaandaluza.com/en/",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 799266,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"CurrentTypeID": 10,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-02-12T16:54:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-02-09T16:54:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-06-06T15:29:00Z",
+		"ID": 313008,
+		"UUID": "4CC38885-CD18-4578-8D06-4AA7FC2E2A22",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "",
+		"AddressInfo": {
+			"ID": 313397,
+			"Title": "CARGADORES SUPERMAXI FICOA",
+			"AddressLine1": "AV LOS GUAYTAMBOS",
+			"AddressLine2": "ENTRE CHIRIMOYAS Y BERENJENAS",
+			"Town": "AMBATO",
+			"StateOrProvince": "TUNGURAHUA",
+			"Postcode": "180101",
+			"CountryID": 69,
+			"Latitude": -1.2355360397892952,
+			"Longitude": -78.63290751589659,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 603120,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"CurrentTypeID": 20,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-06-06T15:29:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-06-02T23:07:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-06-06T15:29:00Z",
+		"ID": 313007,
+		"UUID": "1291C305-AD50-4A45-975F-F4A8FF1E3420",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"AddressInfo": {
+			"ID": 313396,
+			"Title": "Cargadores Mall De Los Andes ",
+			"AddressLine1": "Av Atahualpa ",
+			"AddressLine2": "Victor Hugo ",
+			"Town": "Ambato",
+			"StateOrProvince": "Tungurahua ",
+			"Postcode": "180101",
+			"CountryID": 69,
+			"Latitude": -1.265328705453328,
+			"Longitude": -78.62786583313846,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 603118,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 32,
+				"PowerKW": 7,
+				"Quantity": 1
+			},
+			{
+				"ID": 603119,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-06-06T15:29:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-06-02T22:46:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2026-02-12T16:24:00Z",
+		"ID": 475851,
+		"UUID": "69E97F4C-7139-4283-8FC7-06FD88B8DAF8",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 5,
+		"AddressInfo": {
+			"ID": 476240,
+			"Title": "Gasolinera Panamericana",
+			"AddressLine1": "Avenida de la Confraternidad",
+			"AddressLine2": "Eloy Alfaro",
+			"Town": "Pelileo",
+			"StateOrProvince": "Tungurahua",
+			"Postcode": "180701",
+			"CountryID": 69,
+			"Latitude": -1.32647763916016,
+			"Longitude": -78.5433122305742,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 799251,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"LevelID": 3,
+				"PowerKW": 50,
+				"CurrentTypeID": 30,
+				"Quantity": 1
+			},
+			{
+				"ID": 799252,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"LevelID": 3,
+				"PowerKW": 50,
+				"CurrentTypeID": 30,
+				"Quantity": 1,
+				"Comments": "CHAdeMO"
+			}
+		],
+		"NumberOfPoints": 2,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2026-02-12T16:24:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2026-02-09T16:20:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-04-30T14:54:00Z",
+		"ID": 311984,
+		"UUID": "F76DBE6A-F6A5-4A1F-9FAF-9BB855D9603E",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 6,
+		"UsageCost": "sin costo para clientes",
+		"AddressInfo": {
+			"ID": 312373,
+			"Title": "La Casa Verde",
+			"AddressLine1": "Calle Camino Real",
+			"Town": "Baños",
+			"StateOrProvince": "tungurahua",
+			"CountryID": 69,
+			"Latitude": -1.3945431343883712,
+			"Longitude": -78.40531753060668,
+			"ContactTelephone1": "+593 98 569 6292",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 600980,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 14,
+				"Voltage": 220,
+				"PowerKW": 3,
+				"CurrentTypeID": 10,
+				"Quantity": 1,
+				"Comments": "gratuito con hospedaje"
+			},
+			{
+				"ID": 600981,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"LevelID": 1,
+				"Amps": 10,
+				"Voltage": 120,
+				"PowerKW": 1,
+				"CurrentTypeID": 10,
+				"Quantity": 1,
+				"Comments": "gratuito con hospedaje"
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-04-30T14:54:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-04-27T14:50:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-09-13T02:39:00Z",
+		"ID": 461053,
+		"UUID": "3D867E04-8858-4E91-88C3-251F9FE56104",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0.28",
+		"AddressInfo": {
+			"ID": 461442,
+			"Title": "Carga Rapida BYD",
+			"AddressLine1": "Via Aloag ",
+			"Town": "Santo Domingo",
+			"StateOrProvince": "Santo Domingo",
+			"CountryID": 69,
+			"Latitude": -0.2626190541144098,
+			"Longitude": -79.1148194865957,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 775676,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"LevelID": 3,
+				"Amps": 130,
+				"PowerKW": 60,
+				"CurrentTypeID": 20,
+				"Quantity": 2,
+				"Comments": ""
+			}
+		],
+		"NumberOfPoints": 2,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-09-13T02:39:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-09-10T02:37:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-09-11T22:34:00Z",
+		"ID": 461039,
+		"UUID": "4A0E7A53-F956-49FE-9145-0C2B2DE86B5A",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0.28",
+		"AddressInfo": {
+			"ID": 461428,
+			"Title": "CARGA RAPIDA BYD",
+			"AddressLine1": "VIA ALOAG",
+			"AddressLine2": "SANTO DOMINGO",
+			"Town": "SANTO DOMINGO",
+			"StateOrProvince": "Santo Domingo",
+			"CountryID": 69,
+			"Latitude": -0.2625532550882781,
+			"Longitude": -79.11487422072571,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 775658,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"LevelID": 3,
+				"PowerKW": 60,
+				"CurrentTypeID": 30,
+				"Quantity": 2
+			}
+		],
+		"NumberOfPoints": 2,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-09-11T22:34:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-09-08T22:30:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2022-09-12T09:24:00Z",
+		"ID": 202413,
+		"UUID": "DC28BF18-50EB-4108-A50B-6AB3AB2BB69D",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"AddressInfo": {
+			"ID": 202780,
+			"Title": "Avenida Galo Plaza Lasso",
+			"AddressLine1": "Avenida Galo Plaza Lasso",
+			"Town": "Quito",
+			"StateOrProvince": "Pichincha",
+			"Postcode": "EC170104",
+			"CountryID": 69,
+			"Latitude": -0.13157415468340616,
+			"Longitude": -78.4818813909605,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 338513,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"Voltage": 120,
+				"CurrentTypeID": 20,
+				"Quantity": 1,
+				"Comments": "solo para Autoa"
+			}
+		],
+		"NumberOfPoints": 1,
+		"GeneralComments": "solo es para Autos",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2022-09-12T09:24:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2022-09-11T03:44:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2023-01-30T16:59:00Z",
+		"ID": 188499,
+		"UUID": "9E549DC0-5A47-4D98-93AF-D6ADBB1DFE24",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 6,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 188858,
+			"Title": "Avenida Eloy Alfaro",
+			"AddressLine1": "Avenida Eloy Alfaro",
+			"Town": "Quito",
+			"StateOrProvince": "Pichincha",
+			"Postcode": "EC170124",
+			"CountryID": 69,
+			"Latitude": -0.1454943450823123,
+			"Longitude": -78.46952728597864,
+			"ContactTelephone1": "098-762-5547",
+			"AccessComments": "solicita permiso al administrador",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 304426,
+				"ConnectionTypeID": 28,
+				"StatusTypeID": 50,
+				"Voltage": 110,
+				"CurrentTypeID": 10,
+				"Quantity": 1,
+				"Comments": "solo vehiculos de dos ruedad. espacio limitado"
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2023-01-30T16:59:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2021-07-29T14:15:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"MediaItems": [
+			{
+				"ID": 38078,
+				"ChargePointID": 265939,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM265939/OCM-265939.orig.2023060614412659.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM265939/OCM-265939.thmb.2023060614412659.jpg",
+				"Comment": "",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 16800,
+					"Username": "Paul Jaramillo",
+					"ReputationPoints": 31,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/74c74c260174d78ef2cf50c34eea1a43?s=80&d=robohash"
+				},
+				"DateCreated": "2023-06-06T14:42:00Z"
+			},
+			{
+				"ID": 38079,
+				"ChargePointID": 265939,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM265939/OCM-265939.orig.2023060614414004.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM265939/OCM-265939.thmb.2023060614414004.jpg",
+				"Comment": "",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 16800,
+					"Username": "Paul Jaramillo",
+					"ReputationPoints": 31,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/74c74c260174d78ef2cf50c34eea1a43?s=80&d=robohash"
+				},
+				"DateCreated": "2023-06-06T14:42:00Z"
+			},
+			{
+				"ID": 38077,
+				"ChargePointID": 265939,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM265939/OCM-265939.orig.2023060614410195.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM265939/OCM-265939.thmb.2023060614410195.jpg",
+				"Comment": "",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 16800,
+					"Username": "Paul Jaramillo",
+					"ReputationPoints": 31,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/74c74c260174d78ef2cf50c34eea1a43?s=80&d=robohash"
+				},
+				"DateCreated": "2023-06-06T14:41:00Z"
+			}
+		],
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2023-06-08T03:24:00Z",
+		"ID": 265939,
+		"UUID": "930EE75B-0D3F-43B3-8063-D98F0E4CC04D",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 4,
+		"AddressInfo": {
+			"ID": 266323,
+			"Title": "Parqueadero Clientes Produbanco ",
+			"AddressLine1": "Subsuelos 1",
+			"Town": "Quito",
+			"StateOrProvince": "Pichincha",
+			"Postcode": "170503",
+			"CountryID": 69,
+			"Latitude": -0.16277194019623664,
+			"Longitude": -78.46116048565807,
+			"AccessComments": "De 9.00am a 5.00pm",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 452447,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Voltage": 240,
+				"CurrentTypeID": 10,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"GeneralComments": "Acceso a clientes produbanco",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2023-06-08T03:24:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2023-05-24T18:32:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2022-05-06T17:14:00Z",
+		"ID": 192918,
+		"UUID": "C4E4D3DF-1E59-4932-9A3A-1513132024DF",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 193277,
+			"Title": "Maria Angelica Hidrobo",
+			"AddressLine1": "Maria Angelica Hidrobo",
+			"Town": "Cumbaya",
+			"StateOrProvince": "Pichincha",
+			"Postcode": "170902",
+			"CountryID": 69,
+			"Latitude": -0.19912596054089704,
+			"Longitude": -78.43558937692148,
+			"AccessComments": "sub suelo del centro comercial Paseo San Francisco",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 313601,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2022-05-06T17:14:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2022-05-03T17:13:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-04-28T11:02:00Z",
+		"ID": 311850,
+		"UUID": "5858734F-38D6-401E-88BA-9D83E18E782D",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 4,
+		"AddressInfo": {
+			"ID": 312239,
+			"Title": "SUPERMAXI SAN GABRIEL",
+			"AddressLine1": "Av Río Amazonas 400 y, Quito 170804",
+			"Town": "San Rafael",
+			"StateOrProvince": "Rumiñahui",
+			"CountryID": 69,
+			"Latitude": -0.292018926594821,
+			"Longitude": -78.45646604405124,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 600804,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 22,
+				"Voltage": 220,
+				"PowerKW": 5,
+				"CurrentTypeID": 10,
+				"Quantity": 3
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-04-28T11:02:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-04-21T02:00:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-07-02T16:04:00Z",
+		"ID": 459011,
+		"UUID": "8EF7DCC7-BB9F-46D7-83C7-8D690001AF0E",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 4,
+		"UsageCost": "0.20",
+		"AddressInfo": {
+			"ID": 459400,
+			"Title": "Casa",
+			"AddressLine1": "Collacoto",
+			"AddressLine2": "S5e",
+			"Town": "Quito",
+			"StateOrProvince": "pochincha",
+			"Postcode": "593",
+			"CountryID": 69,
+			"Latitude": -0.21434223253353935,
+			"Longitude": -78.50383252948814,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 771554,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"LevelID": 3,
+				"PowerKW": 40,
+				"CurrentTypeID": 20,
+				"Quantity": 20
+			},
+			{
+				"ID": 771555,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-07-02T16:04:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-06-29T15:59:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2017-12-29T09:30:00Z",
+		"ID": 60891,
+		"UUID": "30E82FF1-470D-427B-B9DF-30BFF5300803",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "",
+		"AddressInfo": {
+			"ID": 61237,
+			"Title": "Parking San Atón",
+			"AddressLine1": "Pza. de Minayo, 5",
+			"AddressLine2": "",
+			"Town": "Quito",
+			"StateOrProvince": "Pichincha",
+			"Postcode": "06002",
+			"CountryID": 69,
+			"Latitude": -0.190887,
+			"Longitude": -78.501447,
+			"ContactTelephone1": "ND",
+			"ContactTelephone2": "",
+			"ContactEmail": "",
+			"AccessComments": "",
+			"RelatedURL": "",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 77233,
+				"ConnectionTypeID": 28,
+				"StatusTypeID": 0
+			},
+			{
+				"ID": 77234,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 0
+			}
+		],
+		"GeneralComments": "",
+		"StatusTypeID": 0,
+		"DateLastStatusUpdate": "2017-12-29T09:30:00Z",
+		"DataQualityLevel": 3,
+		"DateCreated": "2016-02-13T00:23:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-11-06T01:57:00Z",
+		"ID": 460428,
+		"UUID": "7830C867-7897-43F9-89B2-5A37B4B12DF1",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 3,
+		"UsageCost": "1",
+		"AddressInfo": {
+			"ID": 460817,
+			"Title": "Casa",
+			"AddressLine1": "Diego de Almagro Y Alpallana",
+			"Town": "Quito",
+			"StateOrProvince": "Pichincha",
+			"Postcode": "17058",
+			"CountryID": 69,
+			"Latitude": -0.1946231655463606,
+			"Longitude": -78.48355847852477,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 774640,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 32,
+				"PowerKW": 6.6,
+				"CurrentTypeID": 20,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-11-06T01:57:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-08-18T01:39:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"MediaItems": [
+			{
+				"ID": 28954,
+				"ChargePointID": 188667,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM188667/OCM-188667.orig.2021081000063419.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM188667/OCM-188667.thmb.2021081000063419.jpg",
+				"Comment": "",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 16800,
+					"Username": "Paul Jaramillo",
+					"ReputationPoints": 31,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/74c74c260174d78ef2cf50c34eea1a43?s=80&d=robohash"
+				},
+				"DateCreated": "2021-08-10T00:07:00Z"
+			},
+			{
+				"ID": 28952,
+				"ChargePointID": 188667,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM188667/OCM-188667.orig.2021081000054407.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM188667/OCM-188667.thmb.2021081000054407.jpg",
+				"Comment": "",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 16800,
+					"Username": "Paul Jaramillo",
+					"ReputationPoints": 31,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/74c74c260174d78ef2cf50c34eea1a43?s=80&d=robohash"
+				},
+				"DateCreated": "2021-08-10T00:06:00Z"
+			},
+			{
+				"ID": 28950,
+				"ChargePointID": 188667,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM188667/OCM-188667.orig.2021081000043629.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM188667/OCM-188667.thmb.2021081000043629.jpg",
+				"Comment": "",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 16800,
+					"Username": "Paul Jaramillo",
+					"ReputationPoints": 31,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/74c74c260174d78ef2cf50c34eea1a43?s=80&d=robohash"
+				},
+				"DateCreated": "2021-08-10T00:05:00Z"
+			},
+			{
+				"ID": 28951,
+				"ChargePointID": 188667,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM188667/OCM-188667.orig.2021081000050380.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM188667/OCM-188667.thmb.2021081000050380.jpg",
+				"Comment": "",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 16800,
+					"Username": "Paul Jaramillo",
+					"ReputationPoints": 31,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/74c74c260174d78ef2cf50c34eea1a43?s=80&d=robohash"
+				},
+				"DateCreated": "2021-08-10T00:05:00Z"
+			}
+		],
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2023-01-30T17:00:00Z",
+		"ID": 188667,
+		"UUID": "3618C258-9999-42C1-AFE2-E380311A1F62",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "0",
+		"AddressInfo": {
+			"ID": 189026,
+			"Title": "Avenida Eloy Alfaro",
+			"AddressLine1": "Avenida Eloy Alfaro",
+			"Town": "Quito",
+			"StateOrProvince": "Pichincha",
+			"Postcode": "170515",
+			"CountryID": 69,
+			"Latitude": -0.1892552046061695,
+			"Longitude": -78.48430550568878,
+			"AccessComments": "Mientras el parqueadero este abierto hay que pagar el parking. Cuando esta cerrado puedes entrar y salir sin pagar parking",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 304765,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"Quantity": 1,
+				"Comments": "aparentemente funcionando"
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2023-01-30T17:00:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2021-08-09T04:12:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-05-16T18:49:00Z",
+		"ID": 312616,
+		"UUID": "1D005A22-04A2-4E6D-B6F0-A23AFE8DDC1D",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 4,
+		"AddressInfo": {
+			"ID": 313005,
+			"Title": "Megamaxi",
+			"AddressLine1": "6 De Diciembre",
+			"Town": "Quito",
+			"StateOrProvince": "pichincha ",
+			"CountryID": 69,
+			"Latitude": -0.1806186482098866,
+			"Longitude": -78.47750710188626,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 602308,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			},
+			{
+				"ID": 602309,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"PowerKW": 7,
+				"Quantity": 1
+			},
+			{
+				"ID": 602310,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 10,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-05-16T18:49:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-05-13T18:46:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2022-09-11T18:52:00Z",
+		"ID": 202307,
+		"UUID": "7F9D1F52-8BA5-4B70-B505-EAC5168420E8",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"UsageCost": "",
+		"AddressInfo": {
+			"ID": 202674,
+			"Title": "Quicentro Shopping",
+			"AddressLine1": "Quicentro Shopping",
+			"Town": "Quito",
+			"StateOrProvince": "Pichincha",
+			"Postcode": "170513",
+			"CountryID": 69,
+			"Latitude": -0.17660592139014852,
+			"Longitude": -78.47857180803817,
+			"AccessComments": "Entrando al parqueadero subterráneo, se debe tomar un ticket y hay un espacio exclusivo para scooters ",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 338341,
+				"ConnectionTypeID": 25,
+				"StatusTypeID": 50,
+				"Voltage": 110,
+				"CurrentTypeID": 10,
+				"Quantity": 5,
+				"Comments": "Entrando al parqueadero subterráneo, se debe tomar un ticket y hay un espacio exclusivo para scooters "
+			}
+		],
+		"NumberOfPoints": 5,
+		"GeneralComments": "Si no consumes nada, debes pagar las horas que te quedes en el parqueadero ",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2022-09-11T18:52:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2022-09-09T11:24:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-04-28T11:02:00Z",
+		"ID": 311849,
+		"UUID": "CEA428E0-D6B4-4853-8925-10433CF326AF",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"AddressInfo": {
+			"ID": 312238,
+			"Title": "SAN LUIS SHOPPING ",
+			"AddressLine1": "Av. Gral. Rumiñahui, Quito. Centro Comercial San Luis Shopping, Quito",
+			"Town": "Sangolqui ",
+			"StateOrProvince": "Rumiñahui",
+			"CountryID": 69,
+			"Latitude": -0.30840272730183926,
+			"Longitude": -78.450190016925,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 600803,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 22,
+				"Voltage": 220,
+				"PowerKW": 5,
+				"CurrentTypeID": 10,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-04-28T11:02:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-04-21T01:50:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2025-04-28T11:02:00Z",
+		"ID": 311848,
+		"UUID": "9B3E0C10-1CA6-4FB4-A070-E5DB5AAC0539",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 1,
+		"AddressInfo": {
+			"ID": 312237,
+			"Title": "Mega KIWI",
+			"AddressLine1": "Av. Gral. Rumiñahui 840",
+			"Town": "Sangolqui",
+			"StateOrProvince": "pichincha",
+			"CountryID": 69,
+			"Latitude": -0.308367534276087,
+			"Longitude": -78.44733634143842,
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 600802,
+				"ConnectionTypeID": 1,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 22,
+				"Voltage": 220,
+				"PowerKW": 5,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 1,
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2025-04-28T11:02:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2025-04-21T01:45:00Z",
+		"SubmissionStatusTypeID": 200
+	},
+	{
+		"UserComments": [
+			{
+				"ID": 28325,
+				"ChargePointID": 204564,
+				"CommentTypeID": 10,
+				"UserName": "Jorgegullen",
+				"Comment": "",
+				"DateCreated": "2023-03-26T06:29:57.143Z",
+				"User": {
+					"ID": 44350,
+					"Username": "Jorgegullen",
+					"ReputationPoints": 3,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/b9144ad9051afc6344222240a6fe2c55?s=80&d=robohash"
+				},
+				"CheckinStatusTypeID": 10,
+				"IsActionedByEditor": false
+			},
+			{
+				"ID": 28324,
+				"ChargePointID": 204564,
+				"CommentTypeID": 10,
+				"UserName": "Jorgegullen",
+				"Comment": "excelente lugar para una carga parcial. ojalá haya más lugares así ",
+				"Rating": 5,
+				"DateCreated": "2023-03-26T06:29:38.213Z",
+				"User": {
+					"ID": 44350,
+					"Username": "Jorgegullen",
+					"ReputationPoints": 3,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/b9144ad9051afc6344222240a6fe2c55?s=80&d=robohash"
+				},
+				"CheckinStatusTypeID": 10,
+				"IsActionedByEditor": false
+			}
+		],
+		"MediaItems": [
+			{
+				"ID": 36461,
+				"ChargePointID": 204564,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM204564/OCM-204564.orig.2023013016364257.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM204564/OCM-204564.thmb.2023013016364257.jpg",
+				"Comment": "punto de carga",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 16800,
+					"Username": "Paul Jaramillo",
+					"ReputationPoints": 31,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/74c74c260174d78ef2cf50c34eea1a43?s=80&d=robohash"
+				},
+				"DateCreated": "2023-01-30T16:37:00Z"
+			},
+			{
+				"ID": 36462,
+				"ChargePointID": 204564,
+				"ItemURL": "https://media.openchargemap.io/images/EC/OCM204564/OCM-204564.orig.2023013016372264.jpg",
+				"ItemThumbnailURL": "https://media.openchargemap.io/images/EC/OCM204564/OCM-204564.thmb.2023013016372264.jpg",
+				"Comment": "carga motos electricas",
+				"IsEnabled": true,
+				"IsVideo": false,
+				"IsFeaturedItem": false,
+				"IsExternalResource": false,
+				"User": {
+					"ID": 16800,
+					"Username": "Paul Jaramillo",
+					"ReputationPoints": 31,
+					"ProfileImageURL": "https://www.gravatar.com/avatar/74c74c260174d78ef2cf50c34eea1a43?s=80&d=robohash"
+				},
+				"DateCreated": "2023-01-30T16:37:00Z"
+			}
+		],
+		"IsRecentlyVerified": false,
+		"DateLastVerified": "2024-07-24T08:18:00Z",
+		"ID": 204564,
+		"UUID": "CB14C74B-4EDF-44E0-AFD1-A6B8E710FE9D",
+		"DataProviderID": 1,
+		"OperatorID": 1,
+		"UsageTypeID": 6,
+		"UsageCost": "3",
+		"AddressInfo": {
+			"ID": 204931,
+			"Title": "S2 20",
+			"AddressLine1": "28 de Agosto",
+			"AddressLine2": "27 de Febrero",
+			"Town": "La Merced",
+			"StateOrProvince": "Pichincha",
+			"Postcode": "170810",
+			"CountryID": 69,
+			"Latitude": -0.294285399580545,
+			"Longitude": -78.40004195395272,
+			"ContactTelephone1": "593986927060",
+			"AccessComments": "Coordinar previamente si esta disponible el punto de carga",
+			"DistanceUnit": 0
+		},
+		"Connections": [
+			{
+				"ID": 341703,
+				"ConnectionTypeID": 28,
+				"StatusTypeID": 50,
+				"LevelID": 1,
+				"Amps": 15,
+				"Voltage": 110,
+				"PowerKW": 1.6,
+				"CurrentTypeID": 10,
+				"Quantity": 4
+			},
+			{
+				"ID": 341704,
+				"ConnectionTypeID": 0,
+				"StatusTypeID": 50,
+				"LevelID": 2,
+				"Amps": 40,
+				"Voltage": 220,
+				"PowerKW": 15.2,
+				"CurrentTypeID": 20,
+				"Quantity": 1
+			}
+		],
+		"NumberOfPoints": 2,
+		"GeneralComments": "Carga lenta 220v a/c y 110v a/c",
+		"StatusTypeID": 50,
+		"DateLastStatusUpdate": "2024-07-24T08:18:00Z",
+		"DataQualityLevel": 1,
+		"DateCreated": "2022-09-29T21:00:00Z",
+		"SubmissionStatusTypeID": 200
+	}
+]
