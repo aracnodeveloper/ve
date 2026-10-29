@@ -25,8 +25,10 @@
  *   · Reservas: tbl_reserva_new + tbl_reserva_oferta. 1 Pendiente · 2 Confirmada · 3 Cancelada
  *     (4 Cotización queda fuera).
  *     Período medido por r.fecha_creacion.
- *   · Noches producidas = noches × habitaciones de reservas confirmadas con check-in dentro
- *     del contrato, excluyendo las pagadas con bono (1), canje (2), canje empresarial (3) y premios (8).
+ *   · Noches producidas = noches × habitaciones de TODAS las reservas confirmadas con check-in
+ *     dentro del contrato (cualquier forma de pago, regalos incluidos — decisión del usuario 2026-10-30).
+ *     Noches históricas = como el listado del administrador: todas las confirmadas del hotel desde
+ *     siempre, sin multiplicar por habitaciones (solo para cuadrar).
  *   · Bono de producción: superada la meta (noches_gratis_meta), por cada x_noches_gratis noches
  *     adicionales → bono_noches noches. aplica_meta = 0 anula la meta (desde la 1a noche).
  *     Usadas = noches confirmadas con forma_pago_oferta = 1.
@@ -34,6 +36,9 @@
  *     aplica_valor_canje = 1, se devenga hasta cubrir el valor (USD) al precio promedio por noche.
  *     El valor es el pago tipo 8 «Canje» de Negociación/Pagos del contrato (última tbl_carga).
  *     Usadas = forma_pago 2 y 3. Requiere contrato_politicas.sql.
+ *   · Regalos (regalos_contrato.sql, opcional): el contrato incluye `regalos` reservas sin costo
+ *     (aplica_regalo = 1). Consumido = reserva Isaward = 1 pendiente (1) o confirmada (2) del
+ *     hotel creada en la vigencia del contrato. Las reservas regalo SÍ cuentan como producción.
  *   · Mapa de calor: demanda por provincia/ciudad/establecimiento. Solicitados = reservas creadas
  *     (pendiente, confirmada, cancelada) + certificados generados. Consumidos = reservas confirmadas
  *     + certificados usados. Ubicación = tbl_info_indice del establecimiento (lugar y lat/long).
@@ -59,16 +64,15 @@ include('configuraciones.php');
 // Cabañas, Resort, SPA, Hoteles Residenciales (87), Hotel Apartamento (24), Apartamento Hotel (98).
 const RD_SERVICIOS_HOTEL = '25';
 const RD_DIAS_POR_VENCER = 30;          // igual que el listado de establecimientos del administrador
-const RD_PAGOS_NO_PRODUCTIVOS = '1, 2, 3, 8';
 const RD_DIAS_RENOVACION = 31;
 const RD_TIPO_PAGO_CANJE = 8;          // tbl_tipo_pago «Canje»: el valor del canje del contrato
 const RD_CANJE_MINIMO = 1;              // montos menores son simbólicos (se cargaba 0.01)
-const RD_TIPO_LUGAR_CIUDAD = 4;
+const RD_TIPO_LUGAR_CIUDAD = 4;          // tbl_lugar.id_tbl_tipo_lugar de las ciudades
 const RD_TIPO_DIRECTORIO_EXPRESS = 38;  // cuenta express (creada por el flujo express)
 const RD_METODO_EXPRESS = 45;           // tbl_metodo_servicio «express» (Config.IDMETODO_EXPRESS)
 const RD_EXPRESS_HORAS_ANTES = 24;      // ingreso express hasta 24 h antes de crear la reserva
 const RD_EMPRESA_VE = 1;                 // tbl_empresa VisitaEcuador (2 FullVacations, 3 SuViajeYa)
-const RD_PAGOS_SUSCRIPCION_INVALIDOS = '4, 8'; // renovación anulada / bloqueada (como el administrador)  // cliente express (reserva sin suscripción)          // tbl_lugar.id_tbl_tipo_lugar de las ciudades
+const RD_PAGOS_SUSCRIPCION_INVALIDOS = '4, 8'; // renovación anulada / bloqueada (como el administrador)
 const RD_ESTADOS_RESERVA = '1, 2, 3';   // 4 = cotización, no es reserva
 const RD_USUARIOS_CERT_EXCLUIDOS = '412'; // certificados generados por estos usuarios no cuentan
 
@@ -449,38 +453,124 @@ function rd_hotelesInteranual($model, $anio, $anioComp)
 
 // ─── Bono de producción y frecuencia de canje (por contrato) ─────────────────
 
+/**
+ * true si ya se corrió regalos_contrato.sql (tbl_contrato.aplica_regalo / regalos y
+ * tbl_reserva_new.Isaward). Misma comprobación que fn_regalosContrato.php del administrador:
+ * sin las columnas, nombrarlas rompería la consulta entera.
+ */
+function rd_regalosHabilitados($model)
+{
+    static $habilitados = null;
+    if ($habilitados !== null) return $habilitados;
+    $f = rd_find($model, array(
+        'select' => 'COUNT(*) as n',
+        'from'   => 'information_schema.columns',
+        'where'  => "table_schema = DATABASE() AND (
+                        (table_name = 'tbl_contrato' AND column_name IN ('aplica_regalo', 'regalos'))
+                     OR (table_name = 'tbl_reserva_new' AND column_name = 'Isaward'))",
+    ));
+    $habilitados = $f && intval($f[0]['n']) === 3;
+    return $habilitados;
+}
+
 function rd_produccionContratos($model, $inicio, $fin)
 {
-    $confirmada = 'r.id_tbl_reserva is not null';
-    $noches     = 'DATEDIFF(ro.fecha_fin, ro.fecha_inicio) * GREATEST(ro.cantidad_ofertas, 1)';
-    $productiva = $confirmada . ' and ro.forma_pago_oferta not in (' . RD_PAGOS_NO_PRODUCTIVOS . ')';
+    $conRegalos = rd_regalosHabilitados($model);
 
+    // 1) Contratos (sin unir reservas). tbl_reserva_oferta no tiene índice por establecimiento:
+    //    unirla a cada contrato (más 5 subconsultas de regalos) tardaba ~55 s y el navegador cortaba
+    //    la conexión. Las reservas se leen aparte en UNA pasada y se reparten en PHP (paso 2).
     $filas = rd_find($model, array(
         'select' => 'c.id_tbl_contrato, c.id_tbl_establecimiento, DATE(c.fecha_ini) as fecha_ini, DATE(c.fecha_fin) as fecha_fin,
                      c.noches_gratis_meta, c.x_noches_gratis, c.x_noches_canje,
-                     c.aplica_meta, c.bono_noches, c.aplica_valor_canje, c.canje_noches,
+                     c.aplica_meta, c.bono_noches, c.aplica_valor_canje, c.canje_noches' . ($conRegalos ? ', c.aplica_regalo, c.regalos' : '') . ',
                      (SELECT SUM(des.cantidad) FROM tbl_descarga des
                        WHERE des.id_tbl_tipo_pago = ' . RD_TIPO_PAGO_CANJE . '
                          AND des.id_tbl_carga = (SELECT MAX(car.id_tbl_carga) FROM tbl_carga car
                                                  WHERE car.id_tbl_cab_kardex = c.id_tbl_cab_kardex
                                                    AND car.id_tbl_movimiento = c.id_tbl_movimiento)) as valor_canje,
-                     i.titulo, lug.desc_lugar as ciudad, prov.desc_lugar as provincia,
-                     COUNT(DISTINCT CASE WHEN ' . $productiva . ' THEN r.id_tbl_reserva END) as reservas,
-                     COALESCE(SUM(CASE WHEN ' . $productiva . ' THEN ' . $noches . ' END), 0) as noches,
-                     COALESCE(SUM(CASE WHEN ' . $productiva . ' THEN ro.precio_total END), 0) as monto,
-                     COALESCE(SUM(CASE WHEN ' . $confirmada . ' and ro.forma_pago_oferta = 1 THEN ' . $noches . ' END), 0) as bono_usadas,
-                     COALESCE(SUM(CASE WHEN ' . $confirmada . ' and ro.forma_pago_oferta in (2, 3) THEN ' . $noches . ' END), 0) as canje_usadas',
-        'from'   => rd_hotelFrom() . '
-                     left outer join tbl_reserva_oferta ro on ro.id_tbl_establecimiento = c.id_tbl_establecimiento
-                                                          and ro.fecha_inicio between DATE(c.fecha_ini) and DATE(c.fecha_fin)
-                     left outer join tbl_reserva_new r     on r.id_tbl_reserva = ro.id_tbl_reserva
-                                                          and r.id_tbl_estado_reserva = 2',
+                     i.titulo, lug.desc_lugar as ciudad, prov.desc_lugar as provincia',
+        'from'   => rd_hotelFrom(),
         'where'  => rd_esHotel('i') . ' and c.id_tbl_activacion = 1
                      and DATE(c.fecha_ini) <= "' . $fin . '" and DATE(c.fecha_fin) >= "' . $inicio . '"
-                     and (c.x_noches_gratis > 0 or c.x_noches_canje > 0)',
-        'group'  => 'c.id_tbl_contrato',
-        'order'  => 'noches desc',
+                     and (c.x_noches_gratis > 0 or c.x_noches_canje > 0' . ($conRegalos ? ' or c.aplica_regalo = 1' : '') . ')',
     ));
+
+    // 2) Líneas de reserva de esos hoteles: confirmadas (producción, bono/canje usados) y, si hay
+    //    regalos, todas las marcadas Isaward. Una sola lectura de tbl_reserva_oferta.
+    $porHotel = array();
+    $historico = array();
+    if ($filas) {
+        $ests   = array_values(array_unique(array_map('intval', array_column($filas, 'id_tbl_establecimiento'))));
+        $desde  = min(array_column($filas, 'fecha_ini'));
+        $lineas = rd_find($model, array(
+            'select' => 'ro.id_tbl_establecimiento as est, ro.id_tbl_reserva as id, DATE(ro.fecha_inicio) as ini,
+                         DATE(r.fecha_creacion) as creada, r.id_tbl_estado_reserva as estado, ro.forma_pago_oferta as forma,
+                         ' . ($conRegalos ? 'r.Isaward' : '0') . ' as regalo,
+                         DATEDIFF(ro.fecha_fin, ro.fecha_inicio) * GREATEST(ro.cantidad_ofertas, 1) as noches,
+                         ro.precio_total as precio',
+            'from'   => 'tbl_reserva_oferta ro join tbl_reserva_new r on r.id_tbl_reserva = ro.id_tbl_reserva',
+            'where'  => 'ro.id_tbl_establecimiento in (' . implode(',', $ests) . ')
+                         and (DATE(ro.fecha_inicio) >= "' . $desde . '" or DATE(r.fecha_creacion) >= "' . $desde . '")
+                         and (r.id_tbl_estado_reserva = 2' . ($conRegalos ? ' or (r.Isaward = 1 and r.id_tbl_estado_reserva in (1, 2, 3))' : '') . ')',
+        ));
+        foreach ($lineas as $l)
+            $porHotel[intval($l['est'])][] = $l;
+
+        // Históricas, igual que la columna «N. NOCHES» del listado de establecimientos del administrador
+        foreach (rd_find($model, array(
+            'select' => 'ro.id_tbl_establecimiento as est, COUNT(DISTINCT ro.id_tbl_reserva) as reservas,
+                         COALESCE(SUM(DATEDIFF(ro.fecha_fin, ro.fecha_inicio)), 0) as noches',
+            'from'   => 'tbl_reserva_oferta ro join tbl_reserva_new r on r.id_tbl_reserva = ro.id_tbl_reserva',
+            'where'  => 'r.id_tbl_estado_reserva = 2 and ro.id_tbl_establecimiento in (' . implode(',', $ests) . ')',
+            'group'  => 'ro.id_tbl_establecimiento',
+        )) as $h)
+            $historico[intval($h['est'])] = array('reservas' => intval($h['reservas']), 'noches' => intval($h['noches']));
+    }
+    foreach ($filas as &$f) {
+        $prod = array(); $noches = 0; $monto = 0; $bonoUsadas = 0; $canjeUsadas = 0;
+        $rgCons = array(); $rgConf = array(); $rgCanc = array(); $rgNoches = 0; $rgValor = 0;
+        foreach ($porHotel[intval($f['id_tbl_establecimiento'])] ?? array() as $l) {
+            $estado = intval($l['estado']);
+            $esRegalo = intval($l['regalo']) === 1;
+            $n = intval($l['noches']);
+            // Producción: TODAS las confirmadas con check-in dentro del contrato (cualquier forma de
+            // pago, regalos incluidos). Usadas: las pagadas con bono (1) o canje (2, 3).
+            if ($estado === 2 && $l['ini'] >= $f['fecha_ini'] && $l['ini'] <= $f['fecha_fin']) {
+                $forma = intval($l['forma']);
+                $prod[$l['id']] = true;
+                $noches += $n;
+                $monto  += floatval($l['precio']);
+                if ($forma === 1) $bonoUsadas += $n;
+                if ($forma === 2 || $forma === 3) $canjeUsadas += $n;
+            }
+            // Regalos: creados durante la vigencia del contrato (misma regla que el administrador)
+            if ($esRegalo && $l['creada'] >= $f['fecha_ini'] && $l['creada'] <= $f['fecha_fin']) {
+                if ($estado === 1 || $estado === 2) {
+                    $rgCons[$l['id']] = true;
+                    $rgNoches += $n;
+                    $rgValor  += floatval($l['precio']);
+                }
+                if ($estado === 2) $rgConf[$l['id']] = true;
+                if ($estado === 3) $rgCanc[$l['id']] = true;
+            }
+        }
+        $f['reservas'] = count($prod);
+        $f['noches'] = $noches;
+        $f['monto'] = $monto;
+        $f['bono_usadas'] = $bonoUsadas;
+        $f['canje_usadas'] = $canjeUsadas;
+        $f['regalos_consumidos'] = count($rgCons);
+        $f['regalos_confirmados'] = count($rgConf);
+        $f['regalos_cancelados'] = count($rgCanc);
+        $f['regalos_noches'] = $rgNoches;
+        $f['regalos_valor'] = $rgValor;
+        $hist = $historico[intval($f['id_tbl_establecimiento'])] ?? array('reservas' => 0, 'noches' => 0);
+        $f['noches_historicas'] = $hist['noches'];
+        $f['reservas_historicas'] = $hist['reservas'];
+    }
+    unset($f);
+    usort($filas, function ($a, $b) { return $b['noches'] - $a['noches']; });
 
     $hoy = date('Y-m-d');
     $contratos = array();
@@ -489,6 +579,8 @@ function rd_produccionContratos($model, $inicio, $fin)
                    'con_valor' => 0, 'sin_valor' => 0, 'valor_sin_cargar' => 0, 'valor_total' => 0, 'valor_devengado' => 0, 'valor_pendiente' => 0);
     $distCanje = array();
     $distBono  = array();
+    $regalos = array('contratos' => 0, 'incluidos' => 0, 'consumidos' => 0, 'confirmados' => 0, 'pendientes' => 0,
+                     'cancelados' => 0, 'disponibles' => 0, 'excedidos' => 0, 'agotados' => 0, 'noches' => 0, 'valor' => 0);
 
     foreach ($filas as $f) {
         $n     = intval($f['noches']);
@@ -517,6 +609,9 @@ function rd_produccionContratos($model, $inicio, $fin)
             'noches'             => $n,
             'monto'              => round($monto, 2),
             'precio_noche'       => round($precioNoche, 2),
+            // Como «N. NOCHES» / «N. RESERVAS» del listado de establecimientos del administrador
+            'noches_historicas'  => intval($f['noches_historicas']),
+            'reservas_historicas'=> intval($f['reservas_historicas']),
             'bono'               => null,
             'canje'              => null,
         );
@@ -589,8 +684,40 @@ function rd_produccionContratos($model, $inicio, $fin)
             $distCanje[$xc . ':' . $yc] = rd_acumular($distCanje[$xc . ':' . $yc] ?? null, $xc, $yc, $n, $devengadas);
         }
 
+        // Regalos: el contrato incluye N reservas sin costo para el suscriptor
+        $fila['regalo'] = null;
+        if ($conRegalos && intval($f['aplica_regalo']) === 1) {
+            $incluidos  = intval($f['regalos']);
+            $consumidos = intval($f['regalos_consumidos']);
+            $confirmados = intval($f['regalos_confirmados']);
+            $fila['regalo'] = array(
+                'incluidos'   => $incluidos,
+                'consumidos'  => $consumidos,
+                'confirmados' => $confirmados,
+                'pendientes'  => $consumidos - $confirmados,
+                'cancelados'  => intval($f['regalos_cancelados']),
+                'disponibles' => $incluidos - $consumidos,       // negativo = se usaron de más
+                'uso'         => $incluidos > 0 ? round($consumidos * 100 / $incluidos, 1) : null,
+                'noches'      => intval($f['regalos_noches']),
+                'valor'       => round(floatval($f['regalos_valor']), 2),
+            );
+            $regalos['contratos']++;
+            $regalos['incluidos']   += $incluidos;
+            $regalos['consumidos']  += $consumidos;
+            $regalos['confirmados'] += $confirmados;
+            $regalos['pendientes']  += $consumidos - $confirmados;
+            $regalos['cancelados']  += intval($f['regalos_cancelados']);
+            $regalos['disponibles'] += max(0, $incluidos - $consumidos);
+            $regalos['excedidos']   += max(0, $consumidos - $incluidos);
+            if ($consumidos >= $incluidos) $regalos['agotados']++;
+            $regalos['noches']      += $fila['regalo']['noches'];
+            $regalos['valor']       += $fila['regalo']['valor'];
+        }
+
         $contratos[] = $fila;
     }
+    $regalos['valor'] = round($regalos['valor'], 2);
+    $regalos['uso'] = $regalos['incluidos'] > 0 ? round($regalos['consumidos'] * 100 / $regalos['incluidos'], 1) : null;
 
     $bono['saldo']  = $bono['ganadas'] - $bono['usadas'];
     $canje['saldo'] = $canje['generadas'] - $canje['usadas'];
@@ -603,6 +730,7 @@ function rd_produccionContratos($model, $inicio, $fin)
     return array(
         'resumen_bono'       => $bono,
         'resumen_canje'      => $canje,
+        'resumen_regalos'    => $conRegalos ? $regalos : null,   // null = falta regalos_contrato.sql
         'distribucion_bono'  => $distBono,
         'distribucion_canje' => $distCanje,
         'contratos'          => $contratos,

@@ -33,18 +33,43 @@ export const etiquetaCodigoMadre = (codigo) => {
   return (marcasVigentes ?? codigosMadreEnHeader)[c] ?? null;
 };
 
+/** Códigos que podrían ser la marca del usuario: el de su suscripción, el propio y el del enlace. */
+const codigosDelUsuario = () => {
+  let session = null;
+  let deEnlace = null;
+  try {
+    session = JSON.parse(localStorage.getItem("datos") || "null");
+    deEnlace = localStorage.getItem("codigo");
+  } catch {
+    // sin localStorage: no hay códigos que revisar
+  }
+  return [session?.data?.codigoPromocional?.codigo, codigoPropioDeSesion(session), deEnlace]
+    .map((c) => String(c ?? "").trim().toUpperCase())
+    .filter(Boolean);
+};
+
 /**
  * Carga las marcas desde el servidor (getCodigosHeader) y las deja en caché por
  * 6 horas. Devuelve true si cambiaron respecto a lo que ya había, para que el
  * header se vuelva a pintar. Nunca lanza: si algo falla se queda el respaldo.
+ *
+ * Si un código del usuario no está en la caché, se vuelve a consultar aunque no
+ * hayan pasado las 6 horas: una marca dada de alta hace un rato no aparecía hasta
+ * que la caché vencía. Los códigos ya consultados que no son marca se recuerdan
+ * para no repetir la consulta en cada página.
  */
 export const cargarCodigosHeader = async () => {
   const previas = marcasVigentes;
+  const candidatos = codigosDelUsuario();
   try {
     const guardado = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
     if (guardado?.mapa && Date.now() - (guardado.fecha ?? 0) < CACHE_HORAS * 3600000) {
-      marcasVigentes = guardado.mapa;
-      return previas === null;
+      const consultados = guardado.consultados ?? [];
+      const faltan = candidatos.filter((c) => !(c in guardado.mapa) && !consultados.includes(c));
+      if (faltan.length === 0) {
+        marcasVigentes = guardado.mapa;
+        return previas === null;
+      }
     }
   } catch {
     // caché ilegible: se consulta al servidor
@@ -56,7 +81,8 @@ export const cargarCodigosHeader = async () => {
 
   marcasVigentes = mapa;
   try {
-    localStorage.setItem(CACHE_KEY, JSON.stringify({ fecha: Date.now(), mapa }));
+    const consultados = candidatos.filter((c) => !(c in mapa));
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ fecha: Date.now(), mapa, consultados }));
   } catch {
     // sin localStorage (modo privado): solo queda en memoria
   }

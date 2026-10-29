@@ -30,8 +30,8 @@ ALTER TABLE tbl_reserva_new
 --
 -- tbl_reserva_new no guarda el establecimiento: se toma de tbl_reserva_oferta. Una
 -- reserva cuenta para el contrato del establecimiento que estaba vigente el día en que
--- se creó la reserva. Solo cuentan las pendientes (1) y confirmadas (3), como las numera el
--- administrador para tbl_reserva_new: no las canceladas (2) ni las cotizaciones (4). Una
+-- se creó la reserva. Solo cuentan las pendientes (1) y confirmadas (2), como las numera el
+-- administrador para tbl_reserva_new (Config.ESTADOS): no las canceladas (3) ni las cotizaciones (4). Una
 -- reserva con varias ofertas cuenta como un solo regalo (COUNT DISTINCT).
 -- =====================================================================================
 SELECT c.id_tbl_contrato,
@@ -46,7 +46,7 @@ LEFT JOIN (tbl_reserva_oferta ro
            JOIN tbl_reserva_new r
              ON r.id_tbl_reserva = ro.id_tbl_reserva
             AND r.Isaward = 1
-            AND r.id_tbl_estado_reserva IN (1, 3))
+            AND r.id_tbl_estado_reserva IN (1, 2))
        ON ro.id_tbl_establecimiento = c.id_tbl_establecimiento
       AND DATE(r.fecha_creacion) BETWEEN c.fecha_ini AND c.fecha_fin
 WHERE c.aplica_regalo = 1
@@ -70,7 +70,7 @@ LEFT JOIN (tbl_reserva_oferta ro
            JOIN tbl_reserva_new r
              ON r.id_tbl_reserva = ro.id_tbl_reserva
             AND r.Isaward = 1
-            AND r.id_tbl_estado_reserva IN (1, 3))
+            AND r.id_tbl_estado_reserva IN (1, 2))
        ON ro.id_tbl_establecimiento = c.id_tbl_establecimiento
       AND DATE(r.fecha_creacion) BETWEEN c.fecha_ini AND c.fecha_fin
 WHERE c.id_tbl_establecimiento = @est

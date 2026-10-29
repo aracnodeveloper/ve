@@ -262,6 +262,11 @@ try {
 		"phone" => $post['personal']['celular']
 	];
 
+	// Suscripcion con codigo promocional: el biosite nuevo es hijo del biosite del dueño del codigo
+	$cedulaPadreBiosite = getCedulaDuenoCodigoPromocional($app, $subscriber, $post['producto']['id_codigo_promocional'] ?? 0);
+	if (!empty($cedulaPadreBiosite) && $cedulaPadreBiosite != $campos['identificacion'])
+		$data2['parentCedula'] = $cedulaPadreBiosite;
+
 	$curl = curl_init();
 
 	curl_setopt_array($curl, [
@@ -289,6 +294,28 @@ try {
 
 }
 
+
+/**
+ * Cedula del dueño (id_tbl_usuario_vendedor) del codigo promocional usado en la suscripcion,
+ * para registrar su biosite como padre en la API de biosite. Si no hay codigo o no se
+ * encuentra al dueño devuelve null y el biosite se crea sin padre.
+ */
+function getCedulaDuenoCodigoPromocional($app, $subscriber, $id_codigo_promocional)
+{
+	if (!($id_codigo_promocional > 0))
+		return null;
+
+	if (!$codigopromo = $app->getCodigoPromocionalById($id_codigo_promocional))
+		return null;
+
+	if (!($codigopromo['id_tbl_usuario_vendedor'] > 0))
+		return null;
+
+	if (!$dueno = $subscriber->getSuscripcion($codigopromo['id_tbl_usuario_vendedor']))
+		return null;
+
+	return !empty($dueno['ci_ruc']) ? $dueno['ci_ruc'] : null;
+}
 
 /**
  * Aviso interno de una suscripcion creada desde RISE (venta del call center), para que
